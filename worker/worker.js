@@ -78,10 +78,10 @@ export default {
     const payload = {
       model: env.MODEL || DEFAULT_MODEL,
       messages: [{ role: "system", content: system(today) }, ...clean],
-      max_tokens: 400,
+      max_tokens: 500,
       temperature: 0.4,
     };
-    if (wantWeb) payload.plugins = [{ id: "web", max_results: 4 }];
+    if (wantWeb) payload.plugins = [{ id: "web", engine: "exa", max_results: 4 }];  // Exa: search results are added to the prompt, works with any model
 
     let r;
     try {
@@ -104,7 +104,9 @@ export default {
     }
     const data = await r.json();
     const msg = data?.choices?.[0]?.message || {};
-    const reply = (typeof msg.content === "string" ? msg.content : "").trim() || "Sorry, I couldn't come up with an answer. Try rephrasing.";
+    const text = typeof msg.content === "string" ? msg.content
+      : Array.isArray(msg.content) ? msg.content.map((p) => (typeof p === "string" ? p : p?.text || "")).join("") : "";
+    const reply = text.trim() || "Sorry, I couldn't come up with an answer. Try rephrasing.";
     const seen = new Set();
     const sources = (msg.annotations || [])
       .filter((a) => a.type === "url_citation" && a.url_citation?.url)
