@@ -1,7 +1,7 @@
 // "Ask AI Radar" chat overlay. Talks to the Cloudflare Worker (worker/worker.js), which holds the API key.
 // Stays hidden until ENDPOINT is set to the Worker's URL.
 (function(){
-  var ENDPOINT = ""; // e.g. "https://airadar-chat.<your-subdomain>.workers.dev"
+  var ENDPOINT = "https://airadar-chat.asm-gamingyt.workers.dev";
   if(!ENDPOINT) return;
 
   var LOGO='<svg viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="194" fill="#13a36b" stroke="#0f8a5a" stroke-width="8"/><g transform="translate(189 195) scale(0.74) translate(-224 -166)"><text x="182" y="285" text-anchor="middle" font-family="Inter,Helvetica,Arial,sans-serif" font-weight="900" font-size="230" letter-spacing="-10" fill="#ffffff">a</text><rect x="268" y="160" width="40" height="125" rx="6" fill="#ffffff"/><circle cx="288" cy="112" r="24" fill="#1d1d1f"/><path d="M299.4 69.5 A44 44 0 0 1 330.5 100.6" stroke="#1d1d1f" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.85"/><path d="M305.1 48.2 A66 66 0 0 1 351.8 94.9" stroke="#1d1d1f" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.55"/></g></svg>';
