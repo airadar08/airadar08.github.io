@@ -11,6 +11,8 @@ Static site for the @ai_radar_ X account, served by GitHub Pages at https://aira
 - `prompts/index.html` — free resource: 50 AI prompts (data in the `PACK` array in its script).
 - `cheatsheets/index.html` — gallery of posted cheatsheets; images in `cheatsheets/img/*.jpg` (1080x1350), each card has an `id` anchor linked from the home page.
 - Home chips: "Daily AI news" and "AI facts" link to https://x.com/ai_radar_; "Cheatsheets" to `cheatsheets/`; "Free resources" to `#resources`.
+- `assets/chat.js` — "Ask AI Radar" chat overlay on every page. Hidden until `ENDPOINT` (top of file) is set to the Cloudflare Worker URL.
+- `worker/worker.js` — Cloudflare Worker (deployed separately on Cloudflare, not by GitHub Pages) that calls OpenRouter. The OpenRouter key is a Cloudflare secret `OPENROUTER_API_KEY`; optional vars `MODEL`, `ALLOWED_ORIGIN`. Origin-locked, rate-limited, web search only for news-type questions.
 - `.nojekyll` — keeps GitHub Pages from running Jekyll.
 
 ## Brand
@@ -29,7 +31,8 @@ Add the 1080x1350 image as `cheatsheets/img/<slug>.jpg`. Insert the new `<articl
 4. The resource link used in X replies is `https://airadar08.github.io/<slug>/`.
 
 ## Rules
-- Keep everything static (no backend, no trackers, no forms that submit anywhere).
+- The site itself stays static (no trackers, no forms that submit anywhere). The only backend is the chat Worker.
+- Never put an API key or secret in any file in this repo.
 - Plain, direct copy; real content only.
 
 - Never show posting frequency or schedules (posts per day, times) anywhere on the site.
