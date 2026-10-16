@@ -128,9 +128,13 @@
     history.push({role:'user',content:q}); bubble('user',q); save();
     var t=document.createElement('div'); t.className='airc-msg a airc-typing'; t.setAttribute('aria-label','Thinking'); t.innerHTML='<i></i><i></i><i></i>'; log.appendChild(t); log.scrollTop=log.scrollHeight;
     try{
-      var r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({messages:history.map(function(m){return {role:m.role,content:m.content};}).slice(-6)})});
-      var data=await r.json().catch(function(){return {};});
+      var payload=JSON.stringify({messages:history.map(function(m){return {role:m.role,content:m.content};}).slice(-6)});
+      var r,data;
+      for(var attempt=0;attempt<2;attempt++){ // retry once if the model returns an empty answer
+        r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:payload});
+        data=await r.json().catch(function(){return {};});
+        if(!(r.ok&&data.reply&&/^Sorry, I couldn't come up with an answer/.test(data.reply))) break;
+      }
       t.remove();
       if(!r.ok||!data.reply){ bubble('assistant',data.error||'Something went wrong. Try again.',{err:true}); history.pop(); }
       else{
