@@ -38,7 +38,9 @@
 .airc-msg a{color:var(--mint-ink)}
 .airc-src{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;white-space:normal}
 .airc-src a{font-size:12px;text-decoration:none;background:var(--mint-soft);color:var(--mint-ink);padding:3px 9px;border-radius:999px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.airc-tag{font:500 11px var(--mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;display:block}
+.airc-who{display:flex;align-items:center;gap:6px;font:700 12.5px var(--body);color:var(--mint-ink);margin-bottom:4px;white-space:nowrap}
+.airc-who svg{width:18px;height:18px;flex:none}
+.airc-who em{font:500 11px var(--mono);font-style:normal;color:var(--muted);letter-spacing:.04em}
 .airc-sug{display:flex;flex-wrap:wrap;gap:8px}
 .airc-sug button{all:unset;cursor:pointer;font-size:13.5px;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);transition:border-color .2s}
 .airc-sug button:hover{border-color:var(--mint)}
@@ -84,7 +86,7 @@
   function save(){ try{ sessionStorage.setItem(KEY,JSON.stringify(history.slice(-20))); }catch(e){} }
   function bubble(role,text,extra){
     var d=document.createElement('div'); d.className='airc-msg '+(role==='user'?'u':'a')+(extra&&extra.err?' err':'');
-    var tag=(role!=='user'&&extra&&extra.web)?'<span class="airc-tag">Searched the web</span>':'';
+    var tag=role!=='user'?'<span class="airc-who">'+LOGO+'AI Radar'+((extra&&extra.web)?'<em>· searched the web</em>':'')+'</span>':'';
     d.innerHTML=tag+(role==='user'?esc(text):fmt(text));
     if(extra&&extra.sources&&extra.sources.length){
       var s=document.createElement('div'); s.className='airc-src';
