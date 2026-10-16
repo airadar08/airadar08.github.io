@@ -73,10 +73,10 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.02em;text-wrap:balance;marg
 .site-foot nav{display:flex;gap:18px;flex-wrap:wrap}
 
 /* reveal: content is visible by default; JS adds .js to opt in to the fade */
-.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
-.js .reveal.in{opacity:1;transform:none}
+.js .reveal{opacity:0;transform:translateY(36px);filter:blur(4px);transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease)}
+.js .reveal.in{opacity:1;transform:none;filter:none}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{transition:none!important;animation:none!important}
-  .js .reveal{opacity:1;transform:none}
+  .js .reveal{opacity:1;transform:none;filter:none}
 }
