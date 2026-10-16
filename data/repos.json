@@ -1,5 +1,24 @@
 [
  {
+  "slug": "earthtojake-text-to-cad",
+  "repo": "earthtojake/text-to-cad",
+  "url": "https://github.com/earthtojake/text-to-cad",
+  "tagline": "A plugin that gives AI agents CAD skills: describe a part, get a 3D model.",
+  "stars": "21.0k",
+  "trend": "+2.2k",
+  "language": "Python",
+  "license": "MIT",
+  "what": [
+   "Exports STEP, GLB, STL and 3MF files",
+   "Design-for-manufacturing checks and drawings",
+   "Links to 3D printing and CNC services"
+  ],
+  "read": "Handy for quick parts; usage stats are on by default, so check telemetry.",
+  "img": "repos/img/earthtojake-text-to-cad.jpg",
+  "date": "2026-10-17",
+  "post": "https://x.com/ai_radar_/status/2111224140917280927"
+ },
+ {
   "slug": "heygen-com-hyperframes",
   "repo": "heygen-com/hyperframes",
   "url": "https://github.com/heygen-com/hyperframes",
