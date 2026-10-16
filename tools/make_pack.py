@@ -27,7 +27,7 @@ e = html.escape
 def cover_html(p, total):
     rows = "".join(f'<div class="r"><span>{e(c["name"])}</span><b>{len(c["items"])}</b></div>' for c in p["categories"][:7])
     A = RADAR.format(w=72); B = RADAR.format(w=54)
-    return f"""<html><head><style>
+    return f"""<html><head><meta charset="utf-8"><style>
 *{{box-sizing:border-box;margin:0;padding:0}}
 html{{font-size:10px}}
 html,body{{width:1080px;height:1350px;font-family:"Inter",sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden}}

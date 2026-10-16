@@ -20,7 +20,7 @@ def build(d):
         return f'<h2>{fmt(title)}</h2>' + "".join(f'<div class="li"><i>•</i><div>{fmt(x)}</div></div>' for x in items[:3])
     tryit = f'<h2>Try it</h2><div class="cmd">{fmt(d["try"])}</div>' if d.get("try") else ""
     read = f'<div class="read"><span>Our read:</span> {fmt(d["read"])}</div>' if d.get("read") else ""
-    return f"""<html><head><style>
+    return f"""<html><head><meta charset="utf-8"><style>
 *{{box-sizing:border-box;margin:0;padding:0}}
 html{{font-size:10px}}
 html,body{{width:1080px;height:1350px;font-family:"Inter",sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden}}

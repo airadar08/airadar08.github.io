@@ -33,7 +33,7 @@ def build(sheet):
     blocks = "".join(block(b, acc, lbl, line, muted) for b in sheet["blocks"])
     tip = f'<div class="tip"><span>Remember:</span> {fmt(sheet["tip"])}</div>' if sheet.get("tip") else ""
     sub = f'<div class="sub">{fmt(sheet["subtitle"])}</div>' if sheet.get("subtitle") else ""
-    return f"""<html><head><style>
+    return f"""<html><head><meta charset="utf-8"><style>
 *{{box-sizing:border-box;margin:0;padding:0}}
 html{{font-size:10px}}
 html,body{{width:1080px;height:1350px;font-family:"Inter",sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden}}
