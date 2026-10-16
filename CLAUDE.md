@@ -6,7 +6,7 @@ Static site for the @ai_radar_ X account, served by GitHub Pages at https://aira
 - `assets/site.css` — shared tokens, header, buttons, resource cards, footer, reveal animation. Every page links it.
 - `assets/site.js` — header border on scroll + scroll reveal (content stays visible without JS).
 - `assets/hero.js` — Three.js (r128 UMD from cdnjs) 3D radar on the home hero; static SVG fallback inside `#radar`.
-- `assets/logo.svg` — radar logo (mint rounded square, rings, sweep, dark blip); also the favicon. Same SVG is inlined in each page header.
+- `assets/logo.svg` — the AI Radar logo used on the X profile (mint circle, white "ai", radar arcs); also the favicon. Same SVG is inlined in each page header.
 - `index.html` — home: hero with 3D radar, "What you get", free resources grid (thumbnails), follow band.
 - `prompts/index.html` — free resource: 50 AI prompts (data in the `PACK` array in its script).
 - `cheatsheets/index.html` — gallery of posted cheatsheets; images in `cheatsheets/img/*.jpg` (1080x1350), each card has an `id` anchor linked from the home page.
@@ -16,7 +16,7 @@ Static site for the @ai_radar_ X account, served by GitHub Pages at https://aira
 ## Brand
 - Colours: cream `#fbf8f1` background, mint `#13a36b` accent (dark ink `#0b7a4f`), text `#1d1d1f`. Dark mode via `prefers-color-scheme`.
 - Fonts (Google Fonts): Bricolage Grotesque for headings, Inter for body, JetBrains Mono for small labels.
-- Logo: `assets/logo.svg` radar mark. No company logos or trademarks.
+- Logo: `assets/logo.svg`, the same mark as the X profile picture. No company logos or trademarks.
 - Motion: subtle (fade/rise, hover lift, the radar sweep). Always respect `prefers-reduced-motion`.
 
 ## Adding a new cheatsheet
