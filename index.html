@@ -42,8 +42,9 @@
 .hero-copy>*{animation:rise .8s var(--ease) both}
 .hero-copy>*:nth-child(2){animation-delay:.08s}.hero-copy>*:nth-child(3){animation-delay:.16s}.hero-copy>*:nth-child(4){animation-delay:.24s}.hero-copy>*:nth-child(5){animation-delay:.32s}
 /* what you get */
-.feat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-@media (max-width:760px){.feat{grid-template-columns:1fr}}
+.feat{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+@media (max-width:1000px){.feat{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.feat{grid-template-columns:1fr}}
 .feat a{display:grid;gap:10px;text-decoration:none;padding:24px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line);transition:transform .35s var(--ease),border-color .25s}
 .feat a:hover{transform:translateY(-4px);border-color:var(--mint)}
 .feat .ic{width:40px;height:40px;border-radius:12px;background:var(--mint-soft);color:var(--mint-ink);display:grid;place-items:center}
@@ -66,6 +67,7 @@
     <a class="brand" href="./" aria-label="AI Radar home"><svg viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="194" fill="#13a36b" stroke="#0f8a5a" stroke-width="8"/><g transform="translate(189 195) scale(0.74) translate(-224 -166)"><text x="182" y="285" text-anchor="middle" font-family="Inter,Helvetica,Arial,sans-serif" font-weight="900" font-size="230" letter-spacing="-10" fill="#ffffff">a</text><rect x="268" y="160" width="40" height="125" rx="6" fill="#ffffff"/><circle cx="288" cy="112" r="24" fill="#1d1d1f"/><path d="M299.4 69.5 A44 44 0 0 1 330.5 100.6" stroke="#1d1d1f" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.85"/><path d="M305.1 48.2 A66 66 0 0 1 351.8 94.9" stroke="#1d1d1f" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.55"/></g></svg>AI Radar</a>
     <nav class="nav" aria-label="Main">
       <a class="hide-sm" href="#resources">Resources</a>
+      <a class="hide-sm" href="repos/">Repos</a>
       <a class="hide-sm" href="cheatsheets/">Cheatsheets</a>
       <a class="hide-sm" href="prompts/">Prompts</a>
       <a class="btn btn-ink" href="https://x.com/ai_radar_">Follow on X</a>
@@ -94,7 +96,7 @@
 
   <section class="section" id="what">
     <div class="container">
-      <div class="section-head reveal"><div><span class="eyebrow">What you get</span><h2 style="margin-top:12px">Three kinds of posts</h2></div></div>
+      <div class="section-head reveal"><div><span class="eyebrow">What you get</span><h2 style="margin-top:12px">What we post</h2></div></div>
       <div class="feat">
         <a class="reveal" href="https://x.com/ai_radar_">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 5h16M4 10h16M4 15h10M4 20h7"/></svg></span>
@@ -111,7 +113,22 @@
           <h3>Cheatsheets</h3><p>One-page guides to the AI ideas people ask about most. Save them, share them.</p>
           <span class="go">Browse cheatsheets →</span>
         </a>
+        <a class="reveal" href="repos/">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></svg></span>
+          <h3>Trending repos</h3><p>Open-source AI projects taking off on GitHub, with what they do and who they're for.</p>
+          <span class="go">Browse repos →</span>
+        </a>
       </div>
+    </div>
+  </section>
+
+  <section class="section" id="repos-strip" hidden>
+    <div class="container">
+      <div class="section-head reveal">
+        <div><span class="eyebrow">Trending repos</span><h2 style="margin-top:12px">Fresh from GitHub</h2><p>The latest open-source AI projects we've featured.</p></div>
+        <a class="link-arrow" href="repos/">All repos →</a>
+      </div>
+      <div class="res-grid" id="repo-cards"></div>
     </div>
   </section>
 
@@ -146,10 +163,21 @@
 <footer class="site-foot">
   <div class="container">
     <span>© 2026 AI Radar</span>
-    <nav aria-label="Footer"><a href="cheatsheets/">Cheatsheets</a><a href="prompts/">Prompt pack</a><a href="https://x.com/ai_radar_">X / @ai_radar_</a></nav>
+    <nav aria-label="Footer"><a href="repos/">Repos</a><a href="cheatsheets/">Cheatsheets</a><a href="prompts/">Prompt pack</a><a href="https://x.com/ai_radar_">X / @ai_radar_</a></nav>
   </div>
 </footer>
 
+<script>
+// home: show the 3 newest featured repos from data/repos.json (section stays hidden when there are none)
+fetch('data/repos.json?t='+Date.now()).then(function(r){return r.json();}).then(function(items){
+  if(!items||!items.length) return;
+  function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  document.getElementById('repo-cards').innerHTML=items.slice(0,4).map(function(i){
+    return '<a class="res" href="repos/#'+esc(i.slug)+'"><div class="thumb"><img src="'+esc(i.img)+'" alt="'+esc(i.repo)+' repo card" loading="lazy" width="1080" height="1350"></div><div class="body"><span class="kind">Repo'+(i.stars?' · ★ '+esc(i.stars):'')+'</span><b>'+esc(i.repo)+'</b><span class="desc">'+esc(i.tagline)+'</span></div></a>';
+  }).join('');
+  document.getElementById('repos-strip').hidden=false;
+}).catch(function(){});
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
 <script src="assets/site.js?v=4" defer></script>
 <script src="assets/hero.js?v=14" defer></script>

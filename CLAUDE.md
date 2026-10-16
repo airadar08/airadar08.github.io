@@ -13,6 +13,9 @@ Static site for the @ai_radar_ X account, served by GitHub Pages at https://aira
 - Home chips: "Daily AI news" and "AI facts" link to https://x.com/ai_radar_; "Cheatsheets" to `cheatsheets/`; "Free resources" to `#resources`.
 - `assets/chat.js` — "Ask AI Radar" chat overlay on every page. Hidden until `ENDPOINT` (top of file) is set to the Cloudflare Worker URL.
 - `worker/worker.js` — Cloudflare Worker (deployed separately on Cloudflare, not by GitHub Pages) that calls OpenRouter. The OpenRouter key is a Cloudflare secret `OPENROUTER_API_KEY`; optional vars `MODEL` (default the free `nvidia/nemotron-3.5-super-vl:free`), `ALLOWED_ORIGIN`. Origin-locked, rate-limited, web search only for news-type questions.
+- `repos/index.html` — Repos page; renders from `data/repos.json` (newest first). Home shows the 4 newest in the hidden-until-filled `#repos-strip`. Card images in `repos/img/`.
+- `data/repos.json` — featured repos, written by `tools/update_site.py repo`.
+- `tools/` — renderers (`render_cheatsheet.py`, `render_repo.py`), `post_x.js` browser snippet, `update_site.py`. Used by the scheduled posting task.
 - `.nojekyll` — keeps GitHub Pages from running Jekyll.
 
 ## Brand
@@ -21,7 +24,11 @@ Static site for the @ai_radar_ X account, served by GitHub Pages at https://aira
 - Logo: `assets/logo.svg`, the same mark as the X profile picture. No company logos or trademarks.
 - Motion: subtle (fade/rise, hover lift, the radar sweep). Always respect `prefers-reduced-motion`.
 
+## Adding a new repo
+Run `python3 tools/update_site.py repo <card.jpg> <repo.json> [x_post_url]`, then commit and push.
+
 ## Adding a new cheatsheet
+Prefer `python3 tools/update_site.py cheatsheet <slug> <card.jpg> "<title>" "<subtitle>" "<tag>"`. Manually:
 Add the 1080x1350 image as `cheatsheets/img/<slug>.jpg`. Insert the new `<article class="sheet reveal" id="<slug>">` right after the `<!-- new-cheatsheet:page -->` marker in `cheatsheets/index.html` (newest first); insert a matching `<a class="res reveal">` card right after `<!-- new-cheatsheet:home -->` in `index.html`. Copy the markup of the existing entries exactly.
 
 ## Adding a new free resource
