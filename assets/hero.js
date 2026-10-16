@@ -67,18 +67,21 @@
   var hub=new THREE.Mesh(new THREE.SphereGeometry(0.14,24,16),hubMat); scope.add(hub);
 
   // blips: little stories that light up when the beam passes
+  // blip colours = the 8 post-card slot accents (Sunflower, Mint, Sky, Lavender, Coral, Graphite, Teal, Rose)
+  var SLOTS=['#d9a400','#13a36b','#2f7ae5','#7c5ce0','#e8613c','#ff7a1a','#0e9aa7','#e0457b'];
   var blips=[], seed=7;
   function rnd(){ seed=(seed*9301+49297)%233280; return seed/233280; }
   for(var b=0;b<16;b++){
     var ang=rnd()*Math.PI*2, rad=R*(0.22+rnd()*0.72);
-    var m=new THREE.MeshBasicMaterial({color:b%5===0?INK:MINT,transparent:true,opacity:0.15});
+    var col=new THREE.Color(SLOTS[b%SLOTS.length]);
+    var m=new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:0.25});
     var mesh=new THREE.Mesh(new THREE.SphereGeometry(0.075+rnd()*0.05,16,12),m);
     mesh.position.set(Math.cos(ang)*rad,Math.sin(ang)*rad,0.05);
     var ringPts=[]; for(var q=0;q<=40;q++){ var qa=q/40*Math.PI*2; ringPts.push(new THREE.Vector3(Math.cos(qa)*0.18,Math.sin(qa)*0.18,0)); }
-    var ringM=new THREE.LineBasicMaterial({color:MINT,transparent:true,opacity:0});
+    var ringM=new THREE.LineBasicMaterial({color:col,transparent:true,opacity:0});
     var ring=new THREE.Line(new THREE.BufferGeometry().setFromPoints(ringPts),ringM); ring.position.copy(mesh.position);
     scope.add(mesh); scope.add(ring);
-    blips.push({mesh:mesh,ring:ring,ang:ang,glow:0,ink:b%5===0});
+    blips.push({mesh:mesh,ring:ring,ang:ang,glow:0});
   }
 
   // drifting dust
@@ -88,7 +91,7 @@
   var dustMat=new THREE.PointsMaterial({color:MINT,size:0.045,transparent:true,opacity:0.5});
   var dust=new THREE.Points(dg,dustMat); scene.add(dust);
 
-  dark.addEventListener&&dark.addEventListener('change',function(){ palette(); blips.forEach(function(p){ p.mesh.material.color.copy(p.ink?INK:MINT); }); });
+  dark.addEventListener&&dark.addEventListener('change',palette);
 
   function size(){
     var w=host.clientWidth, h=host.clientHeight; if(!w||!h) return;
@@ -117,9 +120,9 @@
       var d=(lead-p.ang+Math.PI*4)%(Math.PI*2);
       if(d<dt*0.9+0.001) p.glow=1;
       p.glow*=Math.pow(0.35,dt);
-      p.mesh.material.opacity=0.15+0.85*p.glow;
+      p.mesh.material.opacity=0.25+0.75*p.glow;
       p.mesh.scale.setScalar(1+0.6*p.glow);
-      p.ring.material.opacity=0.5*p.glow*p.glow;
+      p.ring.material.opacity=0.7*p.glow*p.glow;
       p.ring.scale.setScalar(1+(1-p.glow)*2.2);
     });
     hub.scale.setScalar(1+0.12*Math.sin(now/400));
