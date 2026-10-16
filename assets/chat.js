@@ -81,7 +81,11 @@
 
   function esc(s){ return s.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
   function fmt(s){
-    return esc(s).replace(/\*\*(.+?)\*\*/g,'$1').replace(/(https?:\/\/[^\s<)]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>');
+    var out=esc(s).replace(/\*\*(.+?)\*\*/g,'$1');
+    // markdown links [text](url) first, then bare URLs not already inside a link
+    out=out.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+    out=out.replace(/(^|[\s(])(https?:\/\/[^\s<)]+)/g,'$1<a href="$2" target="_blank" rel="noopener">link</a>');
+    return out;
   }
   function save(){ try{ sessionStorage.setItem(KEY,JSON.stringify(history.slice(-20))); }catch(e){} }
   function bubble(role,text,extra){
@@ -90,7 +94,7 @@
     d.innerHTML=tag+(role==='user'?esc(text):fmt(text));
     if(extra&&extra.sources&&extra.sources.length){
       var s=document.createElement('div'); s.className='airc-src';
-      extra.sources.forEach(function(x){ var a=document.createElement('a'); a.href=x.url; a.target='_blank'; a.rel='noopener'; try{ a.textContent=new URL(x.url).hostname.replace(/^www\./,''); }catch(e){ a.textContent='source'; } a.title=x.title; s.appendChild(a); });
+      extra.sources.forEach(function(x){ var a=document.createElement('a'); a.href=x.url; a.target='_blank'; a.rel='noopener'; if(x.label){ a.textContent=x.label; } else { try{ a.textContent=new URL(x.url).hostname.replace(/^www\./,''); }catch(e){ a.textContent='source'; } } a.title=x.title; s.appendChild(a); });
       d.appendChild(s);
     }
     log.appendChild(d); log.scrollTop=log.scrollHeight; return d;
