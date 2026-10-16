@@ -2,77 +2,156 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>AI Radar</title>
-<meta name="description" content="AI Radar: daily AI news, facts and free resources. Follow @ai_radar_ on X.">
+<meta name="description" content="AI Radar: the AI news that matters, explained in one post. Daily AI news, facts, cheatsheets and free resources from @ai_radar_.">
 <meta property="og:title" content="AI Radar">
-<meta property="og:description" content="Daily AI news, facts and free resources.">
+<meta property="og:description" content="Daily AI news, facts, cheatsheets and free resources.">
+<meta property="og:image" content="https://airadar08.github.io/assets/img/prompt-pack.jpg">
+<meta name="theme-color" content="#fbf8f1">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
 <style>
-/* Layout: link-in-bio column — brand, what you get, resource list, follow CTA */
-:root{
-  --bg:#fbf8f1; --surface:#ffffff; --fg:#1d1d1f; --muted:#6b6a63; --line:#e9e3d4;
-  --mint:#13a36b; --mint-ink:#0b7a4f; --mint-soft:#dff3e9; --ink:#1d1d1f; --on-ink:#ffffff;
-  --display:"Bricolage Grotesque","Inter",system-ui,sans-serif;
-  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
-  color-scheme:light;
-}
-@media (prefers-color-scheme:dark){:root{
-  --bg:#13140f; --surface:#1c1d18; --fg:#f1efe8; --muted:#a3a197; --line:#2e2f28;
-  --mint:#3ccf91; --mint-ink:#6ee0ad; --mint-soft:#163327; --ink:#f1efe8; --on-ink:#13140f; color-scheme:dark}}
-*{box-sizing:border-box}
-html,body{margin:0}
-body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.wrap{max-width:620px;margin:0 auto;padding-block:48px 56px;display:grid;gap:32px}
-.top{display:grid;gap:16px;justify-items:start}
-.logo{width:72px;height:72px}
-h1{font-family:var(--display);font-weight:800;font-size:clamp(38px,8vw,60px);line-height:1;letter-spacing:-.02em;margin:0}
-.lede{margin:0;color:var(--muted);font-size:18px;max-width:46ch}
-.btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--on-ink);text-decoration:none;font-weight:600;
-  padding:12px 20px;border-radius:12px}
-.btn:focus-visible,.res:focus-visible{outline:2px solid var(--mint);outline-offset:3px}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
-.chips a{display:inline-block;background:var(--mint-soft);color:var(--mint-ink);font-size:14px;font-weight:600;padding:5px 12px;border-radius:999px;text-decoration:none}
-.chips a:hover{background:var(--mint);color:#fff}
-.chips a:focus-visible{outline:2px solid var(--mint);outline-offset:2px}
-h2{font-family:var(--display);font-weight:600;font-size:22px;margin:0 0 12px}
-.list{display:grid;gap:12px}
-.res{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;text-decoration:none;color:inherit;
-  background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
-.res:hover{border-color:var(--mint)}
-.ico{width:44px;height:44px;font-size:14px;border-radius:12px;background:var(--mint);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:800}
-.res b{display:block;font-size:17px}
-.res span{color:var(--muted);font-size:14px}
-.res > div:nth-child(2){min-width:0}
-.res i{font-style:normal;color:var(--mint-ink);font-weight:600;font-size:14px}
-.soon{opacity:.6;border-style:dashed}
-footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:18px}
-footer a{color:var(--mint-ink)}
+/* hero: text left, live radar right; stacks on phones */
+.hero{padding-block:56px 40px;overflow:hidden}
+.hero .container{display:grid;grid-template-columns:1.05fr 1fr;gap:32px;align-items:center}
+.hero-copy{display:grid;gap:20px;justify-items:start;min-width:0}
+.hero h1{font-size:clamp(40px,6.2vw,72px);font-weight:800;line-height:1.0}
+.hero h1 em{font-style:normal;color:var(--mint)}
+.hero .lede{margin:0;color:var(--muted);font-size:clamp(17px,1.6vw,19px);max-width:44ch}
+.cta-row{display:flex;gap:10px;flex-wrap:wrap}
+.meta-row{display:flex;gap:22px;flex-wrap:wrap;padding:0;margin:6px 0 0;list-style:none;color:var(--muted);font-size:14px}
+.meta-row b{display:block;font:700 22px/1.1 var(--display);color:var(--fg);font-variant-numeric:tabular-nums}
+#radar{position:relative;aspect-ratio:1/1;width:100%;max-width:560px;justify-self:center}
+#radar canvas{position:absolute;inset:0;width:100%!important;height:100%!important}
+#radar .fallback{position:absolute;inset:12%;opacity:.9}
+#radar.live .fallback{display:none}
+#radar .readout{position:absolute;left:4%;bottom:6%;font:500 11px/1.6 var(--mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase;pointer-events:none}
+#radar .readout span{color:var(--mint-ink)}
+@media (max-width:860px){.hero .container{grid-template-columns:1fr}#radar{max-width:460px;aspect-ratio:5/4;margin-top:-8px}}
+/* load-in */
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hero-copy>*{animation:rise .8s var(--ease) both}
+.hero-copy>*:nth-child(2){animation-delay:.08s}.hero-copy>*:nth-child(3){animation-delay:.16s}.hero-copy>*:nth-child(4){animation-delay:.24s}.hero-copy>*:nth-child(5){animation-delay:.32s}
+/* what you get */
+.feat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media (max-width:760px){.feat{grid-template-columns:1fr}}
+.feat a{display:grid;gap:10px;text-decoration:none;padding:24px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line);transition:transform .35s var(--ease),border-color .25s}
+.feat a:hover{transform:translateY(-4px);border-color:var(--mint)}
+.feat .ic{width:40px;height:40px;border-radius:12px;background:var(--mint-soft);color:var(--mint-ink);display:grid;place-items:center}
+.feat .ic svg{width:20px;height:20px}
+.feat h3{font-size:20px;font-weight:700}
+.feat p{margin:0;color:var(--muted);font-size:15px}
+.feat .go{color:var(--mint-ink);font-weight:600;font-size:14px}
+.feat .when{font:500 12px var(--mono);color:var(--muted)}
+/* closing band */
+.band{background:var(--ink);color:var(--on-ink);border-radius:24px;padding:clamp(28px,5vw,56px);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;position:relative;overflow:hidden}
+.band h2{font-size:clamp(26px,3.6vw,38px);font-weight:700;max-width:20ch}
+.band p{margin:8px 0 0;opacity:.7}
+.band .btn{background:var(--mint);color:#fff}
+.band svg.rings{position:absolute;right:-60px;top:-60px;width:260px;height:260px;opacity:.12;pointer-events:none}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="top">
-    <svg class="logo" viewBox="0 0 400 400" role="img" aria-label="AI Radar logo"><circle cx="200" cy="200" r="194" fill="#13a36b" stroke="#0f8a5a" stroke-width="8"/><g transform="translate(189 195) scale(0.74) translate(-224 -166)"><text x="182" y="285" text-anchor="middle" font-family="Inter,Helvetica,Arial,sans-serif" font-weight="900" font-size="230" letter-spacing="-10" fill="#ffffff">a</text><rect x="268" y="160" width="40" height="125" rx="6" fill="#ffffff"/><circle cx="288" cy="112" r="24" fill="#1d1d1f"/><path d="M299.4 69.5 A44 44 0 0 1 330.5 100.6" stroke="#1d1d1f" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.85"/><path d="M305.1 48.2 A66 66 0 0 1 351.8 94.9" stroke="#1d1d1f" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.55"/></g></svg>
-    <h1>AI Radar</h1>
-    <p class="lede">The AI news that matters, explained in one post. Plus facts, cheatsheets and free resources.</p>
-    <ul class="chips"><li><a href="https://x.com/ai_radar_">Daily AI news</a></li><li><a href="https://x.com/ai_radar_">AI facts</a></li><li><a href="cheatsheets/">Cheatsheets</a></li><li><a href="#resources">Free resources</a></li></ul>
-    <a class="btn" href="https://x.com/ai_radar_">Follow @ai_radar_ on X</a>
-  </header>
-  <section id="resources">
-    <h2>Free resources</h2>
-    <div class="list">
-      <a class="res" href="prompts/"><div class="ico">50</div><div><b>AI Prompt Pack</b><span>50 copy-ready prompts for work, learning, writing, coding and more</span></div><i>Open →</i></a>
-      <a class="res" href="cheatsheets/#prompt-engineering"><div class="ico">PE</div><div><b>Prompt Engineering cheatsheet</b><span>Get better answers from any LLM</span></div><i>Open →</i></a>
-      <a class="res" href="cheatsheets/#rag-vs-fine-tuning"><div class="ico">RAG</div><div><b>RAG vs Fine-tuning vs Prompting</b><span>Pick the cheapest tool that works</span></div><i>Open →</i></a>
-      <a class="res" href="cheatsheets/#ai-agents-101"><div class="ico">AG</div><div><b>AI Agents 101 cheatsheet</b><span>From chatbot to something that does the work</span></div><i>Open →</i></a>
-      <a class="res" href="cheatsheets/#ai-jargon-decoded"><div class="ico">Aa</div><div><b>AI Jargon Decoded</b><span>16 AI terms in plain English</span></div><i>Open →</i></a>
-      <div class="res soon"><div class="ico">+</div><div><b>More coming soon</b><span>New resources are announced on X first</span></div></div>
+<header class="site-head">
+  <div class="container">
+    <a class="brand" href="./" aria-label="AI Radar home"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#13a36b"/><circle cx="16" cy="16" r="10" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.6"/><circle cx="16" cy="16" r="5.5" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.6"/><path d="M16 16 16 6A10 10 0 0 1 24.66 11Z" fill="#fff"/><circle cx="16" cy="16" r="1.9" fill="#fff"/><circle cx="19.6" cy="9.9" r="1.9" fill="#1d1d1f"/></svg>AI Radar</a>
+    <nav class="nav" aria-label="Main">
+      <a class="hide-sm" href="#resources">Resources</a>
+      <a class="hide-sm" href="cheatsheets/">Cheatsheets</a>
+      <a class="hide-sm" href="prompts/">Prompts</a>
+      <a class="btn btn-ink" href="https://x.com/ai_radar_">Follow on X</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <div class="hero-copy">
+        <span class="eyebrow">Scanning AI news · 8 posts a day</span>
+        <h1>The AI news that matters, <em>in one post.</em></h1>
+        <p class="lede">AI Radar tracks the AI world so you don't have to: the key news explained simply, surprising AI facts, and free cheatsheets you can save.</p>
+        <div class="cta-row">
+          <a class="btn btn-ink" href="https://x.com/ai_radar_"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.3L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"/></svg>Follow @ai_radar_</a>
+          <a class="btn btn-ghost" href="#resources">Get free resources</a>
+        </div>
+        <ul class="meta-row">
+          <li><b>8</b>news &amp; fact posts daily</li>
+          <li><b>2</b>cheatsheets daily</li>
+          <li><b>100%</b>free resources</li>
+        </ul>
+      </div>
+      <div id="radar" aria-hidden="true">
+        <svg class="fallback" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="none" stroke="#13a36b" stroke-opacity=".5" stroke-width=".4"/><circle cx="16" cy="16" r="9.5" fill="none" stroke="#13a36b" stroke-opacity=".35" stroke-width=".4"/><circle cx="16" cy="16" r="5" fill="none" stroke="#13a36b" stroke-opacity=".35" stroke-width=".4"/><path d="M16 16 16 2A14 14 0 0 1 28.1 9Z" fill="#13a36b" fill-opacity=".25"/><circle cx="16" cy="16" r=".9" fill="#13a36b"/><circle cx="21" cy="7.5" r=".7" fill="#1d1d1f"/></svg>
+        <div class="readout">Signal <span>live</span><br>Scanning AI news</div>
+      </div>
     </div>
   </section>
-  <footer>© 2026 AI Radar · <a href="https://x.com/ai_radar_">@ai_radar_</a></footer>
-</div>
+
+  <section class="section" id="what">
+    <div class="container">
+      <div class="section-head reveal"><div><span class="eyebrow">What you get</span><h2 style="margin-top:12px">Three kinds of posts, every day</h2></div></div>
+      <div class="feat">
+        <a class="reveal" href="https://x.com/ai_radar_">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 5h16M4 10h16M4 15h10M4 20h7"/></svg></span>
+          <h3>Daily AI news</h3><p>The day's most important AI story in one clear post, with a notes card that sums up the full coverage.</p>
+          <span class="when">Every 2 hours</span><span class="go">Read on X →</span>
+        </a>
+        <a class="reveal" href="https://x.com/ai_radar_">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg></span>
+          <h3>AI facts</h3><p>Surprising, well-sourced moments from AI history and how AI actually works.</p>
+          <span class="when">Twice a day</span><span class="go">Read on X →</span>
+        </a>
+        <a class="reveal" href="cheatsheets/">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></span>
+          <h3>Cheatsheets</h3><p>One-page guides to the AI ideas people ask about most. Save them, share them.</p>
+          <span class="when">11 AM &amp; 8 PM IST</span><span class="go">Browse cheatsheets →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="resources">
+    <div class="container">
+      <div class="section-head reveal">
+        <div><span class="eyebrow">Free resources</span><h2 style="margin-top:12px">Save, copy, use</h2><p>Everything we've shared, in one place. Free, no sign-up.</p></div>
+        <a class="link-arrow" href="cheatsheets/">All cheatsheets →</a>
+      </div>
+      <div class="res-grid">
+        <a class="res reveal" href="prompts/"><div class="thumb"><img src="assets/img/prompt-pack.jpg" alt="AI Prompt Pack cover" loading="lazy" width="1080" height="1350"></div><div class="body"><span class="kind">Prompt pack</span><b>50 AI prompts that do real work</b><span class="desc">Copy-ready prompts for work, learning, writing, coding and more.</span></div></a>
+        <!-- new-cheatsheet:home -->
+        <a class="res reveal" href="cheatsheets/#ai-jargon-decoded"><div class="thumb"><img src="cheatsheets/img/ai-jargon-decoded.jpg" alt="AI Jargon Decoded cheatsheet" loading="lazy" width="1080" height="1350"></div><div class="body"><span class="kind">Cheatsheet</span><b>AI Jargon Decoded</b><span class="desc">16 AI terms in plain English.</span></div></a>
+        <a class="res reveal" href="cheatsheets/#ai-agents-101"><div class="thumb"><img src="cheatsheets/img/ai-agents-101.jpg" alt="AI Agents 101 cheatsheet" loading="lazy" width="1080" height="1350"></div><div class="body"><span class="kind">Cheatsheet</span><b>AI Agents 101</b><span class="desc">From chatbot to something that does the work.</span></div></a>
+        <a class="res reveal" href="cheatsheets/#rag-vs-fine-tuning"><div class="thumb"><img src="cheatsheets/img/rag-vs-fine-tuning.jpg" alt="RAG vs Fine-tuning vs Prompting cheatsheet" loading="lazy" width="1080" height="1350"></div><div class="body"><span class="kind">Cheatsheet</span><b>RAG vs Fine-tuning vs Prompting</b><span class="desc">Pick the cheapest tool that works.</span></div></a>
+        <a class="res reveal" href="cheatsheets/#prompt-engineering"><div class="thumb"><img src="cheatsheets/img/prompt-engineering.jpg" alt="Prompt Engineering cheatsheet" loading="lazy" width="1080" height="1350"></div><div class="body"><span class="kind">Cheatsheet</span><b>Prompt Engineering</b><span class="desc">Get better answers from any LLM.</span></div></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:24px">
+    <div class="container">
+      <div class="band reveal">
+        <svg class="rings" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="none" stroke="#fff" stroke-width=".5"/><circle cx="16" cy="16" r="10" fill="none" stroke="#fff" stroke-width=".5"/><circle cx="16" cy="16" r="5" fill="none" stroke="#fff" stroke-width=".5"/></svg>
+        <div><h2>Stay on the radar.</h2><p>New AI news, facts and freebies every day on X.</p></div>
+        <a class="btn" href="https://x.com/ai_radar_">Follow @ai_radar_</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="container">
+    <span>© 2026 AI Radar</span>
+    <nav aria-label="Footer"><a href="cheatsheets/">Cheatsheets</a><a href="prompts/">Prompt pack</a><a href="https://x.com/ai_radar_">X / @ai_radar_</a></nav>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="assets/site.js" defer></script>
+<script src="assets/hero.js" defer></script>
 </body>
 </html>
