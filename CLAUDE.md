@@ -22,6 +22,7 @@ Static site for the @ai_radar_ X account, served by GitHub Pages at https://aira
 - Colours: cream `#fbf8f1` background, mint `#13a36b` accent (dark ink `#0b7a4f`), text `#1d1d1f`. Dark mode via `prefers-color-scheme`.
 - Fonts (Google Fonts): Bricolage Grotesque for headings, Inter for body, JetBrains Mono for small labels.
 - Logo: `assets/logo.svg`, the same mark as the X profile picture. No company logos or trademarks.
+- Post cards: cheatsheets use the fixed cream/mint "Resources" theme; repos use the fixed dark theme; news/updates/facts keep the 8 rotating slot colours.
 - Motion: subtle (fade/rise, hover lift, the radar sweep). Always respect `prefers-reduced-motion`.
 
 ## Adding a new repo

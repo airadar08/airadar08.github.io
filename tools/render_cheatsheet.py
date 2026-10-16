@@ -28,7 +28,8 @@ def block(b, acc, lbl, line, muted):
 
 
 def build(sheet):
-    name, bg, acc, lbl, hl, line, muted = THEMES[int(sheet.get("slot", 1)) % 8]
+    # Fixed theme for every cheatsheet: same look as the "50 AI prompts" resource cover (cream, mint, dark callout).
+    name, bg, acc, lbl, hl, line, muted = "Resources", "#fbf8f1", "#13a36b", "#0b7a4f", "#b9f2d6", "#e9e3d4", "#6b6a63"
     blocks = "".join(block(b, acc, lbl, line, muted) for b in sheet["blocks"])
     tip = f'<div class="tip"><span>Remember:</span> {fmt(sheet["tip"])}</div>' if sheet.get("tip") else ""
     sub = f'<div class="sub">{fmt(sheet["subtitle"])}</div>' if sheet.get("subtitle") else ""
@@ -40,8 +41,8 @@ body{{background:{bg};color:#1d1d1f;position:relative}}
 .bar{{height:104px;display:flex;align-items:center;justify-content:space-between;padding:0 64px;border-bottom:1px solid {line}}}
 .back{{color:{acc};font-size:32px;font-weight:600}}
 .wrap{{position:absolute;top:104px;left:0;right:0;bottom:96px;padding:3.6rem 5.2rem 0;overflow:hidden}}
-.kick{{color:{lbl};font-size:2.1rem;font-weight:700;letter-spacing:.16rem;margin-bottom:1rem;text-transform:uppercase}}
-h1{{font-size:5.4rem;line-height:1.06;font-weight:800;letter-spacing:-.12rem;margin-bottom:.8rem}}
+.kick{{margin-bottom:1.4rem}}.kick em{{display:inline-block;font-style:normal;background:{acc};color:#fff;font-size:1.9rem;font-weight:800;letter-spacing:.16rem;text-transform:uppercase;padding:.7rem 1.4rem;border-radius:1rem}}
+h1{{font-size:5.8rem;line-height:1.02;font-weight:900;letter-spacing:-.2rem;margin-bottom:.8rem}}
 .sub{{font-size:2.4rem;color:{muted};margin-bottom:2.4rem}}
 .cols{{column-count:2;column-gap:2rem}}
 section{{break-inside:avoid;background:#fff;border:1px solid {line};border-radius:2rem;padding:1.8rem 2.2rem;margin-bottom:1.8rem}}
@@ -54,12 +55,12 @@ th{{text-align:left;color:{muted};font-weight:700;font-size:1.7rem;padding:.2rem
 td{{padding:.7rem .6rem .7rem 0;border-bottom:1px solid {line};vertical-align:top}}
 td:first-child{{font-weight:700}}
 tr:last-child td{{border-bottom:none}}
-.tip{{margin-top:1.6rem;font-size:2.5rem;font-weight:600;line-height:1.35}}.tip span{{background:linear-gradient(transparent 55%,{hl} 55%);padding:0 4px}}
+.tip{{margin-top:1.4rem;font-size:2.4rem;font-weight:600;line-height:1.35;background:#1d1d1f;color:#fff;border-radius:2rem;padding:1.8rem 2.4rem}}.tip span{{color:{acc};font-weight:800;margin-right:.4rem}}
 .foot{{position:absolute;bottom:0;left:0;right:0;height:96px;border-top:1px solid {line};display:flex;align-items:center;justify-content:space-between;padding:0 68px;color:#8e8a80;font-size:22px}}
 .brand{{display:flex;align-items:center;gap:12px;color:#1d1d1f;font-weight:700;font-size:26px}}
 </style></head><body>
 <div class="bar"><div class="back">‹ AI Radar Cheatsheets</div>{RADAR.format(w=72)}</div>
-<div class="wrap" id="w"><div class="kick">{fmt(sheet.get("kicker", "AI cheatsheet"))}</div><h1>{fmt(sheet["title"])}</h1>{sub}
+<div class="wrap" id="w"><div class="kick"><em>{fmt(sheet.get("kicker", "AI cheatsheet"))}</em></div><h1>{fmt(sheet["title"])}</h1>{sub}
 <div class="cols">{blocks}</div>{tip}</div>
 <div class="foot"><div class="brand">{RADAR.format(w=54)} @ai_radar_</div><div>Save this 🔖 · Share it with a friend</div></div>
 <script>
