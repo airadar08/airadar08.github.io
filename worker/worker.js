@@ -5,10 +5,10 @@
 //
 // Settings (Cloudflare → your Worker → Settings → Variables and Secrets):
 //   OPENROUTER_API_KEY  (Secret, required)  your OpenRouter key
-//   MODEL               (Text, optional)    default "anthropic/claude-haiku-5.5"
+//   MODEL               (Text, optional)    default "nvidia/nemotron-3.5-super-vl:free"
 //   ALLOWED_ORIGIN      (Text, optional)    default "https://airadar08.github.io"
 
-const DEFAULT_MODEL = "anthropic/claude-haiku-5.5";
+const DEFAULT_MODEL = "nvidia/nemotron-3.5-super-vl:free";   // free on OpenRouter (rate-limited)
 const DEFAULT_ORIGIN = "https://airadar08.github.io";
 const MAX_INPUT = 500;        // characters per user message
 const MAX_TURNS = 6;          // past messages sent to the model
@@ -122,7 +122,8 @@ export default {
     const payload = {
       model: env.MODEL || DEFAULT_MODEL,
       messages: [{ role: "system", content: system(today) }, ...clean],
-      max_tokens: 500,
+      max_tokens: 700,
+      reasoning: { exclude: true },   // keep any model 'thinking' out of the reply
       temperature: 0.4,
     };
     let found = [];
