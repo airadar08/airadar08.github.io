@@ -20,7 +20,7 @@ Static site for the @ai_radar_ X account, served by GitHub Pages at https://aira
 - Motion: subtle (fade/rise, hover lift, the radar sweep). Always respect `prefers-reduced-motion`.
 
 ## Adding a new cheatsheet
-Add the 1080x1350 image as `cheatsheets/img/<slug>.jpg`. Insert the new `<article class="sheet reveal" id="<slug>">` right after the `<!-- new-cheatsheet:page -->` marker in `cheatsheets/index.html` (newest first) and bump the "N so far" count; insert a matching `<a class="res reveal">` card right after `<!-- new-cheatsheet:home -->` in `index.html`. Copy the markup of the existing entries exactly.
+Add the 1080x1350 image as `cheatsheets/img/<slug>.jpg`. Insert the new `<article class="sheet reveal" id="<slug>">` right after the `<!-- new-cheatsheet:page -->` marker in `cheatsheets/index.html` (newest first); insert a matching `<a class="res reveal">` card right after `<!-- new-cheatsheet:home -->` in `index.html`. Copy the markup of the existing entries exactly.
 
 ## Adding a new free resource
 1. Create `<slug>/index.html` using the same head, header and footer as `cheatsheets/index.html` (links `../assets/site.css`), page-specific CSS inline, works at 400px width.
@@ -31,3 +31,5 @@ Add the 1080x1350 image as `cheatsheets/img/<slug>.jpg`. Insert the new `<articl
 ## Rules
 - Keep everything static (no backend, no trackers, no forms that submit anywhere).
 - Plain, direct copy; real content only.
+
+- Never show posting frequency or schedules (posts per day, times) anywhere on the site.
