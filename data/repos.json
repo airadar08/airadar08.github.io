@@ -1,1 +1,21 @@
-[]
+[
+ {
+  "slug": "heygen-com-hyperframes",
+  "repo": "heygen-com/hyperframes",
+  "url": "https://github.com/heygen-com/hyperframes",
+  "tagline": "Open-source framework that turns HTML, CSS and animations into MP4 videos, built for AI agents.",
+  "stars": "65.3k",
+  "trend": "+5.3k",
+  "language": "TypeScript",
+  "license": "Apache-2.0",
+  "what": [
+   "Renders HTML, CSS and media to MP4 video",
+   "Ships 21 skills for AI coding agents",
+   "CLI to preview, lint and render locally"
+  ],
+  "read": "Video as code suits agents well; start with short clips.",
+  "img": "repos/img/heygen-com-hyperframes.jpg",
+  "date": "2026-10-17",
+  "post": "https://x.com/ai_radar_/status/2111222805882949687"
+ }
+]
