@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Radar</title>
+<meta name="description" content="AI Radar: daily AI news, facts and free resources. Follow @ai_radar_ on X.">
+<meta property="og:title" content="AI Radar">
+<meta property="og:description" content="Daily AI news, facts and free resources.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: link-in-bio column — brand, what you get, resource list, follow CTA */
+:root{
+  --bg:#fbf8f1; --surface:#ffffff; --fg:#1d1d1f; --muted:#6b6a63; --line:#e9e3d4;
+  --mint:#13a36b; --mint-ink:#0b7a4f; --mint-soft:#dff3e9; --ink:#1d1d1f; --on-ink:#ffffff;
+  --display:"Bricolage Grotesque","Inter",system-ui,sans-serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#13140f; --surface:#1c1d18; --fg:#f1efe8; --muted:#a3a197; --line:#2e2f28;
+  --mint:#3ccf91; --mint-ink:#6ee0ad; --mint-soft:#163327; --ink:#f1efe8; --on-ink:#13140f; color-scheme:dark}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:620px;margin:0 auto;padding-block:48px 56px;display:grid;gap:32px}
+.top{display:grid;gap:16px;justify-items:start}
+.logo{width:72px;height:72px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(38px,8vw,60px);line-height:1;letter-spacing:-.02em;margin:0}
+.lede{margin:0;color:var(--muted);font-size:18px;max-width:46ch}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--on-ink);text-decoration:none;font-weight:600;
+  padding:12px 20px;border-radius:12px}
+.btn:focus-visible,.res:focus-visible{outline:2px solid var(--mint);outline-offset:3px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.chips li{background:var(--mint-soft);color:var(--mint-ink);font-size:14px;font-weight:600;padding:5px 12px;border-radius:999px}
+h2{font-family:var(--display);font-weight:600;font-size:22px;margin:0 0 12px}
+.list{display:grid;gap:12px}
+.res{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;text-decoration:none;color:inherit;
+  background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.res:hover{border-color:var(--mint)}
+.ico{width:44px;height:44px;border-radius:12px;background:var(--mint);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:800}
+.res b{display:block;font-size:17px}
+.res span{color:var(--muted);font-size:14px}
+.res i{font-style:normal;color:var(--mint-ink);font-weight:600;font-size:14px}
+.soon{opacity:.6;border-style:dashed}
+footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:18px}
+footer a{color:var(--mint-ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <svg class="logo" viewBox="0 0 400 400" role="img" aria-label="AI Radar logo"><circle cx="200" cy="200" r="194" fill="#13a36b" stroke="#0f8a5a" stroke-width="8"/><g transform="translate(189 195) scale(0.74) translate(-224 -166)"><text x="182" y="285" text-anchor="middle" font-family="Inter,Helvetica,Arial,sans-serif" font-weight="900" font-size="230" letter-spacing="-10" fill="#ffffff">a</text><rect x="268" y="160" width="40" height="125" rx="6" fill="#ffffff"/><circle cx="288" cy="112" r="24" fill="#1d1d1f"/><path d="M299.4 69.5 A44 44 0 0 1 330.5 100.6" stroke="#1d1d1f" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.85"/><path d="M305.1 48.2 A66 66 0 0 1 351.8 94.9" stroke="#1d1d1f" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.55"/></g></svg>
+    <h1>AI Radar</h1>
+    <p class="lede">The AI news that matters, explained in one post. Plus facts, cheatsheets and free resources.</p>
+    <ul class="chips"><li>Daily AI news</li><li>AI facts</li><li>Cheatsheets</li><li>Free resources</li></ul>
+    <a class="btn" href="https://x.com/ai_radar_">Follow @ai_radar_ on X</a>
+  </header>
+  <section>
+    <h2>Free resources</h2>
+    <div class="list">
+      <a class="res" href="prompts/"><div class="ico">50</div><div><b>AI Prompt Pack</b><span>50 copy-ready prompts for work, learning, writing, coding and more</span></div><i>Open →</i></a>
+      <div class="res soon"><div class="ico">+</div><div><b>More coming soon</b><span>New resources are announced on X first</span></div></div>
+    </div>
+  </section>
+  <footer>© 2026 AI Radar · <a href="https://x.com/ai_radar_">@ai_radar_</a></footer>
+</div>
+</body>
+</html>

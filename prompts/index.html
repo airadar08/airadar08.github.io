@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="50 copy-ready AI prompts for work, learning, writing, coding, business and planning. Free from AI Radar.">
+<meta property="og:title" content="50 AI prompts that do real work">
+<meta property="og:description" content="Free prompt pack from @ai_radar_">
+<title>AI Radar Prompt Pack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+html{color-scheme:light}body{margin:0}
+/* Layout: one reading column, category tabs as a sticky chip rail, each prompt a copyable slip */
+:root{
+  --bg:#fbf8f1; --surface:#ffffff; --fg:#1d1d1f; --muted:#6b6a63; --line:#e9e3d4;
+  --mint:#13a36b; --mint-ink:#0b7a4f; --mint-soft:#dff3e9; --slot:#fff3c4;
+  --display:"Bricolage Grotesque","Inter",system-ui,sans-serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#13140f; --surface:#1c1d18; --fg:#f1efe8; --muted:#a3a197; --line:#2e2f28;
+  --mint:#3ccf91; --mint-ink:#6ee0ad; --mint-soft:#163327; --slot:#3a3416; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#13140f; --surface:#1c1d18; --fg:#f1efe8; --muted:#a3a197; --line:#2e2f28;
+  --mint:#3ccf91; --mint-ink:#6ee0ad; --mint-soft:#163327; --slot:#3a3416; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:760px;margin:0 auto;padding-block:40px 64px}
+header{display:grid;gap:14px;padding-bottom:28px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--mint-ink);font-size:14px;letter-spacing:.04em}
+.brand b{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--mint);color:#fff;font-family:var(--display);font-size:16px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(34px,7vw,56px);line-height:1.02;letter-spacing:-.02em;margin:0;text-wrap:balance}
+h1 span{color:var(--mint)}
+.lede{color:var(--muted);margin:0;max-width:60ch}
+.how{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;color:var(--muted);margin:0;padding:0;list-style:none}
+.how li::before{content:"✓ ";color:var(--mint);font-weight:600}
+mark{background:var(--slot);color:inherit;border-radius:4px;padding:0 3px;font-family:var(--mono);font-size:.92em}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:14px 0;margin-bottom:8px;
+  display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--line)}
+nav button{flex:none;border:1px solid var(--line);background:var(--surface);color:var(--fg);font:500 14px var(--body);
+  padding:7px 14px;border-radius:999px;cursor:pointer}
+nav button[aria-pressed="true"]{background:var(--mint);border-color:var(--mint);color:#fff}
+nav button:focus-visible,.copy:focus-visible{outline:2px solid var(--mint);outline-offset:2px}
+section{padding-top:28px}
+h2{font-family:var(--display);font-weight:600;font-size:24px;margin:0 0 4px;display:flex;align-items:baseline;gap:10px}
+h2 small{font:500 13px var(--mono);color:var(--muted)}
+.sub{color:var(--muted);margin:0 0 16px;font-size:15px}
+.list{display:grid;gap:12px}
+.p{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:grid;gap:8px;min-width:0}
+.ph{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.ph h3{margin:0;font-size:16px;font-weight:600}
+.num{font:500 12px var(--mono);color:var(--mint-ink);margin-right:8px;font-variant-numeric:tabular-nums}
+.copy{flex:none;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:500 13px var(--body);padding:5px 12px;border-radius:8px;cursor:pointer}
+.copy.done{background:var(--mint-soft);color:var(--mint-ink);border-color:transparent}
+.p p{margin:0;font-size:15px;white-space:pre-wrap;overflow-wrap:anywhere}
+footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:14px;display:grid;gap:6px}
+footer a{color:var(--mint-ink)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+</head><body>
+
+
+<div class="wrap">
+  <header>
+    <a class="brand" href="../" style="text-decoration:none"><b>ai</b> AI RADAR · FREE RESOURCE</a>
+    <h1>50 AI prompts that <span>do real work</span></h1>
+    <p class="lede">Copy, fill the <mark>[highlighted]</mark> parts, paste into ChatGPT, Claude or Gemini. Each prompt tells the model who to be, what to produce, and what format to use.</p>
+    <ul class="how"><li>Works with any chat AI</li><li>One-tap copy</li><li>6 categories + 2 bonus</li></ul>
+  </header>
+  <nav id="nav" aria-label="Categories"></nav>
+  <main id="main"></main>
+  <footer>
+    <div>Made by <a href="https://x.com/ai_radar_">@ai_radar_</a> — daily AI news, facts and cheatsheets.</div>
+    <div>Tip: if an answer is generic, reply “Be more specific to my situation: [details]”. Follow-ups beat longer prompts.</div>
+  </footer>
+</div>
+
+<script>
+const PACK=[
+{id:"work",name:"Work & email",sub:"Inbox, meetings and everyday office tasks.",items:[
+["Turn notes into an email","Rewrite these rough notes as a clear, polite email to [recipient and role]. Goal: [what you want them to do]. Keep it under 150 words, put the ask in the first two lines, and end with one clear next step.\n\nNotes: [paste notes]"],
+["Reply to a tricky email","Here is an email I received: [paste]. Draft 3 replies: one agreeable, one that pushes back politely, one that asks for more time. Keep each under 120 words and match a [formal / friendly] tone."],
+["Meeting notes to action items","From this meeting transcript, list: decisions made, action items (owner + deadline), and open questions. Use a table for action items. Ignore small talk.\n\nTranscript: [paste]"],
+["Prepare for a meeting","I have a meeting with [person/role] about [topic]. My goal is [goal]. Give me: 5 questions they might ask with short answers, 3 points I must make, and one risk to avoid."],
+["Status update in 60 seconds","Turn this into a weekly status update for my manager. Sections: Done, In progress, Blocked (with what I need), Next week. Bullet points, max 12 lines.\n\nRaw notes: [paste]"],
+["Explain it to my boss","Explain [technical topic or problem] to a non-technical senior manager in 5 sentences. Include why it matters to the business and what decision I need from them."],
+["Polish my message","Fix grammar and make this clearer and more confident without changing the meaning or adding fluff. Show the final version only.\n\nText: [paste]"],
+["Write a process doc","Write a step-by-step SOP for [task] for a new team member. Include: purpose, tools needed, numbered steps, common mistakes, and a 5-item checklist at the end."]]},
+{id:"learn",name:"Research & learning",sub:"Understand anything faster.",items:[
+["Explain like I'm new","Explain [concept] as if I'm smart but new to the field. Use one everyday analogy, one concrete example, and end with the 3 terms I should learn next."],
+["30-day learning plan","Create a 30-day plan to learn [skill] with [X] minutes a day. Split into weekly goals, give a daily task, and name one free resource type for each week. End each week with a small project to prove progress."],
+["Quiz me","Quiz me on [topic] at [beginner/intermediate] level. Ask one question at a time, wait for my answer, tell me if I'm right and why, then make the next question slightly harder."],
+["Summarise a long read","Summarise this in: a one-line takeaway, 5 key points, and anything surprising or questionable. Quote exact numbers where given.\n\nText: [paste]"],
+["Compare options","Compare [option A], [option B] and [option C] for [use case]. Use a table with: cost, ease of use, best for, biggest weakness. Then give a recommendation for someone who [your situation]."],
+["Find the counterargument","Here is my position: [position]. Give the 3 strongest arguments against it, the evidence each relies on, and how I could test which side is right."],
+["Map a new topic","I'm researching [topic]. Give me a map: the 5 sub-areas, the key questions in each, common misconceptions, and search terms I should use to go deeper."],
+["Turn notes into flashcards","Turn these notes into 15 question-and-answer flashcards. Keep answers under 20 words. Focus on facts I'm likely to forget.\n\nNotes: [paste]"]]},
+{id:"write",name:"Writing & content",sub:"Posts, threads, hooks and scripts.",items:[
+["10 hooks for a post","Write 10 opening lines for a post about [topic] for [audience]. Mix styles: a bold claim, a number, a question, a mistake, a short story. Max 15 words each."],
+["Post to thread","Turn this idea into an X thread of 6 posts. Post 1 is a strong hook, posts 2-5 each give one concrete point or example, post 6 is a summary with a call to follow. Each under 270 characters.\n\nIdea: [paste]"],
+["Repurpose content","Repurpose this [article/video transcript] into: 1 LinkedIn post, 3 X posts, and 1 newsletter intro. Keep my voice: [describe voice].\n\nContent: [paste]"],
+["Content calendar","Create a 2-week content calendar for a [niche] account posting [X] times a day. For each slot give: format (news, tip, story, poll), topic, and a one-line hook."],
+["Write in my voice","Here are 3 posts I wrote: [paste]. Describe my writing style in 5 bullet points. Then write a new post about [topic] in the same style."],
+["Short video script","Write a 45-second video script about [topic]. Include: hook in the first 3 seconds, 3 quick points, on-screen text for each, and a closing line. Mark timings."],
+["Edit for punch","Cut this text by 40% without losing meaning. Remove filler words, use shorter sentences, and keep the strongest line first.\n\nText: [paste]"],
+["Headline options","Give 10 headline options for [article topic] aimed at [audience]. Label each: curiosity, benefit, number, or how-to. Mark your top 2 and say why."]]},
+{id:"code",name:"Coding",sub:"Debug, explain and ship faster.",items:[
+["Debug this error","I'm getting this error: [paste error]. Here is the relevant code: [paste]. Explain the likely cause in plain words, give the fix, and tell me how to confirm it's fixed."],
+["Explain this code","Explain what this code does, line by line for the tricky parts, and summarise it in 2 sentences. Point out any bugs or risky patterns.\n\nCode: [paste]"],
+["Write tests","Write unit tests for this function using [framework]. Cover normal cases, edge cases and invalid input. Explain each test in one line.\n\nFunction: [paste]"],
+["Refactor safely","Refactor this code for readability without changing behaviour. Keep the same inputs and outputs. List what you changed and why.\n\nCode: [paste]"],
+["Build a small script","Write a [language] script that [task]. Inputs: [inputs]. Output: [output]. Add comments, handle errors, and show how to run it."],
+["Design before coding","I want to build [feature]. Before any code, give me: the data model, the main functions or endpoints, edge cases, and the order to build things in."],
+["Regex or SQL helper","Write a [regex / SQL query] that [goal]. Here is sample data: [paste]. Explain each part and show the expected result on the sample."],
+["Code review","Review this code like a senior engineer. Rank issues as critical, should fix, or nice to have. Suggest a fix for each critical one.\n\nCode: [paste]"]]},
+{id:"biz",name:"Business & strategy",sub:"Ideas, pitches and decisions.",items:[
+["Validate a business idea","My idea: [idea] for [customer]. List the 5 riskiest assumptions, a cheap test for each that takes under a week, and what result would prove me wrong."],
+["Customer persona","Create a detailed persona for [product]'s ideal customer: job, goals, frustrations, where they spend time online, objections to buying, and words they use to describe the problem."],
+["Competitor snapshot","Analyse [competitor] for someone launching [your product]. Cover positioning, pricing model, strengths, weaknesses and one gap I could own. Flag anything you're unsure about."],
+["Write a one-page pitch","Write a one-page pitch for [product/service]: problem, solution, who it's for, why now, proof or traction, and the ask. Plain language, no buzzwords."],
+["Pricing ideas","Suggest 3 pricing models for [product] sold to [customer]. For each: example price points, pros, cons, and the type of customer it attracts."],
+["Cold outreach","Write a cold message to [role] at [type of company] offering [service]. Under 90 words, one specific benefit, one question at the end. Give 2 variations."],
+["Decision helper","I'm deciding between [option A] and [option B]. Context: [context]. Score each on cost, risk, upside, effort and reversibility (1-5). Then tell me what extra information would change the answer."],
+["Pre-mortem","Imagine [project] failed 6 months from now. List the 7 most likely reasons, how likely each is, and one action today to prevent each."]]},
+{id:"prod",name:"Productivity & planning",sub:"Plan your day, week and goals.",items:[
+["Plan my day","Here's my to-do list: [paste]. I have [X] hours and my energy is best in the [morning/evening]. Order the tasks, timebox each, and tell me what to drop or delegate."],
+["Break down a big goal","Break [goal] into milestones for the next [X] weeks, then into weekly tasks. Each task should take under 2 hours. Mark the first task I can do today."],
+["Weekly review","Ask me 6 short questions to review my week (wins, misses, lessons, next priorities). After I answer, summarise my top 3 focus areas for next week."],
+["Beat procrastination","I keep putting off [task]. Ask me 3 quick questions to find why, then give me a 10-minute first step and a simple way to make the rest easier."],
+["Build a habit","Help me build the habit of [habit]. Suggest a tiny daily version, a trigger tied to something I already do, a way to track it, and what to do if I miss a day."],
+["Organise a messy list","Group these items into clear categories, remove duplicates, and flag anything that's unclear.\n\nList: [paste]"],
+["Trip or event planner","Plan [event/trip] for [number] people on [date] with a budget of [budget]. Give a schedule, a checklist, and the 3 things to book first."],
+["Learn from a mistake","Something went wrong: [describe]. Help me run a short no-blame review: what happened, why, what I'd do differently, and one rule to follow next time."]]},
+{id:"bonus",name:"Bonus: better prompts",sub:"Two prompts that improve every other prompt.",items:[
+["Improve my prompt","Here is a prompt I want to use: [paste]. Rewrite it to get a better answer. Add the role, context, goal, format and constraints that are missing. Then ask me any questions you need answered first."],
+["Ask me first","Before you answer, ask me up to 5 questions that would help you give a much better answer about [task]. Wait for my replies, then answer."]]}
+];
+const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const fmt=s=>esc(s).replace(/\[([^\]]+)\]/g,'<mark>[$1]</mark>');
+const nav=document.getElementById('nav'),main=document.getElementById('main');let n=0;
+PACK.forEach(c=>{
+  const b=document.createElement('button');b.type='button';b.id='nav-'+c.id;b.textContent=c.name;b.setAttribute('aria-pressed','false');
+  b.onclick=()=>document.getElementById(c.id).scrollIntoView();nav.appendChild(b);
+  const s=document.createElement('section');s.id=c.id;
+  s.innerHTML=`<h2>${esc(c.name)} <small>${c.items.length} prompts</small></h2><p class="sub">${esc(c.sub)}</p><div class="list"></div>`;
+  const list=s.querySelector('.list');
+  c.items.forEach(([t,body])=>{n++;
+    const d=document.createElement('article');d.className='p';
+    d.innerHTML=`<div class="ph"><h3><span class="num">${String(n).padStart(2,'0')}</span>${esc(t)}</h3><button type="button" class="copy" id="copy-${n}">Copy</button></div><p>${fmt(body)}</p>`;
+    const btn=d.querySelector('.copy'),para=d.querySelector('p');
+    btn.onclick=()=>{
+      const ok=()=>{btn.textContent='Copied';btn.classList.add('done');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('done')},1600)};
+      const sel=()=>{const r=document.createRange();r.selectNodeContents(para);const w=getSelection();w.removeAllRanges();w.addRange(r);btn.textContent='Selected, press copy';};
+      try{navigator.clipboard.writeText(body).then(ok,sel)}catch(e){sel()}
+    };
+    list.appendChild(d);});
+  main.appendChild(s);
+});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)nav.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.id==='nav-'+e.target.id))}),{rootMargin:'-30% 0px -60% 0px'});
+document.querySelectorAll('section').forEach(s=>io.observe(s));
+</script>
+</body></html>
