@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Radar Cheatsheets</title>
+<meta name="description" content="Free one-page AI cheatsheets from AI Radar: prompt engineering, RAG vs fine-tuning, AI agents, AI jargon.">
+<meta property="og:title" content="AI Radar Cheatsheets">
+<meta property="og:description" content="Free one-page AI cheatsheets from @ai_radar_">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: header + two-column gallery of portrait cheatsheets, one column on phones */
+:root{
+  --bg:#fbf8f1; --surface:#ffffff; --fg:#1d1d1f; --muted:#6b6a63; --line:#e9e3d4;
+  --mint:#13a36b; --mint-ink:#0b7a4f; --mint-soft:#dff3e9;
+  --display:"Bricolage Grotesque","Inter",system-ui,sans-serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#13140f; --surface:#1c1d18; --fg:#f1efe8; --muted:#a3a197; --line:#2e2f28;
+  --mint:#3ccf91; --mint-ink:#6ee0ad; --mint-soft:#163327; color-scheme:dark}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:960px;margin:0 auto;padding-block:40px 56px;display:grid;gap:28px}
+.back{color:var(--mint-ink);text-decoration:none;font-weight:600;font-size:14px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(34px,7vw,54px);line-height:1.02;letter-spacing:-.02em;margin:8px 0 10px}
+.lede{margin:0;color:var(--muted);max-width:58ch}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media (max-width:640px){.grid{grid-template-columns:1fr}}
+.sheet{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:grid;scroll-margin-top:16px}
+.sheet a.img{display:block;line-height:0}
+.sheet img{width:100%;height:auto;aspect-ratio:1080/1350;display:block;background:var(--line)}
+.meta{padding:14px 16px 16px;display:grid;gap:4px}
+.tag{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mint-ink)}
+.meta b{font-size:18px}
+.meta span{color:var(--muted);font-size:14px}
+.meta a.full{margin-top:6px;color:var(--mint-ink);font-weight:600;font-size:14px;text-decoration:none}
+a:focus-visible{outline:2px solid var(--mint);outline-offset:3px}
+footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:18px}
+footer a{color:var(--mint-ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="back" href="../">‹ AI Radar</a>
+    <h1>AI cheatsheets</h1>
+    <p class="lede">One-page guides to the AI ideas people ask about most. Tap a sheet to open it full size, then save it.</p>
+  </header>
+  <div class="grid">
+    <article class="sheet" id="prompt-engineering">
+      <a class="img" href="img/prompt-engineering.jpg"><img src="img/prompt-engineering.jpg" alt="Prompt Engineering cheatsheet: anatomy of a good prompt, sampling knobs, core techniques and quick fixes" loading="lazy" width="1080" height="1350"></a>
+      <div class="meta"><div class="tag">Prompting</div><b>Prompt Engineering</b><span>Get better answers from any LLM</span><a class="full" href="img/prompt-engineering.jpg">Open full size →</a></div>
+    </article>
+    <article class="sheet" id="rag-vs-fine-tuning">
+      <a class="img" href="img/rag-vs-fine-tuning.jpg"><img src="img/rag-vs-fine-tuning.jpg" alt="RAG vs Fine-tuning vs Prompting cheatsheet: which to use when, trade-offs and how RAG works" loading="lazy" width="1080" height="1350"></a>
+      <div class="meta"><div class="tag">Building with LLMs</div><b>RAG vs Fine-tuning vs Prompting</b><span>Pick the cheapest tool that works</span><a class="full" href="img/rag-vs-fine-tuning.jpg">Open full size →</a></div>
+    </article>
+    <article class="sheet" id="ai-agents-101">
+      <a class="img" href="img/ai-agents-101.jpg"><img src="img/ai-agents-101.jpg" alt="AI Agents 101 cheatsheet: the agent loop, core parts, common patterns and why agents fail" loading="lazy" width="1080" height="1350"></a>
+      <div class="meta"><div class="tag">Agents</div><b>AI Agents 101</b><span>From chatbot to something that does the work</span><a class="full" href="img/ai-agents-101.jpg">Open full size →</a></div>
+    </article>
+    <article class="sheet" id="ai-jargon-decoded">
+      <a class="img" href="img/ai-jargon-decoded.jpg"><img src="img/ai-jargon-decoded.jpg" alt="AI Jargon Decoded cheatsheet: 16 AI terms explained in plain English" loading="lazy" width="1080" height="1350"></a>
+      <div class="meta"><div class="tag">Glossary</div><b>AI Jargon Decoded</b><span>16 terms in plain English</span><a class="full" href="img/ai-jargon-decoded.jpg">Open full size →</a></div>
+    </article>
+  </div>
+  <footer>New cheatsheets every day on <a href="https://x.com/ai_radar_">@ai_radar_</a>.</footer>
+</div>
+</body>
+</html>
