@@ -70,6 +70,10 @@
   // blip colours = the 8 post-card slot accents (Sunflower, Mint, Sky, Lavender, Coral, Graphite, Teal, Rose)
   var SLOTS=['#d9a400','#13a36b','#2f7ae5','#7c5ce0','#e8613c','#ff7a1a','#0e9aa7','#e0457b'];
   var blips=[], seed=7;
+  // some blips "project" a label showing what they are
+  var TAGGED=[1,4,6,9,12,14], TAG_TEXT=['AI NEWS','UPDATE','AI FACT','AI NEWS','UPDATE','AI FACT'];
+  var tags=document.createElement('div'); tags.className='rtags'; host.appendChild(tags);
+  var tmpV=new THREE.Vector3();
   function rnd(){ seed=(seed*9301+49297)%233280; return seed/233280; }
   for(var b=0;b<16;b++){
     var ang=rnd()*Math.PI*2, rad=R*(0.22+rnd()*0.72);
@@ -81,7 +85,19 @@
     var ringM=new THREE.LineBasicMaterial({color:col,transparent:true,opacity:0});
     var ring=new THREE.Line(new THREE.BufferGeometry().setFromPoints(ringPts),ringM); ring.position.copy(mesh.position);
     scope.add(mesh); scope.add(ring);
-    blips.push({mesh:mesh,ring:ring,ang:ang,glow:0});
+    var bl={mesh:mesh,ring:ring,ang:ang,glow:0,col:SLOTS[b%SLOTS.length]};
+    var li=TAGGED.indexOf(b);
+    if(li>-1){
+      var H=0.9+rnd()*0.5;
+      var lm=new THREE.LineBasicMaterial({color:col,transparent:true,opacity:0});
+      var stem=new THREE.Line(new THREE.BufferGeometry().setFromPoints([mesh.position.clone(),mesh.position.clone().add(new THREE.Vector3(0,0,H))]),lm);
+      scope.add(stem);
+      var tag=document.createElement('span'); tag.className='rtag';
+      tag.innerHTML='<i style="background:'+bl.col+'"></i>'+TAG_TEXT[li%TAG_TEXT.length];
+      tags.appendChild(tag);
+      bl.stem=stem; bl.tag=tag; bl.top=mesh.position.clone().add(new THREE.Vector3(0,0,H));
+    }
+    blips.push(bl);
   }
 
   // drifting dust
@@ -119,11 +135,19 @@
     blips.forEach(function(p){
       var d=(lead-p.ang+Math.PI*4)%(Math.PI*2);
       if(d<dt*0.9+0.001) p.glow=1;
-      p.glow*=Math.pow(0.35,dt);
+      p.glow*=Math.pow(p.tag?0.62:0.35,dt);
       p.mesh.material.opacity=0.25+0.75*p.glow;
       p.mesh.scale.setScalar(1+0.6*p.glow);
       p.ring.material.opacity=0.7*p.glow*p.glow;
       p.ring.scale.setScalar(1+(1-p.glow)*2.2);
+      if(p.tag){
+        var a=Math.min(1,p.glow*1.6);
+        p.stem.material.opacity=0.85*a;
+        tmpV.copy(p.top); scope.localToWorld(tmpV); tmpV.project(camera);
+        var w=host.clientWidth,h=host.clientHeight;
+        p.tag.style.opacity=a<0.04?0:a;
+        p.tag.style.transform='translate('+((tmpV.x+1)/2*w).toFixed(1)+'px,'+((1-tmpV.y)/2*h).toFixed(1)+'px) translate(-50%,-115%) scale('+(0.9+0.1*a).toFixed(3)+')';
+      }
     });
     hub.scale.setScalar(1+0.12*Math.sin(now/400));
     dust.rotation.y+=dt*0.02; dust.rotation.x=Math.sin(now/9000)*0.05;
@@ -136,7 +160,7 @@
     (function tick(now){ if(!running||document.hidden) return; frame(now); raf=requestAnimationFrame(tick); })(performance.now());
   }
   if(reduce){ // one still frame with a few blips lit
-    blips.forEach(function(p,i){ p.glow=i%3===0?0.8:0; });
+    blips.forEach(function(p,i){ p.glow=p.tag?(i%2?0.9:0):(i%3===0?0.8:0); });
     frame(performance.now());
   } else loop();
 })();
