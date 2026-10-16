@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AI Radar Prompt Packs</title>
+<meta name="description" content="Free AI prompt packs from AI Radar: copy-ready prompts for work, learning, writing, coding and more.">
+<meta property="og:title" content="AI Radar Prompt Packs">
+<meta property="og:description" content="Free AI prompt packs from AI Radar.">
+<meta name="theme-color" content="#fbf8f1">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/site.css?v=5">
+<style>
+.page-head{padding-block:48px 8px;display:grid;gap:14px;justify-items:start}
+.page-head h1{font-size:clamp(36px,5.4vw,60px);font-weight:800;line-height:1.02}
+.page-head h1 em{font-style:normal;color:var(--mint)}
+.page-head p{margin:0;color:var(--muted);font-size:18px;max-width:56ch}
+.crumb{font-size:14px;color:var(--muted);text-decoration:none}.crumb:hover{color:var(--mint-ink)}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.page-head>*{animation:rise .7s var(--ease) both}.page-head>*:nth-child(2){animation-delay:.06s}.page-head>*:nth-child(3){animation-delay:.12s}.page-head>*:nth-child(4){animation-delay:.18s}
+.repos{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;padding-block:32px 72px}
+.repo{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:grid;grid-template-rows:auto 1fr;scroll-margin-top:84px;transition:transform .35s var(--ease),border-color .25s,box-shadow .35s var(--ease)}
+.repo:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--mint) 55%,var(--line));box-shadow:0 18px 40px -24px color-mix(in srgb,var(--mint) 60%,transparent)}
+.repo:target{border-color:var(--mint);box-shadow:0 0 0 3px var(--mint-soft)}
+.repo .img{display:block;aspect-ratio:4/5;overflow:hidden;background:var(--bg-2);border-bottom:1px solid var(--line)}
+.repo .img img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .6s var(--ease)}
+.repo:hover .img img{transform:scale(1.03)}
+.repo .body{padding:16px 18px 18px;display:grid;gap:8px;align-content:start;min-width:0}
+.repo .own{font:500 12px var(--mono);color:var(--muted);overflow-wrap:anywhere}
+.repo b{font-size:19px;line-height:1.25;overflow-wrap:anywhere}
+.repo .desc{color:var(--muted);font-size:14.5px;line-height:1.5}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font:500 12px var(--mono);padding:4px 9px;border-radius:999px;background:var(--bg-2);border:1px solid var(--line);color:var(--fg)}
+.chips span.hot{background:var(--mint-soft);border-color:transparent;color:var(--mint-ink)}
+.links{display:flex;gap:16px;flex-wrap:wrap;margin-top:4px}
+.links a{font-size:14px}
+.empty{padding:48px 24px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:var(--r);grid-column:1/-1}
+.empty b{display:block;color:var(--fg);font:700 20px var(--display);margin-bottom:6px}
+</style>
+</head>
+<body>
+<header class="site-head">
+  <div class="container">
+    <a class="brand" href="../" aria-label="AI Radar home"><svg viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="194" fill="#13a36b" stroke="#0f8a5a" stroke-width="8"/><g transform="translate(189 195) scale(0.74) translate(-224 -166)"><text x="182" y="285" text-anchor="middle" font-family="Inter,Helvetica,Arial,sans-serif" font-weight="900" font-size="230" letter-spacing="-10" fill="#ffffff">a</text><rect x="268" y="160" width="40" height="125" rx="6" fill="#ffffff"/><circle cx="288" cy="112" r="24" fill="#1d1d1f"/><path d="M299.4 69.5 A44 44 0 0 1 330.5 100.6" stroke="#1d1d1f" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.85"/><path d="M305.1 48.2 A66 66 0 0 1 351.8 94.9" stroke="#1d1d1f" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.55"/></g></svg>AI Radar</a>
+    <nav class="nav" aria-label="Main"><a class="hide-sm" href="../#resources">Resources</a><a class="hide-sm" href="../repos/">Repos</a><a class="hide-sm" href="../cheatsheets/">Cheatsheets</a><a class="hide-sm" href="../prompt-packs/" aria-current="page">Prompt packs</a><a class="btn btn-ink" href="https://x.com/ai_radar_">Follow on X</a></nav>
+  </div>
+</header>
+<main class="container">
+  <div class="page-head">
+    <a class="crumb" href="../">← AI Radar</a>
+    <span class="eyebrow">Prompt packs</span>
+    <h1>Prompts that <em>do the work.</em></h1>
+    <p>Free packs of copy-ready prompts. Fill the highlighted parts, paste into any AI chat, done. Newest first.</p>
+  </div>
+  <div class="repos" id="repos"><div class="empty"><b>Loading packs…</b></div></div>
+</main>
+<script>
+(function(){
+  var box=document.getElementById('repos');
+  function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  fetch('../data/packs.json?t='+Date.now()).then(function(r){return r.json();}).then(function(items){
+    if(!items.length){ box.innerHTML='<div class="empty"><b>First pack coming soon</b>New prompt packs appear here as we release them on X.</div>'; return; }
+    box.innerHTML=items.map(function(i){
+      return '<article class="repo" id="'+esc(i.slug)+'">'+
+        '<a class="img" href="../'+esc(i.url)+'"><img src="../'+esc(i.cover)+'" alt="'+esc(i.title)+' cover" loading="lazy" width="1080" height="1350"></a>'+
+        '<div class="body"><span class="own">Prompt pack · '+esc(i.count)+' prompts</span><b>'+esc(i.title)+'</b><span class="desc">'+esc(i.desc)+'</span>'+
+        '<div class="links"><a class="link-arrow" href="../'+esc(i.url)+'">Open the pack →</a></div></div></article>';
+    }).join('');
+  }).catch(function(){ box.innerHTML='<div class="empty"><b>Couldn\'t load packs</b>Refresh the page to try again.</div>'; });
+})();
+</script>
+<footer class="site-foot">
+  <div class="container">
+    <span>© 2026 AI Radar</span>
+    <nav aria-label="Footer"><a href="../repos/">Repos</a><a href="../cheatsheets/">Cheatsheets</a><a href="../prompt-packs/">Prompt packs</a><a href="https://x.com/ai_radar_">X / @ai_radar_</a></nav>
+  </div>
+</footer>
+<script src="../assets/site.js?v=5" defer></script>
+<script src="../assets/chat.js?v=11" defer></script>
+</body>
+</html>

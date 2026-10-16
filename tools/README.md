@@ -11,3 +11,6 @@ Needs Python 3, Playwright (Chromium) and Pillow. No secrets live here.
 - Cheatsheets: always the "Resources" theme (cream #fbf8f1, mint #13a36b, dark "Remember" callout) — same look as the 50 AI prompts cover. The `slot` field is ignored.
 - Repos: always the dark "terminal" theme (#121417 background, mint #34c98a accents). The `slot` field is ignored.
 - News / updates / AI facts (made by the separate news task) keep the 8 rotating slot colours.
+
+## Prompt packs
+- `make_pack.py pack.json [x_post_url]` → builds `prompt-packs/<slug>/index.html` from `pack_template.html`, renders `cover.png/.jpg/.baked.html` (cream/mint resource look with the comment keyword), prepends `data/packs.json`, and adds a home card after `<!-- new-pack:home -->`. The first pack lives at `/prompts/` (kept so old links work).

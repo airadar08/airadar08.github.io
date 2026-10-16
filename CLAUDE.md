@@ -8,7 +8,8 @@ Static site for the @ai_radar_ X account, served by GitHub Pages at https://aira
 - `assets/hero.js` — Three.js (r128 UMD from cdnjs) 3D radar on the home hero; static SVG fallback inside `#radar`.
 - `assets/logo.svg` — the AI Radar logo used on the X profile (mint circle, white "ai", radar arcs); also the favicon. Same SVG is inlined in each page header.
 - `index.html` — home: hero with 3D radar, "What you get", free resources grid (thumbnails), follow band.
-- `prompts/index.html` — free resource: 50 AI prompts (data in the `PACK` array in its script).
+- `prompts/index.html` — first prompt pack (50 AI prompts; data in the `PACK` array). Kept at this URL because it was shared on X.
+- `prompt-packs/index.html` — Prompt packs listing, renders from `data/packs.json`. New packs live at `prompt-packs/<slug>/` (built by `tools/make_pack.py`).
 - `cheatsheets/index.html` — gallery of posted cheatsheets; images in `cheatsheets/img/*.jpg` (1080x1350), each card has an `id` anchor linked from the home page.
 - Home chips: "Daily AI news" and "AI facts" link to https://x.com/ai_radar_; "Cheatsheets" to `cheatsheets/`; "Free resources" to `#resources`.
 - `assets/chat.js` — "Ask AI Radar" chat overlay on every page. Hidden until `ENDPOINT` (top of file) is set to the Cloudflare Worker URL.
@@ -24,6 +25,9 @@ Static site for the @ai_radar_ X account, served by GitHub Pages at https://aira
 - Logo: `assets/logo.svg`, the same mark as the X profile picture. No company logos or trademarks.
 - Post cards: cheatsheets use the fixed cream/mint "Resources" theme; repos use the fixed dark theme; news/updates/facts keep the 8 rotating slot colours.
 - Motion: subtle (fade/rise, hover lift, the radar sweep). Always respect `prefers-reduced-motion`.
+
+## Adding a new prompt pack
+Write a pack JSON (see `tools/make_pack.py` docstring) and run `python3 tools/make_pack.py pack.json [x_post_url]`, then commit and push. The X post uses `prompt-packs/<slug>/cover.baked.html`; commenters get `https://airadar08.github.io/prompt-packs/<slug>/`.
 
 ## Adding a new repo
 Run `python3 tools/update_site.py repo <card.jpg> <repo.json> [x_post_url]`, then commit and push.

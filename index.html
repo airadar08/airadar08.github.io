@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
-<link rel="stylesheet" href="assets/site.css?v=4">
+<link rel="stylesheet" href="assets/site.css?v=5">
 <style>
 /* hero: text left, live radar right; stacks on phones */
 .hero{padding-block:56px 40px;overflow:hidden}
@@ -69,7 +69,7 @@
       <a class="hide-sm" href="#resources">Resources</a>
       <a class="hide-sm" href="repos/">Repos</a>
       <a class="hide-sm" href="cheatsheets/">Cheatsheets</a>
-      <a class="hide-sm" href="prompts/">Prompts</a>
+      <a class="hide-sm" href="prompt-packs/">Prompt packs</a>
       <a class="btn btn-ink" href="https://x.com/ai_radar_">Follow on X</a>
     </nav>
   </div>
@@ -136,9 +136,10 @@
     <div class="container">
       <div class="section-head reveal">
         <div><span class="eyebrow">Free resources</span><h2 style="margin-top:12px">Save, copy, use</h2><p>Everything we've shared, in one place. Free, no sign-up.</p></div>
-        <a class="link-arrow" href="cheatsheets/">All cheatsheets →</a>
+        <a class="link-arrow" href="prompt-packs/">All prompt packs →</a>
       </div>
       <div class="res-grid">
+        <!-- new-pack:home -->
         <a class="res reveal" href="prompts/"><div class="thumb"><img src="assets/img/prompt-pack.jpg" alt="AI Prompt Pack cover" loading="lazy" width="1080" height="1350"></div><div class="body"><span class="kind">Prompt pack</span><b>50 AI prompts that do real work</b><span class="desc">Copy-ready prompts for work, learning, writing, coding and more.</span></div></a>
         <!-- new-cheatsheet:home -->
         <a class="res reveal" href="cheatsheets/#ai-jargon-decoded"><div class="thumb"><img src="cheatsheets/img/ai-jargon-decoded.jpg?v=2" alt="AI Jargon Decoded cheatsheet" loading="lazy" width="1080" height="1350"></div><div class="body"><span class="kind">Cheatsheet</span><b>AI Jargon Decoded</b><span class="desc">16 AI terms in plain English.</span></div></a>
@@ -163,7 +164,7 @@
 <footer class="site-foot">
   <div class="container">
     <span>© 2026 AI Radar</span>
-    <nav aria-label="Footer"><a href="repos/">Repos</a><a href="cheatsheets/">Cheatsheets</a><a href="prompts/">Prompt pack</a><a href="https://x.com/ai_radar_">X / @ai_radar_</a></nav>
+    <nav aria-label="Footer"><a href="repos/">Repos</a><a href="cheatsheets/">Cheatsheets</a><a href="prompt-packs/">Prompt packs</a><a href="https://x.com/ai_radar_">X / @ai_radar_</a></nav>
   </div>
 </footer>
 
@@ -179,7 +180,7 @@ fetch('data/repos.json?t='+Date.now()).then(function(r){return r.json();}).then(
 }).catch(function(){});
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script src="assets/site.js?v=4" defer></script>
+<script src="assets/site.js?v=5" defer></script>
 <script src="assets/hero.js?v=14" defer></script>
 <script src="assets/chat.js?v=11" defer></script>
 </body>
