@@ -1,7 +1,7 @@
 // AI Radar chat — Cloudflare Worker that sits between the website and OpenRouter.
 // The OpenRouter key lives ONLY here, as the secret OPENROUTER_API_KEY. Never put it in the website.
 //
-// News questions: fetches recent headlines from Google News RSS (free, no key) and gives them to the model.
+// News questions: fetches recent headlines from Google News RSS, falling back to Bing News RSS (both free, no key), and gives them to the model.
 //
 // Settings (Cloudflare → your Worker → Settings → Variables and Secrets):
 //   OPENROUTER_API_KEY  (Secret, required)  your OpenRouter key
@@ -47,29 +47,44 @@ function keywords(q) {
   const words = q.replace(/[^\w\s.\-+]/g, " ").split(/\s+/).filter((w) => w.length > 1 && !STOP.has(w.toLowerCase()));
   return words.slice(0, 6).join(" ");
 }
-async function news(q) {
-  const k = keywords(q);
-  for (const query of [`${k} AI when:7d`, `${k} when:14d`, `${k || "artificial intelligence"} AI`]) {
-    const items = await rss(query);
+async function news(q, diag) {
+  const k = keywords(q) || "artificial intelligence";
+  const tries = [
+    ["google", `${k} AI when:7d`], ["bing", `${k} AI`],
+    ["google", `${k} when:14d`], ["bing", k],
+  ];
+  for (const [src, query] of tries) {
+    const items = await rss(src, query, diag);
     if (items.length) return items;
   }
   return [];
 }
-async function rss(text) {
-  const query = encodeURIComponent(text.trim());
+// Free, key-less RSS search (Google News, then Bing News). 4s timeout each. Returns [{title, source, url, date}]
+async function rss(src, text, diag) {
+  const qs = encodeURIComponent(text.trim());
+  const url = src === "google"
+    ? `https://news.google.com/rss/search?q=${qs}&hl=en-US&gl=US&ceid=US:en`
+    : `https://www.bing.com/news/search?q=${qs}&format=rss&setlang=en-US`;
   try {
-    const r = await fetch(`https://news.google.com/rss/search?q=${query}&hl=en-US&gl=US&ceid=US:en`, { cf: { cacheTtl: 600 } });
-    if (!r.ok) return [];
-    const xml = await r.text();
-    const dec = (t) => t.replace(/<!\[CDATA\[|\]\]>/g, "").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").trim();
+    const r = await fetch(url, { cf: { cacheTtl: 600 }, signal: AbortSignal.timeout(4000),
+      headers: { "User-Agent": "Mozilla/5.0 (compatible; AIRadarBot/1.0; +https://airadar08.github.io)", "Accept": "application/rss+xml, application/xml, text/xml" } });
+    const xml = r.ok ? await r.text() : "";
+    const dec = (t) => t.replace(/<!\[CDATA\[|\]\]>/g, "").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/<[^>]+>/g, "").trim();
     const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].slice(0, 8).map((m) => {
       const x = m[1];
       const get = (tag) => { const k = x.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\/${tag}>`)); return k ? dec(k[1]) : ""; };
-      const src = x.match(/<source url="([^"]+)">([\s\S]*?)<\/source>/);
-      return { title: get("title"), url: get("link"), date: get("pubDate"), source: src ? dec(src[2]) : "", site: src ? src[1] : "" };
-    });
-    return items.filter((i) => i.title && /^https?:\/\//.test(i.url));
-  } catch { return []; }
+      const g = x.match(/<source url="([^"]+)">([\s\S]*?)<\/source>/);
+      const bsrc = x.match(/<News:Source>([\s\S]*?)<\/News:Source>/i);
+      let link = get("link");
+      if (src === "bing") { const u = link.match(/[?&]url=([^&]+)/); if (u) link = decodeURIComponent(u[1]); }
+      return { title: get("title"), url: link, date: get("pubDate"), source: g ? dec(g[2]) : bsrc ? dec(bsrc[1]) : (() => { try { return new URL(link).hostname.replace(/^www\./, ""); } catch { return ""; } })() };
+    }).filter((i) => i.title && /^https?:\/\//.test(i.url));
+    diag.push(`${src}:${r.status}:${items.length}`);
+    return items;
+  } catch (e) {
+    diag.push(`${src}:err:${(e && e.name) || "fail"}`);
+    return [];
+  }
 }
 
 function cors(origin, allowed) {
@@ -127,8 +142,9 @@ export default {
       temperature: 0.4,
     };
     let found = [];
+    const diag = [];
     if (wantWeb) {
-      found = await news(last.content);
+      found = await news(last.content, diag);
       if (found.length) {
         const list = found.map((n, i) => `[${i + 1}] ${n.title} (${n.source || "news"}, ${n.date})`).join("\n");
         payload.messages.splice(1, 0, { role: "system", content: `Recent headlines found for this question (newest search, may be incomplete):\n${list}\nAnswer from these headlines. Mention the outlet and date where useful. Do not paste URLs; the site shows the sources separately. If they don't answer the question, say so briefly.` });
@@ -161,6 +177,6 @@ export default {
     const reply = text.trim() || "Sorry, I couldn't come up with an answer. Try rephrasing.";
     const sources = found.slice(0, 4).map((n) => ({ url: n.url, title: n.title, label: n.source || "" }));
     const finish = data?.choices?.[0]?.finish_reason || "";
-    return json({ reply, sources, web: wantWeb && found.length > 0, finish }, 200, h);
+    return json({ reply, sources, web: wantWeb && found.length > 0, finish, news: diag.join(" ") }, 200, h);
   },
 };
