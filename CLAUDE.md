@@ -36,3 +36,4 @@ Add the 1080x1350 image as `cheatsheets/img/<slug>.jpg`. Insert the new `<articl
 - Plain, direct copy; real content only.
 
 - Never show posting frequency or schedules (posts per day, times) anywhere on the site.
+- When changing anything in `assets/`, bump the `?v=N` on its links in all three pages so browsers fetch the new file.
