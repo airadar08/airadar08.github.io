@@ -5,7 +5,12 @@
   if(!ENDPOINT) return;
 
   var LOGO='<svg viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="194" fill="#13a36b" stroke="#0f8a5a" stroke-width="8"/><g transform="translate(189 195) scale(0.74) translate(-224 -166)"><text x="182" y="285" text-anchor="middle" font-family="Inter,Helvetica,Arial,sans-serif" font-weight="900" font-size="230" letter-spacing="-10" fill="#ffffff">a</text><rect x="268" y="160" width="40" height="125" rx="6" fill="#ffffff"/><circle cx="288" cy="112" r="24" fill="#1d1d1f"/><path d="M299.4 69.5 A44 44 0 0 1 330.5 100.6" stroke="#1d1d1f" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.85"/><path d="M305.1 48.2 A66 66 0 0 1 351.8 94.9" stroke="#1d1d1f" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.55"/></g></svg>';
-  var SUGGEST=["What's new in AI this week?","Explain RAG in simple words","Best free AI tools for students?","What is an AI agent?"];
+  var LABS=[
+    {g:"US labs",items:[["OpenAI","OpenAI (ChatGPT)"],["Google","Google (Gemini)"],["Anthropic","Anthropic (Claude)"],["Meta","Meta AI (Llama, Muse)"],["xAI","xAI (Grok)"],["Microsoft","Microsoft (Copilot)"],["NVIDIA","NVIDIA (Nemotron)"]]},
+    {g:"Chinese labs",items:[["DeepSeek","DeepSeek"],["Qwen","Alibaba (Qwen)"],["Kimi","Moonshot AI (Kimi)"],["GLM","Zhipu AI (GLM)"],["MiniMax","MiniMax"],["Doubao","ByteDance (Doubao, Seed)"]]},
+    {g:"Europe",items:[["Mistral","Mistral AI"]]}
+  ];
+  var SUGGEST=["What's new in AI this week?","Explain RAG in simple words"];
   var KEY='air-chat-v1';
 
   var css=`
@@ -45,6 +50,9 @@
 .airc-sug button{all:unset;cursor:pointer;font-size:13.5px;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);transition:border-color .2s}
 .airc-sug button:hover{border-color:var(--mint)}
 .airc-sug button:focus-visible{outline:2px solid var(--mint)}
+.airc-grp{flex-basis:100%;font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.airc-grp:first-child{margin-top:0}
+.airc-labs button{font-weight:500}
 .airc-typing{display:flex;gap:4px;padding:14px}
 .airc-typing i{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:aircDot 1.2s infinite}
 .airc-typing i:nth-child(2){animation-delay:.15s}.airc-typing i:nth-child(3){animation-delay:.3s}
@@ -100,9 +108,15 @@
     log.appendChild(d); log.scrollTop=log.scrollHeight; return d;
   }
   function welcome(){
-    bubble('assistant',"Hi! Ask me anything about AI: today's news, how a tool works, or what a term means. I'll keep it short.");
-    var w=document.createElement('div'); w.className='airc-sug';
-    SUGGEST.forEach(function(q){ var b=document.createElement('button'); b.type='button'; b.textContent=q; b.onclick=function(){ w.remove(); ask(q); }; w.appendChild(b); });
+    bubble('assistant',"Hi! Which AI company do you want the latest on? Pick one, or type any AI question below.");
+    var w=document.createElement('div'); w.className='airc-sug airc-labs';
+    function chip(label,q){ var b=document.createElement('button'); b.type='button'; b.textContent=label; b.onclick=function(){ w.remove(); ask(q); }; return b; }
+    LABS.forEach(function(grp){
+      var h=document.createElement('span'); h.className='airc-grp'; h.textContent=grp.g; w.appendChild(h);
+      grp.items.forEach(function(it){ w.appendChild(chip(it[0],"What's the latest news from "+it[1]+"?")); });
+    });
+    var h2=document.createElement('span'); h2.className='airc-grp'; h2.textContent='Or try'; w.appendChild(h2);
+    SUGGEST.forEach(function(q){ w.appendChild(chip(q,q)); });
     log.appendChild(w);
   }
   function render(){ log.innerHTML=''; welcome(); history.forEach(function(m){ bubble(m.role,m.content,m.meta); }); }
