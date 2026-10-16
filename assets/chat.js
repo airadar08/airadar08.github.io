@@ -10,7 +10,7 @@
     {g:"Chinese labs",items:[["DeepSeek","DeepSeek"],["Qwen","Alibaba (Qwen)"],["Kimi","Moonshot AI (Kimi)"],["GLM","Zhipu AI (GLM)"],["MiniMax","MiniMax"],["Doubao","ByteDance (Doubao, Seed)"]]},
     {g:"Europe",items:[["Mistral","Mistral AI"]]}
   ];
-  var SUGGEST=["What's new in AI this week?","Explain RAG in simple words"];
+  var SUGGEST=["What's new in AI this week?","AI tricks for Excel and Google Sheets","Explain RAG in simple words"];
   var KEY='air-chat-v1';
 
   var css=`
@@ -72,11 +72,11 @@
   root.innerHTML=
     '<button class="airc-fab" type="button" aria-haspopup="dialog" aria-controls="airc-panel">'+LOGO+'<span>Ask AI Radar</span><span class="dot" aria-hidden="true"></span></button>'+
     '<section class="airc-panel" id="airc-panel" role="dialog" aria-label="Ask AI Radar" aria-modal="false">'+
-      '<div class="airc-head">'+LOGO+'<div><b>Ask AI Radar</b><span>AI news and answers, kept short</span></div>'+
+      '<div class="airc-head">'+LOGO+'<div><b>Ask AI Radar</b><span>AI news, tools &amp; tips only</span></div>'+
         '<button class="x" type="button" aria-label="Close chat"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>'+
       '<div class="airc-log" aria-live="polite"></div>'+
       '<div><form class="airc-form"><label for="airc-input" style="position:absolute;left:-9999px">Your question</label>'+
-        '<textarea id="airc-input" rows="1" maxlength="500" placeholder="Ask about AI, news, tools…"></textarea>'+
+        '<textarea id="airc-input" rows="1" maxlength="500" placeholder="Ask about AI news, tools, tips…"></textarea>'+
         '<button type="submit" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></form>'+
       '<div class="airc-note">Answers are AI-generated and can be wrong. Check sources.</div></div>'+
     '</section>';
@@ -108,7 +108,7 @@
     log.appendChild(d); log.scrollTop=log.scrollHeight; return d;
   }
   function welcome(){
-    bubble('assistant',"Hi! Which AI company do you want the latest on? Pick one, or type any AI question below.");
+    bubble('assistant',"Hi! I answer AI questions only: news, models, tools, tips and spreadsheets with AI. Which AI company do you want the latest on? Pick one, or type your question.");
     var w=document.createElement('div'); w.className='airc-sug airc-labs';
     function chip(label,q){ var b=document.createElement('button'); b.type='button'; b.textContent=label; b.onclick=function(){ w.remove(); ask(q); }; return b; }
     LABS.forEach(function(grp){
