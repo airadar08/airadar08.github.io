@@ -32,8 +32,21 @@ Rules:
 
 
 // Free, key-less news lookup: Google News RSS search, last few days. Returns [{title, source, url, date}]
+const STOP = new Set("a an the is are was were be been what whats what's which who whom how why when where do does did any some about from of for on in at to with and or but me my i you your tell give show latest new newest recent recently news today this week month update updates announce announced announcement announcements release released launch launched please can could would should there their they it its".split(" "));
+function keywords(q) {
+  const words = q.replace(/[^\w\s.\-+]/g, " ").split(/\s+/).filter((w) => w.length > 1 && !STOP.has(w.toLowerCase()));
+  return words.slice(0, 6).join(" ");
+}
 async function news(q) {
-  const query = encodeURIComponent(q.replace(/[^\w\s.\-+']/g, " ").slice(0, 120) + " AI when:7d");
+  const k = keywords(q);
+  for (const query of [`${k} AI when:7d`, `${k} when:14d`, `${k || "artificial intelligence"} AI`]) {
+    const items = await rss(query);
+    if (items.length) return items;
+  }
+  return [];
+}
+async function rss(text) {
+  const query = encodeURIComponent(text.trim());
   try {
     const r = await fetch(`https://news.google.com/rss/search?q=${query}&hl=en-US&gl=US&ceid=US:en`, { cf: { cacheTtl: 600 } });
     if (!r.ok) return [];

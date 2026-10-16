@@ -113,7 +113,7 @@
     function chip(label,q){ var b=document.createElement('button'); b.type='button'; b.textContent=label; b.onclick=function(){ w.remove(); ask(q); }; return b; }
     LABS.forEach(function(grp){
       var h=document.createElement('span'); h.className='airc-grp'; h.textContent=grp.g; w.appendChild(h);
-      grp.items.forEach(function(it){ w.appendChild(chip(it[0],"What's the latest news from "+it[1]+"?")); });
+      grp.items.forEach(function(it){ w.appendChild(chip(it[0],"Latest "+it[1]+" news")); });
     });
     var h2=document.createElement('span'); h2.className='airc-grp'; h2.textContent='Or try'; w.appendChild(h2);
     SUGGEST.forEach(function(q){ w.appendChild(chip(q,q)); });
