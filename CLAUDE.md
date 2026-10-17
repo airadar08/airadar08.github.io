@@ -20,10 +20,10 @@ Static site for the @ai_radar_ X account, served by GitHub Pages at https://aira
 - `.nojekyll` — keeps GitHub Pages from running Jekyll.
 
 ## Brand
-- Colours: cream `#fbf8f1` background, mint `#13a36b` accent (dark ink `#0b7a4f`), text `#1d1d1f`. Dark mode via `prefers-color-scheme`.
-- Fonts (Google Fonts): Bricolage Grotesque for headings, Inter for body, JetBrains Mono for small labels.
+- Theme: dark everywhere (no light mode). Ground `#0a0c0b`, cards `#111412`, lines `#1f2521`, text `#eef1ee`, muted `#9aa39c`, mint accent `#34c98a` (soft `#12271e`, light `#6fdcaa`). Primary buttons are mint with near-black text. Home hero and CTA are a dark radar (grid, rings, slow sweep) echoing the X banner.
+- Fonts (Google Fonts): Instrument Serif (weight 400) for headings, Inter for body and the "AI Radar" name, JetBrains Mono for small labels.
 - Logo: `assets/logo.svg`, the same mark as the X profile picture. No company logos or trademarks.
-- Post cards: cheatsheets use the fixed cream/mint "Resources" theme; repos use the fixed dark theme; news/updates/facts keep the 8 rotating slot colours.
+- Post card images keep their own designs. Post cards: cheatsheets use the fixed cream/mint "Resources" theme; repos use the fixed dark theme; news/updates/facts keep the 8 rotating slot colours.
 - Motion: subtle (fade/rise, hover lift, the radar sweep). Always respect `prefers-reduced-motion`.
 
 ## Adding a new prompt pack

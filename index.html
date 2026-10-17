@@ -9,7 +9,7 @@
 <meta property="og:description" content="AI news, cheatsheets, trending repos and free prompt packs. #stayontheradar">
 <meta property="og:image" content="https://airadar08.github.io/assets/img/prompt-pack.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#6f9fe0">
+<meta name="theme-color" content="#0a0c0b">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,17 +17,18 @@
 <style>
 /* Layout: inset photographic hero → editorial carousel → rotating logo wheel → bento → FAQ → sky CTA → wordmark footer */
 :root{
-  --bg:#f5f5f2; --ink:#0d0d0d; --muted:#6b6b6b; --line:#ececea;
-  --peach:#fdeade; --coral:#d96a45; --peach-card:#fbeee6; --white:#ffffff;
-  --sky-1:#6f9fe0; --sky-2:#94bbec; --sky-3:#cfe2f7; --navy:#10233f;
+  /* AI Radar dark: near-black ground, mint accent (matches the X profile and banner) */
+  --bg:#0a0c0b; --ink:#eef1ee; --muted:#9aa39c; --line:#1f2521; --card:#111412;
+  --peach:#12271e; --coral:#34c98a; --peach-card:#0e1a14; --white:#ffffff;
+  --btn:#34c98a; --btn-ink:#03120b; --navy:#cfe9dc;
   --serif:'Instrument Serif', Georgia, 'Times New Roman', serif;
   --sans:'Inter', 'Helvetica Neue', Arial, sans-serif;
   --ease:cubic-bezier(.2,.7,.2,1);
   --spring:cubic-bezier(.22,1.2,.36,1);
-  color-scheme:light;
+  color-scheme:dark;
   /* tokens the shared chat (assets/chat.js) reads */
-  --fg:var(--ink); --surface:#ffffff; --bg-2:#ecebe6; --on-ink:#ffffff;
-  --mint:#13a36b; --mint-ink:#0b7a4f; --mint-soft:#dff3e9;
+  --fg:var(--ink); --surface:#111412; --bg-2:#171b18; --on-ink:#0a0c0b;
+  --mint:#34c98a; --mint-ink:#6fdcaa; --mint-soft:#12271e;
   --display:var(--serif); --body:var(--sans); --mono:'JetBrains Mono', ui-monospace, Menlo, monospace;
 }
 *{box-sizing:border-box}
@@ -50,9 +51,10 @@ img{max-width:100%}
 
 /* ---------- buttons + rolling text ---------- */
 .btn{position:relative;display:inline-flex;align-items:center;gap:10px;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);font-size:15px;font-weight:500;padding:15px 26px;border-radius:12px;transition:background .25s ease, transform .25s var(--ease)}
-.btn-dark{background:var(--ink);color:#fff;box-shadow:0 16px 40px rgba(0,0,0,.08)}
-.btn-dark:hover{background:#262626}
-.btn-light{background:#fff;color:var(--ink);box-shadow:0 16px 40px rgba(0,0,0,.05)}
+.btn-dark{background:var(--btn);color:var(--btn-ink);box-shadow:0 16px 40px rgba(52,201,138,.18)}
+.btn-dark:hover{background:#4fd99f}
+.btn-light{background:rgba(255,255,255,.07);color:var(--ink);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.btn-light:hover{background:rgba(255,255,255,.13)}
 .btn-glass{background:rgba(255,255,255,.35);color:var(--ink);border:1px solid rgba(255,255,255,.7)}
 .btn:active{transform:scale(.97)}
 .roll{display:inline-flex;overflow:hidden;line-height:1.2em;height:1.2em}
@@ -67,13 +69,14 @@ img{max-width:100%}
 /* ---------- nav ---------- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:calc(12px + env(safe-area-inset-top, 0px));padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));pointer-events:none}
 .nav-pill{pointer-events:auto;max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 10px 10px 16px;border-radius:22px;background:rgba(255,255,255,.1);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);transition:background .4s ease, box-shadow .4s ease}
-.nav.solid .nav-pill{background:rgba(245,245,242,.55);box-shadow:0 10px 30px rgba(13,13,13,.04)}
+.nav.solid .nav-pill{background:rgba(14,17,15,.62);box-shadow:0 10px 30px rgba(0,0,0,.35)}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
 .logo-mark{width:40px;height:40px;border-radius:50%;display:block}
 .logo-word{font-family:var(--sans);font-weight:700;font-size:20px;letter-spacing:-.03em;color:#fff;transition:color .4s ease}
 .nav-links{display:flex;align-items:center;gap:30px;font-size:14px;font-weight:500}
 .nav-links a{text-decoration:none;color:#fff;display:inline-flex;align-items:center;gap:4px;transition:color .4s ease}
 .nav.solid .nav-links a,.nav.solid .logo-word{color:var(--ink)}
+.nav-links a:hover{color:var(--coral)!important}
 .nav .btn{padding:12px 20px;font-size:14px}
 
 /* ---------- progressive blur edges ---------- */
@@ -103,19 +106,20 @@ img{max-width:100%}
 @media (hover:none),(pointer:coarse){.cursor{display:none}}
 
 /* ---------- sky ---------- */
-.sky{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--sky-1) 0%,var(--sky-2) 48%,var(--sky-3) 100%)}
-.sky::before,.sky::after{content:"";position:absolute;inset:-10% -20%;pointer-events:none;
+.sky{position:relative;overflow:hidden;isolation:isolate;background:
+  radial-gradient(60% 55% at 50% 0%,rgba(52,201,138,.26),transparent 70%),
+  radial-gradient(35% 35% at 88% 92%,rgba(52,201,138,.10),transparent 70%),
+  #050706}
+.sky::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
   background:
-  radial-gradient(ellipse 14% 7% at 10% 34%,rgba(255,255,255,.95),transparent 70%),
-  radial-gradient(ellipse 12% 6% at 17% 38%,rgba(255,255,255,.85),transparent 70%),
-  radial-gradient(ellipse 18% 8% at 86% 26%,rgba(255,255,255,.9),transparent 70%),
-  radial-gradient(ellipse 11% 5% at 78% 31%,rgba(255,255,255,.8),transparent 70%),
-  radial-gradient(ellipse 26% 12% at 50% 86%,rgba(255,255,255,.8),transparent 70%),
-  radial-gradient(ellipse 20% 10% at 6% 84%,rgba(255,255,255,.9),transparent 70%),
-  radial-gradient(ellipse 20% 10% at 95% 80%,rgba(255,255,255,.9),transparent 70%);
-  animation:clouds 60s linear infinite alternate}
-.sky::after{opacity:.55;filter:blur(6px);animation-duration:90s;animation-direction:alternate-reverse;transform:translateY(8%)}
-@keyframes clouds{from{translate:-4% 0}to{translate:4% 0}}
+  repeating-radial-gradient(circle at 50% 118%,rgba(52,201,138,.13) 0 1px,transparent 1px 86px),
+  linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/44px 44px,
+  linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/44px 44px;
+  mask:radial-gradient(90% 80% at 50% 70%,#000 40%,transparent 100%);-webkit-mask:radial-gradient(90% 80% at 50% 70%,#000 40%,transparent 100%)}
+.sky::after{content:"";position:absolute;left:50%;bottom:-160vmax;width:320vmax;height:320vmax;margin-left:-160vmax;border-radius:50%;pointer-events:none;z-index:0;
+  background:conic-gradient(from 0deg,rgba(52,201,138,.20),rgba(52,201,138,0) 9%,transparent 100%);
+  transform-origin:50% 50%;animation:sweep 14s linear infinite}
+@keyframes sweep{to{transform:rotate(360deg)}}
 .sky>*{position:relative;z-index:1}
 
 /* ---------- hero ---------- */
@@ -128,7 +132,7 @@ img{max-width:100%}
 .live i:first-child{animation:ping 1.8s ease-out infinite}
 @keyframes ping{0%{transform:scale(.6);opacity:.7}100%{transform:scale(2.6);opacity:0}}
 .hero h1{color:#fff}
-.hero .sub{color:#fff;font-size:17px;line-height:1.55;max-width:540px;margin:0;text-shadow:0 1px 18px rgba(16,35,63,.25)}
+.hero .sub{color:#c9d6cf;font-size:17px;line-height:1.55;max-width:540px;margin:0;text-shadow:0 1px 18px rgba(16,35,63,.25)}
 .w{display:inline-block;will-change:filter,transform,opacity}
 .js .w{opacity:0;filter:blur(12px);transform:translateY(14px)}
 .w.in{opacity:1;filter:blur(0);transform:none;transition:opacity .9s var(--ease),filter .9s var(--ease),transform .9s var(--ease)}
@@ -163,20 +167,20 @@ img{max-width:100%}
 .how-right{flex:1 1 640px;min-width:0}
 .stage{position:relative;border-radius:28px;overflow:hidden;min-height:480px;padding:clamp(18px,3vw,40px);display:grid;align-items:center}
 .stage-bg{position:absolute;inset:-30px;background:
-  radial-gradient(60% 70% at 10% 20%,#e8935f 0%,transparent 60%),
-  radial-gradient(60% 70% at 95% 90%,#7da6ea 0%,transparent 60%),
-  radial-gradient(50% 60% at 70% 10%,#c9d6f2 0%,transparent 70%),
-  linear-gradient(140deg,#f2b28c,#e9d8e6 50%,#a9c8f0);filter:blur(5px)}
+  radial-gradient(55% 65% at 12% 18%,#1f9a68 0%,transparent 62%),
+  radial-gradient(55% 65% at 95% 92%,#0f5a7a 0%,transparent 62%),
+  radial-gradient(45% 55% at 70% 8%,#174f3a 0%,transparent 70%),
+  linear-gradient(140deg,#0b2a1e,#0b1512 50%,#0a1f2a);filter:blur(5px)}
 .slide{grid-area:1/1;position:relative;transition:opacity .55s ease, transform .55s var(--ease)}
 .slide[aria-hidden="true"]{opacity:0;transform:scale(.985);pointer-events:none}
-.glass{background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:16px;font-size:13px;box-shadow:0 30px 60px rgba(60,40,80,.12)}
+.glass{background:rgba(14,17,15,.72);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:16px;font-size:13px;box-shadow:0 30px 60px rgba(0,0,0,.4)}
 .ctrls{display:flex;align-items:center;gap:18px;padding-top:12px}
-.round{width:44px;height:44px;border-radius:12px;border:1px solid #dcdcd7;background:#fff;color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s ease,border-color .2s ease}
-.round:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.round{width:44px;height:44px;border-radius:12px;border:1px solid #2a302b;background:var(--card);color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s ease,border-color .2s ease}
+.round:hover{background:var(--btn);color:var(--btn-ink);border-color:var(--btn)}
 .dots{display:flex;gap:8px;align-items:center}
-.dot{height:8px;width:8px;border:0;padding:0;cursor:pointer;border-radius:999px;background:#cfcfca;position:relative;overflow:hidden;transition:width .4s var(--ease)}
+.dot{height:8px;width:8px;border:0;padding:0;cursor:pointer;border-radius:999px;background:#2b322d;position:relative;overflow:hidden;transition:width .4s var(--ease)}
 .dot.on{width:34px}
-.dot.on::after{content:"";position:absolute;inset:0;background:var(--ink);transform-origin:left;animation:fill var(--dur,6s) linear forwards}
+.dot.on::after{content:"";position:absolute;inset:0;background:var(--btn);transform-origin:left;animation:fill var(--dur,6s) linear forwards}
 .dot.on.static::after{animation:none}
 @keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .row{display:flex;justify-content:space-between;gap:10px;padding:12px 14px;border-bottom:1px solid #f0f0ec}
@@ -191,13 +195,13 @@ img{max-width:100%}
 .wheel-sec{position:relative;overflow:hidden;padding-block:72px 96px}
 .wheel-wrap{position:relative;max-width:1160px;margin:0 auto;height:var(--wh,900px);display:grid;place-items:center}
 .wheel{position:absolute;left:50%;top:50%;width:var(--wd,800px);height:var(--wd,800px);margin:calc(var(--wd,800px) / -2) 0 0 calc(var(--wd,800px) / -2);border-radius:50%;will-change:transform}
-.wheel::before{content:"";position:absolute;inset:0;border-radius:50%;border:1px dashed #dcdcd6}
+.wheel::before{content:"";position:absolute;inset:0;border-radius:50%;border:1px dashed #26302a}
 .spoke{position:absolute;left:50%;top:50%;width:0;height:0}
 .chip{position:absolute;left:0;top:0;transform:translate(-50%,-50%) rotate(calc(var(--r) * -1))}
 .chip-inner{display:flex;flex-direction:column;align-items:center;gap:7px}
-.chip b{width:var(--s,64px);height:var(--s,64px);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;color:#fff;box-shadow:0 14px 30px rgba(13,13,13,.14);border:3px solid #fff;transition:transform .35s var(--spring)}
+.chip b{width:var(--s,64px);height:var(--s,64px);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;color:#fff;box-shadow:0 14px 30px rgba(0,0,0,.45);border:3px solid #0a0c0b;transition:transform .35s var(--spring)}
 .chip:hover b{transform:scale(1.08)}
-.chip span{font-size:12px;font-weight:500;color:#4a4a47;white-space:nowrap;background:rgba(245,245,242,.85);padding:2px 6px;border-radius:6px}
+.chip span{font-size:12px;font-weight:500;color:#c3cbc5;white-space:nowrap;background:rgba(10,12,11,.82);padding:2px 6px;border-radius:6px}
 .wheel-copy{position:relative;z-index:2;max-width:430px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px}
 .lab-row{display:none}
 @media (max-width:799px){
@@ -214,11 +218,11 @@ img{max-width:100%}
 /* ---------- bento ---------- */
 .bento-sec{padding-block:40px 120px}
 .bento-head{display:flex;gap:40px;align-items:flex-end;justify-content:space-between}
-.mini{width:230px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.mini{width:230px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:8px}
 .mini .serif{font-size:28px;line-height:1}
 .mini p{margin:0;font-size:13px;line-height:1.5;color:var(--muted)}
 .bento{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;margin-top:48px}
-.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:12px;transition:transform .45s var(--ease),box-shadow .45s ease}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:12px;transition:transform .45s var(--ease),box-shadow .45s ease}
 .card:hover{transform:translateY(-6px);box-shadow:0 22px 40px rgba(13,13,13,.07)}
 .card .top{display:flex;justify-content:space-between;align-items:center}
 .ic{width:40px;height:40px;border-radius:12px;background:var(--bg);display:flex;align-items:center;justify-content:center}
@@ -227,13 +231,14 @@ img{max-width:100%}
 .card h3{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.04;margin:0}
 .card p{margin:0;font-size:14px;line-height:1.6;color:var(--muted)}
 .c-peach{grid-column:span 2;grid-row:span 2;background:var(--peach-card);border-color:transparent;min-height:440px}
-.c-peach .ic,.c-peach .lbl{background:#fff;color:var(--coral)}
+.c-peach .ic,.c-peach .lbl{background:#163126;color:var(--coral)}
 .c-peach h3,.c-black h3{font-size:36px}
-.c-peach p{color:#6b5a50}
+.c-peach p{color:#a9bfb2}
 .c-mid{grid-column:span 2}
-.c-black{grid-column:span 2;grid-row:span 2;background:var(--ink);color:#fff;border-color:transparent}
-.c-black .ic,.c-black .lbl{background:#1f1f1f;color:#f2a07b}
-.c-black p{color:#b5b5b0}
+.c-black{grid-column:span 2;grid-row:span 2;background:linear-gradient(160deg,#3ad191,#13a36b 70%);color:#03120b;border-color:transparent}
+.c-black .ic,.c-black .lbl{background:rgba(3,18,11,.14);color:#03120b}
+.c-black p{color:#0b3a26}
+.c-black .btn-light{background:#03120b;color:#eef1ee;border-color:#03120b}
 .c-wide{grid-column:span 3;flex-direction:row;gap:18px;align-items:flex-start}
 .stack{margin-top:auto;position:relative;height:140px}
 .stack>div{position:absolute;border-radius:14px;transition:transform .5s var(--ease)}
@@ -245,8 +250,8 @@ img{max-width:100%}
 .faq-sec{padding-block:40px 120px}
 .faq-left{flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:18px;align-items:flex-start;align-self:flex-start}
 .faq-list{flex:1 1 620px;min-width:0;display:flex;flex-direction:column;gap:10px}
-.faq{background:#fff;border:1px solid var(--line);border-radius:14px;transition:background .3s ease,border-color .3s ease}
-.faq:hover{background:var(--peach-card);border-color:#f3dccd}
+.faq{background:var(--card);border:1px solid var(--line);border-radius:14px;transition:background .3s ease,border-color .3s ease}
+.faq:hover{background:var(--peach-card);border-color:#1f4434}
 .faq button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 22px;background:transparent;border:0;cursor:pointer;text-align:left;font-family:var(--sans);font-size:16px;font-weight:500;color:var(--ink)}
 .faq button svg{flex:0 0 auto;width:18px;height:18px;transition:transform .35s var(--ease)}
 .faq.open button svg{transform:rotate(45deg)}
@@ -266,7 +271,7 @@ img{max-width:100%}
 .cols a{text-decoration:none}
 .cols a:hover{color:var(--coral)}
 .cols .k{font-size:12px;color:#8a8a85}
-.wordmark{font-family:var(--sans);font-weight:800;font-size:24vw;line-height:.82;letter-spacing:-.065em;text-align:center;white-space:nowrap;margin-top:40px;height:22vw;overflow:hidden;background:linear-gradient(180deg,#0d0d0d 5%,#d6d6d1 80%);-webkit-background-clip:text;background-clip:text;color:transparent;transition:transform 1.4s var(--spring)}
+.wordmark{font-family:var(--sans);font-weight:800;font-size:24vw;line-height:.82;letter-spacing:-.065em;text-align:center;white-space:nowrap;margin-top:40px;height:22vw;overflow:hidden;background:linear-gradient(180deg,#eef1ee 5%,#0a0c0b 85%);-webkit-background-clip:text;background-clip:text;color:transparent;transition:transform 1.4s var(--spring)}
 .js .wordmark.pending{transform:translateY(40%)}
 
 .tag-link{display:inline-flex;text-decoration:none;font-family:var(--serif);font-style:italic;font-size:26px;color:#fff;padding:6px 16px;border-radius:999px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background .25s ease}
@@ -276,25 +281,25 @@ img{max-width:100%}
 /* ---------- resources (cards are added by tools/update_site.py and tools/make_pack.py) ---------- */
 .more{font-size:14px;font-weight:600;color:var(--coral);text-decoration:none;align-self:flex-start}
 .more:hover{text-decoration:underline;text-underline-offset:3px}
-.c-black .more{color:#f2a07b}
+.c-black .more{color:#03120b}
 .res-sec{padding-block:20px 100px}
 .res-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:32px}
 .res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
-.res{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;text-decoration:none;color:var(--ink);transition:transform .45s var(--ease),box-shadow .45s ease}
+.res{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;text-decoration:none;color:var(--ink);transition:transform .45s var(--ease),box-shadow .45s ease}
 .res:hover{transform:translateY(-6px);box-shadow:0 22px 40px rgba(13,13,13,.08)}
-.res .thumb{aspect-ratio:4/5;background:#ecebe6;overflow:hidden}
+.res .thumb{aspect-ratio:4/5;background:#151916;overflow:hidden}
 .res .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease)}
 .res:hover .thumb img{transform:scale(1.04)}
 .res .body{display:flex;flex-direction:column;gap:6px;padding:16px 18px 18px}
 .res .kind{align-self:flex-start;background:var(--peach);color:var(--coral);padding:4px 9px;border-radius:999px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
 .res b{font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.08}
 .res .desc{font-size:13.5px;line-height:1.5;color:var(--muted)}
-.res .stat{font-size:12.5px;color:#4a4a47}
+.res .stat{font-size:12.5px;color:#c3cbc5}
 
 
 /* ---------- app coming soon ---------- */
 .stores{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
-.store{position:relative;display:inline-flex;align-items:center;gap:10px;padding:9px 16px 9px 12px;border-radius:12px;background:rgba(13,13,13,.82);color:#fff;border:1px solid rgba(255,255,255,.18);cursor:default;user-select:none}
+.store{position:relative;display:inline-flex;align-items:center;gap:10px;padding:9px 16px 9px 12px;border-radius:12px;background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.18);cursor:default;user-select:none}
 .store svg{width:24px;height:24px;flex:0 0 auto}
 .store>span{display:flex;flex-direction:column;line-height:1.1;text-align:left}
 .store small{font-size:10px;opacity:.75;letter-spacing:.02em}
@@ -395,23 +400,23 @@ img{max-width:100%}
           </div>
           <!-- Phone B: chatbot -->
           <div class="phone-wrap phone-b" data-delay="700">
-            <div class="phone"><div class="phone-in"><div class="screen" style="background:#f5f5f2;display:flex;flex-direction:column">
+            <div class="phone"><div class="phone-in"><div class="screen" style="background:#171b18;display:flex;flex-direction:column">
               <div class="island"></div>
-              <div style="padding:48px 14px 12px;display:flex;align-items:center;gap:10px;background:#fff;border-bottom:1px solid #ececea">
+              <div style="padding:48px 14px 12px;display:flex;align-items:center;gap:10px;background:#111412;border-bottom:1px solid #232925">
                 <img src="assets/logo.svg" alt="" width="34" height="34" style="border-radius:50%">
-                <div><div style="font-weight:600;font-size:14px">Ask AI Radar</div><div style="color:#2f7a4a;display:flex;align-items:center;gap:5px;font-size:11px"><span style="width:6px;height:6px;border-radius:50%;background:#2f9a5a"></span>AI topics only</div></div>
+                <div><div style="font-weight:600;font-size:14px">Ask AI Radar</div><div style="color:#6fdcaa;display:flex;align-items:center;gap:5px;font-size:11px"><span style="width:6px;height:6px;border-radius:50%;background:#2f9a5a"></span>AI topics only</div></div>
               </div>
               <div id="chat" style="flex:1;padding:14px 12px;display:flex;flex-direction:column;gap:10px">
-                <div class="bubble" style="align-self:flex-end;background:#0d0d0d;color:#fff;border-radius:16px 16px 4px 16px">Explain RAG in two lines</div>
-                <div class="bubble" style="align-self:flex-start;background:#fff;border:1px solid #ececea;border-radius:16px 16px 16px 4px;display:flex;flex-direction:column;gap:8px">
+                <div class="bubble" style="align-self:flex-end;background:#34c98a;color:#03120b;border-radius:16px 16px 4px 16px">Explain RAG in two lines</div>
+                <div class="bubble" style="align-self:flex-start;background:#111412;border:1px solid #232925;border-radius:16px 16px 16px 4px;display:flex;flex-direction:column;gap:8px">
                   <span>RAG fetches the most relevant documents first, then has the model answer using them. Answers stay grounded and up to date.</span>
-                  <span style="align-self:flex-start;background:#fdeade;color:#b4532f;padding:5px 10px;border-radius:999px;font-weight:600;font-size:11px">Open the RAG cheatsheet →</span>
+                  <span style="align-self:flex-start;background:#12271e;color:#6fdcaa;padding:5px 10px;border-radius:999px;font-weight:600;font-size:11px">Open the RAG cheatsheet →</span>
                 </div>
-                <div class="bubble" style="align-self:flex-end;background:#0d0d0d;color:#fff;border-radius:16px 16px 4px 16px">What's the weather in Pune?</div>
-                <div class="bubble" style="align-self:flex-start;background:#fff;border:1px solid #ececea;border-radius:16px 16px 16px 4px">I only cover AI news, tools and tips. Try asking about a model, a repo or a prompt.</div>
+                <div class="bubble" style="align-self:flex-end;background:#34c98a;color:#03120b;border-radius:16px 16px 4px 16px">What's the weather in Pune?</div>
+                <div class="bubble" style="align-self:flex-start;background:#111412;border:1px solid #232925;border-radius:16px 16px 16px 4px">I only cover AI news, tools and tips. Try asking about a model, a repo or a prompt.</div>
               </div>
-              <div style="padding:10px 12px 18px;background:#fff;border-top:1px solid #ececea;display:flex;align-items:center;gap:8px">
-                <div style="flex:1;background:#f5f5f2;border-radius:999px;padding:10px 14px;color:#8a8a85">Ask about AI…</div>
+              <div style="padding:10px 12px 18px;background:#111412;border-top:1px solid #232925;display:flex;align-items:center;gap:8px">
+                <div style="flex:1;background:#171b18;border-radius:999px;padding:10px 14px;color:#8a948c">Ask about AI…</div>
                 <div style="width:34px;height:34px;border-radius:50%;background:#0d0d0d;display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"></path></svg></div>
               </div>
             </div></div></div>
@@ -447,19 +452,19 @@ img{max-width:100%}
         <div class="slide" aria-hidden="false">
           <div class="glass">
             <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-              <div style="display:flex;align-items:center;gap:10px"><span style="width:26px;height:26px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:600">1</span><span style="font-weight:600;font-size:15px">Scan the AI web</span></div>
-              <span style="background:#fff;padding:6px 11px;border-radius:999px;font-weight:600;font-size:11px;color:#2f7a4a">Live</span>
+              <div style="display:flex;align-items:center;gap:10px"><span style="width:26px;height:26px;border-radius:8px;background:#111412;display:flex;align-items:center;justify-content:center;font-weight:600">1</span><span style="font-weight:600;font-size:15px">Scan the AI web</span></div>
+              <span style="background:#111412;padding:6px 11px;border-radius:999px;font-weight:600;font-size:11px;color:#6fdcaa">Live</span>
             </div>
-            <div style="background:#fff;border-radius:14px;border:1px solid #ececea;padding:12px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-              <span style="color:#6b6b6b">Sources</span>
+            <div style="background:#111412;border-radius:14px;border:1px solid #232925;padding:12px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+              <span style="color:#9aa39c">Sources</span>
               <span style="display:flex;gap:6px;flex-wrap:wrap">
-                <span style="background:#f5f5f2;padding:6px 10px;border-radius:8px">Lab blogs</span><span style="background:#f5f5f2;padding:6px 10px;border-radius:8px">Papers</span><span style="background:#f5f5f2;padding:6px 10px;border-radius:8px">Model hubs</span><span style="background:#f5f5f2;padding:6px 10px;border-radius:8px">Trending repos</span>
+                <span style="background:#171b18;padding:6px 10px;border-radius:8px">Lab blogs</span><span style="background:#171b18;padding:6px 10px;border-radius:8px">Papers</span><span style="background:#171b18;padding:6px 10px;border-radius:8px">Model hubs</span><span style="background:#171b18;padding:6px 10px;border-radius:8px">Trending repos</span>
               </span>
             </div>
-            <div style="background:#fff;border-radius:14px;border:1px solid #ececea">
-              <div class="row"><span>New model release notes</span><span class="tag" style="color:#d96a45">NEWS</span></div>
-              <div class="row"><span>Agent framework climbs trending</span><span class="tag" style="color:#3f6fb8">REPO</span></div>
-              <div class="row"><span>Prompt caching, explained simply</span><span class="tag" style="color:#8a5bb0">CHEATSHEET</span></div>
+            <div style="background:#111412;border-radius:14px;border:1px solid #232925">
+              <div class="row"><span>New model release notes</span><span class="tag" style="color:#34c98a">NEWS</span></div>
+              <div class="row"><span>Agent framework climbs trending</span><span class="tag" style="color:#7fb3ff">REPO</span></div>
+              <div class="row"><span>Prompt caching, explained simply</span><span class="tag" style="color:#c9a7e0">CHEATSHEET</span></div>
             </div>
             <div class="feed"><div><i></i>Scan finished · 3 new picks</div><div><i class="off"></i>Duplicates and old stories skipped</div></div>
           </div>
@@ -467,14 +472,14 @@ img{max-width:100%}
 
         <div class="slide" aria-hidden="true">
           <div class="glass">
-            <div style="display:flex;align-items:center;gap:10px"><span style="width:26px;height:26px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:600">2</span><span style="font-weight:600;font-size:15px">Summarise into a card</span></div>
-            <div style="background:#fff;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:12px;border:1px solid #ececea">
-              <div style="display:flex;justify-content:space-between"><span style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#d96a45;font-weight:600">AI Radar Notes</span><span style="font-size:11px;color:#8a8a85">Today's card</span></div>
+            <div style="display:flex;align-items:center;gap:10px"><span style="width:26px;height:26px;border-radius:8px;background:#111412;display:flex;align-items:center;justify-content:center;font-weight:600">2</span><span style="font-weight:600;font-size:15px">Summarise into a card</span></div>
+            <div style="background:#111412;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:12px;border:1px solid #232925">
+              <div style="display:flex;justify-content:space-between"><span style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#34c98a;font-weight:600">AI Radar Notes</span><span style="font-size:11px;color:#8a948c">Today's card</span></div>
               <div class="serif" style="font-size:30px;line-height:1.05">What changed in this week's model release</div>
-              <div style="display:flex;flex-direction:column;gap:6px;color:#4a4a47;line-height:1.45"><div>· What the model does better</div><div>· Who can use it, and where</div><div>· One thing builders should try first</div></div>
-              <div style="border-top:1px solid #f0f0ec;padding-top:10px;font-size:11px;color:#8a8a85">Source linked in the post · airadar08.github.io</div>
+              <div style="display:flex;flex-direction:column;gap:6px;color:#c3cbc5;line-height:1.45"><div>· What the model does better</div><div>· Who can use it, and where</div><div>· One thing builders should try first</div></div>
+              <div style="border-top:1px solid #232925;padding-top:10px;font-size:11px;color:#8a948c">Source linked in the post · airadar08.github.io</div>
             </div>
-            <div style="display:flex;align-items:center;gap:10px;color:#4a4a47;flex-wrap:wrap">Card colours
+            <div style="display:flex;align-items:center;gap:10px;color:#c3cbc5;flex-wrap:wrap">Card colours
               <span style="display:flex;gap:5px"><i style="width:14px;height:14px;border-radius:50%;background:#f2a07b"></i><i style="width:14px;height:14px;border-radius:50%;background:#7fa8e6"></i><i style="width:14px;height:14px;border-radius:50%;background:#9cc7a4"></i><i style="width:14px;height:14px;border-radius:50%;background:#e8c86a"></i><i style="width:14px;height:14px;border-radius:50%;background:#c9a7e0"></i><i style="width:14px;height:14px;border-radius:50%;background:#f08c8c"></i><i style="width:14px;height:14px;border-radius:50%;background:#6fb5c9"></i><i style="width:14px;height:14px;border-radius:50%;background:#d9b38c"></i></span>
             </div>
           </div>
@@ -482,13 +487,13 @@ img{max-width:100%}
 
         <div class="slide" aria-hidden="true">
           <div class="glass">
-            <div style="display:flex;align-items:center;gap:10px"><span style="width:26px;height:26px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:600">3</span><span style="font-weight:600;font-size:15px">Publish and archive</span></div>
-            <div style="background:#fff;border-radius:14px;border:1px solid #ececea;padding:14px;display:flex;gap:10px">
+            <div style="display:flex;align-items:center;gap:10px"><span style="width:26px;height:26px;border-radius:8px;background:#111412;display:flex;align-items:center;justify-content:center;font-weight:600">3</span><span style="font-weight:600;font-size:15px">Publish and archive</span></div>
+            <div style="background:#111412;border-radius:14px;border:1px solid #232925;padding:14px;display:flex;gap:10px">
               <img src="assets/logo.svg" alt="" width="34" height="34" style="flex:0 0 auto;border-radius:50%">
               <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
-                <div><b>AI Radar</b> <span style="color:#8a8a85">@ai_radar_ · now</span></div>
+                <div><b>AI Radar</b> <span style="color:#8a948c">@ai_radar_ · now</span></div>
                 <div style="line-height:1.45">Trending repo: a small toolkit for testing AI agents before they ship. Card and link on our site.</div>
-                <div style="color:#3f6fb8;overflow-wrap:anywhere">airadar08.github.io/repos/#agent-test-kit</div>
+                <div style="color:#7fb3ff;overflow-wrap:anywhere">airadar08.github.io/repos/#agent-test-kit</div>
               </div>
             </div>
             <div class="feed"><div><i></i>Posted to X</div><div><i></i>Card added to the Repos page</div><div><i></i>Post links to that exact card</div></div>
@@ -540,9 +545,9 @@ img{max-width:100%}
         <div class="stack" aria-hidden="true">
           <div style="left:28px;right:28px;top:0;height:90px;background:#c9a7e0"></div>
           <div style="left:14px;right:14px;top:14px;height:90px;background:#7fa8e6"></div>
-          <div style="left:0;right:0;top:30px;height:104px;background:#fff;border:1px solid #f0dccf;padding:14px;display:flex;flex-direction:column;gap:7px">
-            <span style="font-size:9px;letter-spacing:.1em;color:#d96a45;font-weight:600">AI RADAR NOTES</span>
-            <span style="height:6px;width:80%;border-radius:3px;background:#f3e1d6"></span><span style="height:6px;width:64%;border-radius:3px;background:#f3e1d6"></span><span style="height:6px;width:72%;border-radius:3px;background:#f3e1d6"></span>
+          <div style="left:0;right:0;top:30px;height:104px;background:#111412;border:1px solid #1f3a2d;padding:14px;display:flex;flex-direction:column;gap:7px">
+            <span style="font-size:9px;letter-spacing:.1em;color:#34c98a;font-weight:600">AI RADAR NOTES</span>
+            <span style="height:6px;width:80%;border-radius:3px;background:#1e2a24"></span><span style="height:6px;width:64%;border-radius:3px;background:#1e2a24"></span><span style="height:6px;width:72%;border-radius:3px;background:#1e2a24"></span>
           </div>
         </div>
       </article>
@@ -557,8 +562,8 @@ img{max-width:100%}
         <h3>A chatbot that only talks AI</h3>
         <p>Ask about models, tools, tips or this week's news. It searches the web for fresh answers and politely declines anything off-topic.</p>
         <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px">
-          <span class="bubble" style="align-self:flex-end;background:#2a2a2a;border-radius:14px 14px 4px 14px">Best free tools for AI in spreadsheets?</span>
-          <span class="bubble" style="align-self:flex-start;background:#fff;color:#0d0d0d;border-radius:14px 14px 14px 4px" id="typing">Here are three, with a cheatsheet to start…</span>
+          <span class="bubble" style="align-self:flex-end;background:#03120b;color:#eef1ee;border-radius:14px 14px 4px 14px">Best free tools for AI in spreadsheets?</span>
+          <span class="bubble" style="align-self:flex-start;background:#eef1ee;color:#0a0c0b;border-radius:14px 14px 14px 4px" id="typing">Here are three, with a cheatsheet to start…</span>
         </div>
         <a class="btn btn-light roll-host" style="align-self:flex-start;padding:12px 20px;font-size:14px" href="#ask" data-open-chat><span class="roll" data-roll>Open the chat</span><span class="icon-roll" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
       </article>
@@ -569,8 +574,8 @@ img{max-width:100%}
         <a class="more" href="repos/">See all repos →</a>
       </article>
       <article class="card c-wide reveal">
-        <span class="ic" style="background:#fdeade;color:#d96a45;flex:0 0 auto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 22V7M12 7H8a2.5 2.5 0 1 1 0-5c3 0 4 5 4 5zM12 7h4a2.5 2.5 0 1 0 0-5c-3 0-4 5-4 5z"></path></svg></span>
-        <div style="display:flex;flex-direction:column;gap:8px;min-width:0"><span class="lbl" style="align-self:flex-start;background:#fdeade;color:#d96a45">PROMPT PACKS</span><h3>Free prompt packs</h3><p>Follow and comment on the post. We reply with the link, and every pack stays listed on the site.</p><a class="more" href="prompt-packs/">Get the packs →</a></div>
+        <span class="ic" style="background:#12271e;color:#34c98a;flex:0 0 auto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 22V7M12 7H8a2.5 2.5 0 1 1 0-5c3 0 4 5 4 5zM12 7h4a2.5 2.5 0 1 0 0-5c-3 0-4 5-4 5z"></path></svg></span>
+        <div style="display:flex;flex-direction:column;gap:8px;min-width:0"><span class="lbl" style="align-self:flex-start;background:#12271e;color:#34c98a">PROMPT PACKS</span><h3>Free prompt packs</h3><p>Follow and comment on the post. We reply with the link, and every pack stays listed on the site.</p><a class="more" href="prompt-packs/">Get the packs →</a></div>
       </article>
       <article class="card c-wide reveal">
         <span class="ic" style="flex:0 0 auto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"></path></svg></span>
@@ -622,7 +627,7 @@ img{max-width:100%}
       <p class="body" style="max-width:380px">How the feed works, what the bot answers, and where every link takes you.</p>
       <div style="display:flex;flex-direction:column;gap:12px;padding-top:28px">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path></svg>
-        <p class="body" style="max-width:300px;color:#4a4a47">Can't find your answer? Send us a DM and we'll reply.</p>
+        <p class="body" style="max-width:300px;color:#c3cbc5">Can't find your answer? Send us a DM and we'll reply.</p>
         <a class="btn btn-dark roll-host" style="align-self:flex-start;padding:12px 20px;font-size:14px" href="https://x.com/ai_radar_" target="_blank" rel="noopener"><span class="roll" data-roll>Message us on X</span></a>
       </div>
     </div>
@@ -655,10 +660,10 @@ img{max-width:100%}
       <div style="flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:14px">
         <img class="logo-mark" src="assets/logo.svg" alt="AI Radar" width="40" height="40">
         <p style="margin:0;max-width:360px;font-size:13px;line-height:1.6;color:var(--muted)">AI Radar summarises public sources. Check the original before acting on anything you read here.</p>
-        <a class="roll-host" href="https://x.com/search?q=%23stayontheradar&amp;src=hashtag_click" target="_blank" rel="noopener" style="align-self:flex-start;text-decoration:none;font-family:var(--serif);font-style:italic;font-size:24px;color:#2f7a4a"><span class="roll" data-roll>#stayontheradar</span></a>
+        <a class="roll-host" href="https://x.com/search?q=%23stayontheradar&amp;src=hashtag_click" target="_blank" rel="noopener" style="align-self:flex-start;text-decoration:none;font-family:var(--serif);font-style:italic;font-size:24px;color:#6fdcaa"><span class="roll" data-roll>#stayontheradar</span></a>
       </div>
       <div style="flex:0 1 420px;min-width:0;display:flex;flex-direction:column;gap:12px">
-        <p style="margin:0;font-size:14px;line-height:1.5;color:#4a4a47">Get every post first: follow @ai_radar_ on X and turn on notifications.</p>
+        <p style="margin:0;font-size:14px;line-height:1.5;color:#c3cbc5">Get every post first: follow @ai_radar_ on X and turn on notifications.</p>
         <a class="btn btn-dark roll-host" style="align-self:flex-start;padding:13px 22px;font-size:14px" href="https://x.com/ai_radar_" target="_blank" rel="noopener"><span class="roll" data-roll>Follow @ai_radar_</span></a>
       </div>
     </div>
