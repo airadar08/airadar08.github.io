@@ -266,7 +266,7 @@
         var offTopic=/\bonly (cover|help with|answer)\b[^.]*\bAI\b/i.test(answer);
         if(offTopic){ res=[]; src=[]; }
         var seen={}; src=(src||[]).filter(function(s){ if(!s.url||seen[s.url]) return false; return seen[s.url]=1; }).slice(0,isRepo?10:5);
-        data={kind:isRepo?'github':'answer',question:q,answer:answer,error:error,resources:res,sources:src,web:web||(!isRepo&&src.length>0),canSave:!error&&!offTopic};
+        data={kind:isRepo?'github':'answer',question:q,answer:answer,error:error,resources:res,sources:src,web:!offTopic&&(web||(!isRepo&&src.length>0)),canSave:!error&&!offTopic};
       }
     }catch(e){ data={kind:'answer',question:q,answer:'Something went wrong. Try again.',error:true,resources:[],sources:[]}; }
     t.remove(); renderBot(data); chat.push({role:'bot',data:data}); saveChat();
