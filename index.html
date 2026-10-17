@@ -199,7 +199,7 @@ img{max-width:100%}
 .spoke{position:absolute;left:50%;top:50%;width:0;height:0}
 .chip{position:absolute;left:0;top:0;transform:translate(-50%,-50%) rotate(calc(var(--r) * -1))}
 .chip-inner{display:flex;flex-direction:column;align-items:center;gap:7px}
-.chip b{width:var(--s,64px);height:var(--s,64px);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;color:#fff;box-shadow:0 14px 30px rgba(0,0,0,.45);border:3px solid #0a0c0b;transition:transform .35s var(--spring)}
+.chip b{width:var(--s,64px);height:var(--s,64px);border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;white-space:pre-line;padding:8px;font-weight:700;font-size:13px;line-height:1.08;letter-spacing:-.01em;color:#fff;box-shadow:0 0 0 1px #2a322d,0 14px 30px rgba(0,0,0,.45);border:3px solid #0a0c0b;transition:transform .35s var(--spring)}
 .chip:hover b{transform:scale(1.08)}
 .chip span{font-size:12px;font-weight:500;color:#c3cbc5;white-space:nowrap;background:rgba(10,12,11,.82);padding:2px 6px;border-radius:6px}
 .wheel-copy{position:relative;z-index:2;max-width:430px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px}
@@ -211,7 +211,7 @@ img{max-width:100%}
   .lab-row{display:block;overflow:hidden;margin:0 -24px 36px;mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
   .lab-track{display:flex;gap:18px;width:max-content;padding:6px 0 10px;animation:labs 32s linear infinite}
   .lab-track .chip{position:static;transform:none}
-  .lab-track .chip b{--s:54px!important;font-size:13px}
+  .lab-track .chip b{--s:74px!important;font-size:11.5px;padding:6px}
   @keyframes labs{to{transform:translateX(-50%)}}
 }
 
@@ -785,12 +785,13 @@ img{max-width:100%}
   go(0); restart();
 
   /* ---- Logo wheel ---- */
-  var labs=[['OAI','OpenAI','#0d0d0d',66],['A\\','Anthropic','#d97757',72],['GDM','Google DeepMind','#4a7fe0',64],['Meta','Meta AI','#3d6fd6',60],['Mi','Mistral AI','#f08a3c',70],['HF','Hugging Face','#f2c84b',66],['NV','NVIDIA','#5f9e2f',62],['MS','Microsoft','#2b88d8',68],['xAI','xAI','#2a2a2a',60],['DS','DeepSeek','#4d6bfe',70],['Px','Perplexity','#1f6f6b',62],['Co','Cohere','#c8577a',66]];
+  // [name shown in the circle, full name, brand colour, size, text colour]. Names only, no logo artwork.
+  var labs=[['OpenAI','OpenAI','#000000',88,'#fff'],['Anthropic','Anthropic','#d97757',90,'#1a0f0a'],['Google\nDeepMind','Google DeepMind','#4285f4',92,'#fff'],['Meta','Meta AI','#0866ff',84,'#fff'],['Mistral AI','Mistral AI','#fa520f',88,'#fff'],['Hugging\nFace','Hugging Face','#ffd21e',88,'#1d1d1f'],['NVIDIA','NVIDIA','#76b900',86,'#0b1a00'],['Microsoft','Microsoft','#0078d4',90,'#fff'],['xAI','xAI','#000000',82,'#fff'],['DeepSeek','DeepSeek','#4d6bfe',88,'#fff'],['Perplexity','Perplexity','#20808d',90,'#fff'],['Cohere','Cohere','#39594d',84,'#fff']];
   var wheel=document.getElementById('wheel'), wrap=document.getElementById('wheel-wrap'), track=document.getElementById('lab-track'), R=0;
   function chipHTML(l,ang,scale){
-    return '<div class="chip" style="--r:'+ang+'deg"><div class="chip-inner"><b style="--s:'+Math.round(l[3]*scale)+'px;background:'+l[2]+';'+(l[2]==='#f2c84b'?'color:#0d0d0d':'')+'"></b><span></span></div></div>';
+    return '<div class="chip" style="--r:'+ang+'deg"><div class="chip-inner"><b style="--s:'+Math.round(l[3]*scale)+'px;background:'+l[2]+';color:'+l[4]+'"></b></div></div>';
   }
-  function fill(el,l){ el.querySelector('b').textContent=l[0]; el.querySelector('span').textContent=l[1]; }
+  function fill(el,l){ var b=el.querySelector('b'); b.textContent=l[0]; b.title=l[1]; b.setAttribute('aria-label',l[1]); }
   function buildWheel(){
     wheel.innerHTML='';
     if(window.innerWidth<800){ // phones: a scrolling row (list twice for a seamless loop)
