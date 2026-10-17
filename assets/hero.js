@@ -62,7 +62,7 @@
     for(var i=1;i<=7;i++){
       var r=RMAX*i/7;
       ctx.beginPath(); ctx.arc(cx,cy,r,Math.PI,Math.PI*2);
-      ctx.strokeStyle='rgba('+MINT+','+(i===7?0.22:0.11)+')'; ctx.lineWidth=1; ctx.stroke();
+      ctx.strokeStyle='rgba('+MINT+','+(i===7?0.3:0.16)+')'; ctx.lineWidth=1; ctx.stroke();
     }
     for(var s=0;s<=12;s++){
       var a=Math.PI+s/12*Math.PI;
@@ -88,7 +88,7 @@
       var gl=b.glow;
       // ping ring
       if(gl>0.05){ ctx.beginPath(); ctx.arc(b.x,b.y,b.r+(1-gl)*16,0,Math.PI*2); ctx.strokeStyle=hexA(b.col,0.6*gl*gl); ctx.stroke(); }
-      ctx.beginPath(); ctx.arc(b.x,b.y,b.r*(1+0.5*gl),0,Math.PI*2); ctx.fillStyle=hexA(b.col,0.28+0.72*gl); ctx.fill();
+      ctx.beginPath(); ctx.arc(b.x,b.y,b.r*(1+0.5*gl),0,Math.PI*2); ctx.fillStyle=hexA(b.col,0.5+0.5*gl); ctx.fill();
       if(b.name){
         var a=Math.max(0,Math.min(1,(gl-0.12)/0.4)); a=a*a*(3-2*a);
         if(a>0.02) tag(b,a);
