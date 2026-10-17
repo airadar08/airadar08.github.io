@@ -60,3 +60,9 @@ After ANY post on @ai_radar_ (news, AI fact, repo, cheatsheet, prompt pack, smal
 2. `python3 tools/update_site.py sync /tmp/x_posts.json` (adds new posts to data/posts.json, fills X links).
 3. Short prompt packs ("Prompt pack: 3 prompts ...") also get their own page: write a pack.json and run
    `python3 tools/make_pack.py pack.json <x_url>`, then commit and push to main.
+
+## Prompt packs: always the green + black house style
+Every prompt pack (any size, even 3 prompts) is made with `python3 tools/make_pack.py pack.json [x_url]`.
+Its cover (cream page, green headline, black "Follow + comment" bar, `cover.baked.html`) is the ONLY image used for the X post
+and the site. Never use the rotating-colour "AI Radar Notes" card (render_card.py) for a prompt pack.
+Post the pack's `cover.baked.html`, link/page = prompt-packs/<slug>/, then sync the archive.
