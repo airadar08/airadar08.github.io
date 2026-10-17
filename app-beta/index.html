@@ -172,14 +172,18 @@ a{color:inherit}
 body.has-pill .tab.on::before{display:none}
 /* the sliding glass lens over the tabs (driven by app.js: spring, stretch, drag, hover lean) */
 .tab-pill{position:absolute;top:6px;bottom:6px;left:0;width:0;border-radius:20px;pointer-events:none;z-index:2;opacity:0;
-  background:radial-gradient(120% 90% at 30% 0%,rgba(255,255,255,.16),rgba(255,255,255,0) 55%),linear-gradient(180deg,rgba(111,220,170,.16),rgba(52,201,138,.07));
-  border:1px solid rgba(160,240,205,.28);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.32),inset 0 -1px 0 rgba(0,0,0,.35),inset 0 0 14px rgba(111,220,170,.14),0 6px 18px rgba(0,0,0,.35);
-  -webkit-backdrop-filter:saturate(1.7) brightness(1.18) contrast(1.05);backdrop-filter:saturate(1.7) brightness(1.18) contrast(1.05);
+  background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,0) 45%,rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.34),inset 0 -1px 0 rgba(255,255,255,.06),inset 0 0 0 .5px rgba(255,255,255,.05),0 4px 14px rgba(0,0,0,.28);
+  -webkit-backdrop-filter:brightness(1.12) contrast(1.04);backdrop-filter:brightness(1.12) contrast(1.04);
   transform-origin:50% 50%;will-change:transform;transition:opacity .25s,box-shadow .25s,border-color .25s}
-.tab-pill.ready{opacity:1}
-.tab-pill::after{content:"";position:absolute;left:14%;right:14%;top:1px;height:38%;border-radius:20px 20px 40% 40%;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,0));opacity:.7}
-.tab-pill.lift{border-color:rgba(180,250,220,.45);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 -1px 0 rgba(0,0,0,.35),inset 0 0 20px rgba(111,220,170,.22),0 10px 26px rgba(0,0,0,.45),0 0 0 4px rgba(52,201,138,.08)}
+.tab-pill.ready,.tab-glow.ready{opacity:1}
+.tab-pill::after{content:"";position:absolute;left:12%;right:12%;top:1px;height:36%;border-radius:20px 20px 40% 40%;background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,0));opacity:.8}
+.tab-pill.lift{border-color:rgba(255,255,255,.26);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -1px 0 rgba(255,255,255,.08),0 10px 24px rgba(0,0,0,.4)}
+/* mint light shining up from under the clear glass */
+.tab-glow{position:absolute;top:2px;bottom:0;left:0;width:0;pointer-events:none;z-index:-1;opacity:0;transform-origin:50% 100%;will-change:transform;transition:opacity .25s;
+  background:radial-gradient(70% 85% at 50% 108%,rgba(52,201,138,.55),rgba(52,201,138,.16) 55%,rgba(52,201,138,0) 80%);filter:blur(2px)}
+.tab-glow::after{content:"";position:absolute;left:22%;right:22%;bottom:5px;height:2px;border-radius:2px;background:#6fdcaa;box-shadow:0 0 10px 2px rgba(52,201,138,.8)}
 .tabs{touch-action:none;-webkit-user-select:none;user-select:none}
 .tab svg,.tab .lbl{transition:color .2s}
 .tab>svg{transform-origin:50% 60%;will-change:transform}
@@ -194,9 +198,10 @@ body.has-pill .tab.on::before{display:none}
 /* + button (liquid glass) */
 .fab-host{position:absolute;z-index:7;right:max(calc(var(--gap) + 4px),env(safe-area-inset-right,0px));bottom:calc(var(--tabs-h) + var(--gap)*2 + env(safe-area-inset-bottom,0px) + 4px);transition:bottom .25s var(--ease)}
 body[data-tab="chat"] .fab-host{bottom:calc(var(--tabs-h) + var(--comp-h) + var(--gap)*3 + env(safe-area-inset-bottom,0px) + 4px)}
-.fab{position:relative;width:56px;height:56px;border-radius:50%;border:1px solid rgba(111,220,170,.35);background:rgba(18,39,30,.62);box-shadow:0 8px 24px rgba(0,0,0,.45);overflow:hidden}
-.fab:not([data-liquid-glass]){background:rgba(18,39,30,.85);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3)}
-.fab button{width:56px;height:56px;border:0;background:none;color:var(--mint);display:grid;place-items:center;cursor:pointer;border-radius:50%}
+.fab{position:relative;width:56px;height:56px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.04);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 8px 24px rgba(0,0,0,.45);overflow:hidden}
+.fab-glow{position:absolute;inset:0;border-radius:50%;pointer-events:none;background:radial-gradient(75% 70% at 50% 112%,rgba(52,201,138,.7),rgba(52,201,138,.18) 55%,rgba(52,201,138,0) 78%)}
+.fab:not([data-liquid-glass]){background:rgba(17,20,18,.55);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3)}
+.fab button{position:relative;width:56px;height:56px;border:0;background:none;color:var(--ink);filter:drop-shadow(0 1px 6px rgba(52,201,138,.55));display:grid;place-items:center;cursor:pointer;border-radius:50%}
 .fab button svg{width:26px;height:26px}
 .fab button:active{transform:scale(.94)}
 body.sheet-open .fab-host{opacity:0;pointer-events:none}
@@ -323,10 +328,10 @@ body.sheet-open{overflow:hidden}
     <button class="send" type="submit" id="send" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"></path></svg></button>
   </form></div>
 
-  <div class="fab-host" id="fab-host"><div class="fab" id="fab-glass"><button type="button" id="fab" aria-label="Add to Saved" title="Add a link or note to Saved"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button></div></div>
+  <div class="fab-host" id="fab-host"><div class="fab" id="fab-glass"><span class="fab-glow" aria-hidden="true"></span><button type="button" id="fab" aria-label="Add to Saved" title="Add a link or note to Saved"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button></div></div>
 
   <div class="tabs-host"><nav class="tabs" id="tabbar" aria-label="Sections">
-    <span class="tab-pill" id="tab-pill" aria-hidden="true"></span>
+    <span class="tab-glow" id="tab-glow" aria-hidden="true"></span><span class="tab-pill" id="tab-pill" aria-hidden="true"></span>
     <button class="tab on" type="button" data-tab="chat" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path></svg>Chat</button>
     <button class="tab" type="button" data-tab="posts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4.5"></circle><path d="M12 12 18.5 5.5"></path></svg>Posts</button>
     <button class="tab" type="button" data-tab="lib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"></path></svg>Saved<span class="badge" id="badge" hidden></span></button>
@@ -350,6 +355,6 @@ body.sheet-open{overflow:hidden}
 </div>
 <div class="toast" id="toast" role="status"></div>
 <script src="vendor/glass.js?v=1" defer></script>
-<script src="app.js?v=10"></script>
+<script src="app.js?v=11"></script>
 </body>
 </html>

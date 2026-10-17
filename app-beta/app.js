@@ -777,7 +777,7 @@
 
   /* ---------------- tab bar: sliding glass lens ---------------- */
   (function(){
-    var bar=$('#tabbar'), pill=$('#tab-pill'), tabs=[].slice.call(document.querySelectorAll('.tab'));
+    var bar=$('#tabbar'), pill=$('#tab-pill'), glow=$('#tab-glow'), tabs=[].slice.call(document.querySelectorAll('.tab'));
     if(!bar||!pill||!tabs.length) return;
     document.body.classList.add('has-pill');
     var x=0, v=0, target=0, w=0, raf=0, last=0, drag=null, lean=0, suppress=false;
@@ -790,6 +790,7 @@
       if(drag){ sx*=1.06; sy*=1.06; }
       pill.style.width=w+'px';
       pill.style.transform='translate3d('+(x-w/2)+'px,0,0) scale('+sx.toFixed(3)+','+sy.toFixed(3)+')';
+      if(glow){ glow.style.width=w+'px'; glow.style.transform='translate3d('+(x-w/2)+'px,0,0) scaleX('+sx.toFixed(3)+')'; }
       // lens magnifies the icon underneath it
       tabs.forEach(function(t,i){ var g=geo(i), d=Math.abs(g.c-x)/(t.offsetWidth||1), k=Math.max(0,1-d*1.6);
         var ic=t.querySelector('svg'); if(ic) ic.style.transform=k>0.01?'scale('+(1+.16*k).toFixed(3)+') translateY('+(-1.5*k).toFixed(2)+'px)':''; });
@@ -803,7 +804,7 @@
       else{ x=target+lean; v=0; paint(); raf=0; last=0; }
     }
     function kick(){ if(reduce){ x=drag?drag.x:target+lean; v=0; paint(); return; } if(!raf){ last=0; raf=requestAnimationFrame(step); } }
-    function settle(i,instant){ var g=geo(i); if(!tabs[i].offsetWidth) return; target=g.c; w=g.w; if(!pill.classList.contains('ready')){ pill.classList.add('ready'); instant=true; } if(instant){ x=target; v=0; paint(); } else kick(); }
+    function settle(i,instant){ var g=geo(i); if(!tabs[i].offsetWidth) return; target=g.c; w=g.w; if(!pill.classList.contains('ready')){ pill.classList.add('ready'); if(glow) glow.classList.add('ready'); instant=true; } if(instant){ x=target; v=0; paint(); } else kick(); }
     window.__pillTo=function(name){ var i=tabs.findIndex(function(t){ return t.dataset.tab===name; }); if(i>-1){ lean=0; settle(i,document.hidden); } };
     document.addEventListener('visibilitychange',function(){ if(!document.hidden){ cancelAnimationFrame(raf); raf=0; drag=null; lean=0; settle(activeIndex(),true); } });
     function local(e){ var r=bar.getBoundingClientRect(); return e.clientX-r.left; }
@@ -869,7 +870,7 @@
     G.wrap(document.getElementById('topbar'),{display:'flex',tint:tint,optics:optics});
     G.wrap(document.getElementById('composer'),{display:'flex',tint:tint,optics:optics});
     G.wrap(document.getElementById('tabbar'),{display:'grid',tint:tint,optics:optics});
-    G.wrap(document.getElementById('fab-glass'),{display:'grid',tint:'rgba(18,39,30,0.62)',optics:optics});
+    G.wrap(document.getElementById('fab-glass'),{display:'grid',tint:'rgba(255,255,255,0.04)',optics:optics});
   }
   if(window.AIRadarGlass) apply(); else document.addEventListener('airadar-glass-ready',apply,{once:true});
 })();
