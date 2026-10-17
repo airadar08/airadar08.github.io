@@ -1,5 +1,24 @@
 [
  {
+  "slug": "debpalash-voicestudio",
+  "repo": "debpalash/VoiceStudio",
+  "url": "https://github.com/debpalash/VoiceStudio",
+  "tagline": "A fully local voice studio: cloning, dubbing, dictation, transcription and audiobooks",
+  "stars": "69.7k",
+  "trend": "+3,024",
+  "language": "Python",
+  "license": "AGPL-3.0",
+  "what": [
+   "16 text-to-speech + 11 speech-to-text engines",
+   "646-language catalogue, quality varies by engine",
+   "Local REST API, OpenAI-style audio routes, MCP"
+  ],
+  "read": "Bundles existing speech engines in one local app. Still beta, so expect rough edges.",
+  "img": "repos/img/debpalash-voicestudio.jpg",
+  "date": "2026-10-17",
+  "post": "https://x.com/ai_radar_/status/2111369631432864248"
+ },
+ {
   "slug": "earthtojake-text-to-cad",
   "repo": "earthtojake/text-to-cad",
   "url": "https://github.com/earthtojake/text-to-cad",
