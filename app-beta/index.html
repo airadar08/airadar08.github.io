@@ -36,10 +36,14 @@ body{margin:0;background:radial-gradient(70% 35% at 50% 0%,rgba(52,201,138,.10),
 button,input,select{font:inherit;color:inherit}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--mint);outline-offset:2px;border-radius:8px}
-.app{height:100%;display:flex;flex-direction:column;max-width:760px;margin:0 auto}
+.app{position:relative;height:100%;max-width:760px;margin:0 auto}
+/* floating liquid-glass bars (assets: vendor/glass.js); content scrolls underneath them */
+:root{--top-h:58px;--comp-h:66px;--gap:10px}
 
 /* header */
-.top{display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--line);background:rgba(10,12,11,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.top-host{position:absolute;z-index:6;top:calc(var(--gap) + env(safe-area-inset-top,0px));left:max(var(--gap),env(safe-area-inset-left,0px));right:max(var(--gap),env(safe-area-inset-right,0px))}
+.top{position:relative;display:flex;align-items:center;gap:10px;height:var(--top-h);padding:0 10px 0 12px;border-radius:22px;background:rgba(17,20,18,.42);border:1px solid rgba(255,255,255,.07)}
+.top:not([data-liquid-glass]){background:rgba(17,20,18,.82);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3)}
 .top img{width:34px;height:34px;border-radius:50%}
 .top .name{font-weight:700;font-size:18px;letter-spacing:-.03em}
 .top .sub{font-size:11.5px;color:var(--muted);display:flex;align-items:center;gap:6px}
@@ -51,7 +55,9 @@ a{color:inherit}
 .icon-btn svg{width:18px;height:18px}
 
 /* views */
-.view{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px max(16px,env(safe-area-inset-right,0px)) 16px max(16px,env(safe-area-inset-left,0px))}
+.view{position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  padding:calc(var(--top-h) + var(--gap)*2 + env(safe-area-inset-top,0px) + 8px) max(16px,env(safe-area-inset-right,0px)) calc(var(--tabs-h) + var(--gap)*2 + env(safe-area-inset-bottom,0px) + 16px) max(16px,env(safe-area-inset-left,0px))}
+#view-chat{padding-bottom:calc(var(--tabs-h) + var(--comp-h) + var(--gap)*3 + env(safe-area-inset-bottom,0px) + 16px)}
 .chat-view{display:flex;flex-direction:column}
 .log{display:flex;flex-direction:column;gap:14px;padding-bottom:8px}
 
@@ -100,8 +106,10 @@ a{color:inherit}
 .err{color:#f0a58a}
 
 /* composer */
-.composer{padding:10px max(12px,env(safe-area-inset-right,0px)) 10px max(12px,env(safe-area-inset-left,0px));border-top:1px solid var(--line);background:rgba(10,12,11,.92);display:flex;gap:8px;align-items:flex-end}
-.composer textarea{flex:1;min-width:0;resize:none;border:1px solid var(--line-2);border-radius:16px;background:var(--card);padding:11px 14px;font:15px/1.4 var(--sans);color:var(--ink);max-height:130px}
+.composer-host{position:absolute;z-index:6;left:max(var(--gap),env(safe-area-inset-left,0px));right:max(var(--gap),env(safe-area-inset-right,0px));bottom:calc(var(--tabs-h) + var(--gap)*2 + env(safe-area-inset-bottom,0px))}
+.composer{position:relative;display:flex;gap:8px;align-items:flex-end;padding:9px;border-radius:24px;background:rgba(17,20,18,.42);border:1px solid rgba(255,255,255,.07)}
+.composer:not([data-liquid-glass]){background:rgba(17,20,18,.85);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3)}
+.composer textarea{flex:1;min-width:0;resize:none;border:1px solid rgba(255,255,255,.08);border-radius:16px;background:rgba(10,12,11,.55);padding:11px 14px;font:15px/1.4 var(--sans);color:var(--ink);max-height:130px}
 .composer textarea:focus{outline:none;border-color:var(--mint)}
 .send{flex:none;width:46px;height:46px;border-radius:14px;border:0;background:var(--mint);color:var(--btn-ink);display:grid;place-items:center;cursor:pointer}
 .send:disabled{opacity:.4}
@@ -154,14 +162,18 @@ a{color:inherit}
 .t-Cheatsheet{color:#c9a7e0;background:#241a30}.t-Prompt{color:#f5a27c;background:#2e1d14}
 
 /* tabs */
-.tabs{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);background:rgba(10,12,11,.95);padding-bottom:env(safe-area-inset-bottom,0px)}
+.tabs-host{position:absolute;z-index:6;left:max(var(--gap),env(safe-area-inset-left,0px));right:max(var(--gap),env(safe-area-inset-right,0px));bottom:calc(var(--gap) + env(safe-area-inset-bottom,0px))}
+.tabs{position:relative;display:grid;grid-template-columns:repeat(3,1fr);border-radius:26px;background:rgba(17,20,18,.42);border:1px solid rgba(255,255,255,.07);overflow:hidden}
+.tabs:not([data-liquid-glass]){background:rgba(17,20,18,.85);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3)}
 .tab{height:var(--tabs-h);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:0;background:none;color:var(--dim);font-size:11.5px;font-weight:600;cursor:pointer;position:relative}
 .tab svg{width:22px;height:22px}
 .tab.on{color:var(--mint)}
+.tab.on::before{content:"";position:absolute;inset:7px 12%;border-radius:18px;background:rgba(52,201,138,.12);z-index:-1}
+.tab{z-index:0}
 .badge{position:absolute;top:8px;left:calc(50% + 6px);min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--mint);color:var(--btn-ink);font-size:10.5px;font-weight:700;display:grid;place-items:center}
 
 /* toast + install hint */
-.toast{position:fixed;left:50%;bottom:calc(var(--tabs-h) + 84px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:9px 14px;border-radius:999px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s var(--ease);z-index:20}
+.toast{position:fixed;left:50%;top:calc(var(--top-h) + var(--gap)*2 + env(safe-area-inset-top,0px) + 6px);bottom:auto;transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:9px 14px;border-radius:999px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s var(--ease);z-index:20}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 .ios-hint{margin:10px 0 0;padding:10px 12px;border:1px dashed var(--line-2);border-radius:12px;font-size:12.5px;color:var(--muted)}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
@@ -169,7 +181,7 @@ a{color:inherit}
 </head>
 <body>
 <div class="app">
-  <header class="top">
+  <div class="top-host"><header class="top" id="topbar">
     <img src="../assets/logo.svg" alt="" width="34" height="34">
     <div>
       <div class="name">AI Radar</div>
@@ -178,7 +190,7 @@ a{color:inherit}
     <div class="sp"></div>
     <button class="pill-btn mint" id="install" type="button" hidden>Install app</button>
     <button class="icon-btn" id="clear" type="button" aria-label="New chat" title="New chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
-  </header>
+  </header></div>
 
   <main class="view chat-view" id="view-chat">
     <section class="hello" id="hello">
@@ -223,19 +235,20 @@ a{color:inherit}
     <div class="items" id="items"></div>
   </main>
 
-  <form class="composer" id="composer">
+  <div class="composer-host" id="composer-host"><form class="composer" id="composer">
     <label for="q" style="position:absolute;left:-9999px">Ask about AI</label>
     <textarea id="q" rows="1" maxlength="500" placeholder="Ask about AI models, tools, repos…" enterkeyhint="send"></textarea>
     <button class="send" type="submit" id="send" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"></path></svg></button>
-  </form>
+  </form></div>
 
-  <nav class="tabs" aria-label="Sections">
+  <div class="tabs-host"><nav class="tabs" id="tabbar" aria-label="Sections">
     <button class="tab on" type="button" data-tab="chat" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path></svg>Chat</button>
     <button class="tab" type="button" data-tab="posts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4.5"></circle><path d="M12 12 18.5 5.5"></path></svg>Posts</button>
     <button class="tab" type="button" data-tab="lib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"></path></svg>Saved<span class="badge" id="badge" hidden></span></button>
-  </nav>
+  </nav></div>
 </div>
 <div class="toast" id="toast" role="status"></div>
-<script src="app.js?v=5"></script>
+<script src="vendor/glass.js?v=1" defer></script>
+<script src="app.js?v=6"></script>
 </body>
 </html>

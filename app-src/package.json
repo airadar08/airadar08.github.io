@@ -1,0 +1,17 @@
+{
+  "name": "airadar-app-src",
+  "private": true,
+  "type": "module",
+  "description": "Build step for the AI Radar app's liquid-glass bundle. Output: ../app-beta/vendor/glass.js (committed; GitHub Pages serves it as-is).",
+  "scripts": {
+    "build": "esbuild glass-entry.jsx --bundle --minify --format=iife --target=es2019 --define:process.env.NODE_ENV='\"production\"' --outfile=../app-beta/vendor/glass.js --legal-comments=eof"
+  },
+  "dependencies": {
+    "@samasante/liquid-glass": "0.1.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "esbuild": "0.24.2"
+  }
+}

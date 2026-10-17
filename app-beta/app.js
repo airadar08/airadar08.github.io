@@ -462,7 +462,7 @@
   /* ---------------- tabs, badge, toast ---------------- */
   function switchTab(name){
     document.querySelectorAll('.tab').forEach(function(t){ var on=t.dataset.tab===name; t.classList.toggle('on',on); if(on) t.setAttribute('aria-current','page'); else t.removeAttribute('aria-current'); });
-    $('#view-chat').hidden=name!=='chat'; $('#view-lib').hidden=name!=='lib'; $('#view-posts').hidden=name!=='posts'; form.hidden=name!=='chat';
+    $('#view-chat').hidden=name!=='chat'; $('#view-lib').hidden=name!=='lib'; $('#view-posts').hidden=name!=='posts'; $('#composer-host').hidden=name!=='chat';
     if(name==='lib') renderLibrary(); else if(name==='posts'){ loadPosts().then(renderPosts); } else scrollDown();
     try{ history.replaceState(null,'',name==='lib'?'#saved':name==='posts'?'#posts':'#'); }catch(e){}
   }
@@ -482,4 +482,16 @@
   if(/iphone|ipad|ipod/i.test(navigator.userAgent)&&!standalone) $('#ios-hint').hidden=false;
   if('serviceWorker' in navigator) window.addEventListener('load',function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
   window.addEventListener('offline',function(){ toast("You're offline. Your Library still works."); });
+})();
+
+/* liquid glass on the floating bars (vendor/glass.js, built from app-src/ with @samasante/liquid-glass) */
+(function(){
+  function apply(){
+    var G=window.AIRadarGlass; if(!G) return;
+    var tint='rgba(17,20,18,0.42)', optics={frost:6,dispersion:0.35};
+    G.wrap(document.getElementById('topbar'),{display:'flex',tint:tint,optics:optics});
+    G.wrap(document.getElementById('composer'),{display:'flex',tint:tint,optics:optics});
+    G.wrap(document.getElementById('tabbar'),{display:'grid',tint:tint,optics:optics});
+  }
+  if(window.AIRadarGlass) apply(); else document.addEventListener('airadar-glass-ready',apply,{once:true});
 })();
