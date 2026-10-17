@@ -277,6 +277,18 @@ img{max-width:100%}
 .res .desc{font-size:13.5px;line-height:1.5;color:var(--muted)}
 .res .stat{font-size:12.5px;color:#4a4a47}
 
+
+/* ---------- app coming soon ---------- */
+.stores{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.store{position:relative;display:inline-flex;align-items:center;gap:10px;padding:9px 16px 9px 12px;border-radius:12px;background:rgba(13,13,13,.82);color:#fff;border:1px solid rgba(255,255,255,.18);cursor:default;user-select:none}
+.store svg{width:24px;height:24px;flex:0 0 auto}
+.store>span{display:flex;flex-direction:column;line-height:1.1;text-align:left}
+.store small{font-size:10px;opacity:.75;letter-spacing:.02em}
+.store b{font-size:16px;font-weight:600;letter-spacing:-.01em}
+.store::after{content:"Soon";position:absolute;top:-8px;right:-8px;background:var(--peach);color:var(--coral);font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border-radius:999px;box-shadow:0 4px 10px rgba(13,13,13,.12)}
+.hero-copy .stores{padding-top:4px}
+.stores.on-sky .store{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+
 /* ---------- responsive ---------- */
 @media (max-width:900px){
   .two-col,.bento-head,.footer-top{flex-direction:column;align-items:stretch}
@@ -350,6 +362,10 @@ img{max-width:100%}
           <span class="roll" data-roll>Follow @ai_radar_</span>
         </a>
         <a class="btn btn-light roll-host appear" data-delay="1200" href="#ask" data-open-chat><span class="roll" data-roll>Ask the Radar bot</span></a>
+      </div>
+      <div class="stores appear" data-delay="1350" aria-label="Mobile app coming soon">
+        <span class="store" role="img" aria-label="AI Radar app coming soon on the App Store"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"></rect><path d="M10.5 18.5h3"></path></svg><span><small>Coming soon on the</small><b>App Store</b></span></span>
+        <span class="store" role="img" aria-label="AI Radar app coming soon on Google Play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"></path></svg><span><small>Coming soon on</small><b>Google Play</b></span></span>
       </div>
     </div>
 
@@ -608,6 +624,10 @@ img{max-width:100%}
       <span class="roll" data-roll>Follow on X</span>
     </a>
     <a class="tag-link roll-host" href="https://x.com/search?q=%23stayontheradar&amp;src=hashtag_click" target="_blank" rel="noopener"><span class="roll" data-roll>#stayontheradar</span></a>
+    <div class="stores on-sky" aria-label="Mobile app coming soon">
+        <span class="store" role="img" aria-label="AI Radar app coming soon on the App Store"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"></rect><path d="M10.5 18.5h3"></path></svg><span><small>Coming soon on the</small><b>App Store</b></span></span>
+        <span class="store" role="img" aria-label="AI Radar app coming soon on Google Play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"></path></svg><span><small>Coming soon on</small><b>Google Play</b></span></span>
+      </div>
   </div>
 </section>
 </main>
@@ -688,6 +708,7 @@ img{max-width:100%}
     ['What can I ask the Radar bot?','Anything about AI: news, model updates, tools, tips, or using AI in spreadsheets. It declines other topics.'],
     ['How do I get a prompt pack?','Follow @ai_radar_ and comment on the pack’s post. We reply with the link, and every pack is also listed on the site.'],
     ['How do you pick what to post?','We scan AI blogs, papers, model hubs and trending repos, then keep items that are new and useful to people who build with AI.'],
+    ['Is there an AI Radar app?','Yes, it is on the way for iPhone and Android. Follow @ai_radar_ on X to hear the moment it lands on the App Store and Google Play.'],
     ['Can I suggest a tool or repo?','Yes. Send us a DM on X with the link and a line on why it is useful.']
   ];
   var list=document.getElementById('faq');
