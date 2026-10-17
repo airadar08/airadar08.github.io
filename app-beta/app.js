@@ -488,7 +488,8 @@
 (function(){
   function apply(){
     var G=window.AIRadarGlass; if(!G) return;
-    var tint='rgba(17,20,18,0.42)', optics={frost:6,dispersion:0.35};
+    // dark tint + no brightness veil so labels stay readable over bright cheatsheet cards
+    var tint='rgba(10,12,11,0.66)', optics={frost:10,brightness:0,glow:0.06,dispersion:0.3};
     G.wrap(document.getElementById('topbar'),{display:'flex',tint:tint,optics:optics});
     G.wrap(document.getElementById('composer'),{display:'flex',tint:tint,optics:optics});
     G.wrap(document.getElementById('tabbar'),{display:'grid',tint:tint,optics:optics});
