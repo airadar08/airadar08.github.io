@@ -127,11 +127,17 @@
         .map(function(h){ return {type:typeOf(h.url),title:h.title,url:h.url,site:siteOf(h.url),meta:(h.created_at?fmtDate(h.created_at):'')}; });
     }).catch(function(){ return []; });
   }
+  var EXPAND={rag:'retrieval-augmented generation',llm:'large language model',llms:'large language model',mcp:'model context protocol',tts:'speech synthesis',asr:'speech recognition',
+    gan:'generative adversarial network',rlhf:'reinforcement learning from human feedback',nlp:'natural language processing',cnn:'convolutional neural network',agents:'intelligent agent',agent:'intelligent agent',
+    'fine-tuning':'fine-tuning (deep learning)',finetuning:'fine-tuning (deep learning)',transformer:'transformer (deep learning)',transformers:'transformer (deep learning)',embeddings:'word embedding',embedding:'word embedding'};
   function wiki(q){
-    var kw=terms(q).slice(0,4).join(' '); if(!kw) return Promise.resolve([]);
-    var url='https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srlimit=3&srsearch='+encodeURIComponent(kw+' artificial intelligence');
+    var tt=terms(q).slice(0,4); if(!tt.length) return Promise.resolve([]);
+    var exp=tt.map(function(t){ return EXPAND[t]||t; });
+    var kw=exp.join(' ');
+    var url='https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srlimit=5&srsearch='+encodeURIComponent(kw);
     return fetch(url).then(function(r){ return r.ok?r.json():{}; }).then(function(j){
-      return ((j.query&&j.query.search)||[]).filter(function(s){ return AIRX.test(s.title+' '+s.snippet); }).slice(0,1).map(function(s){
+      var keys=exp.join(' ').toLowerCase().split(/\s+/).filter(function(w){ return w.length>2&&!/^(deep|learning\)?|the|and)$/.test(w); });
+      return ((j.query&&j.query.search)||[]).filter(function(s){ var t=s.title.toLowerCase(); return AIRX.test(s.title+' '+s.snippet)&&keys.some(function(k){ return t.indexOf(k.replace(/[()]/g,''))>=0; }); }).slice(0,1).map(function(s){
         var d=s.snippet.replace(/<[^>]+>/g,'').replace(/&quot;/g,'"').replace(/&amp;/g,'&').replace(/&#039;/g,"'");
         return {type:'Article',title:s.title,desc:d,url:'https://en.wikipedia.org/wiki/'+encodeURIComponent(s.title.replace(/ /g,'_')),site:'wikipedia.org'};
       });
@@ -147,7 +153,7 @@
   }
 
   /* ---------------- 3. memory: ask for saved items ---------------- */
-  var MEM_Q=/\b(i|we)\s+(have\s+|had\s+)?(saved|bookmarked|stored|kept)\b|\bmy\s+(saved|saves|library|bookmarks?)\b|\b(show|find|get|open)\b.*\bsaved\b|\bsaved\b.*\b(about|on|for|last|ago|year|month|week|before|earlier)\b/i;
+  var MEM_Q=/\b(i|we)\s+(have\s+|had\s+|just\s+)?(saved|bookmarked|stored|kept)\b|\b(did|have|had)\s+(i|we)\s+(save|saved|bookmark|bookmarked|keep|kept|store|stored)\b|\bmy\s+(saved|saves|library|bookmarks?)\b|\b(show|find|get|open|list)\b.*\bsaved\b|\bsaved\b.*\b(about|on|for|last|ago|year|month|week|before|earlier)\b|\b(in|from)\s+my\s+library\b/i;
   var MONTHS=['january','february','march','april','may','june','july','august','september','october','november','december'];
   function dateWindow(q){
     var s=q.toLowerCase(), now=new Date(), d0=null, d1=null, day=864e5;
