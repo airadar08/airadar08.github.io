@@ -1,6 +1,6 @@
 // AI Radar app service worker: the app shell works offline; data files try the network first; API calls are never cached.
-const CACHE = 'airadar-app-v9';
-const SHELL = ['./', './index.html', './app.js?v=9', './vendor/glass.js?v=1', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', '../assets/logo.svg'];
+const CACHE = 'airadar-app-v10';
+const SHELL = ['./', './index.html', './app.js?v=10', './vendor/glass.js?v=1', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', '../assets/logo.svg'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));

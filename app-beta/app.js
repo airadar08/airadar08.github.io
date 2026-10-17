@@ -804,7 +804,8 @@
     }
     function kick(){ if(reduce){ x=drag?drag.x:target+lean; v=0; paint(); return; } if(!raf){ last=0; raf=requestAnimationFrame(step); } }
     function settle(i,instant){ var g=geo(i); if(!tabs[i].offsetWidth) return; target=g.c; w=g.w; if(!pill.classList.contains('ready')){ pill.classList.add('ready'); instant=true; } if(instant){ x=target; v=0; paint(); } else kick(); }
-    window.__pillTo=function(name){ var i=tabs.findIndex(function(t){ return t.dataset.tab===name; }); if(i>-1){ lean=0; settle(i,false); } };
+    window.__pillTo=function(name){ var i=tabs.findIndex(function(t){ return t.dataset.tab===name; }); if(i>-1){ lean=0; settle(i,document.hidden); } };
+    document.addEventListener('visibilitychange',function(){ if(!document.hidden){ cancelAnimationFrame(raf); raf=0; drag=null; lean=0; settle(activeIndex(),true); } });
     function local(e){ var r=bar.getBoundingClientRect(); return e.clientX-r.left; }
     // drag the lens across the tabs; release picks the tab under it
     bar.addEventListener('pointerdown',function(e){
