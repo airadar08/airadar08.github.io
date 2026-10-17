@@ -2,143 +2,556 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>AI Radar</title>
-<meta name="description" content="AI Radar: the AI news that matters, explained in one post. Daily AI news, facts, cheatsheets and free resources from @ai_radar_.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI Radar · AI news, cheatsheets, repos and prompt packs</title>
+<meta name="description" content="AI Radar (@ai_radar_ on X): AI news, cheatsheets, trending repos and free prompt packs. Ask the AI Radar bot anything about AI.">
 <meta property="og:title" content="AI Radar">
-<meta property="og:description" content="Daily AI news, facts, cheatsheets and free resources.">
+<meta property="og:description" content="AI news, cheatsheets, trending repos and free prompt packs. #stayontheradar">
 <meta property="og:image" content="https://airadar08.github.io/assets/img/prompt-pack.jpg">
-<meta name="theme-color" content="#fbf8f1">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#6f9fe0">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
-<link rel="stylesheet" href="assets/site.css?v=5">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
 <style>
-/* hero: text left, live radar right; stacks on phones */
-.hero{padding-block:56px 40px;overflow:hidden}
-.hero .container{display:grid;grid-template-columns:1.05fr 1fr;gap:32px;align-items:center}
-.hero-copy{display:grid;gap:20px;justify-items:start;min-width:0}
-.hero h1{font-size:clamp(40px,6.2vw,72px);font-weight:800;line-height:1.0}
-.hero h1 em{font-style:normal;color:var(--mint)}
-.hero .lede{margin:0;color:var(--muted);font-size:clamp(17px,1.6vw,19px);max-width:44ch}
-.cta-row{display:flex;gap:10px;flex-wrap:wrap}
-.meta-row{display:flex;gap:22px;flex-wrap:wrap;padding:0;margin:6px 0 0;list-style:none;color:var(--muted);font-size:14px}
-.meta-row b{display:block;font:700 22px/1.1 var(--display);color:var(--fg);font-variant-numeric:tabular-nums}
-#radar{position:relative;aspect-ratio:1/1;width:100%;max-width:560px;justify-self:center}
-#radar canvas{position:absolute;inset:0;width:100%!important;height:100%!important}
-#radar .fallback{position:absolute;inset:12%;opacity:.9}
-#radar.live .fallback{display:none}
-#radar .rtags{position:absolute;inset:0;pointer-events:none;overflow:visible}
-#radar .rtag{position:absolute;left:0;top:0;display:flex;align-items:center;gap:6px;white-space:nowrap;font:500 11px/1 var(--mono);letter-spacing:.1em;
-  color:var(--fg);background:color-mix(in srgb,var(--surface) 88%,transparent);border:1px solid var(--line);padding:6px 10px;border-radius:999px;
-  box-shadow:0 6px 18px -10px rgba(0,0,0,.35);opacity:0;will-change:transform,opacity;backdrop-filter:blur(4px)}
-#radar .rtag i{width:7px;height:7px;border-radius:50%;flex:none}
-#radar .readout{position:absolute;left:4%;bottom:6%;font:500 11px/1.6 var(--mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase;pointer-events:none}
-#radar .readout span{color:var(--mint-ink)}
-@media (max-width:860px){.hero .container{grid-template-columns:1fr}#radar{max-width:460px;aspect-ratio:5/4;margin-top:-8px}}
-/* load-in */
-@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.hero-copy>*{animation:rise .8s var(--ease) both}
-.hero-copy>*:nth-child(2){animation-delay:.08s}.hero-copy>*:nth-child(3){animation-delay:.16s}.hero-copy>*:nth-child(4){animation-delay:.24s}.hero-copy>*:nth-child(5){animation-delay:.32s}
-/* what you get */
-.feat{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
-@media (max-width:1000px){.feat{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:560px){.feat{grid-template-columns:1fr}}
-.feat a{display:grid;gap:10px;text-decoration:none;padding:24px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line);transition:transform .35s var(--ease),border-color .25s}
-.feat a:hover{transform:translateY(-4px);border-color:var(--mint)}
-.feat .ic{width:40px;height:40px;border-radius:12px;background:var(--mint-soft);color:var(--mint-ink);display:grid;place-items:center}
-.feat .ic svg{width:20px;height:20px}
-.feat h3{font-size:20px;font-weight:700}
-.feat p{margin:0;color:var(--muted);font-size:15px}
-.feat .go{color:var(--mint-ink);font-weight:600;font-size:14px}
-.feat .when{font:500 12px var(--mono);color:var(--muted)}
-/* closing band */
-.band{background:var(--ink);color:var(--on-ink);border-radius:24px;padding:clamp(28px,5vw,56px);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;position:relative;overflow:hidden}
-.band h2{font-size:clamp(26px,3.6vw,38px);font-weight:700;max-width:20ch}
-.band p{margin:8px 0 0;opacity:.7}
-.band .btn{background:var(--mint);color:#fff}
-.band svg.rings{position:absolute;right:-60px;top:-60px;width:260px;height:260px;opacity:.12;pointer-events:none}
+/* Layout: inset photographic hero → editorial carousel → rotating logo wheel → bento → FAQ → sky CTA → wordmark footer */
+:root{
+  --bg:#f5f5f2; --ink:#0d0d0d; --muted:#6b6b6b; --line:#ececea;
+  --peach:#fdeade; --coral:#d96a45; --peach-card:#fbeee6; --white:#ffffff;
+  --sky-1:#6f9fe0; --sky-2:#94bbec; --sky-3:#cfe2f7; --navy:#10233f;
+  --serif:'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --sans:'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --spring:cubic-bezier(.22,1.2,.36,1);
+  color-scheme:light;
+  /* tokens the shared chat (assets/chat.js) reads */
+  --fg:var(--ink); --surface:#ffffff; --bg-2:#ecebe6; --on-ink:#ffffff;
+  --mint:#13a36b; --mint-ink:#0b7a4f; --mint-soft:#dff3e9;
+  --display:var(--serif); --body:var(--sans); --mono:'JetBrains Mono', ui-monospace, Menlo, monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{max-width:100%}
+:focus-visible{outline:2px solid var(--coral);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1160px;margin:0 auto}
+.gutter{padding-left:max(24px, env(safe-area-inset-left, 0px));padding-right:max(24px, env(safe-area-inset-right, 0px))}
+
+/* ---------- type ---------- */
+.serif{font-family:var(--serif);font-weight:400}
+.h-display{font-family:var(--serif);font-weight:400;font-size:clamp(46px,6.6vw,88px);line-height:1.02;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.h-section{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.2vw,54px);line-height:1.04;letter-spacing:-.015em;margin:0;text-wrap:balance}
+.body{font-size:16px;line-height:1.6;color:var(--muted);margin:0}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;background:var(--peach);color:var(--coral);padding:7px 13px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.eyebrow svg{width:12px;height:12px}
+
+/* ---------- buttons + rolling text ---------- */
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);font-size:15px;font-weight:500;padding:15px 26px;border-radius:12px;transition:background .25s ease, transform .25s var(--ease)}
+.btn-dark{background:var(--ink);color:#fff;box-shadow:0 16px 40px rgba(0,0,0,.08)}
+.btn-dark:hover{background:#262626}
+.btn-light{background:#fff;color:var(--ink);box-shadow:0 16px 40px rgba(0,0,0,.05)}
+.btn-glass{background:rgba(255,255,255,.35);color:var(--ink);border:1px solid rgba(255,255,255,.7)}
+.btn:active{transform:scale(.97)}
+.roll{display:inline-flex;overflow:hidden;line-height:1.2em;height:1.2em}
+.roll>span{display:block;white-space:pre;text-shadow:0 1.2em 0 currentColor;transition:transform .5s var(--ease)}
+.roll-host:hover .roll>span,.roll-host:focus-visible .roll>span{transform:translateY(-1.2em)}
+.icon-roll{position:relative;display:inline-block;width:16px;height:16px;overflow:hidden;flex:0 0 auto}
+.icon-roll svg{position:absolute;inset:0;width:16px;height:16px;transition:transform .45s var(--ease)}
+.icon-roll svg+svg{transform:translateX(-120%)}
+.roll-host:hover .icon-roll svg:first-child{transform:translateX(120%)}
+.roll-host:hover .icon-roll svg+svg{transform:none}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:calc(12px + env(safe-area-inset-top, 0px));padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));pointer-events:none}
+.nav-pill{pointer-events:auto;max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 10px 10px 16px;border-radius:22px;background:rgba(255,255,255,.1);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);transition:background .4s ease, box-shadow .4s ease}
+.nav.solid .nav-pill{background:rgba(245,245,242,.55);box-shadow:0 10px 30px rgba(13,13,13,.04)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-mark{width:40px;height:40px;border-radius:50%;display:block}
+.logo-word{font-family:var(--serif);font-size:24px;letter-spacing:-.01em;color:#fff;transition:color .4s ease}
+.nav-links{display:flex;align-items:center;gap:30px;font-size:14px;font-weight:500}
+.nav-links a{text-decoration:none;color:#fff;display:inline-flex;align-items:center;gap:4px;transition:color .4s ease}
+.nav.solid .nav-links a,.nav.solid .logo-word{color:var(--ink)}
+.nav .btn{padding:12px 20px;font-size:14px}
+
+/* ---------- progressive blur edges ---------- */
+.pblur{position:fixed;left:0;right:0;z-index:40;pointer-events:none}
+.pblur-top{top:0;height:110px}
+.pblur-bottom{bottom:0;height:120px}
+.pblur>div{position:absolute;inset:0}
+.pblur-bottom>div:nth-child(1){backdrop-filter:blur(.0625px);-webkit-backdrop-filter:blur(.0625px);mask:linear-gradient(transparent 0%,#000 12.5%,#000 25%,transparent 37.5%)}
+.pblur-bottom>div:nth-child(2){backdrop-filter:blur(.125px);-webkit-backdrop-filter:blur(.125px);mask:linear-gradient(transparent 12.5%,#000 25%,#000 37.5%,transparent 50%)}
+.pblur-bottom>div:nth-child(3){backdrop-filter:blur(.25px);-webkit-backdrop-filter:blur(.25px);mask:linear-gradient(transparent 25%,#000 37.5%,#000 50%,transparent 62.5%)}
+.pblur-bottom>div:nth-child(4){backdrop-filter:blur(.5px);-webkit-backdrop-filter:blur(.5px);mask:linear-gradient(transparent 37.5%,#000 50%,#000 62.5%,transparent 75%)}
+.pblur-bottom>div:nth-child(5){backdrop-filter:blur(1px);-webkit-backdrop-filter:blur(1px);mask:linear-gradient(transparent 50%,#000 62.5%,#000 75%,transparent 87.5%)}
+.pblur-bottom>div:nth-child(6){backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);mask:linear-gradient(transparent 62.5%,#000 75%,#000 87.5%,transparent 100%)}
+.pblur-bottom>div:nth-child(7){backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);mask:linear-gradient(transparent 75%,#000 87.5%,#000 100%)}
+.pblur-bottom>div:nth-child(8){backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);mask:linear-gradient(transparent 87.5%,#000 100%)}
+.pblur-top{transform:scaleY(-1)}
+.pblur-top>div:nth-child(1){backdrop-filter:blur(.0625px);-webkit-backdrop-filter:blur(.0625px);mask:linear-gradient(transparent 0%,#000 12.5%,#000 25%,transparent 37.5%)}
+.pblur-top>div:nth-child(2){backdrop-filter:blur(.25px);-webkit-backdrop-filter:blur(.25px);mask:linear-gradient(transparent 20%,#000 35%,#000 50%,transparent 65%)}
+.pblur-top>div:nth-child(3){backdrop-filter:blur(1px);-webkit-backdrop-filter:blur(1px);mask:linear-gradient(transparent 45%,#000 60%,#000 75%,transparent 90%)}
+.pblur-top>div:nth-child(4){backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);mask:linear-gradient(transparent 70%,#000 85%,#000 100%)}
+.pblur-top>div:nth-child(5){backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);mask:linear-gradient(transparent 85%,#000 100%)}
+
+/* ---------- custom cursor ---------- */
+.cursor{position:fixed;left:0;top:0;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:22px;background:#fff;mix-blend-mode:difference;pointer-events:none;z-index:100;opacity:0;transition:width .3s var(--ease),height .3s var(--ease),margin .3s var(--ease),opacity .3s ease}
+.cursor.on{opacity:1}
+.cursor.big{width:44px;height:44px;margin:-22px 0 0 -22px}
+@media (hover:none),(pointer:coarse){.cursor{display:none}}
+
+/* ---------- sky ---------- */
+.sky{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--sky-1) 0%,var(--sky-2) 48%,var(--sky-3) 100%)}
+.sky::before,.sky::after{content:"";position:absolute;inset:-10% -20%;pointer-events:none;
+  background:
+  radial-gradient(ellipse 14% 7% at 10% 34%,rgba(255,255,255,.95),transparent 70%),
+  radial-gradient(ellipse 12% 6% at 17% 38%,rgba(255,255,255,.85),transparent 70%),
+  radial-gradient(ellipse 18% 8% at 86% 26%,rgba(255,255,255,.9),transparent 70%),
+  radial-gradient(ellipse 11% 5% at 78% 31%,rgba(255,255,255,.8),transparent 70%),
+  radial-gradient(ellipse 26% 12% at 50% 86%,rgba(255,255,255,.8),transparent 70%),
+  radial-gradient(ellipse 20% 10% at 6% 84%,rgba(255,255,255,.9),transparent 70%),
+  radial-gradient(ellipse 20% 10% at 95% 80%,rgba(255,255,255,.9),transparent 70%);
+  animation:clouds 60s linear infinite alternate}
+.sky::after{opacity:.55;filter:blur(6px);animation-duration:90s;animation-direction:alternate-reverse;transform:translateY(8%)}
+@keyframes clouds{from{translate:-4% 0}to{translate:4% 0}}
+.sky>*{position:relative;z-index:1}
+
+/* ---------- hero ---------- */
+.hero-shell{padding:8px 8px 0}
+.hero{border-radius:20px;padding-top:150px}
+.hero-copy{max-width:860px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:22px}
+.hero-eyebrow{font-family:var(--serif);font-size:18px;letter-spacing:.06em;text-transform:uppercase;color:#fff;display:flex;align-items:center;gap:10px}
+.live{position:relative;width:8px;height:8px}
+.live i{position:absolute;inset:0;border-radius:50%;background:#2f9a5a}
+.live i:first-child{animation:ping 1.8s ease-out infinite}
+@keyframes ping{0%{transform:scale(.6);opacity:.7}100%{transform:scale(2.6);opacity:0}}
+.hero h1{color:#fff}
+.hero .sub{color:#fff;font-size:17px;line-height:1.55;max-width:540px;margin:0;text-shadow:0 1px 18px rgba(16,35,63,.25)}
+.w{display:inline-block;will-change:filter,transform,opacity}
+.js .w{opacity:0;filter:blur(12px);transform:translateY(14px)}
+.w.in{opacity:1;filter:blur(0);transform:none;transition:opacity .9s var(--ease),filter .9s var(--ease),transform .9s var(--ease)}
+.appear{transition:opacity .9s var(--ease),transform 1s var(--spring)}
+.js .appear{opacity:0;transform:translateY(20px)}
+.js .appear.in{opacity:1;transform:none}
+.hero-ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding-top:6px}
+
+.phones{position:relative;height:520px;margin-top:64px;overflow:hidden}
+.phone-stage{position:absolute;left:50%;top:0;width:560px;margin-left:-280px;height:700px}
+.phone-par{position:absolute;inset:0;will-change:transform}
+.phone-wrap{position:absolute;top:0;transition:transform 1.4s var(--spring),opacity 1s ease}
+.js .phone-wrap{opacity:0;transform:translateY(220px) rotate(0deg)}
+.phone-a{left:10px;z-index:2}
+.phone-b{left:236px;top:24px;z-index:1}
+.js .phone-wrap.in{opacity:1}
+.phone-a.in,.no-js .phone-a{transform:rotate(-8deg)!important}
+.phone-b.in,.no-js .phone-b{transform:rotate(9deg)!important}
+.phone{width:300px;height:620px;border-radius:50px;background:#e9e9ec;padding:4px;box-shadow:0 40px 80px rgba(16,35,63,.3), inset 0 0 0 1px rgba(255,255,255,.6)}
+.phone-in{width:100%;height:100%;border-radius:46px;background:#0d0d0d;padding:9px}
+.screen{position:relative;width:100%;height:100%;border-radius:38px;overflow:hidden;font-size:12px}
+.island{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:92px;height:27px;border-radius:999px;background:#0d0d0d;z-index:3}
+
+/* ---------- reveal ---------- */
+.reveal{transition:opacity .9s var(--ease),transform 1s var(--spring)}
+.js .reveal.pending{opacity:0;transform:translateY(20px)}
+
+/* ---------- how it works ---------- */
+.how{padding-block:130px}
+.two-col{display:flex;gap:64px;align-items:center}
+.how-left{flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:22px;align-items:flex-start}
+.how-right{flex:1 1 640px;min-width:0}
+.stage{position:relative;border-radius:28px;overflow:hidden;min-height:480px;padding:clamp(18px,3vw,40px);display:grid;align-items:center}
+.stage-bg{position:absolute;inset:-30px;background:
+  radial-gradient(60% 70% at 10% 20%,#e8935f 0%,transparent 60%),
+  radial-gradient(60% 70% at 95% 90%,#7da6ea 0%,transparent 60%),
+  radial-gradient(50% 60% at 70% 10%,#c9d6f2 0%,transparent 70%),
+  linear-gradient(140deg,#f2b28c,#e9d8e6 50%,#a9c8f0);filter:blur(5px)}
+.slide{grid-area:1/1;position:relative;transition:opacity .55s ease, transform .55s var(--ease)}
+.slide[aria-hidden="true"]{opacity:0;transform:scale(.985);pointer-events:none}
+.glass{background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:16px;font-size:13px;box-shadow:0 30px 60px rgba(60,40,80,.12)}
+.ctrls{display:flex;align-items:center;gap:18px;padding-top:12px}
+.round{width:44px;height:44px;border-radius:12px;border:1px solid #dcdcd7;background:#fff;color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s ease,border-color .2s ease}
+.round:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.dots{display:flex;gap:8px;align-items:center}
+.dot{height:8px;width:8px;border:0;padding:0;cursor:pointer;border-radius:999px;background:#cfcfca;position:relative;overflow:hidden;transition:width .4s var(--ease)}
+.dot.on{width:34px}
+.dot.on::after{content:"";position:absolute;inset:0;background:var(--ink);transform-origin:left;animation:fill var(--dur,6s) linear forwards}
+.dot.on.static::after{animation:none}
+@keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.row{display:flex;justify-content:space-between;gap:10px;padding:12px 14px;border-bottom:1px solid #f0f0ec}
+.row:last-child{border-bottom:0}
+.tag{font-weight:600;font-size:11px;letter-spacing:.04em}
+.feed{display:flex;flex-direction:column;gap:8px;color:#4a4a47}
+.feed div{display:flex;gap:8px;align-items:center}
+.feed i{width:7px;height:7px;border-radius:50%;background:#2f9a5a;flex:0 0 auto}
+.feed i.off{background:#b9b9b3}
+
+/* ---------- wheel ---------- */
+.wheel-sec{position:relative;overflow:hidden;padding-top:330px;padding-bottom:140px}
+.wheel{position:absolute;left:50%;top:70px;width:1500px;height:1500px;margin-left:-750px;border-radius:50%;will-change:transform}
+.spoke{position:absolute;left:50%;top:50%;width:0;height:0}
+.chip{position:absolute;left:0;top:0;transform:translate(-50%,-50%) rotate(calc(var(--r) * -1));display:flex;flex-direction:column;align-items:center;gap:8px}
+.chip-inner{display:flex;flex-direction:column;align-items:center;gap:8px;transform:rotate(calc(var(--spin,0deg) * -1))}
+.chip b{width:var(--s,64px);height:var(--s,64px);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;color:#fff;box-shadow:0 14px 30px rgba(13,13,13,.14);border:3px solid #fff}
+.chip span{font-size:12px;font-weight:500;color:#4a4a47;white-space:nowrap}
+.wheel-copy{position:relative;z-index:2;max-width:540px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:20px}
+
+/* ---------- bento ---------- */
+.bento-sec{padding-block:40px 120px}
+.bento-head{display:flex;gap:40px;align-items:flex-end;justify-content:space-between}
+.mini{width:230px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.mini .serif{font-size:28px;line-height:1}
+.mini p{margin:0;font-size:13px;line-height:1.5;color:var(--muted)}
+.bento{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;margin-top:48px}
+.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:12px;transition:transform .45s var(--ease),box-shadow .45s ease}
+.card:hover{transform:translateY(-6px);box-shadow:0 22px 40px rgba(13,13,13,.07)}
+.card .top{display:flex;justify-content:space-between;align-items:center}
+.ic{width:40px;height:40px;border-radius:12px;background:var(--bg);display:flex;align-items:center;justify-content:center}
+.ic svg{width:20px;height:20px}
+.lbl{background:var(--bg);color:#4a4a47;padding:5px 10px;border-radius:999px;font-size:10px;font-weight:600;letter-spacing:.08em}
+.card h3{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.04;margin:0}
+.card p{margin:0;font-size:14px;line-height:1.6;color:var(--muted)}
+.c-peach{grid-column:span 2;grid-row:span 2;background:var(--peach-card);border-color:transparent;min-height:440px}
+.c-peach .ic,.c-peach .lbl{background:#fff;color:var(--coral)}
+.c-peach h3,.c-black h3{font-size:36px}
+.c-peach p{color:#6b5a50}
+.c-mid{grid-column:span 2}
+.c-black{grid-column:span 2;grid-row:span 2;background:var(--ink);color:#fff;border-color:transparent}
+.c-black .ic,.c-black .lbl{background:#1f1f1f;color:#f2a07b}
+.c-black p{color:#b5b5b0}
+.c-wide{grid-column:span 3;flex-direction:row;gap:18px;align-items:flex-start}
+.stack{margin-top:auto;position:relative;height:140px}
+.stack>div{position:absolute;border-radius:14px;transition:transform .5s var(--ease)}
+.c-peach:hover .stack>div:nth-child(1){transform:translateY(-10px) rotate(-2deg)}
+.c-peach:hover .stack>div:nth-child(2){transform:translateY(-5px) rotate(1.5deg)}
+.bubble{padding:9px 12px;font-size:13px;line-height:1.4;max-width:88%}
+
+/* ---------- FAQ ---------- */
+.faq-sec{padding-block:40px 120px}
+.faq-left{flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:18px;align-items:flex-start;align-self:flex-start}
+.faq-list{flex:1 1 620px;min-width:0;display:flex;flex-direction:column;gap:10px}
+.faq{background:#fff;border:1px solid var(--line);border-radius:14px;transition:background .3s ease,border-color .3s ease}
+.faq:hover{background:var(--peach-card);border-color:#f3dccd}
+.faq button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 22px;background:transparent;border:0;cursor:pointer;text-align:left;font-family:var(--sans);font-size:16px;font-weight:500;color:var(--ink)}
+.faq button svg{flex:0 0 auto;width:18px;height:18px;transition:transform .35s var(--ease)}
+.faq.open button svg{transform:rotate(45deg)}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
+.faq.open .faq-a{grid-template-rows:1fr}
+.faq-a>div{overflow:hidden}
+.faq-a p{margin:0;padding:0 22px 20px;font-size:15px;line-height:1.6;color:var(--muted);max-width:620px}
+
+/* ---------- CTA + footer ---------- */
+.cta{border-radius:24px;padding:clamp(80px,10vw,140px) 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:20px}
+.cta h2{color:#fff;max-width:760px}
+.footer-top{display:flex;justify-content:space-between;gap:40px;align-items:flex-start;padding-top:72px}
+.news{display:flex;gap:8px;flex-wrap:wrap}
+.news input{flex:1 1 220px;min-width:0;padding:14px 18px;border-radius:12px;border:1px solid #dcdcd7;background:#fff;font-family:var(--sans);font-size:14px;color:var(--ink)}
+.cols{display:flex;gap:96px;flex-wrap:wrap;font-size:14px;padding-top:48px}
+.cols div{display:flex;flex-direction:column;gap:10px}
+.cols a{text-decoration:none}
+.cols a:hover{color:var(--coral)}
+.cols .k{font-size:12px;color:#8a8a85}
+.wordmark{font-family:var(--serif);font-style:italic;font-size:30vw;line-height:.8;letter-spacing:-.04em;text-align:center;white-space:nowrap;margin-top:40px;height:22vw;overflow:hidden;background:linear-gradient(180deg,#0d0d0d 5%,#d6d6d1 80%);-webkit-background-clip:text;background-clip:text;color:transparent;transition:transform 1.4s var(--spring)}
+.js .wordmark.pending{transform:translateY(40%)}
+
+.tag-link{display:inline-flex;text-decoration:none;font-family:var(--serif);font-style:italic;font-size:26px;color:#fff;padding:6px 16px;border-radius:999px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background .25s ease}
+.tag-link:hover{background:rgba(255,255,255,.32)}
+
+
+/* ---------- resources (cards are added by tools/update_site.py and tools/make_pack.py) ---------- */
+.more{font-size:14px;font-weight:600;color:var(--coral);text-decoration:none;align-self:flex-start}
+.more:hover{text-decoration:underline;text-underline-offset:3px}
+.c-black .more{color:#f2a07b}
+.res-sec{padding-block:20px 100px}
+.res-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:32px}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.res{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;text-decoration:none;color:var(--ink);transition:transform .45s var(--ease),box-shadow .45s ease}
+.res:hover{transform:translateY(-6px);box-shadow:0 22px 40px rgba(13,13,13,.08)}
+.res .thumb{aspect-ratio:4/5;background:#ecebe6;overflow:hidden}
+.res .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease)}
+.res:hover .thumb img{transform:scale(1.04)}
+.res .body{display:flex;flex-direction:column;gap:6px;padding:16px 18px 18px}
+.res .kind{align-self:flex-start;background:var(--peach);color:var(--coral);padding:4px 9px;border-radius:999px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.res b{font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.08}
+.res .desc{font-size:13.5px;line-height:1.5;color:var(--muted)}
+.res .stat{font-size:12.5px;color:#4a4a47}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .two-col,.bento-head,.footer-top{flex-direction:column;align-items:stretch}
+  .nav-links{display:none}
+  .bento{grid-template-columns:repeat(1,minmax(0,1fr))}
+  .bento>*{grid-column:auto!important;grid-row:auto!important}
+  .c-wide{flex-direction:column}
+  .phones{height:360px}
+  .phone-stage{transform:scale(.62);transform-origin:top center}
+  .wheel{width:1000px;height:1000px;margin-left:-500px;top:60px}
+  .wheel-sec{padding-top:260px}
+  .mini{width:auto;flex:1 1 200px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .w,.js .appear,.js .phone-wrap,.js .reveal.pending,.js .wordmark.pending{opacity:1!important;filter:none!important}
+  .js .w,.js .appear,.js .reveal.pending,.js .wordmark.pending{transform:none!important}
+  html{scroll-behavior:auto}
+}
 </style>
 </head>
 <body>
-<header class="site-head">
-  <div class="container">
-    <a class="brand" href="./" aria-label="AI Radar home"><svg viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="194" fill="#13a36b" stroke="#0f8a5a" stroke-width="8"/><g transform="translate(189 195) scale(0.74) translate(-224 -166)"><text x="182" y="285" text-anchor="middle" font-family="Inter,Helvetica,Arial,sans-serif" font-weight="900" font-size="230" letter-spacing="-10" fill="#ffffff">a</text><rect x="268" y="160" width="40" height="125" rx="6" fill="#ffffff"/><circle cx="288" cy="112" r="24" fill="#1d1d1f"/><path d="M299.4 69.5 A44 44 0 0 1 330.5 100.6" stroke="#1d1d1f" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.85"/><path d="M305.1 48.2 A66 66 0 0 1 351.8 94.9" stroke="#1d1d1f" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.55"/></g></svg>AI Radar</a>
-    <nav class="nav" aria-label="Main">
-      <a class="hide-sm" href="#resources">Resources</a>
-      <a class="hide-sm" href="repos/">Repos</a>
-      <a class="hide-sm" href="cheatsheets/">Cheatsheets</a>
-      <a class="hide-sm" href="prompt-packs/">Prompt packs</a>
-      <a class="btn btn-ink" href="https://x.com/ai_radar_">Follow on X</a>
-    </nav>
-  </div>
+
+<div class="cursor" aria-hidden="true"></div>
+<div class="pblur pblur-top" aria-hidden="true"><div></div><div></div><div></div><div></div><div></div></div>
+<div class="pblur pblur-bottom" aria-hidden="true"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <nav class="nav-pill" aria-label="Main">
+    <a class="logo" href="#top" aria-label="AI Radar home">
+      <img class="logo-mark" src="assets/logo.svg" alt="" width="40" height="40">
+      <span class="logo-word">AI Radar</span>
+    </a>
+    <div class="nav-links">
+      <a class="roll-host" href="repos/"><span class="roll" data-roll>Repos</span></a>
+      <a class="roll-host" href="cheatsheets/"><span class="roll" data-roll>Cheatsheets</span></a>
+      <a class="roll-host" href="prompt-packs/"><span class="roll" data-roll>Prompt packs</span></a>
+    </div>
+    <a class="btn btn-dark roll-host" href="https://x.com/ai_radar_" target="_blank" rel="noopener"><span class="roll" data-roll>Follow on X</span></a>
+  </nav>
 </header>
 
-<main>
-  <section class="hero">
-    <div class="container">
-      <div class="hero-copy">
-        <span class="eyebrow">Scanning the AI world</span>
-        <h1>The AI news that matters, <em>in one post.</em></h1>
-        <p class="lede">AI Radar tracks the AI world so you don't have to: the key news explained simply, surprising AI facts, and free cheatsheets you can save.</p>
-        <div class="cta-row">
-          <a class="btn btn-ink" href="https://x.com/ai_radar_"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.3L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"/></svg>Follow @ai_radar_</a>
-          <a class="btn btn-ghost" href="#resources">Get free resources</a>
+<main id="top">
+<!-- ============ HERO ============ -->
+<div class="hero-shell">
+  <section class="hero sky gutter" id="hero">
+    <div class="hero-copy">
+      <div class="hero-eyebrow appear" data-delay="150"><span class="live"><i></i><i></i></span>Meet AI Radar</div>
+      <h1 class="h-display" data-words data-start="250" data-step="70">Every AI shift worth knowing, in one calm feed</h1>
+      <p class="sub" data-words data-start="700" data-step="22">News, cheatsheets, trending repos and free prompt packs, posted on X and saved on our site. Ask the Radar bot anything about AI.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-dark roll-host appear" data-delay="1000" href="https://x.com/ai_radar_" target="_blank" rel="noopener">
+          <span class="icon-roll" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+          <span class="roll" data-roll>Follow @ai_radar_</span>
+        </a>
+        <a class="btn btn-light roll-host appear" data-delay="1200" href="#ask" data-open-chat><span class="roll" data-roll>Ask the Radar bot</span></a>
+      </div>
+    </div>
+
+    <div class="phones">
+      <div class="phone-stage">
+        <div class="phone-par" id="phone-par">
+          <!-- Phone A: X profile -->
+          <div class="phone-wrap phone-a" data-delay="500">
+            <div class="phone"><div class="phone-in"><div class="screen" style="background:#000">
+              <div class="island"></div>
+              <div style="height:40px;background:#000"></div>
+              <img src="assets/img/x-profile.jpg" alt="The @ai_radar_ profile on X" width="564" height="1220" style="display:block;width:100%;height:auto">
+            </div></div></div>
+          </div>
+          <!-- Phone B: chatbot -->
+          <div class="phone-wrap phone-b" data-delay="700">
+            <div class="phone"><div class="phone-in"><div class="screen" style="background:#f5f5f2;display:flex;flex-direction:column">
+              <div class="island"></div>
+              <div style="padding:48px 14px 12px;display:flex;align-items:center;gap:10px;background:#fff;border-bottom:1px solid #ececea">
+                <img src="assets/logo.svg" alt="" width="34" height="34" style="border-radius:50%">
+                <div><div style="font-weight:600;font-size:14px">Ask AI Radar</div><div style="color:#2f7a4a;display:flex;align-items:center;gap:5px;font-size:11px"><span style="width:6px;height:6px;border-radius:50%;background:#2f9a5a"></span>AI topics only</div></div>
+              </div>
+              <div id="chat" style="flex:1;padding:14px 12px;display:flex;flex-direction:column;gap:10px">
+                <div class="bubble" style="align-self:flex-end;background:#0d0d0d;color:#fff;border-radius:16px 16px 4px 16px">Explain RAG in two lines</div>
+                <div class="bubble" style="align-self:flex-start;background:#fff;border:1px solid #ececea;border-radius:16px 16px 16px 4px;display:flex;flex-direction:column;gap:8px">
+                  <span>RAG fetches the most relevant documents first, then has the model answer using them. Answers stay grounded and up to date.</span>
+                  <span style="align-self:flex-start;background:#fdeade;color:#b4532f;padding:5px 10px;border-radius:999px;font-weight:600;font-size:11px">Open the RAG cheatsheet →</span>
+                </div>
+                <div class="bubble" style="align-self:flex-end;background:#0d0d0d;color:#fff;border-radius:16px 16px 4px 16px">What's the weather in Pune?</div>
+                <div class="bubble" style="align-self:flex-start;background:#fff;border:1px solid #ececea;border-radius:16px 16px 16px 4px">I only cover AI news, tools and tips. Try asking about a model, a repo or a prompt.</div>
+              </div>
+              <div style="padding:10px 12px 18px;background:#fff;border-top:1px solid #ececea;display:flex;align-items:center;gap:8px">
+                <div style="flex:1;background:#f5f5f2;border-radius:999px;padding:10px 14px;color:#8a8a85">Ask about AI…</div>
+                <div style="width:34px;height:34px;border-radius:50%;background:#0d0d0d;display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"></path></svg></div>
+              </div>
+            </div></div></div>
+          </div>
         </div>
       </div>
-      <div id="radar" aria-hidden="true">
-        <svg class="fallback" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="none" stroke="#13a36b" stroke-opacity=".5" stroke-width=".4"/><circle cx="16" cy="16" r="9.5" fill="none" stroke="#13a36b" stroke-opacity=".35" stroke-width=".4"/><circle cx="16" cy="16" r="5" fill="none" stroke="#13a36b" stroke-opacity=".35" stroke-width=".4"/><path d="M16 16 16 2A14 14 0 0 1 28.1 9Z" fill="#13a36b" fill-opacity=".25"/><circle cx="16" cy="16" r=".9" fill="#13a36b"/><circle cx="21" cy="7.5" r=".7" fill="#1d1d1f"/></svg>
-        <div class="readout">Signal <span>live</span><br>Scanning AI news</div>
-      </div>
     </div>
   </section>
+</div>
 
-  <section class="section" id="what">
-    <div class="container">
-      <div class="section-head reveal"><div><span class="eyebrow">What you get</span><h2 style="margin-top:12px">What we post</h2></div></div>
-      <div class="feat">
-        <a class="reveal" href="https://x.com/ai_radar_">
-          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 5h16M4 10h16M4 15h10M4 20h7"/></svg></span>
-          <h3>Daily AI news</h3><p>The day's most important AI story in one clear post, with a notes card that sums up the full coverage.</p>
-          <span class="go">Read on X →</span>
-        </a>
-        <a class="reveal" href="https://x.com/ai_radar_">
-          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg></span>
-          <h3>AI facts</h3><p>Surprising, well-sourced moments from AI history and how AI actually works.</p>
-          <span class="go">Read on X →</span>
-        </a>
-        <a class="reveal" href="cheatsheets/">
-          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></span>
-          <h3>Cheatsheets</h3><p>One-page guides to the AI ideas people ask about most. Save them, share them.</p>
-          <span class="go">Browse cheatsheets →</span>
-        </a>
-        <a class="reveal" href="repos/">
-          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></svg></span>
-          <h3>Trending repos</h3><p>Open-source AI projects taking off on GitHub, with what they do and who they're for.</p>
-          <span class="go">Browse repos →</span>
-        </a>
+<!-- ============ HOW IT WORKS ============ -->
+<section class="how gutter" id="how">
+  <div class="wrap two-col">
+    <div class="how-left reveal">
+      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h6"></path></svg>How it works</span>
+      <h2 class="h-section">The AI web, filtered into one clean feed</h2>
+      <p class="body" style="max-width:440px">We watch where AI news breaks, keep what is new and useful, and turn it into posts you can read in seconds. Everything lands on X and on our site.</p>
+      <div class="ctrls">
+        <button class="round roll-host" type="button" id="prev" aria-label="Previous step"><span class="icon-roll" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="rotate:180deg"><path d="M5 12h14M13 6l6 6-6 6"></path></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="rotate:180deg"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></button>
+        <button class="round roll-host" type="button" id="next" aria-label="Next step"><span class="icon-roll" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></button>
+        <div class="dots" role="tablist" aria-label="Steps">
+          <button class="dot on" type="button" role="tab" aria-selected="true" aria-label="Step 1: Scan"></button>
+          <button class="dot" type="button" role="tab" aria-selected="false" aria-label="Step 2: Summarise"></button>
+          <button class="dot" type="button" role="tab" aria-selected="false" aria-label="Step 3: Publish"></button>
+        </div>
       </div>
     </div>
-  </section>
 
-  <section class="section" id="repos-strip" hidden>
-    <div class="container">
-      <div class="section-head reveal">
-        <div><span class="eyebrow">Trending repos</span><h2 style="margin-top:12px">Fresh from GitHub</h2><p>The latest open-source AI projects we've featured.</p></div>
-        <a class="link-arrow" href="repos/">All repos →</a>
+    <div class="how-right reveal">
+      <div class="stage">
+        <div class="stage-bg" aria-hidden="true"></div>
+
+        <div class="slide" aria-hidden="false">
+          <div class="glass">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+              <div style="display:flex;align-items:center;gap:10px"><span style="width:26px;height:26px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:600">1</span><span style="font-weight:600;font-size:15px">Scan the AI web</span></div>
+              <span style="background:#fff;padding:6px 11px;border-radius:999px;font-weight:600;font-size:11px;color:#2f7a4a">Live</span>
+            </div>
+            <div style="background:#fff;border-radius:14px;border:1px solid #ececea;padding:12px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+              <span style="color:#6b6b6b">Sources</span>
+              <span style="display:flex;gap:6px;flex-wrap:wrap">
+                <span style="background:#f5f5f2;padding:6px 10px;border-radius:8px">Lab blogs</span><span style="background:#f5f5f2;padding:6px 10px;border-radius:8px">Papers</span><span style="background:#f5f5f2;padding:6px 10px;border-radius:8px">Model hubs</span><span style="background:#f5f5f2;padding:6px 10px;border-radius:8px">Trending repos</span>
+              </span>
+            </div>
+            <div style="background:#fff;border-radius:14px;border:1px solid #ececea">
+              <div class="row"><span>New model release notes</span><span class="tag" style="color:#d96a45">NEWS</span></div>
+              <div class="row"><span>Agent framework climbs trending</span><span class="tag" style="color:#3f6fb8">REPO</span></div>
+              <div class="row"><span>Prompt caching, explained simply</span><span class="tag" style="color:#8a5bb0">CHEATSHEET</span></div>
+            </div>
+            <div class="feed"><div><i></i>Scan finished · 3 new picks</div><div><i class="off"></i>Duplicates and old stories skipped</div></div>
+          </div>
+        </div>
+
+        <div class="slide" aria-hidden="true">
+          <div class="glass">
+            <div style="display:flex;align-items:center;gap:10px"><span style="width:26px;height:26px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:600">2</span><span style="font-weight:600;font-size:15px">Summarise into a card</span></div>
+            <div style="background:#fff;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:12px;border:1px solid #ececea">
+              <div style="display:flex;justify-content:space-between"><span style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#d96a45;font-weight:600">AI Radar Notes</span><span style="font-size:11px;color:#8a8a85">Today's card</span></div>
+              <div class="serif" style="font-size:30px;line-height:1.05">What changed in this week's model release</div>
+              <div style="display:flex;flex-direction:column;gap:6px;color:#4a4a47;line-height:1.45"><div>· What the model does better</div><div>· Who can use it, and where</div><div>· One thing builders should try first</div></div>
+              <div style="border-top:1px solid #f0f0ec;padding-top:10px;font-size:11px;color:#8a8a85">Source linked in the post · airadar08.github.io</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;color:#4a4a47;flex-wrap:wrap">Card colours
+              <span style="display:flex;gap:5px"><i style="width:14px;height:14px;border-radius:50%;background:#f2a07b"></i><i style="width:14px;height:14px;border-radius:50%;background:#7fa8e6"></i><i style="width:14px;height:14px;border-radius:50%;background:#9cc7a4"></i><i style="width:14px;height:14px;border-radius:50%;background:#e8c86a"></i><i style="width:14px;height:14px;border-radius:50%;background:#c9a7e0"></i><i style="width:14px;height:14px;border-radius:50%;background:#f08c8c"></i><i style="width:14px;height:14px;border-radius:50%;background:#6fb5c9"></i><i style="width:14px;height:14px;border-radius:50%;background:#d9b38c"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide" aria-hidden="true">
+          <div class="glass">
+            <div style="display:flex;align-items:center;gap:10px"><span style="width:26px;height:26px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:600">3</span><span style="font-weight:600;font-size:15px">Publish and archive</span></div>
+            <div style="background:#fff;border-radius:14px;border:1px solid #ececea;padding:14px;display:flex;gap:10px">
+              <img src="assets/logo.svg" alt="" width="34" height="34" style="flex:0 0 auto;border-radius:50%">
+              <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+                <div><b>AI Radar</b> <span style="color:#8a8a85">@ai_radar_ · now</span></div>
+                <div style="line-height:1.45">Trending repo: a small toolkit for testing AI agents before they ship. Card and link on our site.</div>
+                <div style="color:#3f6fb8;overflow-wrap:anywhere">airadar08.github.io/repos/#agent-test-kit</div>
+              </div>
+            </div>
+            <div class="feed"><div><i></i>Posted to X</div><div><i></i>Card added to the Repos page</div><div><i></i>Post links to that exact card</div></div>
+          </div>
+        </div>
       </div>
-      <div class="res-grid" id="repo-cards"></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="resources">
-    <div class="container">
-      <div class="section-head reveal">
-        <div><span class="eyebrow">Free resources</span><h2 style="margin-top:12px">Save, copy, use</h2><p>Everything we've shared, in one place. Free, no sign-up.</p></div>
-        <a class="link-arrow" href="prompt-packs/">All prompt packs →</a>
+<!-- ============ WHEEL ============ -->
+<section class="wheel-sec gutter" id="labs">
+  <div class="wheel" id="wheel" aria-hidden="true"></div>
+  <div class="wheel-copy reveal">
+    <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="3"></circle></svg>Who we track</span>
+    <h2 class="h-section">Every major AI lab, on one radar</h2>
+    <p class="body">Launches, papers and changelogs from the companies shaping AI, plus the open-source projects catching up fast. You only read what passed the filter.</p>
+    <a class="btn btn-dark roll-host" href="repos/">
+      <span class="icon-roll" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+      <span class="roll" data-roll>See trending repos</span>
+    </a>
+  </div>
+</section>
+
+<!-- ============ BENTO ============ -->
+<section class="bento-sec gutter" id="what">
+  <div class="wrap">
+    <div class="bento-head reveal">
+      <div style="flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:18px;align-items:flex-start">
+        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>What you get</span>
+        <h2 class="h-section">One account, every kind of AI signal</h2>
+        <p class="body" style="max-width:480px">Read it on X, keep it on the site, ask the bot when you want more.</p>
       </div>
-      <div class="res-grid">
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <div class="mini"><div class="serif">Fresh every day</div><p>News, repos and quick facts, spread across your day.</p></div>
+        <div class="mini"><div class="serif">Daily cheatsheets</div><p>One topic per image, ready to save.</p></div>
+      </div>
+    </div>
+
+    <div class="bento">
+      <article class="card c-peach reveal">
+        <div class="top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 5h13v14H6a2 2 0 0 1-2-2zM17 9h3v8a2 2 0 0 1-2 2M8 9h5M8 13h5"></path></svg></span><span class="lbl">NEWS</span></div>
+        <h3>AI news, read in a minute</h3>
+        <p>Each post turns a full article into one short notes card, with the source link right in the post.</p>
+        <a class="more" href="https://x.com/ai_radar_" target="_blank" rel="noopener">Read on X →</a>
+        <div class="stack" aria-hidden="true">
+          <div style="left:28px;right:28px;top:0;height:90px;background:#c9a7e0"></div>
+          <div style="left:14px;right:14px;top:14px;height:90px;background:#7fa8e6"></div>
+          <div style="left:0;right:0;top:30px;height:104px;background:#fff;border:1px solid #f0dccf;padding:14px;display:flex;flex-direction:column;gap:7px">
+            <span style="font-size:9px;letter-spacing:.1em;color:#d96a45;font-weight:600">AI RADAR NOTES</span>
+            <span style="height:6px;width:80%;border-radius:3px;background:#f3e1d6"></span><span style="height:6px;width:64%;border-radius:3px;background:#f3e1d6"></span><span style="height:6px;width:72%;border-radius:3px;background:#f3e1d6"></span>
+          </div>
+        </div>
+      </article>
+      <article class="card c-mid reveal">
+        <div class="top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg></span><span class="lbl">CHEATSHEETS</span></div>
+        <h3>Fresh cheatsheets, daily</h3>
+        <p>One clean image per topic, saved on the site so you can find it again.</p>
+        <a class="more" href="cheatsheets/">Browse cheatsheets →</a>
+      </article>
+      <article class="card c-black reveal" id="ask">
+        <div class="top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path></svg></span><span class="lbl">ASK THE RADAR</span></div>
+        <h3>A chatbot that only talks AI</h3>
+        <p>Ask about models, tools, tips or this week's news. It searches the web for fresh answers and politely declines anything off-topic.</p>
+        <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px">
+          <span class="bubble" style="align-self:flex-end;background:#2a2a2a;border-radius:14px 14px 4px 14px">Best free tools for AI in spreadsheets?</span>
+          <span class="bubble" style="align-self:flex-start;background:#fff;color:#0d0d0d;border-radius:14px 14px 14px 4px" id="typing">Here are three, with a cheatsheet to start…</span>
+        </div>
+        <a class="btn btn-light roll-host" style="align-self:flex-start;padding:12px 20px;font-size:14px" href="#ask" data-open-chat><span class="roll" data-roll>Open the chat</span><span class="icon-roll" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+      </article>
+      <article class="card c-mid reveal">
+        <div class="top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"></path></svg></span><span class="lbl">REPOS</span></div>
+        <h3>Trending GitHub repos</h3>
+        <p>What the repo does and why it is trending, in plain words.</p>
+        <a class="more" href="repos/">See all repos →</a>
+      </article>
+      <article class="card c-wide reveal">
+        <span class="ic" style="background:#fdeade;color:#d96a45;flex:0 0 auto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 22V7M12 7H8a2.5 2.5 0 1 1 0-5c3 0 4 5 4 5zM12 7h4a2.5 2.5 0 1 0 0-5c-3 0-4 5-4 5z"></path></svg></span>
+        <div style="display:flex;flex-direction:column;gap:8px;min-width:0"><span class="lbl" style="align-self:flex-start;background:#fdeade;color:#d96a45">PROMPT PACKS</span><h3>Free prompt packs</h3><p>Follow and comment on the post. We reply with the link, and every pack stays listed on the site.</p><a class="more" href="prompt-packs/">Get the packs →</a></div>
+      </article>
+      <article class="card c-wide reveal">
+        <span class="ic" style="flex:0 0 auto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"></path></svg></span>
+        <div style="display:flex;flex-direction:column;gap:8px;min-width:0"><span class="lbl" style="align-self:flex-start">ARCHIVE</span><h3>Every post has a home</h3><p>Each post on X links to its exact card on the site, grouped into News, Cheatsheets, Repos and Prompt packs.</p><a class="more" href="#resources">Latest resources →</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESOURCES ============ -->
+<section class="res-sec gutter" id="repos-strip" hidden>
+  <div class="wrap">
+    <div class="res-head reveal">
+      <div><span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"></path></svg>Trending repos</span>
+      <h2 class="h-section" style="margin-top:16px">Fresh from GitHub</h2></div>
+      <a class="more" href="repos/">All repos →</a>
+    </div>
+    <div class="res-grid" id="repo-cards"></div>
+  </div>
+</section>
+
+<section class="res-sec gutter" id="resources">
+  <div class="wrap">
+    <div class="res-head reveal">
+      <div><span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 22V7"></path></svg>Free resources</span>
+      <h2 class="h-section" style="margin-top:16px">Cheatsheets and prompt packs</h2></div>
+      <div style="display:flex;gap:18px;flex-wrap:wrap"><a class="more" href="cheatsheets/">All cheatsheets →</a><a class="more" href="prompt-packs/">All prompt packs →</a></div>
+    </div>
+    <div class="res-grid">
         <!-- new-pack:home -->
         <a class="res reveal" href="prompts/"><div class="thumb"><img src="assets/img/prompt-pack.jpg" alt="AI Prompt Pack cover" loading="lazy" width="1080" height="1350"></div><div class="body"><span class="kind">Prompt pack</span><b>50 AI prompts that do real work</b><span class="desc">Copy-ready prompts for work, learning, writing, coding and more.</span></div></a>
         <!-- new-cheatsheet:home -->
@@ -149,41 +562,210 @@
         <a class="res reveal" href="cheatsheets/#rag-vs-fine-tuning"><div class="thumb"><img src="cheatsheets/img/rag-vs-fine-tuning.jpg?v=2" alt="RAG vs Fine-tuning vs Prompting cheatsheet" loading="lazy" width="1080" height="1350"></div><div class="body"><span class="kind">Cheatsheet</span><b>RAG vs Fine-tuning vs Prompting</b><span class="desc">Pick the cheapest tool that works.</span></div></a>
         <a class="res reveal" href="cheatsheets/#prompt-engineering"><div class="thumb"><img src="cheatsheets/img/prompt-engineering.jpg?v=2" alt="Prompt Engineering cheatsheet" loading="lazy" width="1080" height="1350"></div><div class="body"><span class="kind">Cheatsheet</span><b>Prompt Engineering</b><span class="desc">Get better answers from any LLM.</span></div></a>
       </div>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" style="padding-top:24px">
-    <div class="container">
-      <div class="band reveal">
-        <svg class="rings" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="none" stroke="#fff" stroke-width=".5"/><circle cx="16" cy="16" r="10" fill="none" stroke="#fff" stroke-width=".5"/><circle cx="16" cy="16" r="5" fill="none" stroke="#fff" stroke-width=".5"/></svg>
-        <div><h2>Stay on the radar.</h2><p>New AI news, facts and freebies on X.</p></div>
-        <a class="btn" href="https://x.com/ai_radar_">Follow @ai_radar_</a>
+<!-- ============ FAQ ============ -->
+<section class="faq-sec gutter">
+  <div class="wrap two-col" style="align-items:flex-start">
+    <div class="faq-left reveal">
+      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5M12 17h.01"></path></svg>Questions about AI Radar</span>
+      <h2 class="h-section">Everything to know before you follow</h2>
+      <p class="body" style="max-width:380px">How the feed works, what the bot answers, and where every link takes you.</p>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-top:28px">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path></svg>
+        <p class="body" style="max-width:300px;color:#4a4a47">Can't find your answer? Send us a DM and we'll reply.</p>
+        <a class="btn btn-dark roll-host" style="align-self:flex-start;padding:12px 20px;font-size:14px" href="https://x.com/ai_radar_" target="_blank" rel="noopener"><span class="roll" data-roll>Message us on X</span></a>
       </div>
     </div>
-  </section>
+    <div class="faq-list" id="faq"></div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="gutter" style="padding-bottom:24px">
+  <div class="cta sky reveal" style="max-width:1240px;margin:0 auto">
+    <h2 class="h-display" style="font-size:clamp(38px,5.4vw,70px)">Catch the next AI shift before your feed does</h2>
+    <p class="sub" style="color:#fff;margin:0;max-width:480px;font-size:16px;line-height:1.6">Follow @ai_radar_ for daily news, cheatsheets and repos. Everything we post stays on the site.</p>
+    <a class="btn btn-dark roll-host" href="https://x.com/ai_radar_" target="_blank" rel="noopener">
+      <span class="icon-roll" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+      <span class="roll" data-roll>Follow on X</span>
+    </a>
+    <a class="tag-link roll-host" href="https://x.com/search?q=%23stayontheradar&amp;src=hashtag_click" target="_blank" rel="noopener"><span class="roll" data-roll>#stayontheradar</span></a>
+  </div>
+</section>
 </main>
 
-<footer class="site-foot">
-  <div class="container">
-    <span>© 2026 AI Radar</span>
-    <nav aria-label="Footer"><a href="repos/">Repos</a><a href="cheatsheets/">Cheatsheets</a><a href="prompt-packs/">Prompt packs</a><a href="https://x.com/ai_radar_">X / @ai_radar_</a></nav>
+<!-- ============ FOOTER ============ -->
+<footer class="gutter" style="overflow:hidden">
+  <div class="wrap">
+    <div class="footer-top">
+      <div style="flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:14px">
+        <img class="logo-mark" src="assets/logo.svg" alt="AI Radar" width="40" height="40">
+        <p style="margin:0;max-width:360px;font-size:13px;line-height:1.6;color:var(--muted)">AI Radar summarises public sources. Check the original before acting on anything you read here.</p>
+        <a class="roll-host" href="https://x.com/search?q=%23stayontheradar&amp;src=hashtag_click" target="_blank" rel="noopener" style="align-self:flex-start;text-decoration:none;font-family:var(--serif);font-style:italic;font-size:24px;color:#2f7a4a"><span class="roll" data-roll>#stayontheradar</span></a>
+      </div>
+      <div style="flex:0 1 420px;min-width:0;display:flex;flex-direction:column;gap:12px">
+        <p style="margin:0;font-size:14px;line-height:1.5;color:#4a4a47">Get every post first: follow @ai_radar_ on X and turn on notifications.</p>
+        <a class="btn btn-dark roll-host" style="align-self:flex-start;padding:13px 22px;font-size:14px" href="https://x.com/ai_radar_" target="_blank" rel="noopener"><span class="roll" data-roll>Follow @ai_radar_</span></a>
+      </div>
+    </div>
+    <div class="cols">
+      <div><span class="k">Resources</span><a href="repos/">Trending repos</a><a href="cheatsheets/">Cheatsheets</a><a href="prompt-packs/">Prompt packs</a><a href="#ask" data-open-chat>Ask AI Radar</a></div>
+      <div><span class="k">AI Radar</span><a href="https://x.com/ai_radar_" target="_blank" rel="noopener">@ai_radar_ on X</a><a href="https://x.com/search?q=%23stayontheradar&amp;src=hashtag_click" target="_blank" rel="noopener">#stayontheradar</a><a href="#how">How it works</a></div>
+    </div>
   </div>
+  <div class="wordmark reveal" aria-hidden="true">AI Radar</div>
 </footer>
 
+
 <script>
-// home: show the 3 newest featured repos from data/repos.json (section stays hidden when there are none)
-fetch('data/repos.json?t='+Date.now()).then(function(r){return r.json();}).then(function(items){
-  if(!items||!items.length) return;
-  function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-  document.getElementById('repo-cards').innerHTML=items.slice(0,4).map(function(i){
-    return '<a class="res" href="repos/#'+esc(i.slug)+'"><div class="thumb"><img src="'+esc(i.img)+'" alt="'+esc(i.repo)+' repo card" loading="lazy" width="1080" height="1350"></div><div class="body"><span class="kind">Repo'+(i.stars?' · ★ '+esc(i.stars):'')+'</span><b>'+esc(i.repo)+'</b><span class="desc">'+esc(i.tagline)+'</span></div></a>';
-  }).join('');
-  document.getElementById('repos-strip').hidden=false;
-}).catch(function(){});
+(function(){
+  var doc=document.documentElement;
+  doc.classList.add('js');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var raf=window.requestAnimationFrame.bind(window);
+
+  /* ---- Rolling text: split labels into letters ---- */
+  document.querySelectorAll('[data-roll]').forEach(function(el){
+    var t=el.textContent; el.setAttribute('aria-label',t); el.textContent='';
+    Array.from(t).forEach(function(ch,i){
+      var s=document.createElement('span'); s.textContent=ch; s.setAttribute('aria-hidden','true');
+      s.style.transitionDelay=(i*16)+'ms'; el.appendChild(s);
+    });
+  });
+
+  /* ---- Hero words: blur in one by one ---- */
+  document.querySelectorAll('[data-words]').forEach(function(el){
+    var start=+el.dataset.start||0, step=+el.dataset.step||60;
+    var words=el.textContent.trim().split(/\s+/); el.setAttribute('aria-label',el.textContent.trim()); el.textContent='';
+    words.forEach(function(w,i){
+      var s=document.createElement('span'); s.className='w'; s.textContent=w; s.setAttribute('aria-hidden','true');
+      el.appendChild(s); if(i<words.length-1) el.appendChild(document.createTextNode(' '));
+      setTimeout(function(){ s.classList.add('in'); }, reduce?0:start+i*step);
+    });
+  });
+  document.querySelectorAll('.appear,.phone-wrap').forEach(function(el){
+    setTimeout(function(){ el.classList.add('in'); }, reduce?0:(+el.dataset.delay||0));
+  });
+
+  /* ---- Scroll reveals (only for things below the first screen) ---- */
+  var reveals=[].slice.call(document.querySelectorAll('.reveal'));
+  reveals.forEach(function(el){ if(el.getBoundingClientRect().top>window.innerHeight*0.95) el.classList.add('pending'); });
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting) return;
+        var el=e.target, sibs=[].slice.call(el.parentNode.children).filter(function(c){return c.classList.contains('pending');});
+        el.style.transitionDelay=Math.min(sibs.indexOf(el),5)*90+'ms';
+        el.classList.remove('pending'); io.unobserve(el);
+      });
+    },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+    reveals.forEach(function(el){ if(el.classList.contains('pending')) io.observe(el); });
+  } else reveals.forEach(function(el){ el.classList.remove('pending'); });
+
+  /* ---- FAQ ---- */
+  var qa=[
+    ['Is AI Radar free?','Yes. The X feed, the website, the chatbot and the prompt packs are all free.'],
+    ['How often do you post?','Every day, spread through the day: news, cheatsheets, trending repos and prompt packs.'],
+    ['Where do the links in posts go?','To the exact card on our website, whether it is a repo, a cheatsheet or a prompt pack, so you land on the thing you clicked.'],
+    ['What can I ask the Radar bot?','Anything about AI: news, model updates, tools, tips, or using AI in spreadsheets. It declines other topics.'],
+    ['How do I get a prompt pack?','Follow @ai_radar_ and comment on the pack’s post. We reply with the link, and every pack is also listed on the site.'],
+    ['How do you pick what to post?','We scan AI blogs, papers, model hubs and trending repos, then keep items that are new and useful to people who build with AI.'],
+    ['Can I suggest a tool or repo?','Yes. Send us a DM on X with the link and a line on why it is useful.']
+  ];
+  var list=document.getElementById('faq');
+  qa.forEach(function(p,i){
+    var row=document.createElement('div'); row.className='faq reveal';
+    var id='faq-a-'+i;
+    row.innerHTML='<button type="button" aria-expanded="false" aria-controls="'+id+'"><span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button><div class="faq-a" id="'+id+'"><div><p></p></div></div>';
+    row.querySelector('span').textContent=p[0]; row.querySelector('p').textContent=p[1];
+    list.appendChild(row);
+    if(row.getBoundingClientRect().top>window.innerHeight*0.95){ row.classList.add('pending'); if(io) io.observe(row); }
+    row.querySelector('button').addEventListener('click',function(){
+      var open=row.classList.contains('open');
+      list.querySelectorAll('.faq').forEach(function(r){ r.classList.remove('open'); r.querySelector('button').setAttribute('aria-expanded','false'); });
+      if(!open){ row.classList.add('open'); this.setAttribute('aria-expanded','true'); }
+    });
+  });
+
+  /* ---- Carousel: cross-fade with timed dots ---- */
+  var slides=[].slice.call(document.querySelectorAll('.slide')), dots=[].slice.call(document.querySelectorAll('.dot')), cur=0, timer=null, DUR=6000;
+  function go(i,user){
+    cur=(i+slides.length)%slides.length;
+    slides.forEach(function(s,k){ s.setAttribute('aria-hidden', k===cur?'false':'true'); });
+    dots.forEach(function(d,k){ d.classList.remove('on'); d.setAttribute('aria-selected',k===cur?'true':'false'); });
+    var d=dots[cur]; void d.offsetWidth; d.classList.add('on'); d.style.setProperty('--dur',DUR+'ms');
+    if(user) restart();
+  }
+  function restart(){ if(timer) clearInterval(timer); if(!reduce) timer=setInterval(function(){ go(cur+1); },DUR); else dots.forEach(function(d){d.classList.add('static');}); }
+  dots.forEach(function(d,k){ d.addEventListener('click',function(){ go(k,true); }); });
+  document.getElementById('prev').addEventListener('click',function(){ go(cur-1,true); });
+  document.getElementById('next').addEventListener('click',function(){ go(cur+1,true); });
+  go(0); restart();
+
+  /* ---- Logo wheel ---- */
+  var labs=[['OAI','OpenAI','#0d0d0d',66],['A\\','Anthropic','#d97757',72],['GDM','Google DeepMind','#4a7fe0',64],['Meta','Meta AI','#3d6fd6',60],['Mi','Mistral AI','#f08a3c',70],['HF','Hugging Face','#f2c84b',66],['NV','NVIDIA','#5f9e2f',62],['MS','Microsoft','#2b88d8',68],['xAI','xAI','#2a2a2a',60],['DS','DeepSeek','#4d6bfe',70],['Px','Perplexity','#1f6f6b',62],['Co','Cohere','#c8577a',66]];
+  var wheel=document.getElementById('wheel'), R=wheel.offsetWidth/2-60;
+  function buildWheel(){
+    wheel.innerHTML=''; R=wheel.offsetWidth/2-60;
+    labs.forEach(function(l,i){
+      var ang=i*(360/labs.length);
+      var sp=document.createElement('div'); sp.className='spoke'; sp.style.transform='rotate('+ang+'deg) translateY(-'+R+'px)';
+      sp.innerHTML='<div class="chip" style="--r:'+ang+'deg"><div class="chip-inner"><b style="--s:'+l[3]+'px;background:'+l[2]+';'+(l[2]==='#f2c84b'?'color:#0d0d0d':'')+'"></b><span></span></div></div>';
+      sp.querySelector('b').textContent=l[0]; sp.querySelector('span').textContent=l[1];
+      wheel.appendChild(sp);
+    });
+  }
+  buildWheel();
+  window.addEventListener('resize',function(){ buildWheel(); });
+
+  /* ---- Scroll-linked motion with spring smoothing ---- */
+  var par=document.getElementById('phone-par'), hero=document.getElementById('hero'), nav=document.getElementById('nav');
+  var wheelSec=document.getElementById('labs');
+  var spin=0, spinV=0, target=0, last=0;
+  function onScroll(){
+    var y=window.scrollY;
+    if(!reduce) par.style.transform='translate3d(0,'+(y*0.1).toFixed(1)+'px,0)';
+    nav.classList.toggle('solid', hero.getBoundingClientRect().bottom<90);
+    var r=wheelSec.getBoundingClientRect();
+    var p=(window.innerHeight-r.top)/(window.innerHeight+r.height); // 0 → 1 while section crosses the screen
+    target=(Math.max(0,Math.min(1,p))-0.35)*90;
+  }
+  function tick(){
+    // critically-damped-ish spring toward the scroll target
+    var k=0.06, d=0.78;
+    spinV=(spinV+(target-spin)*k)*d; spin+=spinV;
+    wheel.style.transform='rotate('+spin.toFixed(2)+'deg)';
+    wheel.style.setProperty('--spin',spin.toFixed(2)+'deg');
+    wheel.querySelectorAll('.chip-inner').forEach(function(c){ c.style.transform='rotate('+(-spin).toFixed(2)+'deg)'; });
+    raf(tick);
+  }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  if(!reduce) raf(tick); else wheel.style.transform='none';
+
+  /* ---- Custom cursor ---- */
+  var cur$=document.querySelector('.cursor'), mx=-100, my=-100, cx=-100, cy=-100;
+  if(window.matchMedia('(hover:hover) and (pointer:fine)').matches && !reduce){
+    window.addEventListener('mousemove',function(e){ mx=e.clientX; my=e.clientY; cur$.classList.add('on'); },{passive:true});
+    document.addEventListener('mouseleave',function(){ cur$.classList.remove('on'); });
+    document.addEventListener('mouseover',function(e){ cur$.classList.toggle('big', !!e.target.closest('a,button,input,.card')); });
+    (function loop(){ cx+=(mx-cx)*0.22; cy+=(my-cy)*0.22; cur$.style.transform='translate3d('+cx.toFixed(1)+'px,'+cy.toFixed(1)+'px,0)'; raf(loop); })();
+  }
+
+
+  /* ---- Trending repos strip from data/repos.json ---- */
+  fetch('data/repos.json?t='+Date.now()).then(function(r){ return r.json(); }).then(function(items){
+    if(!items||!items.length) return;
+    function esc(v){ return String(v||'').replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+    document.getElementById('repo-cards').innerHTML=items.slice(0,4).map(function(i){
+      return '<a class="res" href="repos/#'+esc(i.slug)+'"><div class="thumb"><img src="'+esc(i.img)+'" alt="'+esc(i.repo)+' repo card" loading="lazy" width="1080" height="1350"></div>'+
+        '<div class="body"><span class="kind">Repo</span><b>'+esc(i.repo)+'</b><span class="desc">'+esc(i.tagline)+'</span>'+(i.stars?'<span class="stat">\u2605 '+esc(i.stars)+(i.language?' \u00b7 '+esc(i.language):'')+'</span>':'')+'</div></a>';
+    }).join('');
+    document.getElementById('repos-strip').hidden=false;
+  }).catch(function(){});
+})();
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script src="assets/site.js?v=5" defer></script>
-<script src="assets/hero.js?v=14" defer></script>
-<script src="assets/chat.js?v=11" defer></script>
+<script src="assets/chat.js?v=12" defer></script>
 </body>
 </html>

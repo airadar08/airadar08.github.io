@@ -5,14 +5,14 @@ Static site for the @ai_radar_ X account, served by GitHub Pages at https://aira
 ## Structure
 - `assets/site.css` — shared tokens, header, buttons, resource cards, footer, reveal animation. Every page links it.
 - `assets/site.js` — header border on scroll + scroll reveal (content stays visible without JS).
-- `assets/hero.js` — Three.js (r128 UMD from cdnjs) 3D radar on the home hero; static SVG fallback inside `#radar`.
+- `assets/hero.js` — old Three.js radar hero; no longer used by the home page (kept for reference).
 - `assets/logo.svg` — the AI Radar logo used on the X profile (mint circle, white "ai", radar arcs); also the favicon. Same SVG is inlined in each page header.
-- `index.html` — home: hero with 3D radar, "What you get", free resources grid (thumbnails), follow band.
+- `index.html` — home landing page (self-contained CSS/JS, does NOT link site.css or site.js): sky hero with two phones (left = real X profile screenshot `assets/img/x-profile.jpg`, right = chatbot mock), glass nav with letter-roll hover, custom cursor dot, progressive blur at top/bottom, "How it works" cross-fade carousel, scroll-linked rotating wheel of AI labs (names only, no logos), "What you get" bento, `#repos-strip` (4 newest from `data/repos.json`), `#resources` grid of cheatsheet/prompt-pack cards, FAQ accordion, sky CTA with #stayontheradar, giant wordmark footer. Fonts: Instrument Serif (headings) + Inter. The `<!-- new-pack:home -->` and `<!-- new-cheatsheet:home -->` markers live in the `#resources` grid; cards use the same `.res` markup as before.
 - `prompts/index.html` — first prompt pack (50 AI prompts; data in the `PACK` array). Kept at this URL because it was shared on X.
 - `prompt-packs/index.html` — Prompt packs listing, renders from `data/packs.json`. New packs live at `prompt-packs/<slug>/` (built by `tools/make_pack.py`).
 - `cheatsheets/index.html` — gallery of posted cheatsheets; images in `cheatsheets/img/*.jpg` (1080x1350), each card has an `id` anchor linked from the home page.
 - Home chips: "Daily AI news" and "AI facts" link to https://x.com/ai_radar_; "Cheatsheets" to `cheatsheets/`; "Free resources" to `#resources`.
-- `assets/chat.js` — "Ask AI Radar" chat overlay on every page. Hidden until `ENDPOINT` (top of file) is set to the Cloudflare Worker URL.
+- `assets/chat.js` — "Ask AI Radar" chat overlay on every page (reads the page's CSS tokens; the home page defines aliases for them). Answer order: (1) matching AI Radar resources first, found client-side from `data/repos.json`, `data/packs.json` and the `cheatsheets/` page; (2) for repo questions ("top 5 repos for audio"), a live GitHub search from the browser (most-starred AI repos created in the last 180 days, falling back to recently active ones), no Worker call; (3) otherwise the Worker's AI answer with news headlines. `window.AIRadarChat.open()` and any `[data-open-chat]` element open it. Hidden until `ENDPOINT` is set.
 - `worker/worker.js` — Cloudflare Worker (deployed separately on Cloudflare, not by GitHub Pages) that calls OpenRouter. The OpenRouter key is a Cloudflare secret `OPENROUTER_API_KEY`; optional vars `MODEL` (default the free `nvidia/nemotron-3.5-super-vl:free`), `ALLOWED_ORIGIN`. Origin-locked, rate-limited, web search only for news-type questions.
 - `repos/index.html` — Repos page; renders from `data/repos.json` (newest first). Home shows the 4 newest in the hidden-until-filled `#repos-strip`. Card images in `repos/img/`.
 - `data/repos.json` — featured repos, written by `tools/update_site.py repo`.
@@ -48,4 +48,4 @@ Add the 1080x1350 image as `cheatsheets/img/<slug>.jpg`. Insert the new `<articl
 - Plain, direct copy; real content only.
 
 - Never show posting frequency or schedules (posts per day, times) anywhere on the site.
-- When changing anything in `assets/`, bump the `?v=N` on its links in all three pages so browsers fetch the new file.
+- When changing anything in `assets/`, bump the `?v=N` on its links in every page (home, repos, cheatsheets, prompts, prompt-packs, tools/pack_template.html) so browsers fetch the new file.

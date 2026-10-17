@@ -10,8 +10,94 @@
     {g:"Chinese labs",items:[["DeepSeek","DeepSeek"],["Qwen","Alibaba (Qwen)"],["Kimi","Moonshot AI (Kimi)"],["GLM","Zhipu AI (GLM)"],["MiniMax","MiniMax"],["Doubao","ByteDance (Doubao, Seed)"]]},
     {g:"Europe",items:[["Mistral","Mistral AI"]]}
   ];
-  var SUGGEST=["What's new in AI this week?","AI tricks for Excel and Google Sheets","Explain RAG in simple words"];
-  var KEY='air-chat-v1';
+  var SUGGEST=["What's new in AI this week?","Top 5 trending repos for audio right now","Explain RAG in simple words","AI tricks for Excel and Google Sheets"];
+  var KEY='air-chat-v2';
+  // Site root, worked out from this script's own URL so the chat works on every page.
+  var BASE=(function(){ try{ return new URL('..',document.currentScript.src).href; }catch(e){ return location.origin+'/'; } })();
+
+  /* ---------- 1. Our own resources (repos, cheatsheets, prompt packs) ---------- */
+  var STOPW=new Set("a an the is are was were be been what whats which who how why when where do does did any some about from of for on in at to with and or but me my i you your tell give show find list get need want best top good great cool new newest latest recent popular trending hot right now today currently current this week month year ai please can could would should there their it its using use used help explain simple simply words word into like vs versus more most much many make makes made one two three four five six seven eight nine ten repo repos repository repositories github open source opensource project projects tool tools library libraries app apps something things thing".split(" "));
+  var SYN={audio:["voice","speech","tts","sound","music","transcri","dubb","podcast"],voice:["audio","speech","tts","dubb"],speech:["voice","audio","tts","transcri"],music:["audio","sound"],
+    image:["vision","photo","picture","diffusion","visual"],video:["film","animation","clip"],code:["coding","developer","programming"],coding:["code","developer"],
+    agent:["agents","agentic","automation"],agents:["agent","agentic"],local:["offline","locally","self-host","on-device","private"],offline:["local","locally"],
+    prompt:["prompts","prompting"],prompts:["prompt","prompting"],rag:["retrieval"],security:["injection","jailbreak","attack"],cad:["3d"],"3d":["cad"],
+    llm:["model","models","language"],jargon:["terms","glossary"],excel:["spreadsheet","sheets"],spreadsheet:["excel","sheets"],presentation:["slides","ppt","deck"],slides:["presentation","ppt","deck"]};
+  function terms(q){
+    var words=q.toLowerCase().replace(/[^a-z0-9\s\-]/g,' ').split(/\s+/).filter(function(w){ return w.length>1 && !STOPW.has(w) && !/^\d+$/.test(w); });
+    return words;
+  }
+  var indexP=null;
+  function loadIndex(){
+    if(indexP) return indexP;
+    function get(u,t){ return fetch(BASE+u+(u.indexOf('?')<0?'?':'&')+'t='+Math.floor(Date.now()/6e5)).then(function(r){ return r.ok?(t==='text'?r.text():r.json()):(t==='text'?'':[]); }).catch(function(){ return t==='text'?'':[]; }); }
+    indexP=Promise.all([get('data/repos.json'),get('data/packs.json'),get('cheatsheets/','text')]).then(function(res){
+      var items=[];
+      (res[0]||[]).forEach(function(r){ items.push({kind:'Repo',title:r.repo,desc:r.tagline||'',img:r.img?BASE+r.img:'',url:BASE+'repos/#'+r.slug,
+        text:[r.repo,r.tagline,(r.what||[]).join(' '),r.read,r.language].join(' ').toLowerCase()}); });
+      (res[1]||[]).forEach(function(k){ items.push({kind:'Prompt pack',title:k.title,desc:k.desc||'',img:k.cover?BASE+k.cover:'',url:BASE+k.url,
+        text:[k.title,k.desc,k.keyword,'prompt prompts prompting pack'].join(' ').toLowerCase()}); });
+      if(res[2]){ try{
+        var doc=new DOMParser().parseFromString(res[2],'text/html');
+        doc.querySelectorAll('article.sheet[id]').forEach(function(a){
+          var b=a.querySelector('.meta b'), d=a.querySelector('.meta .desc'), k=a.querySelector('.meta .kind'), im=a.querySelector('img');
+          var t=b?b.textContent.trim():a.id;
+          items.push({kind:'Cheatsheet',title:t,desc:d?d.textContent.trim():'',img:im?BASE+'cheatsheets/'+im.getAttribute('src'):'',url:BASE+'cheatsheets/#'+a.id,
+            text:[t,d&&d.textContent,k&&k.textContent,im&&im.alt,a.id.replace(/-/g,' '),'cheatsheet'].join(' ').toLowerCase()});
+        });
+      }catch(e){} }
+      return items;
+    });
+    return indexP;
+  }
+  function has(text,w){ return w.length<=3 ? new RegExp('(^|[^a-z0-9])'+w.replace(/[^a-z0-9]/g,'')+'([^a-z0-9]|$)').test(text) : text.indexOf(w)>=0; }
+  function matchSite(q,items){
+    var base=terms(q); if(!base.length) return [];
+    var groups=base.map(function(w){ return [w].concat(SYN[w]||[]); });
+    var wantKind=/cheat ?sheets?/i.test(q)?'Cheatsheet':/prompt ?packs?|prompts?\b/i.test(q)?'Prompt pack':/\b(repos?|repositor(y|ies)|github)\b/i.test(q)?'Repo':'';
+    return items.map(function(it){
+      var score=0;
+      groups.forEach(function(g){ if(g.some(function(w){ return w.length>=2 && has(it.text,w); })) score+=1; });
+      if(score && wantKind && it.kind===wantKind) score+=0.5;
+      return {it:it,score:score};
+    }).filter(function(x){ return x.score>=1; }).sort(function(a,b){ return b.score-a.score; }).slice(0,3).map(function(x){ return x.it; });
+  }
+
+  /* ---------- 2. Live GitHub search for repo questions ---------- */
+  var REPO_Q=/\b(repos?|repositor(y|ies)|github|open[- ]?source (projects?|tools?|models?|librar(y|ies)))\b/i;
+  var NUMW={one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10};
+  var AIRX=/(\bai\b|llm|model|agent|neural|machine.learning|\bml\b|tts|asr|speech|voice|gpt|diffusion|generat|transformer|inference|whisper|\brag\b|vision|language|deep.learning|claude|openai|gemini|qwen|llama|mcp)/i;
+  function daysAgo(n){ return new Date(Date.now()-n*864e5).toISOString().slice(0,10); }
+  function ghSearch(q){
+    return fetch('https://api.github.com/search/repositories?q='+encodeURIComponent(q)+'&sort=stars&order=desc&per_page=30',{headers:{'Accept':'application/vnd.github+json'}})
+      .then(function(r){ if(!r.ok) throw new Error('github '+r.status); return r.json(); }).then(function(j){ return j.items||[]; });
+  }
+  function githubTop(q){
+    var m=q.toLowerCase().match(/\b(\d{1,2}|one|two|three|four|five|six|seven|eight|nine|ten)\b/);
+    var n=m?(NUMW[m[1]]||parseInt(m[1],10)):5; n=Math.max(1,Math.min(10,n||5));
+    var kw=terms(q).slice(0,4);
+    var topic=kw.join(' ');
+    var since=daysAgo(180);
+    var main=(topic?topic+' ':'')+'ai created:>'+since;
+    var wide=(topic?topic+' ':'')+'ai pushed:>'+daysAgo(30)+' stars:>500';
+    function rel(i){
+      var hay=[i.full_name,i.description||'',(i.topics||[]).join(' ')].join(' ').toLowerCase();
+      var onTopic=kw.every(function(w){ return [w].concat(SYN[w]||[]).some(function(x){ return has(hay,x); }); });
+      return onTopic && AIRX.test(hay) && !i.fork && !i.archived;
+    }
+    return ghSearch(main).then(function(a){
+      var picks=a.filter(rel);
+      if(picks.length>=n) return {items:picks.slice(0,n),fresh:true};
+      return ghSearch(wide).then(function(b){
+        var seen={}; var all=picks.concat(b.filter(rel)).filter(function(i){ if(seen[i.id]) return false; seen[i.id]=1; return true; });
+        return {items:all.slice(0,n),fresh:false};
+      });
+    }).then(function(res){
+      return {n:n,topic:topic,since:since,fresh:res.fresh,items:res.items.map(function(i){
+        return {name:i.full_name,url:i.html_url,desc:i.description||'',stars:i.stargazers_count,lang:i.language||'',created:(i.created_at||'').slice(0,10)};
+      })};
+    });
+  }
+  function kfmt(n){ return n>=1000?(n/1000).toFixed(n>=10000?0:1).replace(/\.0$/,'')+'k':String(n); }
 
   var css=`
 .airc-fab{position:fixed;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:60;display:flex;align-items:center;gap:10px;
@@ -65,6 +151,19 @@
 .airc-form button svg{width:18px;height:18px}
 .airc-note{font-size:11.5px;color:var(--muted);text-align:center;padding:0 12px 10px;background:var(--surface)}
 @media (prefers-reduced-motion:reduce){.airc-fab .dot,.airc-msg,.airc-typing i{animation:none}}
+.airc-msg.cards{max-width:100%;width:100%;white-space:normal}
+.airc-cards{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.airc-card{display:flex;gap:10px;align-items:flex-start;text-decoration:none;color:inherit;padding:8px;border-radius:12px;border:1px solid var(--line);background:var(--bg);transition:border-color .2s,transform .2s var(--ease)}
+.airc-card:hover{border-color:var(--mint);transform:translateY(-1px)}
+.airc-card img{flex:none;width:44px;height:55px;object-fit:cover;border-radius:8px;background:var(--bg-2)}
+.airc-card .n{flex:none;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:var(--ink);color:var(--on-ink);font:700 12px var(--body)}
+.airc-card .c{min-width:0;display:flex;flex-direction:column;gap:2px}
+.airc-card .k{font:500 10.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--mint-ink)}
+.airc-card b{font:600 14px/1.3 var(--body);overflow-wrap:anywhere}
+.airc-card .d{font-size:12.5px;line-height:1.4;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.airc-card .m{font:500 11.5px var(--body);color:var(--muted)}
+.airc-lead{font-size:14px;line-height:1.45}
+.airc-foot{font-size:11.5px;color:var(--muted);margin-top:6px}
 `;
   var st=document.createElement('style'); st.textContent=css; document.head.appendChild(st);
 
@@ -95,10 +194,19 @@
     out=out.replace(/(^|[\s(])(https?:\/\/[^\s<)]+)/g,'$1<a href="$2" target="_blank" rel="noopener">link</a>');
     return out;
   }
+  function cardsHTML(list){
+    return '<div class="airc-cards">'+list.map(function(c,i){
+      var lead=c.img?'<img src="'+esc(c.img)+'" alt="" loading="lazy">':'<span class="n">'+(i+1)+'</span>';
+      var ext=/^https?:\/\/(?!airadar08\.github\.io)/.test(c.url)&&c.url.indexOf(BASE)!==0;
+      return '<a class="airc-card" href="'+esc(c.url)+'"'+(ext?' target="_blank" rel="noopener"':'')+'>'+lead+'<span class="c">'+(c.kind?'<span class="k">'+esc(c.kind)+'</span>':'')+'<b>'+esc(c.title)+'</b>'+(c.desc?'<span class="d">'+esc(c.desc)+'</span>':'')+(c.meta?'<span class="m">'+esc(c.meta)+'</span>':'')+'</span></a>';
+    }).join('')+'</div>';
+  }
   function save(){ try{ sessionStorage.setItem(KEY,JSON.stringify(history.slice(-20))); }catch(e){} }
   function bubble(role,text,extra){
     var d=document.createElement('div'); d.className='airc-msg '+(role==='user'?'u':'a')+(extra&&extra.err?' err':'');
-    var tag=role!=='user'?'<span class="airc-who">'+LOGO+'AI Radar'+((extra&&extra.web)?'<em>· searched the web</em>':'')+'</span>':'';
+    var note=extra&&extra.site?'<em>· from our resources</em>':extra&&extra.gh?'<em>· searched GitHub</em>':(extra&&extra.web)?'<em>· searched the web</em>':'';
+    var tag=role!=='user'?'<span class="airc-who">'+LOGO+'AI Radar'+note+'</span>':'';
+    if(extra&&extra.cards){ d.className+=' cards'; d.innerHTML=tag+'<div class="airc-lead">'+esc(extra.lead||'')+'</div>'+cardsHTML(extra.cards)+(extra.foot?'<div class="airc-foot">'+esc(extra.foot)+'</div>':''); log.appendChild(d); log.scrollTop=log.scrollHeight; return d; }
     d.innerHTML=tag+(role==='user'?esc(text):fmt(text));
     if(extra&&extra.sources&&extra.sources.length){
       var s=document.createElement('div'); s.className='airc-src';
@@ -126,9 +234,37 @@
     var sug=log.querySelector('.airc-sug'); if(sug) sug.remove();
     busy=true; send.disabled=true;
     history.push({role:'user',content:q}); bubble('user',q); save();
-    var t=document.createElement('div'); t.className='airc-msg a airc-typing'; t.setAttribute('aria-label','Thinking'); t.innerHTML='<i></i><i></i><i></i>'; log.appendChild(t); log.scrollTop=log.scrollHeight;
+    function typing(){ var t=document.createElement('div'); t.className='airc-msg a airc-typing'; t.setAttribute('aria-label','Thinking'); t.innerHTML='<i></i><i></i><i></i>'; log.appendChild(t); log.scrollTop=log.scrollHeight; return t; }
+    var t=typing();
+    // Step 1: our own resources first
+    var site=[]; try{ site=matchSite(q,await loadIndex()); }catch(e){}
+    var isRepo=REPO_Q.test(q);
+    if(site.length){
+      t.remove();
+      var cards=site.map(function(it){ return {kind:it.kind,title:it.title,desc:it.desc,img:it.img,url:it.url}; });
+      var lead=site.length===1?'We have this on AI Radar:':'From our AI Radar resources:';
+      var m1={site:true,cards:cards,lead:lead};
+      history.push({role:'assistant',content:lead+' '+site.map(function(i){return i.kind+': '+i.title;}).join('; '),meta:m1}); bubble('assistant','',m1); save();
+      t=typing();
+    }
+    // Step 2a: repo questions -> live GitHub search
+    if(isRepo){
+      try{
+        var g=await githubTop(q);
+        if(g.items.length){
+          t.remove();
+          var what=g.topic?g.topic+' ':'';
+          var lead2=(site.length?'And ':'')+'Top '+g.items.length+' '+what+'AI repos on GitHub right now:';
+          var foot=g.fresh?'Most-starred repos created since '+g.since+', live from GitHub search.':'Most-starred, recently active repos, live from GitHub search.';
+          var m2={gh:true,lead:lead2,foot:foot,cards:g.items.map(function(r){ return {title:r.name,desc:r.desc,url:r.url,meta:'\u2605 '+kfmt(r.stars)+(r.lang?' \u00b7 '+r.lang:'')}; })};
+          history.push({role:'assistant',content:lead2+' '+g.items.map(function(r,i){return (i+1)+'. '+r.name+' ('+kfmt(r.stars)+' stars)';}).join('; '),meta:m2}); bubble('assistant','',m2);
+          save(); busy=false; send.disabled=false; input.focus(); return;
+        }
+      }catch(e){ /* GitHub limit or offline: fall through to the AI answer */ }
+    }
+    // Step 2b: AI answer with web news
     try{
-      var payload=JSON.stringify({messages:history.map(function(m){return {role:m.role,content:m.content};}).slice(-6)});
+      var payload=JSON.stringify({messages:history.filter(function(m){ return !(m.meta&&m.meta.cards); }).map(function(m){return {role:m.role,content:m.content};}).slice(-6)});
       var r,data;
       for(var attempt=0;attempt<2;attempt++){ // retry once if the model returns an empty answer
         r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:payload});
@@ -154,6 +290,8 @@
   form.addEventListener('submit',function(e){ e.preventDefault(); var q=input.value; input.value=''; input.style.height=''; ask(q); });
   input.addEventListener('keydown',function(e){ if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); form.requestSubmit(); } });
   input.addEventListener('input',function(){ input.style.height='auto'; input.style.height=Math.min(input.scrollHeight,120)+'px'; });
-  // deep link: airadar08.github.io/#ask opens the chat
+  // deep link: airadar08.github.io/#ask opens the chat; other scripts can call AIRadarChat.open()
+  window.AIRadarChat={open:open,close:close,ask:function(q){ open(); ask(q); }};
+  document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('[data-open-chat]'); if(a){ e.preventDefault(); open(); } });
   if(location.hash==='#ask') open();
 })();
