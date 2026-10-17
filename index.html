@@ -353,56 +353,120 @@ img{max-width:100%}
 }
 </style>
 <style>
-/* ---------- intro loader (once per visit) ---------- */
+/* ---------- intro loader (once per visit): a small radar sweep lights five card-colour blips, green last;
+   the green glides to the centre and opens a mint ring onto the page ---------- */
 #intro{display:none}
 html.intro{overflow:hidden}
-html.intro #intro{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:radial-gradient(60% 50% at 50% 45%,rgba(52,201,138,.10),transparent 70%),#0a0c0b;color:#eef1ee;transition:transform .85s cubic-bezier(.76,0,.24,1),border-radius .85s cubic-bezier(.76,0,.24,1)}
-#intro.out{transform:translateY(-102%);border-radius:0 0 48px 48px}
-#intro .in-wrap{display:flex;flex-direction:column;align-items:center;gap:26px;transition:opacity .45s,transform .85s cubic-bezier(.76,0,.24,1)}
-#intro.out .in-wrap{opacity:0;transform:translateY(-40px) scale(.96)}
-#intro .scope{position:relative;width:200px;height:200px;border-radius:50%;
-  background:repeating-radial-gradient(circle,rgba(52,201,138,.0) 0 31px,rgba(52,201,138,.22) 31px 32px);border:1px solid rgba(52,201,138,.35);overflow:hidden}
-#intro .scope::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 49.6%,rgba(52,201,138,.18) 49.6% 50.4%,transparent 50.4%),linear-gradient(0deg,transparent 49.6%,rgba(52,201,138,.18) 49.6% 50.4%,transparent 50.4%)}
-#intro .sweep{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,rgba(52,201,138,.55),rgba(52,201,138,0) 70deg,transparent 360deg);animation:introSpin 1.6s linear infinite}
-#intro .blip{position:absolute;width:7px;height:7px;border-radius:50%;background:#6fdcaa;box-shadow:0 0 12px 3px rgba(52,201,138,.7);opacity:0;animation:introBlip 1.6s ease-out infinite}
-#intro .blip:nth-of-type(2){left:64%;top:26%;animation-delay:.25s}
-#intro .blip:nth-of-type(3){left:24%;top:62%;animation-delay:.9s}
-#intro .blip:nth-of-type(4){left:70%;top:70%;animation-delay:1.2s}
-#intro .scope img{position:absolute;left:50%;top:50%;width:62px;height:62px;margin:-31px 0 0 -31px;border-radius:50%;box-shadow:0 0 0 6px #0a0c0b,0 0 30px rgba(52,201,138,.5)}
-#intro .name{font:700 30px/1 Inter,system-ui,sans-serif;letter-spacing:-.03em}
-#intro .bar{width:200px;height:2px;border-radius:2px;background:rgba(255,255,255,.1);overflow:hidden}
-#intro .bar i{display:block;height:100%;width:0;background:#34c98a;box-shadow:0 0 10px #34c98a}
-#intro .pct{font:500 12px 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.14em;color:#9aa39c;margin-top:-14px}
-@keyframes introSpin{to{transform:rotate(360deg)}}
-@keyframes introBlip{0%{opacity:0;transform:scale(.4)}15%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.4)}}
+html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
+#intro canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+#intro .word{position:absolute;left:0;right:0;top:calc(50% + 120px);text-align:center;font:600 11px Inter,system-ui,sans-serif;letter-spacing:.42em;text-indent:.42em;text-transform:uppercase;color:#5d665f;opacity:0}
 </style>
 <script>
-/* show the intro once per visit; never with reduced motion */
-(function(){ try{ if(!sessionStorage.getItem('air-intro')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){ document.documentElement.classList.add('intro'); window.__airIntro=1450; } }catch(e){} })();
+/* show the intro once per visit; never with reduced motion or in a background tab */
+(function(){ try{ if(!sessionStorage.getItem('air-intro')&&!document.hidden&&!matchMedia('(prefers-reduced-motion: reduce)').matches){ document.documentElement.classList.add('intro'); window.__airIntro=4800; } }catch(e){} })();
 </script>
 </head>
 <body>
-<div id="intro" aria-hidden="true">
-  <div class="in-wrap">
-    <div class="scope"><span class="sweep"></span><span class="blip"></span><span class="blip"></span><span class="blip"></span><img src="assets/logo.svg" alt=""></div>
-    <div class="name">AI Radar</div>
-    <div class="bar"><i></i></div>
-    <div class="pct">00%</div>
-  </div>
-</div>
+<div id="intro" aria-hidden="true"><canvas></canvas><div class="word">AI Radar</div></div>
 <script>
 (function(){
+  'use strict';
   var root=document.documentElement, el=document.getElementById('intro');
   if(!root.classList.contains('intro')||!el) return;
-  var bar=el.querySelector('.bar i'), pct=el.querySelector('.pct'), t0=Date.now(), D=1300;
-  // a timer, not requestAnimationFrame, so it still finishes in a background tab
-  var tick=setInterval(function(){
-    var k=Math.min(1,(Date.now()-t0)/D), e=1-Math.pow(1-k,3), n=Math.round(e*100);
-    bar.style.width=n+'%'; pct.textContent=(n<10?'0':'')+n+'%';
-    if(k>=1){ clearInterval(tick); el.classList.add('out');
-      try{ sessionStorage.setItem('air-intro','1'); }catch(err){}
-      setTimeout(function(){ root.classList.remove('intro'); el.remove(); },900); }
-  },30);
+  var cv=el.querySelector('canvas'), g=cv.getContext('2d'), word=el.querySelector('.word');
+  if(!g){ root.classList.remove('intro'); el.remove(); window.__airIntro=0; return; }
+  var GROUND='#0a0c0b', MINT='#34c98a';
+  var R=92;                                         // radar radius (px)
+  // blips: angle clockwise from the top (deg), distance from centre (0..1 of R), colour. Green is last.
+  var BLIPS=[[38,.62,'#e0b400'],[112,.42,'#4a90f0'],[178,.74,'#9b7cf0'],[246,.5,'#f07a4f'],[318,.66,'#34c98a']];
+  // timeline (seconds)
+  var APPEAR=0.6, SWEEP_END=2.75, LOCK=2.75, GLIDE=3.05, GLIDE_LEN=0.9, BREATH=3.95, BREATH_LEN=0.4, OPEN=4.35, OPEN_LEN=1.2, END=OPEN+OPEN_LEN+0.05;
+  var W=0,H=0,DPR=1,t0=0,raf=0;
+
+  function clamp(x){ return x<0?0:x>1?1:x; }
+  function smooth(a,b,x){ var k=clamp((x-a)/(b-a)); return k*k*(3-2*k); }
+  function inOutCubic(k){ return k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2; }
+  function inOutQuart(k){ return k<.5?8*k*k*k*k:1-Math.pow(-2*k+2,4)/2; }
+  function outCubic(k){ return 1-Math.pow(1-k,3); }
+  function rgba(hex,a){ var n=parseInt(hex.slice(1),16); return 'rgba('+(n>>16)+','+(n>>8&255)+','+(n&255)+','+a+')'; }
+  function size(){ DPR=Math.min(2,window.devicePixelRatio||1); W=innerWidth; H=innerHeight; cv.width=W*DPR; cv.height=H*DPR; g.setTransform(DPR,0,0,DPR,0,0); }
+  addEventListener('resize',size); size();
+
+  var START=-90, TOTAL=BLIPS[4][0];                 // the sweep starts at the top and travels to the green blip
+  // sweep angle: eases in, cruises, and slows to a stop on the green blip
+  function sweepDeg(t){ var k=clamp((t-0.25)/(SWEEP_END-0.25)); var e=k<.15?(k*k)/(.3):(k<.75?.075+(k-.15)*1.2:.795+(1-Math.pow(1-(k-.75)/.25,1.463))*.205); return START+TOTAL*Math.min(1,e); }
+  function hitTime(deg){ for(var t=0.25;t<=SWEEP_END;t+=0.005){ if(sweepDeg(t)-START>=deg) return t; } return SWEEP_END; }
+  var HITS=BLIPS.map(function(b){ return hitTime(b[0]); });
+  function polar(deg,dist,cx,cy){ var a=(deg-90)*Math.PI/180; return [cx+Math.cos(a)*dist*R, cy+Math.sin(a)*dist*R]; }
+
+  function draw(t){
+    var cx=W/2, cy=H/2;
+    g.globalCompositeOperation='source-over'; g.clearRect(0,0,W,H);
+    g.fillStyle=GROUND; g.fillRect(0,0,W,H);
+    var show=smooth(0,APPEAR,t)*(1-smooth(GLIDE+0.2,GLIDE+GLIDE_LEN,t));     // radar fades in, then out as the green glides
+    var grow=0.92+0.08*outCubic(clamp(t/APPEAR));
+    if(show>0.002){
+      g.save(); g.translate(cx,cy); g.scale(grow,grow);
+      // faint disc and rings
+      var bg=g.createRadialGradient(0,0,0,0,0,R); bg.addColorStop(0,rgba(MINT,.06*show)); bg.addColorStop(1,rgba(MINT,.015*show));
+      g.fillStyle=bg; g.beginPath(); g.arc(0,0,R,0,Math.PI*2); g.fill();
+      g.lineWidth=1;
+      [1,.66,.33].forEach(function(f,i){ g.strokeStyle=rgba(MINT,(i?0.13:0.32)*show); g.beginPath(); g.arc(0,0,R*f,0,Math.PI*2); g.stroke(); });
+      g.strokeStyle=rgba(MINT,.1*show); g.beginPath(); g.moveTo(-R,0); g.lineTo(R,0); g.moveTo(0,-R); g.lineTo(0,R); g.stroke();
+      // tick marks round the rim
+      g.strokeStyle=rgba(MINT,.22*show);
+      for(var d=0;d<360;d+=15){ var a=d*Math.PI/180, l=d%45===0?7:4; g.beginPath(); g.moveTo(Math.cos(a)*(R-l),Math.sin(a)*(R-l)); g.lineTo(Math.cos(a)*R,Math.sin(a)*R); g.stroke(); }
+      // the sweep: a soft trailing wedge and a bright leading line; it fades once it has locked on the green
+      var sw=sweepDeg(t), sa=sw*Math.PI/180, sAlpha=show*(1-smooth(LOCK+0.05,LOCK+0.45,t));
+      if(sAlpha>0.002){
+        var trail=70*Math.PI/180, steps=24;
+        for(var i=0;i<steps;i++){ var a0=sa-trail*(i+1)/steps, a1=sa-trail*i/steps; g.fillStyle=rgba(MINT,0.20*sAlpha*Math.pow(1-i/steps,1.6)); g.beginPath(); g.moveTo(0,0); g.arc(0,0,R,a0,a1+0.004); g.closePath(); g.fill(); }
+        g.strokeStyle=rgba('#6fdcaa',0.85*sAlpha); g.lineWidth=1.5; g.beginPath(); g.moveTo(0,0); g.lineTo(Math.cos(sa)*R,Math.sin(sa)*R); g.stroke();
+      }
+      g.restore();
+    }
+    // blips
+    for(var b=0;b<5;b++){
+      var B=BLIPS[b], hit=HITS[b], since=t-hit; if(since<0) continue;
+      var p=polar(B[0],B[1],cx,cy), col=B[2], r=b===4?5.5:4.5, a=1;
+      if(b<4){
+        var lit=0.55+0.45*Math.exp(-since*3);                                    // flash on hit, then a steady glow
+        var out=smooth(GLIDE,GLIDE+0.5,t);                                       // fade away as the green takes over
+        a=lit*(1-out); r*=(1-0.5*out);
+        p=[p[0]+(cx-p[0])*0.18*out, p[1]+(cy-p[1])*0.18*out];
+      }else{
+        // the green glides to the centre along a gentle curve and grows
+        var k=inOutCubic(clamp((t-GLIDE)/GLIDE_LEN));
+        var ctrl=polar(B[0]+42,B[1]*0.55,cx,cy);
+        var x=(1-k)*(1-k)*p[0]+2*(1-k)*k*ctrl[0]+k*k*cx, y=(1-k)*(1-k)*p[1]+2*(1-k)*k*ctrl[1]+k*k*cy; p=[x,y];
+        r=5.5+(9-5.5)*k;
+        r*=1+0.3*outCubic(clamp((t-BREATH)/BREATH_LEN));                          // one breath at the centre
+        if(t>=OPEN) a=0;
+      }
+      if(a<=0.002) continue;
+      // ping ring when the sweep finds it
+      if(since<0.9){ var pk=since/0.9; g.strokeStyle=rgba(col,(1-pk)*0.7*a); g.lineWidth=1.2; g.beginPath(); g.arc(p[0],p[1],r+pk*16,0,Math.PI*2); g.stroke(); }
+      if(b===4&&t>=LOCK&&t<GLIDE+0.3){ var lk=clamp((t-LOCK)/0.6); g.strokeStyle=rgba(col,(1-lk)*0.8); g.lineWidth=1.4; g.beginPath(); g.arc(p[0],p[1],r+4+lk*22,0,Math.PI*2); g.stroke(); }
+      g.save(); g.shadowColor=rgba(col,0.9*a); g.shadowBlur=b===4?18:12; g.fillStyle=rgba(col,a); g.beginPath(); g.arc(p[0],p[1],r,0,Math.PI*2); g.fill(); g.restore();
+    }
+    // the opening: the green becomes an even mint ring that grows out and thins away; sonar ripples run ahead; the site shows inside
+    if(t>=OPEN){
+      var cover=Math.hypot(W/2,H/2)+2, r0=9*1.3, ko=inOutQuart(clamp((t-OPEN)/OPEN_LEN));
+      var outer=r0+(cover-r0)*ko, band=r0*(1-ko)+10*Math.sin(Math.PI*ko)*(1-ko), inner=Math.max(0,outer-band);
+      // ripples first, on the cover
+      for(var q=1;q<=2;q++){ var kq=clamp((t-OPEN)/(OPEN_LEN*0.9)), rq=outer+q*26*Math.sin(Math.PI*Math.min(1,kq*1.1)); g.strokeStyle=rgba(MINT,0.28*(1-kq)/q); g.lineWidth=1; g.beginPath(); g.arc(cx,cy,rq,0,Math.PI*2); g.stroke(); }
+      g.fillStyle=MINT; g.beginPath(); g.arc(cx,cy,outer,0,Math.PI*2); g.fill();
+      g.globalCompositeOperation='destination-out'; g.beginPath(); g.arc(cx,cy,inner,0,Math.PI*2); g.fill();
+      g.globalCompositeOperation='source-over';
+    }
+    word.style.opacity=(smooth(0.7,1.4,t)*(1-smooth(LOCK,LOCK+0.4,t))).toFixed(3);
+  }
+  var t0=performance.now(), done=false;
+  function finish(){ if(done) return; done=true; try{ sessionStorage.setItem('air-intro','1'); }catch(e){} root.classList.remove('intro'); el.remove(); }
+  requestAnimationFrame(function loop(now){ if(done) return; var t=(now-t0)/1000; if(t>=END){ finish(); return; } draw(t); requestAnimationFrame(loop); });
+  // never leave the page covered: finish if the tab is hidden or frames stall
+  document.addEventListener('visibilitychange',function(){ if(document.hidden) finish(); });
+  setTimeout(finish,(END+2.5)*1000);
 })();
 </script>
 
