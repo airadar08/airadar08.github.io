@@ -266,6 +266,7 @@
     try{
       // keep roles alternating: resource/GitHub turns go in as short assistant summaries, same-role neighbours are merged
       var msgs=[]; history.forEach(function(m){ var last=msgs[msgs.length-1]; if(last&&last.role===m.role){ last.content+='\n'+m.content; } else msgs.push({role:m.role,content:m.content}); });
+      while(msgs.length&&msgs[msgs.length-1].role!=='user') msgs.pop(); // this turn's resource cards stay on screen only
       msgs=msgs.slice(-6); while(msgs.length&&msgs[0].role!=='user') msgs.shift();
       var payload=JSON.stringify({messages:msgs});
       var r,data;
