@@ -2,13 +2,20 @@
 
   python3 tools/update_site.py cheatsheet <slug> <card.jpg> "<title>" "<subtitle>" "<tag, e.g. Agents>"
   python3 tools/update_site.py repo <card.jpg> <repo.json> [post_url]
+  python3 tools/update_site.py post <post.json> [card.png]          # any post (news, fact, ...) -> data/posts.json
+  python3 tools/update_site.py link <id|slug|latest> <x_post_url>   # add the X link after posting
 
 cheatsheet: copies the image to cheatsheets/img/<slug>.jpg and inserts entries after the
             <!-- new-cheatsheet:page --> and <!-- new-cheatsheet:home --> markers (newest first).
 repo:       copies the image to repos/img/<owner>-<name>.jpg and prepends an entry to data/repos.json
             (the Repos page and the home "Trending repos" strip render from that file).
+post:       adds one entry to data/posts.json (the app's Posts archive). post.json fields: see tools/posts.py.
+            cheatsheet and repo also add their post entry automatically.
+link:       sets x_url on the matching archive entry once the X post is live.
 Exits non-zero without changing anything if the entry already exists."""
 import sys, json, shutil, html, datetime as dt, pathlib, re
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import posts  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 IST = dt.timezone(dt.timedelta(hours=5, minutes=30))
@@ -31,6 +38,8 @@ def cheatsheet(slug, jpg, title, sub, tag):
     assert m1 in cs and m2 in hm, "markers missing"
     page.write_text(cs.replace(m1, m1 + art, 1), encoding="utf-8")
     home.write_text(hm.replace(m2, m2 + card, 1), encoding="utf-8")
+    posts.add({"type": "Cheatsheet", "title": f"{title} cheatsheet", "summary": sub, "link": f"cheatsheets/#{slug}",
+               "img": f"cheatsheets/img/{slug}.jpg", "id": f"{posts.now_iso()[:10]}-cheatsheet-{slug}"})
     print("cheatsheet added:", slug)
 
 
@@ -55,6 +64,10 @@ def repo(jpg, repo_json, post_url=""):
     })
     data.parent.mkdir(exist_ok=True)
     data.write_text(json.dumps(items, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    it = items[0]
+    posts.add({"type": "Repo", "title": f"Trending AI repo: {full}", "summary": it["tagline"], "points": it["what"],
+               "link": f"repos/#{slug}", "source": it["url"], "img": it["img"], "x_url": post_url,
+               "id": f"{posts.now_iso()[:10]}-repo-{slug}"})
     print("repo added:", full)
 
 
@@ -62,4 +75,8 @@ if __name__ == "__main__":
     kind = sys.argv[1] if len(sys.argv) > 1 else ""
     if kind == "cheatsheet" and len(sys.argv) == 7: cheatsheet(*sys.argv[2:7])
     elif kind == "repo" and len(sys.argv) in (4, 5): repo(*sys.argv[2:])
+    elif kind == "post" and len(sys.argv) in (3, 4):
+        d = json.loads(pathlib.Path(sys.argv[2]).read_text(encoding="utf-8"))
+        print("post saved:", posts.add(d, sys.argv[3] if len(sys.argv) == 4 else None)["id"])
+    elif kind == "link" and len(sys.argv) == 4: print("linked:", posts.link(sys.argv[2], sys.argv[3])["id"])
     else: sys.exit(__doc__)

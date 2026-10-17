@@ -19,6 +19,7 @@ import sys, json, html, re, pathlib, datetime as dt
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
 from render_cheatsheet import RADAR, bake  # noqa: E402
+import posts  # noqa: E402
 
 IST = dt.timezone(dt.timedelta(hours=5, minutes=30))
 e = html.escape
@@ -114,6 +115,9 @@ def main(path, post_url=""):
         for i in items:
             if i["slug"] == slug and not i.get("post"): i["post"] = post_url
         data.write_text(json.dumps(items, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    posts.add({"type": "Prompt pack", "title": f"FREE: {title}", "summary": p.get("desc", ""),
+               "points": [c["name"] for c in cats][:4], "link": f"prompt-packs/{slug}/", "img": f"prompt-packs/{slug}/cover.jpg",
+               "x_url": post_url, "id": f"pack-{slug}"})
     print(f"pack ready: prompt-packs/{slug}/ ({total} prompts); cover: {d/'cover.png'}")
 
 

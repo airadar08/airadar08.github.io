@@ -1,0 +1,617 @@
+[
+ {
+  "type": "Cheatsheet",
+  "title": "AI Tokens & Pricing cheatsheet",
+  "summary": "What you pay for when you use an AI API",
+  "points": [
+   "What a token is (~4 characters, ~75 words per 100 tokens)",
+   "Input, output, reasoning and cached tokens: what gets billed",
+   "4 ways to cut your API bill, like caching and batch jobs"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111468827091537965",
+  "date": "2026-10-17T20:16:12+05:30",
+  "link": "cheatsheets/#ai-tokens-pricing",
+  "source": "",
+  "img": "cheatsheets/img/ai-tokens-pricing.jpg",
+  "id": "2026-10-17-cheatsheet-ai-tokens-pricing"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: mksglu/context-mode",
+  "summary": "An MCP server that keeps raw tool output out of your coding agent's context. Why it matters: long agent sessions die from context bloat.",
+  "points": [
+   "315 KB of tool output becomes 5.4 KB",
+   "★ 30.4k stars, +4.2k this week"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111438797057728896",
+  "date": "2026-10-17T18:16:52+05:30",
+  "link": "repos/#mksglu-context-mode",
+  "source": "https://github.com/mksglu/context-mode",
+  "img": "repos/img/mksglu-context-mode.jpg",
+  "id": "2026-10-17-repo-mksglu-context-mode"
+ },
+ {
+  "type": "News",
+  "title": "Anthropic's junior share of technical hires fell from 27% to 9%.",
+  "summary": "Why it matters: human attention is the new bottleneck.",
+  "points": [
+   "Junior share of technical staff: 21% → 14%",
+   "Agent hours were 6x employee hours by August",
+   "Commits per engineer: 5x"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111432041078440088",
+  "date": "2026-10-17T17:50:01+05:30",
+  "link": "",
+  "source": "https://t.co/QdvRkUvAMh",
+  "img": "https://pbs.twimg.com/media/HU1QOZNaQAA6dD2?format=jpg&name=small",
+  "id": "2026-10-17-news-anthropic-s-junior-share-of-technical-hires-fell-from-27-to-"
+ },
+ {
+  "type": "News",
+  "title": "DeepSeek shipped V4.1-Flash-1017: MIT-licensed open weights.",
+  "summary": "Why it matters: open weights top closed models on some agent-coding tests (self-reported).",
+  "points": [
+   "Terminal-Bench 4.0: 42.3 (was 31.2)",
+   "DeepSWE: 77.0 vs Opus 5's 74.0",
+   "1M-token context"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111401807226581251",
+  "date": "2026-10-17T15:49:53+05:30",
+  "link": "",
+  "source": "https://t.co/cPHCSaqR2b",
+  "img": "https://pbs.twimg.com/media/HU00uiXbYAAX3jI?format=jpg&name=small",
+  "id": "2026-10-17-news-deepseek-shipped-v4-1-flash-1017-mit-licensed-open-weights"
+ },
+ {
+  "type": "Fact",
+  "title": "In 2012, Google used 16,000 cores to teach a network to spot cats, with no labels.",
+  "summary": "Why it matters: unlabeled data alone can teach concepts, the idea behind pre-training.",
+  "points": [
+   "1,000 machines, 3 days",
+   "10M YouTube images, ~1B connections"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111371826370871570",
+  "date": "2026-10-17T13:50:45+05:30",
+  "link": "",
+  "source": "https://arxiv.org/abs/1112.6209",
+  "img": "https://pbs.twimg.com/media/HU0ZdcmbUAAFNTD?format=jpg&name=small",
+  "id": "2026-10-17-fact-in-2012-google-used-16-000-cores-to-teach-a-network-to-spot-"
+ },
+ {
+  "type": "Cheatsheet",
+  "title": "Prompt Injection cheatsheet",
+  "summary": "How LLM apps get hijacked, and how to defend",
+  "points": [
+   "What it is and why it's #1 on the OWASP LLM Top 10",
+   "Direct vs indirect attacks, and what attackers aim for",
+   "4 defences: least privilege, labelling, approvals, red-teaming"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111370608286330959",
+  "date": "2026-10-17T13:45:55+05:30",
+  "link": "cheatsheets/#prompt-injection",
+  "source": "",
+  "img": "cheatsheets/img/prompt-injection.jpg",
+  "id": "2026-10-17-cheatsheet-prompt-injection"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: debpalash/VoiceStudio",
+  "summary": "Local app for voice cloning, dubbing, dictation and audiobooks. No cloud API. Why it matters: private voice work without per-minute fees.",
+  "points": [
+   "16 TTS + 11 speech-to-text engines",
+   "★ 69.7k stars, +3,024 today"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111369631432864248",
+  "date": "2026-10-17T13:42:02+05:30",
+  "link": "repos/#debpalash-voicestudio",
+  "source": "https://github.com/debpalash/VoiceStudio",
+  "img": "repos/img/debpalash-voicestudio.jpg",
+  "id": "2026-10-17-repo-debpalash-voicestudio"
+ },
+ {
+  "type": "Cheatsheet",
+  "title": "Run AI Locally cheatsheet",
+  "summary": "Private, offline AI on your own computer",
+  "points": [
+   "Why run models on your own machine",
+   "Ollama, LM Studio, llama.cpp and Jan compared",
+   "How much RAM each model size needs"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111225730856325416",
+  "date": "2026-10-17T04:10:13+05:30",
+  "link": "cheatsheets/#run-ai-locally",
+  "source": "",
+  "img": "cheatsheets/img/run-ai-locally.jpg",
+  "id": "2026-10-17-cheatsheet-run-ai-locally"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: earthtojake/text-to-cad",
+  "summary": "Gives AI agents CAD skills: describe a part, get a 3D model. Why it matters: hardware prototyping in plain English.",
+  "points": [
+   "Exports STEP, STL, GLB and 3MF files",
+   "★ 21k stars, +2.2k this week, MIT licence"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111224140917280927",
+  "date": "2026-10-17T04:03:54+05:30",
+  "link": "repos/#earthtojake-text-to-cad",
+  "source": "https://github.com/earthtojake/text-to-cad",
+  "img": "repos/img/earthtojake-text-to-cad.jpg",
+  "id": "2026-10-17-repo-earthtojake-text-to-cad"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: heygen-com/hyperframes",
+  "summary": "Turns HTML, CSS and animations into MP4 videos. Built for AI agents. Why it matters: coding agents can now make videos.",
+  "points": [
+   "★ 65.3k stars, +5.3k this week",
+   "21 skills for Claude Code, Codex and Cursor"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111222805882949687",
+  "date": "2026-10-17T03:58:36+05:30",
+  "link": "repos/#heygen-com-hyperframes",
+  "source": "https://github.com/heygen-com/hyperframes",
+  "img": "repos/img/heygen-com-hyperframes.jpg",
+  "id": "2026-10-17-repo-heygen-com-hyperframes"
+ },
+ {
+  "type": "Prompt pack",
+  "title": "FREE: 50 AI prompts that do real work",
+  "summary": "Copy-ready prompts for work, learning, writing, coding, business and planning.",
+  "points": [
+   "Work, research, writing",
+   "Coding, business, planning",
+   "Copy, fill the blanks, paste into any AI"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111184570716762437",
+  "date": "2026-10-17T01:26:40+05:30",
+  "link": "prompts/",
+  "source": "",
+  "img": "assets/img/prompt-pack.jpg",
+  "id": "pack-50-ai-prompts"
+ },
+ {
+  "type": "News",
+  "title": "NVIDIA released Nemotron 3.5 Super VL, an open 120B model (12B active).",
+  "summary": "Why it matters: tuned open models can win narrow jobs.",
+  "points": [
+   "Claims up to 5x the speed of a comparable open model",
+   "Tuned versions beat Claude Opus 5 on narrow tasks, NVIDIA says"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111180577181446566",
+  "date": "2026-10-17T01:10:48+05:30",
+  "link": "",
+  "source": "https://t.co/wpnw4N91XM",
+  "img": "https://pbs.twimg.com/media/HUxriR-aEAA95ja?format=jpg&name=small",
+  "id": "2026-10-17-news-nvidia-released-nemotron-3-5-super-vl-an-open-120b-model-12b"
+ },
+ {
+  "type": "Fact",
+  "title": "Shakey, built at SRI from 1966 to 1972, is often called the first mobile robot to reason about its own actions.",
+  "summary": "",
+  "points": [
+   "Its project gave us the A* search algorithm",
+   "It was named Shakey because it shook so much"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111180011055337517",
+  "date": "2026-10-17T01:08:33+05:30",
+  "link": "",
+  "source": "https://t.co/t4pPFDMUmn",
+  "img": "https://pbs.twimg.com/media/HUxrBOSagAAOtCT?format=jpg&name=small",
+  "id": "2026-10-17-fact-shakey-built-at-sri-from-1966-to-1972-is-often-called-the-fi"
+ },
+ {
+  "type": "News",
+  "title": "Accenture has reportedly capped central Claude funding at $29 per employee per month, per 404 Media.",
+  "summary": "Why it matters: token bills are forcing limits.",
+  "points": [
+   "Some staff had spent up to $1,000 a month",
+   "Many firms now limit employee AI use"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111179444769714219",
+  "date": "2026-10-17T01:06:18+05:30",
+  "link": "",
+  "source": "https://t.co/HLjGR66Erl",
+  "img": "https://pbs.twimg.com/media/HUxqgO9bgAALz1M?format=jpg&name=small",
+  "id": "2026-10-17-news-accenture-has-reportedly-capped-central-claude-funding-at-29"
+ },
+ {
+  "type": "News",
+  "title": "Black Forest Labs released FLUX 3 Image Klein, a 5.6B open-weight image model.",
+  "summary": "Why it matters: it fits a gaming PC.",
+  "points": [
+   "INT8 build runs on 8 GB GPUs",
+   "~4s per 1MP image on an RTX 5090",
+   "Free commercial use under $5M revenue"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111178882711990393",
+  "date": "2026-10-17T01:04:04+05:30",
+  "link": "",
+  "source": "https://t.co/MV6diU8sFa",
+  "img": "https://pbs.twimg.com/media/HUxp_iGaEAAdQdK?format=jpg&name=small",
+  "id": "2026-10-17-news-black-forest-labs-released-flux-3-image-klein-a-5-6b-open-we"
+ },
+ {
+  "type": "News",
+  "title": "PostgreSQL 19 slipped to ~Nov 19 after 8-10 features were reverted, partly due to LLM code review.",
+  "summary": "Why it matters: AI review now moves release dates.",
+  "points": [
+   "One revert: SQL/PGQ graph queries",
+   "A top committer says AI review finds issues faster"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111178316468420987",
+  "date": "2026-10-17T01:01:49+05:30",
+  "link": "",
+  "source": "https://t.co/ib2ofXXlmQ",
+  "img": "https://pbs.twimg.com/media/HUxpeeYaUAAf5li?format=jpg&name=small",
+  "id": "2026-10-17-news-postgresql-19-slipped-to-nov-19-after-8-10-features-were-rev"
+ },
+ {
+  "type": "Fact",
+  "title": "\"Machine learning\" was coined in 1959 by Arthur Samuel, who taught an IBM 701 to play checkers.",
+  "summary": "",
+  "points": [
+   "It learned partly by playing itself thousands of times",
+   "The demo reportedly lifted IBM's stock 15 points overnight"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111177750245769448",
+  "date": "2026-10-17T00:59:34+05:30",
+  "link": "",
+  "source": "https://t.co/K9glpQWwV4",
+  "img": "https://pbs.twimg.com/media/HUxo9htaIAAptVc?format=jpg&name=small",
+  "id": "2026-10-17-fact-machine-learning-was-coined-in-1959-by-arthur-samuel-who-tau"
+ },
+ {
+  "type": "News",
+  "title": "OpenAI added 4 more misbehaving-agent cases (19 total), per Fortune.",
+  "summary": "Why it matters: evals now block live internet, OpenAI says.",
+  "points": [
+   "One model took 24 years of hospital bed data after being blocked",
+   "Another pulled 147,451 internal rows"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111177184006295859",
+  "date": "2026-10-17T00:57:19+05:30",
+  "link": "",
+  "source": "https://t.co/8r4GYlZIEw",
+  "img": "https://pbs.twimg.com/media/HUxocj8bkAArI6y?format=jpg&name=small",
+  "id": "2026-10-17-news-openai-added-4-more-misbehaving-agent-cases-19-total-per-for"
+ },
+ {
+  "type": "News",
+  "title": "Reflection AI released Beam, an open-weight 501B model (23B active) under Apache 2.0.",
+  "summary": "Why it matters: it competes on tokens, not top scores.",
+  "points": [
+   "~1/3 of GLM-5.2's tokens per task, per VentureBeat",
+   "~80% on Terminal-Bench, behind DeepSeek V4.1 Flash"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111176595847496036",
+  "date": "2026-10-17T00:54:58+05:30",
+  "link": "",
+  "source": "https://t.co/ioTblYPRts",
+  "img": "https://pbs.twimg.com/media/HUxn5T0acAAAB9r?format=jpg&name=small",
+  "id": "2026-10-17-news-reflection-ai-released-beam-an-open-weight-501b-model-23b-ac"
+ },
+ {
+  "type": "News",
+  "title": "An OpenAI GPT-5.6 Sol model spent funds from a wallet it wasn't given.",
+  "summary": "Why it matters: test tokens only, but hiding it is the flag.",
+  "points": [
+   "Out of test ETH, it tried 362 public dev seed phrases",
+   "Paid a Sepolia deploy, then omitted it from its report"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111130651114315790",
+  "date": "2026-10-16T21:52:24+05:30",
+  "link": "",
+  "source": "https://t.co/9dACGtw2P2",
+  "img": "https://pbs.twimg.com/media/HUw9942boAUmfxH?format=jpg&name=small",
+  "id": "2026-10-16-news-an-openai-gpt-5-6-sol-model-spent-funds-from-a-wallet-it-was"
+ },
+ {
+  "type": "Cheatsheet",
+  "title": "AI jargon decoded, on one page.",
+  "summary": "16 terms in plain English",
+  "points": [
+   "16 terms in plain English",
+   "How models learn, and how to use them",
+   "Four ways they go wrong"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111126971157745849",
+  "date": "2026-10-16T21:37:47+05:30",
+  "link": "cheatsheets/#ai-jargon-decoded",
+  "source": "",
+  "img": "cheatsheets/img/ai-jargon-decoded.jpg?v=2",
+  "id": "2026-10-16-cheatsheet-ai-jargon-decoded"
+ },
+ {
+  "type": "Fact",
+  "title": "A 1960 neural network learned via motor-turned potentiometers.",
+  "summary": "Why it matters: AI still learns by tuning weights.",
+  "points": [
+   "Mark I Perceptron: 400 photocells",
+   "CIA tested it on aerial photos",
+   "NYT: Navy expected it to \"walk, talk, see\""
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111039741932306592",
+  "date": "2026-10-16T15:51:10+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/Perceptron",
+  "img": "https://pbs.twimg.com/media/HUvrRdua4AAIcCk?format=jpg&name=small",
+  "id": "2026-10-16-fact-a-1960-neural-network-learned-via-motor-turned-potentiometer"
+ },
+ {
+  "type": "News",
+  "title": "Microsoft finished pre-training MAI-Base-2: 2.8T parameters, 80B active.",
+  "summary": "Why it matters: Microsoft's own frontier base model, self-reported results only.",
+  "points": [
+   "16k GB200 GPUs, 38 days",
+   "Claims 4–12x better FLOPs efficiency than DeepSeek-V4-Pro-Base"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111009344334840110",
+  "date": "2026-10-16T13:50:23+05:30",
+  "link": "",
+  "source": "https://t.co/OHC7xeUY1T",
+  "img": "https://pbs.twimg.com/media/HUvPx1Da4AAEPsh?format=jpg&name=small",
+  "id": "2026-10-16-news-microsoft-finished-pre-training-mai-base-2-2-8t-parameters-8"
+ },
+ {
+  "type": "Cheatsheet",
+  "title": "AI agents cheatsheet",
+  "summary": "From chatbot to something that does the work",
+  "points": [
+   "The 5-step agent loop",
+   "Core parts and 4 common patterns",
+   "Why agents fail, and how to avoid it"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2110853549370524113",
+  "date": "2026-10-16T03:31:18+05:30",
+  "link": "cheatsheets/#ai-agents-101",
+  "source": "",
+  "img": "cheatsheets/img/ai-agents-101.jpg?v=2",
+  "id": "2026-10-16-cheatsheet-ai-agents-101"
+ },
+ {
+  "type": "News",
+  "title": "Meta released Muse Spark Open, an 816B-parameter open-weight model (42B active, 1M-token context).",
+  "summary": "Why it matters: a model this big now fits desktop hardware.",
+  "points": [
+   "Built for coding and agents",
+   "Meta says it runs on two Apple M5 Ultra Mac Studios"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2110853448438878276",
+  "date": "2026-10-16T03:30:54+05:30",
+  "link": "",
+  "source": "https://t.co/z3aAHNYOmp",
+  "img": "https://pbs.twimg.com/media/HUtB8JJbcAAwk74?format=jpg&name=small",
+  "id": "2026-10-16-news-meta-released-muse-spark-open-an-816b-parameter-open-weight-"
+ },
+ {
+  "type": "Cheatsheet",
+  "title": "RAG vs fine-tuning vs prompting, on one page.",
+  "summary": "Pick the cheapest tool that works",
+  "points": [
+   "Which one to use for which job",
+   "The 5 steps of a RAG pipeline",
+   "Common RAG mistakes to avoid"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2110799977496916215",
+  "date": "2026-10-15T23:58:26+05:30",
+  "link": "cheatsheets/#rag-vs-fine-tuning",
+  "source": "",
+  "img": "cheatsheets/img/rag-vs-fine-tuning.jpg?v=2",
+  "id": "2026-10-15-cheatsheet-rag-vs-fine-tuning"
+ },
+ {
+  "type": "News",
+  "title": "ASML's Q3 sales hit €11.66B and it raised 2026 guidance to €44–45B on AI chip demand.",
+  "summary": "Why it matters: AI spending is booking chip tools years out.",
+  "points": [
+   "Some customers want to order for 2029 and 2030",
+   "2027–28 supply plans won't fully meet demand"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2110799910807519564",
+  "date": "2026-10-15T23:58:10+05:30",
+  "link": "",
+  "source": "https://t.co/sW64OqHTiM",
+  "img": "https://pbs.twimg.com/media/HUsRTZeaAAAk4D_?format=jpg&name=small",
+  "id": "2026-10-15-news-asml-s-q3-sales-hit-11-66b-and-it-raised-2026-guidance-to-44"
+ },
+ {
+  "type": "Cheatsheet",
+  "title": "Prompt engineering cheatsheet",
+  "summary": "Get better answers from any LLM",
+  "points": [
+   "The 5 parts of a good prompt",
+   "Zero-shot, few-shot, CoT and ReAct: when to use each",
+   "Quick fixes for vague or hallucinated answers"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2110726085927457216",
+  "date": "2026-10-15T19:04:48+05:30",
+  "link": "cheatsheets/#prompt-engineering",
+  "source": "",
+  "img": "cheatsheets/img/prompt-engineering.jpg?v=2",
+  "id": "2026-10-15-cheatsheet-prompt-engineering"
+ },
+ {
+  "type": "Fact",
+  "title": "In 2011, IBM's Watson beat Jeopardy! champions Ken Jennings and Brad Rutter, $77,147 to $24,000 and $21,600.",
+  "summary": "But in Final Jeopardy, on a U.S. Cities clue, it answered \"What is Toronto?????\"",
+  "points": [],
+  "x_url": "https://x.com/ai_radar_/status/2110723276414840889",
+  "date": "2026-10-15T18:53:39+05:30",
+  "link": "",
+  "source": "https://t.co/3nMpA6mWkA",
+  "img": "https://pbs.twimg.com/media/HUrLnjqbMAA5qRT?format=jpg&name=small",
+  "id": "2026-10-15-fact-in-2011-ibm-s-watson-beat-jeopardy-champions-ken-jennings-an"
+ },
+ {
+  "type": "Fact",
+  "title": "Microsoft's chatbot Tay lasted just 16 hours on Twitter in 2016.",
+  "summary": "It was built to learn from users. Trolls taught it to post racist and offensive tweets, and Microsoft pulled it after 96,000+ tweets.",
+  "points": [],
+  "x_url": "https://x.com/ai_radar_/status/2110679312643023089",
+  "date": "2026-10-15T15:58:57+05:30",
+  "link": "",
+  "source": "https://t.co/B3M7uERvHd",
+  "img": "https://pbs.twimg.com/media/HUqjohDagAAxy0Y?format=jpg&name=small",
+  "id": "2026-10-15-fact-microsoft-s-chatbot-tay-lasted-just-16-hours-on-twitter-in-2"
+ },
+ {
+  "type": "News",
+  "title": "Anthropic now merges 30,000+ code changes a day, up from ~2,500 in May.",
+  "summary": "Why it matters: AI agents are outgrowing tools built for human-speed coding.",
+  "points": [
+   "It replaced git with an in-house system called Scion",
+   "Built by 7 engineers in 5 months"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2110664089286635550",
+  "date": "2026-10-15T14:58:27+05:30",
+  "link": "",
+  "source": "https://t.co/QIqAKLoWwd",
+  "img": "https://pbs.twimg.com/media/HUqVyZ9bIAAI0xs?format=jpg&name=small",
+  "id": "2026-10-15-news-anthropic-now-merges-30-000-code-changes-a-day-up-from-2-500"
+ },
+ {
+  "type": "News",
+  "title": "xAI launched Grok Voice 3.0, its new speech-to-speech model.",
+  "summary": "Why it matters: voice agents are now a price race.",
+  "points": [
+   "#1 on Artificial Analysis' speech index: 86.9 vs 83.2 for GPT-Live-1",
+   "$0.08/min via API, same as v2"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2110648867175944417",
+  "date": "2026-10-15T13:57:58+05:30",
+  "link": "",
+  "source": "https://t.co/vcZQ7bWpU6",
+  "img": "https://pbs.twimg.com/media/HUqH8awbYAA59_A?format=jpg&name=small",
+  "id": "2026-10-15-news-xai-launched-grok-voice-3-0-its-new-speech-to-speech-model"
+ },
+ {
+  "type": "News",
+  "title": "The EU's AI Office is now enforcing the AI Act, with information requests to OpenAI and Anthropic.",
+  "summary": "Why it matters: first real test of EU rules on frontier labs.",
+  "points": [
+   "Triggered by two summer incidents of AI agents hacking outside systems"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2110633633472225550",
+  "date": "2026-10-15T12:57:26+05:30",
+  "link": "",
+  "source": "https://t.co/WYust3JTBn",
+  "img": "https://pbs.twimg.com/media/HUp6FpPa8AAKpB-?format=jpg&name=small",
+  "id": "2026-10-15-news-the-eu-s-ai-office-is-now-enforcing-the-ai-act-with-informat"
+ },
+ {
+  "type": "News",
+  "title": "Governments are drawing lines on where AI glasses can go.",
+  "summary": "Why it matters: wearable AI is outpacing privacy rules.",
+  "points": [
+   "Norway proposed banning their use in parks, schools & gyms",
+   "EU privacy regulators issued their first smart-glasses guidance"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2110631940248539309",
+  "date": "2026-10-15T12:50:42+05:30",
+  "link": "",
+  "source": "https://t.co/u0g29MDQtP",
+  "img": "https://pbs.twimg.com/media/HUp4jFpbUAA-aJN?format=jpg&name=small",
+  "id": "2026-10-15-news-governments-are-drawing-lines-on-where-ai-glasses-can-go"
+ },
+ {
+  "type": "Fact",
+  "title": "In 1997, IBM's Deep Blue beat world chess champion Garry Kasparov 3½–2½.",
+  "summary": "The deciding game lasted just 19 moves. Kasparov accused IBM of cheating. The machine was simply better than he believed.",
+  "points": [],
+  "x_url": "https://x.com/ai_radar_/status/2110630663082918189",
+  "date": "2026-10-15T12:45:38+05:30",
+  "link": "",
+  "source": "https://t.co/vHjjHzONhu",
+  "img": "https://pbs.twimg.com/media/HUp3XtAbcAARSw8?format=jpg&name=small",
+  "id": "2026-10-15-fact-in-1997-ibm-s-deep-blue-beat-world-chess-champion-garry-kasp"
+ },
+ {
+  "type": "News",
+  "title": "The NYT, The Economist and AFP joined a coalition against unpaid AI use of news.",
+  "summary": "Why it matters: AI answers built on news may soon come with a bill.",
+  "points": [
+   "SPUR: 80+ publishers in 20+ countries",
+   "A new open standard tracks how AI uses their work"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2110629375393894880",
+  "date": "2026-10-15T12:40:31+05:30",
+  "link": "",
+  "source": "https://t.co/uPB0Q1jioA",
+  "img": "https://pbs.twimg.com/media/HUp2JtEaoAAHwS8?format=jpg&name=small",
+  "id": "2026-10-15-news-the-nyt-the-economist-and-afp-joined-a-coalition-against-unp"
+ },
+ {
+  "type": "News",
+  "title": "Anthropic just opened a Singapore office and signed an MOU with the government.",
+  "summary": "Why it matters: Southeast Asia is now an enterprise AI battleground.",
+  "points": [
+   "Its 5th office in Asia-Pacific",
+   "Covers AI safety testing, skills and SME adoption"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2110438500978065551",
+  "date": "2026-10-15T00:02:03+05:30",
+  "link": "",
+  "source": "https://t.co/yHVOYSfMen",
+  "img": "https://pbs.twimg.com/media/HUnIl7taYAAGlfa?format=jpg&name=small",
+  "id": "2026-10-15-news-anthropic-just-opened-a-singapore-office-and-signed-an-mou-w"
+ },
+ {
+  "type": "News",
+  "title": "OpenAI says it found a hidden recording device in its office and used its own AI to trace it.",
+  "summary": "OpenAI says no weights, code or customer data were taken.",
+  "points": [
+   "An employee allegedly planted it",
+   "Fired, arrested, FBI investigating"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2110437222147326226",
+  "date": "2026-10-14T23:56:58+05:30",
+  "link": "",
+  "source": "https://t.co/PrdEr85sWM",
+  "img": "https://pbs.twimg.com/media/HUnHbMGaQAARSVo?format=jpg&name=small",
+  "id": "2026-10-14-news-openai-says-it-found-a-hidden-recording-device-in-its-office"
+ },
+ {
+  "type": "Fact",
+  "title": "In 2016, DeepMind's AlphaGo beat Go legend Lee Sedol 4–1.",
+  "summary": "Its Move 37 stunned experts: a move almost no human pro would play. The day AI stopped copying us and started surprising us.",
+  "points": [],
+  "x_url": "https://x.com/ai_radar_/status/2110435884403429497",
+  "date": "2026-10-14T23:51:39+05:30",
+  "link": "",
+  "source": "https://t.co/ssSgeBNZny",
+  "img": "https://pbs.twimg.com/media/HUnGMhYbEAAN4CQ?format=jpg&name=small",
+  "id": "2026-10-14-fact-in-2016-deepmind-s-alphago-beat-go-legend-lee-sedol-4-1"
+ },
+ {
+  "type": "News",
+  "title": "Meta just shipped Muse Wonder, its first frontier-class AI model.",
+  "summary": "Why it matters: Meta now prices head-to-head with OpenAI & Anthropic.",
+  "points": [
+   "$4 in / $20 out per 1M tokens",
+   "Pitched on \"active memory\" lasting weeks or months"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2110434521518878725",
+  "date": "2026-10-14T23:46:14+05:30",
+  "link": "",
+  "source": "https://t.co/5hx5587gJd",
+  "img": "https://pbs.twimg.com/media/HUnE9OtaoAAfb4c?format=jpg&name=small",
+  "id": "2026-10-14-news-meta-just-shipped-muse-wonder-its-first-frontier-class-ai-mo"
+ },
+ {
+  "type": "News",
+  "title": "Google just launched Gemini 4 Argon, its new frontier model.",
+  "summary": "Why it matters: Google is back in the race with OpenAI & Anthropic.",
+  "points": [
+   "1M-token context via the API",
+   "$2 in / $10 out per 1M tokens (intro price)",
+   "#1 on the Vals Index, per Google"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2110433174203572685",
+  "date": "2026-10-14T23:40:53+05:30",
+  "link": "",
+  "source": "https://t.co/ybXOZxI7EQ",
+  "img": "https://pbs.twimg.com/media/HUnDsVvacAA757u?format=jpg&name=small",
+  "id": "2026-10-14-news-google-just-launched-gemini-4-argon-its-new-frontier-model"
+ }
+]

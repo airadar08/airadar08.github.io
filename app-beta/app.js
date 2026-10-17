@@ -30,7 +30,7 @@
     ['Security',/\bsecurity|injection|jailbreak|attack|privacy/i],['Careers',/\bcareer|job|interview|resume|learn(ing)? path|course/i],
     ['Research',/\bpaper|arxiv|research|benchmark|study/i],['Tools',/\btool|app|extension|plugin|platform/i]
   ];
-  var TYPES=['Repo','Article','Blog','Cheatsheet','Prompt pack','Tool','Answer'];
+  var TYPES=['Post','Repo','Article','Blog','Cheatsheet','Prompt pack','Tool','Answer'];
   function tagsFor(text){ var t=[]; TOPICS.forEach(function(p){ if(p[1].test(text)) t.push(p[0]); }); return t.slice(0,4); }
   function siteOf(url){ try{ return new URL(url,location.href).hostname.replace(/^www\./,''); }catch(e){ return ''; } }
   function typeOf(url,fallback){
@@ -211,7 +211,7 @@
     var lead=c.img?'<img class="thumb" src="'+esc(c.img)+'" alt="" loading="lazy">':'<span class="num">'+(i+1)+'</span>';
     var saved=isSaved(c.url);
     return '<div class="src">'+lead+'<a class="c" href="'+esc(c.url)+'"'+(/^https?:/.test(c.url)?' target="_blank" rel="noopener"':'')+' style="text-decoration:none"><span class="k">'+esc(c.type)+' · '+esc(c.site||siteOf(c.url))+'</span><b>'+esc(c.title)+'</b>'+(c.desc?'<span class="d">'+esc(c.desc)+'</span>':'')+(c.meta?'<span class="m">'+esc(c.meta)+'</span>':'')+'</a>'+
-      '<button class="save'+(saved?' on':'')+'" type="button" aria-pressed="'+saved+'" aria-label="'+(saved?'Saved':'Save')+' '+esc(c.title)+'" data-card="'+esc(JSON.stringify({type:c.type,title:c.title,desc:c.desc||'',url:c.url,site:c.site||siteOf(c.url),meta:c.meta||'',question:question}))+'">'+BM+'</button></div>';
+      '<button class="save'+(saved?' on':'')+'" type="button" aria-pressed="'+saved+'" aria-label="'+(saved?'Saved':'Save')+' '+esc(c.title)+'" data-card="'+esc(JSON.stringify({type:c.type,title:c.title,desc:c.desc||'',url:c.url,site:c.site||siteOf(c.url),meta:c.meta||'',question:question,img:c.img||'',tags:c.tags||[]}))+'">'+BM+'</button></div>';
   }
   function group(title,list,question){ return list&&list.length?'<div class="group-h">'+esc(title)+'</div><div class="cards">'+list.map(function(c,i){ return cardHTML(c,i,question); }).join('')+'</div>':''; }
 
@@ -219,10 +219,12 @@
   function renderBot(data){
     hello.hidden=true;
     var d=document.createElement('div'); d.className='msg bot';
-    var tag=data.kind==='memory'?'from your library':data.kind==='github'?'searched GitHub':data.web?'searched the web':'';
+    var tag=data.kind==='memory'?'from your saved items':data.kind==='posts'?'from AI Radar posts':data.kind==='github'?'searched GitHub':data.web?'searched the web':'';
     var h='<div class="who"><img src="'+LOGO+'" alt="">AI Radar'+(tag?'<em>· '+tag+'</em>':'')+'</div>';
     if(data.answer) h+='<div class="answer'+(data.error?' err':'')+'">'+fmtAnswer(data.answer)+'</div>';
-    if(data.kind==='memory'){
+    if(data.kind==='posts'){
+      h+=group('Our posts',data.items,data.question);
+    }else if(data.kind==='memory'){
       h+=data.items.length?group('Saved items',data.items.map(function(it){ return {type:it.type,title:it.title,desc:it.type==='Answer'?(it.text||'').slice(0,160):it.desc,url:it.url||'#library',site:it.site||'',meta:'Saved '+fmtDate(it.savedAt)+(it.question?' · asked: '+it.question:'')}; }),data.question):'';
     }else{
       h+=group('On AI Radar',data.resources,data.question);
@@ -243,15 +245,22 @@
     chat.push({role:'user',text:q}); renderUser(q); saveChat();
     var t=typing(), data;
     try{
-      if(MEM_Q.test(q)){
+      if(POST_Q.test(q)&&!/\b(saved?|bookmark(ed)?)\b/i.test(q)){
+        await loadPosts();
+        var pr=postSearch(q);
+        var pwhen=pr.window.from?(' from '+fmtDate(pr.window.from)+(pr.window.to?' to '+fmtDate(new Date(pr.window.to.getTime()-1)):'')):'';
+        data={kind:'posts',question:q,items:pr.items.map(postAsCard),canSave:false,
+          answer:pr.total?('Found '+pr.total+' AI Radar post'+(pr.total>1?'s':'')+(pr.kw.length?' about '+pr.kw.join(' '):'')+pwhen+(pr.total>10?'. Showing the newest 10.':'.')):
+            ('No AI Radar post matches that'+pwhen+'. Try fewer words, or open the Posts tab to browse with filters.')};
+      }else if(MEM_Q.test(q)){
         var r=memorySearch(q);
         var when=r.window.from?(' from '+fmtDate(r.window.from)+(r.window.to?' to '+fmtDate(new Date(r.window.to.getTime()-1)):'')):'';
         data={kind:'memory',question:q,items:r.items,canSave:false,
           answer:r.total?('Found '+r.total+' saved item'+(r.total>1?'s':'')+(r.kw.length?' about '+r.kw.join(' '):'')+when+(r.total>10?'. Showing the newest 10.':'.')):
-            (library.length?'Nothing in your library matches that'+when+'. Try fewer words, or open the Library tab to browse with filters.':'Your library is empty. Tap the bookmark on any answer, repo or source to save it here.')};
+            (library.length?'Nothing in your library matches that'+when+'. Try fewer words, or open the Saved tab to browse with filters.':'Nothing saved yet. Tap the bookmark on any answer, repo or source to save it here.')};
       }else{
         var isRepo=REPO_Q.test(q);
-        var resP=loadIndex().then(function(items){ return matchResources(q,items); }).catch(function(){ return []; });
+        var resP=Promise.all([loadIndex(),loadPosts()]).then(function(a){ return matchResources(q,a[0].concat(a[1].filter(function(p){ return p.type==='News'||p.type==='Fact'; }).map(postAsResource))); }).catch(function(){ return []; });
         var srcP=isRepo?githubTop(q).then(function(g){ return g.items; }).catch(function(){ return null; }):Promise.all([hn(q),wiki(q)]).then(function(a){ return a[1].concat(a[0]); });
         var aiP=isRepo?Promise.resolve(null):ai(chat).catch(function(){ return {ok:false,error:"Couldn't reach the AI service. Check your connection and try again."}; });
         var res=await resP, src=await srcP, ans=await aiP;
@@ -274,25 +283,27 @@
   }
 
   // save buttons (cards + answers)
+  function toggleSave(b){
+    var c=JSON.parse(b.getAttribute('data-card'));
+    if(c.url==='#library'){ switchTab('lib'); return; }
+    var i=library.findIndex(function(x){ return x.url===c.url; });
+    if(i>-1){ library.splice(i,1); saveLib(); toast('Removed from Saved'); }
+    else{ library.unshift({id:'s'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),type:c.type,title:c.title,desc:c.desc,url:c.url,site:c.site,meta:c.meta,question:c.question,img:c.img||'',
+      tags:c.tags&&c.tags.length?c.tags:tagsFor([c.title,c.desc,c.question].join(' ')),savedAt:new Date().toISOString()}); saveLib(); toast('Saved'); }
+    syncSaveButtons(); if(!$('#view-lib').hidden) renderLibrary();
+  }
   log.addEventListener('click',function(e){
     var l=e.target.closest('a[href="#library"]'); if(l){ e.preventDefault(); switchTab('lib'); return; }
     var b=e.target.closest('.save');
-    if(b){
-      var c=JSON.parse(b.getAttribute('data-card'));
-      if(c.url==='#library'){ switchTab('lib'); return; }
-      var i=library.findIndex(function(x){ return x.url===c.url; });
-      if(i>-1){ library.splice(i,1); saveLib(); toast('Removed from Library'); }
-      else{ library.unshift({id:'s'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),type:c.type,title:c.title,desc:c.desc,url:c.url,site:c.site,meta:c.meta,question:c.question,tags:tagsFor([c.title,c.desc,c.question].join(' ')),savedAt:new Date().toISOString()}); saveLib(); toast('Saved to Library'); }
-      syncSaveButtons(); return;
-    }
+    if(b){ toggleSave(b); return; }
     var sa=e.target.closest('.save-answer');
     if(sa){
       var data=sa.closest('.msg')._data;
       var j=library.findIndex(function(x){ return x.type==='Answer'&&x.question===data.question&&x.text===data.answer; });
-      if(j>-1){ library.splice(j,1); toast('Removed from Library'); }
+      if(j>-1){ library.splice(j,1); toast('Removed from Saved'); }
       else{ library.unshift({id:'a'+Date.now().toString(36),type:'Answer',title:data.question,text:data.answer,url:'',site:'AI Radar chat',question:data.question,
         sources:(data.resources||[]).concat(data.sources||[]).slice(0,6).map(function(s){ return {title:s.title,url:s.url}; }),
-        tags:tagsFor(data.question+' '+data.answer),savedAt:new Date().toISOString()}); toast('Answer saved to Library'); }
+        tags:tagsFor(data.question+' '+data.answer),savedAt:new Date().toISOString()}); toast('Answer saved'); }
       saveLib(); syncSaveButtons();
     }
   });
@@ -315,12 +326,13 @@
   /* ---------------- UI: library ---------------- */
   var fType='All', fDate='all', fTags=new Set(), q='';
   var DATES=[['all','All time'],['week','This week'],['month','This month'],['year','This year'],['custom','Custom']];
-  function inRange(iso){
-    var t=new Date(iso), now=new Date();
+  function inRange(iso,mode,fromSel,toSel){
+    mode=mode||fDate; fromSel=fromSel||'#d-from'; toSel=toSel||'#d-to';
+    var t=new Date(iso), now=new Date(), fDate=mode;
     if(fDate==='week'){ var w=new Date(now); w.setDate(now.getDate()-((now.getDay()+6)%7)); w.setHours(0,0,0,0); return t>=w; }
     if(fDate==='month') return t>=new Date(now.getFullYear(),now.getMonth(),1);
     if(fDate==='year') return t>=new Date(now.getFullYear(),0,1);
-    if(fDate==='custom'){ var a=$('#d-from').value, b=$('#d-to').value; if(a&&t<new Date(a+'T00:00:00')) return false; if(b&&t>new Date(b+'T23:59:59')) return false; }
+    if(fDate==='custom'){ var a=$(fromSel).value, b=$(toSel).value; if(a&&t<new Date(a+'T00:00:00')) return false; if(b&&t>new Date(b+'T23:59:59')) return false; }
     return true;
   }
   function renderFilters(){
@@ -343,12 +355,12 @@
       return true;
     });
     $('#lib-count').textContent=library.length?(list.length===library.length?library.length+' saved':list.length+' of '+library.length):'';
-    if(!library.length){ $('#items').innerHTML='<div class="empty"><b>Nothing saved yet</b>Tap the bookmark on any answer, repo or source in Chat to keep it here.</div>'; return; }
+    if(!library.length){ $('#items').innerHTML='<div class="empty"><b>Nothing saved yet</b>Tap the bookmark on any answer, source or post to keep it here.</div>'; return; }
     if(!list.length){ $('#items').innerHTML='<div class="empty"><b>No matches</b>Try another filter or clear the search.</div>'; return; }
     $('#items').innerHTML=list.map(function(i){
-      var link=i.url?'<a class="mini-btn" href="'+esc(i.url)+'" target="_blank" rel="noopener">Open</a>':'';
+      var link=i.url&&/^https?:/.test(i.url)?'<a class="mini-btn" href="'+esc(i.url)+'" target="_blank" rel="noopener">'+(/x\.com\/ai_radar_\/status/.test(i.url)?'View on X':'Open')+'</a>':'';
       var srcs=(i.sources||[]).filter(function(s){ return s.url; }).slice(0,4).map(function(s){ return '<a class="mini-btn" href="'+esc(s.url)+'" target="_blank" rel="noopener">'+esc((s.title||'').slice(0,32))+'</a>'; }).join('');
-      return '<article class="item" data-id="'+esc(i.id)+'"><div class="t"><b>'+esc(i.title)+'</b><span class="type">'+esc(i.type)+'</span></div>'+
+      return '<article class="item" data-id="'+esc(i.id)+'">'+(i.img?'<img src="'+esc(i.img)+'" alt="" loading="lazy" style="width:100%;max-height:180px;object-fit:cover;object-position:top;border-radius:10px">':'')+'<div class="t"><b>'+esc(i.title)+'</b><span class="type">'+esc(i.type)+'</span></div>'+
         (i.type==='Answer'?'<div class="body">'+esc(i.text)+'</div>':(i.desc?'<div class="q">'+esc(i.desc)+'</div>':''))+
         (i.tags&&i.tags.length?'<div class="tags">'+i.tags.map(function(t){ return '<span>#'+esc(t)+'</span>'; }).join('')+'</div>':'')+
         '<div class="meta"><span>Saved '+esc(fmtDate(i.savedAt))+'</span>'+(i.site?'<span>'+esc(i.site)+'</span>':'')+(i.meta?'<span>'+esc(i.meta)+'</span>':'')+'</div>'+
@@ -367,18 +379,99 @@
   $('#lib-q').addEventListener('input',function(e){ q=e.target.value; renderLibrary(); });
   $('#d-from').addEventListener('change',renderLibrary); $('#d-to').addEventListener('change',renderLibrary);
 
+  /* ---------------- UI: posts archive (every @ai_radar_ post) ---------------- */
+  var postsP=null, POSTS=[];
+  function absUrl(u){ return !u?'':/^https?:/.test(u)?u:ROOT+u.replace(/^\//,''); }
+  function loadPosts(){
+    if(postsP) return postsP;
+    postsP=fetch(ROOT+'data/posts.json',{cache:'no-cache'}).then(function(r){ return r.ok?r.json():[]; }).catch(function(){ return []; }).then(function(list){
+      POSTS=(list||[]).map(function(p){
+        p.points=p.points||[];
+        p.tags=(p.tags&&p.tags.length)?p.tags:tagsFor([p.title,p.summary,p.points.join(' ')].join(' '));
+        p.text=[p.title,p.summary,p.points.join(' '),p.type,p.tags.join(' '),p.source].join(' ').toLowerCase();
+        return p;
+      }).sort(function(a,b){ return (b.date||'')<(a.date||'')?-1:1; });
+      return POSTS;
+    });
+    return postsP;
+  }
+  function postKey(p){ return p.x_url||absUrl(p.link)||p.source||('post:'+p.id); }
+  function postType(p){ return p.type==='News'||p.type==='Fact'?'Post':p.type; }
+  function postAsCard(p){ return {type:p.type,title:p.title,desc:p.summary,url:postKey(p),site:'@ai_radar_',meta:'Posted '+fmtDate(p.date),img:p.img?absUrl(p.img):'',tags:p.tags}; }
+  function postAsResource(p){ return {type:p.type==='Fact'?'AI fact':'Post',title:p.title,desc:p.summary,img:p.img?absUrl(p.img):'',url:postKey(p),site:'@ai_radar_',text:p.text,meta:'Posted '+fmtDate(p.date)}; }
+  var POST_Q=/\b(your|our|ai radar'?s?|@?ai_radar_?'?s?)\s+posts?\b|\bposted\b|\bposts?\s+(about|on|from|we|you|i)\b|\b(old|older|previous|earlier|past|last)\s+posts?\b|\bpost\s+(we|you|i)\s+(did|made|shared|wrote)\b|\b(we|you|i)\s+(did|made|shared|wrote)\s+(a\s+)?post\b/i;
+  function postSearch(q){
+    var s=q.toLowerCase(), w=dateWindow(q);
+    var type=/\bnews\b/.test(s)?'News':/\bfacts?\b/.test(s)?'Fact':/\brepos?\b|repositor/.test(s)?'Repo':/cheat ?sheets?/.test(s)?'Cheatsheet':/prompt ?packs?/.test(s)?'Prompt pack':'';
+    var kw=terms(q).filter(function(t){ return MONTHS.indexOf(t)<0&&!/^(posts?|posted|news|facts?|cheatsheets?|packs?|show|find|yesterday|our|your|radar|ai_radar_|shared|wrote|made|did)$/.test(t); });
+    var found=POSTS.filter(function(p){
+      if(type&&p.type!==type) return false;
+      var t=new Date(p.date).getTime();
+      if(w.from&&t<w.from.getTime()) return false;
+      if(w.to&&t>=w.to.getTime()) return false;
+      return kw.every(function(k){ return hit(p.text,k); });
+    });
+    return {items:found.slice(0,10),total:found.length,window:w,kw:kw};
+  }
+  var pType='All', pDate='all', pTags=new Set(), pq='', pShown=20;
+  var PTYPES=['All','News','Fact','Repo','Cheatsheet','Prompt pack'];
+  function renderPosts(){
+    $('#p-type').innerHTML=PTYPES.map(function(x){ return '<button class="f'+(pType===x?' on':'')+'" type="button" data-ptype="'+x+'" aria-pressed="'+(pType===x)+'">'+(x==='Fact'?'AI facts':x)+'</button>'; }).join('');
+    $('#p-date').innerHTML=DATES.map(function(d){ return '<button class="f'+(pDate===d[0]?' on':'')+'" type="button" data-pdate="'+d[0]+'" aria-pressed="'+(pDate===d[0])+'">'+d[1]+'</button>'; }).join('');
+    $('#p-custom').hidden=pDate!=='custom';
+    var tags={}; POSTS.forEach(function(p){ p.tags.forEach(function(t){ tags[t]=(tags[t]||0)+1; }); });
+    $('#p-tag').innerHTML=Object.keys(tags).sort(function(a,b){ return tags[b]-tags[a]; }).map(function(t){ var on=pTags.has(t); return '<button class="f tag'+(on?' on':'')+'" type="button" data-ptag="'+esc(t)+'" aria-pressed="'+on+'">#'+esc(t)+' <span style="opacity:.6">'+tags[t]+'</span></button>'; }).join('');
+    var words=terms(pq);
+    var list=POSTS.filter(function(p){
+      if(pType!=='All'&&p.type!==pType) return false;
+      if(!inRange(p.date,pDate,'#pd-from','#pd-to')) return false;
+      if(pTags.size&&!p.tags.some(function(t){ return pTags.has(t); })) return false;
+      if(words.length&&!words.every(function(w){ return hit(p.text,w); })) return false;
+      return true;
+    });
+    $('#posts-count').textContent=POSTS.length?(list.length===POSTS.length?POSTS.length+' posts':list.length+' of '+POSTS.length):'';
+    if(!POSTS.length){ $('#posts').innerHTML='<div class="empty"><b>No posts yet</b>New posts from @ai_radar_ appear here automatically.</div>'; $('#posts-more').hidden=true; return; }
+    if(!list.length){ $('#posts').innerHTML='<div class="empty"><b>No matches</b>Try another filter or clear the search.</div>'; $('#posts-more').hidden=true; return; }
+    $('#posts').innerHTML=list.slice(0,pShown).map(function(p){
+      var key=postKey(p), saved=isSaved(key), open=p.x_url||absUrl(p.link)||p.source;
+      var card={type:postType(p),title:p.title,desc:p.summary||'',url:key,site:'@ai_radar_',meta:'Posted '+fmtDate(p.date),question:'',img:p.img?absUrl(p.img):'',tags:p.tags};
+      return '<article class="post">'+
+        (p.img?'<a class="media" href="'+esc(open)+'" target="_blank" rel="noopener"><img src="'+esc(absUrl(p.img))+'" alt="" loading="lazy"></a>':'')+
+        '<div class="pb"><div class="row1"><span class="type t-'+esc(p.type.split(' ')[0])+'">'+esc(p.type==='Fact'?'AI fact':p.type)+'</span><span class="when">'+esc(fmtDate(p.date))+'</span></div>'+
+        '<h3>'+esc(p.title)+'</h3>'+(p.summary?'<p>'+esc(p.summary)+'</p>':'')+
+        (p.points.length?'<ul>'+p.points.slice(0,4).map(function(x){ return '<li>'+esc(x)+'</li>'; }).join('')+'</ul>':'')+
+        (p.tags.length?'<div class="tags">'+p.tags.map(function(t){ return '<span>#'+esc(t)+'</span>'; }).join('')+'</div>':'')+
+        '<div class="acts">'+(p.x_url?'<a class="mini-btn" href="'+esc(p.x_url)+'" target="_blank" rel="noopener">View on X</a>':'')+
+        (p.link?'<a class="mini-btn" href="'+esc(absUrl(p.link))+'" target="_blank" rel="noopener">Open card</a>':'')+
+        (p.source&&p.source!==p.x_url?'<a class="mini-btn" href="'+esc(p.source)+'" target="_blank" rel="noopener">Source</a>':'')+
+        '<button class="save'+(saved?' on':'')+'" type="button" aria-pressed="'+saved+'" aria-label="'+(saved?'Saved ':'Save ')+esc(p.title)+'" data-card="'+esc(JSON.stringify(card))+'">'+BM+'</button></div></div></article>';
+    }).join('');
+    $('#posts-more').hidden=list.length<=pShown;
+  }
+  $('#view-posts').addEventListener('click',function(e){
+    var b;
+    if((b=e.target.closest('.save'))){ toggleSave(b); }
+    else if((b=e.target.closest('[data-ptype]'))){ pType=b.dataset.ptype; pShown=20; renderPosts(); }
+    else if((b=e.target.closest('[data-pdate]'))){ pDate=b.dataset.pdate; pShown=20; renderPosts(); }
+    else if((b=e.target.closest('[data-ptag]'))){ var t=b.dataset.ptag; pTags.has(t)?pTags.delete(t):pTags.add(t); pShown=20; renderPosts(); }
+    else if(e.target.closest('#posts-more')){ pShown+=20; renderPosts(); }
+  });
+  $('#posts-q').addEventListener('input',function(e){ pq=e.target.value; pShown=20; renderPosts(); });
+  $('#pd-from').addEventListener('change',renderPosts); $('#pd-to').addEventListener('change',renderPosts);
+
   /* ---------------- tabs, badge, toast ---------------- */
   function switchTab(name){
     document.querySelectorAll('.tab').forEach(function(t){ var on=t.dataset.tab===name; t.classList.toggle('on',on); if(on) t.setAttribute('aria-current','page'); else t.removeAttribute('aria-current'); });
-    $('#view-chat').hidden=name!=='chat'; $('#view-lib').hidden=name!=='lib'; form.hidden=name!=='chat';
-    if(name==='lib') renderLibrary(); else scrollDown();
-    try{ history.replaceState(null,'',name==='lib'?'#library':'#'); }catch(e){}
+    $('#view-chat').hidden=name!=='chat'; $('#view-lib').hidden=name!=='lib'; $('#view-posts').hidden=name!=='posts'; form.hidden=name!=='chat';
+    if(name==='lib') renderLibrary(); else if(name==='posts'){ loadPosts().then(renderPosts); } else scrollDown();
+    try{ history.replaceState(null,'',name==='lib'?'#saved':name==='posts'?'#posts':'#'); }catch(e){}
   }
   document.querySelectorAll('.tab').forEach(function(t){ t.addEventListener('click',function(){ switchTab(t.dataset.tab); }); });
   function updateBadge(){ var b=$('#badge'); b.hidden=!library.length; b.textContent=library.length>99?'99+':library.length; }
   var tt; function toast(m){ var el=$('#toast'); el.textContent=m; el.classList.add('on'); clearTimeout(tt); tt=setTimeout(function(){ el.classList.remove('on'); },1700); }
   updateBadge();
-  if(location.hash==='#library') switchTab('lib');
+  if(location.hash==='#library'||location.hash==='#saved') switchTab('lib'); else if(location.hash==='#posts') switchTab('posts');
+  loadPosts();
 
   /* ---------------- install + offline ---------------- */
   var deferred=null, inst=$('#install');

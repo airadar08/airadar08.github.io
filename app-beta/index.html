@@ -138,12 +138,27 @@ a{color:inherit}
 .empty{padding:40px 10px;text-align:center;color:var(--muted);display:flex;flex-direction:column;gap:6px;align-items:center}
 .empty b{font-family:var(--serif);font-weight:400;font-size:26px;color:var(--ink)}
 
+/* posts */
+.post{border:1px solid var(--line);background:var(--card);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+.post .media{display:block;background:#151916;aspect-ratio:16/10;overflow:hidden}
+.post .media img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.post .pb{padding:13px 14px 14px;display:flex;flex-direction:column;gap:8px}
+.post .row1{display:flex;align-items:center;gap:8px;justify-content:space-between}
+.post .when{font-size:12px;color:var(--dim)}
+.post h3{margin:0;font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.1;letter-spacing:-.01em}
+.post p{margin:0;font-size:14px;color:#c7cec9}
+.post ul{margin:0;padding-left:18px;color:var(--muted);font-size:13.5px;display:flex;flex-direction:column;gap:3px}
+.post .acts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.post .acts .save{margin-left:auto}
+.t-News{color:#7fb3ff;background:#132236}.t-Fact{color:#f0c35a;background:#2a2412}.t-Repo{color:var(--mint-ink);background:var(--mint-soft)}
+.t-Cheatsheet{color:#c9a7e0;background:#241a30}.t-Prompt{color:#f5a27c;background:#2e1d14}
+
 /* tabs */
-.tabs{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);background:rgba(10,12,11,.95);padding-bottom:env(safe-area-inset-bottom,0px)}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);background:rgba(10,12,11,.95);padding-bottom:env(safe-area-inset-bottom,0px)}
 .tab{height:var(--tabs-h);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:0;background:none;color:var(--dim);font-size:11.5px;font-weight:600;cursor:pointer;position:relative}
 .tab svg{width:22px;height:22px}
 .tab.on{color:var(--mint)}
-.badge{position:absolute;top:8px;left:calc(50% + 8px);min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--mint);color:var(--btn-ink);font-size:10.5px;font-weight:700;display:grid;place-items:center}
+.badge{position:absolute;top:8px;left:calc(50% + 6px);min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--mint);color:var(--btn-ink);font-size:10.5px;font-weight:700;display:grid;place-items:center}
 
 /* toast + install hint */
 .toast{position:fixed;left:50%;bottom:calc(var(--tabs-h) + 84px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:9px 14px;border-radius:999px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s var(--ease);z-index:20}
@@ -168,12 +183,13 @@ a{color:inherit}
   <main class="view chat-view" id="view-chat">
     <section class="hello" id="hello">
       <h1>Ask anything about <em>AI</em>.</h1>
-      <p>Short answers with sources. Save repos, articles and answers to your library, then ask for them again any time, even a year later.</p>
+      <p>Short answers with sources. Browse every AI Radar post, save anything you like, and ask for it again any time, even a year later.</p>
       <div class="chips" id="starter">
         <button class="chip" type="button">Top 5 trending repos for audio</button>
         <button class="chip" type="button">Explain RAG simply</button>
         <button class="chip" type="button">Best AI tools for spreadsheets</button>
         <button class="chip" type="button">How do AI agents work?</button>
+        <button class="chip" type="button">Show our posts about agents</button>
         <button class="chip" type="button">What did I save about agents?</button>
       </div>
       <p class="ios-hint" id="ios-hint" hidden>To install on iPhone: tap the Share button in Safari, then "Add to Home Screen".</p>
@@ -181,8 +197,22 @@ a{color:inherit}
     <div class="log" id="log" aria-live="polite"></div>
   </main>
 
+  <main class="view" id="view-posts" hidden>
+    <div class="lib-head"><h1>Posts</h1><span class="count" id="posts-count"></span></div>
+    <p class="note" style="margin:-6px 2px 12px">Every post from @ai_radar_, newest first. Save any of them to keep them in Saved.</p>
+    <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><input id="posts-q" type="search" placeholder="Search posts" aria-label="Search posts" autocomplete="off"></label>
+    <div class="filters">
+      <div class="frow" id="p-type" role="group" aria-label="Post type"></div>
+      <div class="frow" id="p-date" role="group" aria-label="Posted"></div>
+      <div class="custom" id="p-custom" hidden><label>From <input type="date" id="pd-from"></label><label>To <input type="date" id="pd-to"></label></div>
+      <div class="frow" id="p-tag" role="group" aria-label="Topic"></div>
+    </div>
+    <div class="items" id="posts"></div>
+    <div style="display:flex;justify-content:center;padding:14px 0 6px"><button class="pill-btn" type="button" id="posts-more" hidden>Show more</button></div>
+  </main>
+
   <main class="view" id="view-lib" hidden>
-    <div class="lib-head"><h1>Library</h1><span class="count" id="lib-count"></span></div>
+    <div class="lib-head"><h1>Saved</h1><span class="count" id="lib-count"></span></div>
     <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><input id="lib-q" type="search" placeholder="Search your saved items" aria-label="Search your saved items" autocomplete="off"></label>
     <div class="filters">
       <div class="frow" id="f-type" role="group" aria-label="Type"></div>
@@ -201,10 +231,11 @@ a{color:inherit}
 
   <nav class="tabs" aria-label="Sections">
     <button class="tab on" type="button" data-tab="chat" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path></svg>Chat</button>
-    <button class="tab" type="button" data-tab="lib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"></path></svg>Library<span class="badge" id="badge" hidden></span></button>
+    <button class="tab" type="button" data-tab="posts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4.5"></circle><path d="M12 12 18.5 5.5"></path></svg>Posts</button>
+    <button class="tab" type="button" data-tab="lib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"></path></svg>Saved<span class="badge" id="badge" hidden></span></button>
   </nav>
 </div>
 <div class="toast" id="toast" role="status"></div>
-<script src="app.js?v=4"></script>
+<script src="app.js?v=5"></script>
 </body>
 </html>
