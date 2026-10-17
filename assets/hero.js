@@ -72,16 +72,16 @@
   var SLOTS=['#d9a400','#13a36b','#2f7ae5','#7c5ce0','#e8613c','#ff7a1a','#0e9aa7','#e0457b'];
   var blips=[], seed=7;
   // some blips "project" a label showing what they are
-  var TAGGED=[2,7,12], TAG_TEXT=['AI NEWS','UPDATES','AI FACTS'];
+  var TAGGED=[], TAG_TEXT=[];   // dots only: no text labels on the radar
   var TAG_POS=[[0.45,0.9],[2.7,0.9],[6.0,0.92]];  // [angle, radius share of R]: right-back, left-back, right-front: out at the rim, clear of the phones in the middle
   var tags=document.createElement('div'); tags.className='rtags'; host.appendChild(tags);
   var tmpV=new THREE.Vector3();
   function rnd(){ seed=(seed*9301+49297)%233280; return seed/233280; }
-  for(var b=0;b<16;b++){
+  for(var b=0;b<28;b++){
     var ang=rnd()*Math.PI*2, rad=R*(0.22+rnd()*0.72);
     var col=new THREE.Color(SLOTS[b%SLOTS.length]);
     var m=new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:0.25});
-    var mesh=new THREE.Mesh(new THREE.SphereGeometry(0.075+rnd()*0.05,16,12),m);
+    var mesh=new THREE.Mesh(new THREE.SphereGeometry(0.09+rnd()*0.07,16,12),m);
     mesh.position.set(Math.cos(ang)*rad,Math.sin(ang)*rad,0.05);
     var ringPts=[]; for(var q=0;q<=40;q++){ var qa=q/40*Math.PI*2; ringPts.push(new THREE.Vector3(Math.cos(qa)*0.18,Math.sin(qa)*0.18,0)); }
     var ringM=new THREE.LineBasicMaterial({color:col,transparent:true,opacity:0});
