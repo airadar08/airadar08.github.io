@@ -772,7 +772,7 @@ img{max-width:100%}
     }
     // ring radius: big enough to clear the copy, small enough that every circle (and its label) stays on screen
     var W=wrap.clientWidth;
-    R=Math.max(300,Math.min(420,W/2-80));
+    R=Math.max(290,Math.min(420,W/2-80,(window.innerHeight-150)/2)); // whole ring fits on one screen
     var scale=Math.max(.82,Math.min(1,R/420));
     wrap.style.setProperty('--wd',(R*2)+'px');
     wrap.style.setProperty('--wh',(R*2+130)+'px');
@@ -784,7 +784,7 @@ img{max-width:100%}
     });
   }
   buildWheel();
-  var rz; window.addEventListener('resize',function(){ clearTimeout(rz); rz=setTimeout(buildWheel,150); });
+  var rz, lastW=window.innerWidth; window.addEventListener('resize',function(){ if(Math.abs(window.innerWidth-lastW)<2 && window.innerWidth<800) return; lastW=window.innerWidth; clearTimeout(rz); rz=setTimeout(buildWheel,150); });
 
   /* ---- Scroll-linked motion with spring smoothing ---- */
   var par=document.getElementById('phone-par'), hero=document.getElementById('hero'), nav=document.getElementById('nav');
