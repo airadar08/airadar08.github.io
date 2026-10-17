@@ -27,7 +27,7 @@
     const first = body.split('\n')[0];
     let type = 'News';
     if (/^📌/.test(first)) type = 'Cheatsheet'; else if (/Trending AI repo/.test(first)) type = 'Repo';
-    else if (/^🎁 FREE/.test(first)) type = 'Prompt pack'; else if (/AI fact/.test(first)) type = 'AI fact';
+    else if (/^🎁 FREE|^Prompt pack/.test(first)) type = 'Prompt pack'; else if (/AI fact/.test(first)) type = 'AI fact';
     const title = first.replace(/^[^\p{L}\p{N}"]+/u, '').replace(/^AI fact:\s*/, '').trim();
     const rest = body.trim().split('\n').slice(1).join('\n').trim().replace(/\n{2,}/g, '\n');
     const url = !vis ? '' : trunc ? (p.links[0] || '') : 'https://' + vis;

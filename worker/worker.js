@@ -10,6 +10,8 @@
 //   ALLOWED_ORIGIN      (Text, optional)    default "https://airadar08.github.io"
 
 const DEFAULT_MODEL = "nvidia/nemotron-3.5-super-vl:free";   // free on OpenRouter (rate-limited)
+// free models OpenRouter tries next when the main one errors, is rate-limited or is down
+const FALLBACK_MODELS = ["nvidia/nemotron-3-super-120b-a12b:free", "google/gemma-4-31b-it:free"];
 const DEFAULT_ORIGIN = "https://airadar08.github.io";
 const MAX_INPUT = 500;        // characters per user message
 const MAX_TURNS = 12;         // past messages sent to the model (the site sends only the visitor's current 5-minute session)
@@ -175,6 +177,7 @@ export default {
     const wantWeb = NEWSY.test(last.content);
     const payload = {
       model: env.MODEL || DEFAULT_MODEL,
+      models: [...new Set([env.MODEL || DEFAULT_MODEL, ...FALLBACK_MODELS])],
       messages: [{ role: "system", content: system(today) }, ...clean],
       max_tokens: 700,
       reasoning: { exclude: true },   // keep any model 'thinking' out of the reply

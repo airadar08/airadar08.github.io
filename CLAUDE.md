@@ -53,3 +53,10 @@ Add the 1080x1350 image as `cheatsheets/img/<slug>.jpg`. Insert the new `<articl
 
 - Never show posting frequency or schedules (posts per day, times) anywhere on the site.
 - When changing anything in `assets/`, bump the `?v=N` on its links in every page (home, repos, cheatsheets, prompts, prompt-packs, tools/pack_template.html) so browsers fetch the new file.
+
+## Every post on X must land on this site (standing rule)
+After ANY post on @ai_radar_ (news, AI fact, repo, cheatsheet, prompt pack, small packs, hand-made posts):
+1. Run tools/scrape_x.js on https://x.com/ai_radar_ (browser), save the string to /tmp/x_posts.json.
+2. `python3 tools/update_site.py sync /tmp/x_posts.json` (adds new posts to data/posts.json, fills X links).
+3. Short prompt packs ("Prompt pack: 3 prompts ...") also get their own page: write a pack.json and run
+   `python3 tools/make_pack.py pack.json <x_url>`, then commit and push to main.

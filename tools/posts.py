@@ -133,7 +133,7 @@ def sync(path):
         elif e["type"] == "Prompt pack":
             words = set(re.findall(r"[a-z0-9]+", title.lower()))
             pk = max(packs, key=lambda k: len(words & set(re.findall(r"[a-z0-9]+", k["title"].lower()))), default=None)
-            if pk:
+            if pk and len(words & set(re.findall(r"[a-z0-9]+", pk["title"].lower())) - {"prompts", "prompt", "pack", "ai", "free", "for", "to", "a", "the"}) >= 2:
                 e.update(link=pk["url"], img=pk.get("cover", img), summary=pk.get("desc", summary), title="FREE: " + pk["title"])
         else:
             e["source"] = url

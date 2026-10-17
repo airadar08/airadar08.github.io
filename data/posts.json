@@ -32,6 +32,22 @@
   "id": "2026-10-18-fact-an-early-neural-network-adjusted-its-weights-with-electric-m"
  },
  {
+  "type": "Prompt pack",
+  "title": "FREE: 3 prompts to turn messy notes into a summary",
+  "summary": "Three copy-ready prompts that turn messy notes into decisions, action items and a gap check.",
+  "points": [
+   "\"Summarize in 5 bullets. Decisions first.\"",
+   "\"List action items, owner, date. Say 'unknown' if missing.\"",
+   "\"What did I leave out?\""
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111574307143053690",
+  "date": "2026-10-18T03:15:20+05:30",
+  "link": "prompt-packs/3-prompts-messy-notes-to-summary/",
+  "source": "",
+  "img": "prompt-packs/3-prompts-messy-notes-to-summary/cover.jpg",
+  "id": "pack-3-prompts-messy-notes-to-summary"
+ },
+ {
   "type": "News",
   "title": "Anthropic says Claude redesigned 8 quantum circuits with no human input between rounds.",
   "summary": "Why it matters: it's a preprint, not peer-reviewed.",
@@ -121,6 +137,22 @@
   "source": "https://t.co/d9KfGSwSqu",
   "img": "https://pbs.twimg.com/media/HU2neGXbgAAoeQB?format=jpg&name=small",
   "id": "2026-10-18-news-anthropic-signed-its-first-canadian-data-center-lease-in-nov"
+ },
+ {
+  "type": "Prompt pack",
+  "title": "FREE: 3 prompts for better AI code reviews",
+  "summary": "Three copy-ready prompts that get sharper code reviews: a role, an output format, and failing tests.",
+  "points": [
+   "\"Review this diff as a skeptical senior. Bugs first.\"",
+   "\"What input breaks this? Give 3 failing tests.\"",
+   "\"Simplify for readability. Keep behavior.\""
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111526515104162122",
+  "date": "2026-10-18T00:05:26+05:30",
+  "link": "prompt-packs/3-prompts-for-better-ai-code-reviews/",
+  "source": "",
+  "img": "prompt-packs/3-prompts-for-better-ai-code-reviews/cover.jpg",
+  "id": "pack-3-prompts-for-better-ai-code-reviews"
  },
  {
   "type": "Cheatsheet",
@@ -276,6 +308,22 @@
   "source": "https://github.com/heygen-com/hyperframes",
   "img": "repos/img/heygen-com-hyperframes.jpg",
   "id": "2026-10-17-repo-heygen-com-hyperframes"
+ },
+ {
+  "type": "Prompt pack",
+  "title": "FREE: 50 AI prompts that do real work",
+  "summary": "Copy-ready prompts for work, learning, writing, coding, business and planning.",
+  "points": [
+   "Work, research, writing",
+   "Coding, business, planning",
+   "Copy, fill the blanks, paste into any AI"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111184570716762437",
+  "date": "2026-10-17T01:26:40+05:30",
+  "link": "prompts/",
+  "source": "",
+  "img": "assets/img/prompt-pack.jpg",
+  "id": "pack-50-ai-prompts"
  },
  {
   "type": "News",
@@ -720,53 +768,5 @@
   "source": "https://t.co/ybXOZxI7EQ",
   "img": "https://pbs.twimg.com/media/HUnDsVvacAA757u?format=jpg&name=small",
   "id": "2026-10-14-news-google-just-launched-gemini-4-argon-its-new-frontier-model"
- },
- {
-  "type": "Prompt pack",
-  "title": "FREE: 50 AI prompts that do real work",
-  "summary": "Copy-ready prompts for work, learning, writing, coding, business and planning.",
-  "points": [
-   "Work, research, writing",
-   "Coding, business, planning",
-   "Copy, fill the blanks, paste into any AI"
-  ],
-  "x_url": "https://x.com/ai_radar_/status/2111184570716762437",
-  "date": "2026-10-17T01:26:40+05:30",
-  "link": "prompts/",
-  "source": "",
-  "img": "assets/img/prompt-pack.jpg",
-  "id": "pack-50-ai-prompts"
- },
- {
-  "type": "Prompt pack",
-  "title": "Prompt pack: 3 prompts to turn messy notes into a summary",
-  "summary": "allowing 'unknown' cuts made-up details.",
-  "points": [
-   "\"Summarize in 5 bullets. Decisions first.\"",
-   "\"List action items, owner, date. Say 'unknown' if missing.\"",
-   "\"What did I leave out?\""
-  ],
-  "x_url": "https://x.com/ai_radar_/status/2111574307143053690",
-  "date": "2026-10-18T03:15:20+05:30",
-  "link": "prompts/",
-  "source": "",
-  "img": "https://pbs.twimg.com/media/HU3RnjJaQAAMIKw?format=jpg&name=medium",
-  "id": "x-2111574307143053690"
- },
- {
-  "type": "Prompt pack",
-  "title": "Prompt pack: 3 prompts for better AI code reviews",
-  "summary": "a role plus an output format beats \"review my code\".",
-  "points": [
-   "\"Review this diff as a skeptical senior. Bugs first.\"",
-   "\"What input breaks this? Give 3 failing tests.\"",
-   "\"Simplify for readability. Keep behavior.\""
-  ],
-  "x_url": "https://x.com/ai_radar_/status/2111526515104162122",
-  "date": "2026-10-18T00:05:26+05:30",
-  "link": "prompts/",
-  "source": "",
-  "img": "https://pbs.twimg.com/media/HU2mKBcaIAAm8tw?format=jpg&name=medium",
-  "id": "x-2111526515104162122"
  }
 ]

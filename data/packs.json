@@ -1,5 +1,27 @@
 [
  {
+  "slug": "3-prompts-messy-notes-to-summary",
+  "title": "3 prompts to turn messy notes into a summary",
+  "desc": "Three copy-ready prompts that turn messy notes into decisions, action items and a gap check.",
+  "count": 3,
+  "url": "prompt-packs/3-prompts-messy-notes-to-summary/",
+  "cover": "prompt-packs/3-prompts-messy-notes-to-summary/cover.jpg",
+  "keyword": "NOTES",
+  "date": "2026-10-18",
+  "post": "https://x.com/ai_radar_/status/2111574307143053690"
+ },
+ {
+  "slug": "3-prompts-for-better-ai-code-reviews",
+  "title": "3 prompts for better AI code reviews",
+  "desc": "Three copy-ready prompts that get sharper code reviews: a role, an output format, and failing tests.",
+  "count": 3,
+  "url": "prompt-packs/3-prompts-for-better-ai-code-reviews/",
+  "cover": "prompt-packs/3-prompts-for-better-ai-code-reviews/cover.jpg",
+  "keyword": "REVIEW",
+  "date": "2026-10-18",
+  "post": "https://x.com/ai_radar_/status/2111526515104162122"
+ },
+ {
   "slug": "50-ai-prompts",
   "title": "50 AI prompts that do real work",
   "desc": "Copy-ready prompts for work, learning, writing, coding, business and planning.",
