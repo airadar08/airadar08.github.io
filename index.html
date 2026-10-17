@@ -310,7 +310,7 @@ img{max-width:100%}
 
 
 /* ---------- 3D radar behind the hero copy (assets/hero.js, Three.js) ---------- */
-.hero>#radar{position:absolute;left:50%;top:-40px;width:min(1060px,150vw);height:min(1060px,150vw);transform:translateX(-50%);z-index:0;pointer-events:none}
+.phones>#radar{position:absolute;left:50%;top:-250px;width:min(1060px,150vw);height:min(1060px,150vw);transform:translateX(-50%);z-index:0;pointer-events:none;-webkit-mask:linear-gradient(to bottom,transparent 0%,#000 30%);mask:linear-gradient(to bottom,transparent 0%,#000 30%)}
 #radar canvas{position:absolute;inset:0;width:100%!important;height:100%!important}
 #radar .fallback{position:absolute;inset:22% 18%;opacity:.7}
 #radar.live .fallback{display:none}
@@ -319,10 +319,13 @@ img{max-width:100%}
   color:var(--ink);background:rgba(17,20,18,.85);border:1px solid #26302a;padding:6px 10px;border-radius:999px;
   box-shadow:0 6px 18px -10px rgba(0,0,0,.6);opacity:0;will-change:transform,opacity;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 #radar .rtag i{width:7px;height:7px;border-radius:50%;flex:none}
-.hero-copy,.phones{position:relative;z-index:1}
+.hero-copy{position:relative;z-index:2}
+.phones{z-index:1}
+.phone-stage{z-index:1}
+.phones{overflow:visible}
 .hero h1{text-shadow:0 4px 40px rgba(5,7,6,.85)}
 .hero .sub{text-shadow:0 2px 20px rgba(5,7,6,.9)}
-@media (max-width:900px){.hero>#radar{top:10px;width:170vw;height:170vw}}
+@media (max-width:900px){.phones>#radar{top:-150px;width:170vw;height:170vw}#radar .rtag{font-size:10px;padding:5px 8px}}
 
 /* ---------- responsive ---------- */
 @media (max-width:900px){
@@ -386,9 +389,6 @@ img{max-width:100%}
 <!-- ============ HERO ============ -->
 <div class="hero-shell">
   <section class="hero sky gutter" id="hero">
-    <div id="radar" aria-hidden="true">
-      <svg class="fallback" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="none" stroke="#34c98a" stroke-opacity=".5" stroke-width=".3"></circle><circle cx="16" cy="16" r="9.5" fill="none" stroke="#34c98a" stroke-opacity=".35" stroke-width=".3"></circle><circle cx="16" cy="16" r="5" fill="none" stroke="#34c98a" stroke-opacity=".35" stroke-width=".3"></circle><path d="M16 16 16 2A14 14 0 0 1 28.1 9Z" fill="#34c98a" fill-opacity=".18"></path><circle cx="16" cy="16" r=".7" fill="#34c98a"></circle></svg>
-    </div>
     <div class="hero-copy">
       <div class="hero-eyebrow appear" data-delay="150"><span class="live"><i></i><i></i></span>Meet AI Radar</div>
       <h1 class="h-display" data-words data-start="250" data-step="70">Every AI shift worth knowing, in one calm feed</h1>
@@ -407,6 +407,9 @@ img{max-width:100%}
     </div>
 
     <div class="phones">
+      <div id="radar" aria-hidden="true">
+      <svg class="fallback" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="none" stroke="#34c98a" stroke-opacity=".5" stroke-width=".3"></circle><circle cx="16" cy="16" r="9.5" fill="none" stroke="#34c98a" stroke-opacity=".35" stroke-width=".3"></circle><circle cx="16" cy="16" r="5" fill="none" stroke="#34c98a" stroke-opacity=".35" stroke-width=".3"></circle><path d="M16 16 16 2A14 14 0 0 1 28.1 9Z" fill="#34c98a" fill-opacity=".18"></path><circle cx="16" cy="16" r=".7" fill="#34c98a"></circle></svg>
+      </div>
       <div class="phone-stage">
         <div class="phone-par" id="phone-par">
           <!-- Phone A: X profile -->
@@ -858,7 +861,7 @@ img{max-width:100%}
 })();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script src="assets/hero.js?v=15" defer></script>
+<script src="assets/hero.js?v=16" defer></script>
 <script src="assets/chat.js?v=16" defer></script>
 </body>
 </html>

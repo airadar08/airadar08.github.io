@@ -73,7 +73,7 @@
   var blips=[], seed=7;
   // some blips "project" a label showing what they are
   var TAGGED=[2,7,12], TAG_TEXT=['AI NEWS','UPDATES','AI FACTS'];
-  var TAG_POS=[[0.25,0.78],[1.62,0.80],[2.95,0.78]];  // [angle, radius share of R]: right, back, left so labels never sit over the centre
+  var TAG_POS=[[0.45,0.9],[2.7,0.9],[6.0,0.92]];  // [angle, radius share of R]: right-back, left-back, right-front: out at the rim, clear of the phones in the middle
   var tags=document.createElement('div'); tags.className='rtags'; host.appendChild(tags);
   var tmpV=new THREE.Vector3();
   function rnd(){ seed=(seed*9301+49297)%233280; return seed/233280; }
