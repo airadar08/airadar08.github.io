@@ -148,8 +148,15 @@
       var last=msgs[msgs.length-1]; if(last&&last.role===role) last.content+='\n'+c; else msgs.push({role:role,content:c.slice(0,role==='user'?500:1500)}); });
     while(msgs.length&&msgs[msgs.length-1].role!=='user') msgs.pop();
     msgs=msgs.slice(-6); while(msgs.length&&msgs[0].role!=='user') msgs.shift();
-    return withTimeout(fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:msgs})}),40000)
-      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ d.ok=r.ok; return d; }); });
+    var body=JSON.stringify({messages:msgs});
+    function once(){ return withTimeout(fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:body}),40000)
+      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ d.ok=r.ok; d.status=r.status; return d; }); }); }
+    // the free model is sometimes busy: retry once after a short pause
+    return once().then(function(d){
+      var bad=!d.ok||!d.reply||/^Sorry, I couldn't come up with an answer/.test(d.reply);
+      if(!bad||d.status===429||d.status===400||d.status===403) return d;
+      return new Promise(function(r){ setTimeout(r,1500); }).then(once);
+    });
   }
 
   /* ---------------- 3. memory: ask for saved items ---------------- */
