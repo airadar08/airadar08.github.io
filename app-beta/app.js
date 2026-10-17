@@ -771,8 +771,77 @@
     $('#view-chat').hidden=name!=='chat'; $('#view-lib').hidden=name!=='lib'; $('#view-posts').hidden=name!=='posts'; $('#composer-host').hidden=name!=='chat'; document.body.dataset.tab=name;
     if(name==='lib') renderLibrary(); else if(name==='posts'){ loadPosts().then(renderPosts); } else scrollDown();
     try{ history.replaceState(null,'',name==='lib'?'#saved':name==='posts'?'#posts':'#'); }catch(e){}
+    if(window.__pillTo) window.__pillTo(name);
   }
   document.querySelectorAll('.tab').forEach(function(t){ t.addEventListener('click',function(){ switchTab(t.dataset.tab); }); });
+
+  /* ---------------- tab bar: sliding glass lens ---------------- */
+  (function(){
+    var bar=$('#tabbar'), pill=$('#tab-pill'), tabs=[].slice.call(document.querySelectorAll('.tab'));
+    if(!bar||!pill||!tabs.length) return;
+    document.body.classList.add('has-pill');
+    var x=0, v=0, target=0, w=0, raf=0, last=0, drag=null, lean=0, suppress=false;
+    var K=520, D=34;                         // spring stiffness / damping: quick with a small overshoot
+    function geo(i){ var t=tabs[i]; var inset=Math.min(14,t.offsetWidth*.1); return {l:t.offsetLeft+inset,w:t.offsetWidth-inset*2,c:t.offsetLeft+t.offsetWidth/2}; }
+    function activeIndex(){ var i=tabs.findIndex(function(t){ return t.classList.contains('on'); }); return i<0?0:i; }
+    function nearest(cx){ var best=0,bd=1e9; tabs.forEach(function(t,i){ var d=Math.abs(geo(i).c-cx); if(d<bd){ bd=d; best=i; } }); return best; }
+    function paint(){
+      var sx=1+Math.min(.28,Math.abs(v)/2600), sy=1-Math.min(.14,Math.abs(v)/5200);
+      if(drag){ sx*=1.06; sy*=1.06; }
+      pill.style.width=w+'px';
+      pill.style.transform='translate3d('+(x-w/2)+'px,0,0) scale('+sx.toFixed(3)+','+sy.toFixed(3)+')';
+      // lens magnifies the icon underneath it
+      tabs.forEach(function(t,i){ var g=geo(i), d=Math.abs(g.c-x)/(t.offsetWidth||1), k=Math.max(0,1-d*1.6);
+        var ic=t.querySelector('svg'); if(ic) ic.style.transform=k>0.01?'scale('+(1+.16*k).toFixed(3)+') translateY('+(-1.5*k).toFixed(2)+'px)':''; });
+    }
+    function step(ts){
+      var dt=Math.min(.032,(ts-(last||ts))/1000||.016); last=ts;
+      if(drag){ v=(drag.x-x)/Math.max(dt,.008); x=drag.x; }
+      else{ var a=-K*(x-(target+lean))-D*v; v+=a*dt; x+=v*dt; }
+      paint();
+      if(drag||Math.abs(x-(target+lean))>.3||Math.abs(v)>4){ raf=requestAnimationFrame(step); }
+      else{ x=target+lean; v=0; paint(); raf=0; last=0; }
+    }
+    function kick(){ if(reduce){ x=drag?drag.x:target+lean; v=0; paint(); return; } if(!raf){ last=0; raf=requestAnimationFrame(step); } }
+    function settle(i,instant){ var g=geo(i); if(!tabs[i].offsetWidth) return; target=g.c; w=g.w; if(!pill.classList.contains('ready')){ pill.classList.add('ready'); instant=true; } if(instant){ x=target; v=0; paint(); } else kick(); }
+    window.__pillTo=function(name){ var i=tabs.findIndex(function(t){ return t.dataset.tab===name; }); if(i>-1){ lean=0; settle(i,false); } };
+    function local(e){ var r=bar.getBoundingClientRect(); return e.clientX-r.left; }
+    // drag the lens across the tabs; release picks the tab under it
+    bar.addEventListener('pointerdown',function(e){
+      if(e.button>0||!e.target.closest('.tab')) return;
+      drag={x0:local(e),x:x,moved:false,id:e.pointerId};
+    });
+    bar.addEventListener('pointermove',function(e){
+      if(drag&&e.pointerId===drag.id){
+        var px=local(e);
+        if(!drag.moved&&Math.abs(px-drag.x0)>6){ drag.moved=true; pill.classList.add('lift'); try{ bar.setPointerCapture(e.pointerId); }catch(_){} }
+        if(drag.moved){ var lo=geo(0).c-10, hi=geo(tabs.length-1).c+10; drag.x=Math.max(lo,Math.min(hi,px)); kick(); }
+        return;
+      }
+      if(e.pointerType!=='mouse') return;
+      var t=e.target.closest('.tab'); tabs.forEach(function(x){ x.classList.toggle('hover',x===t); });
+      // hover: the lens leans a little toward the tab under the mouse
+      var nl=t?Math.max(-14,Math.min(14,(geo(tabs.indexOf(t)).c-target)*.12)):0;
+      if(nl!==lean){ lean=nl; kick(); }
+    });
+    function end(e){
+      if(!drag||(e&&e.pointerId!==drag.id)) return;
+      var moved=drag.moved, px=drag.x; drag=null; pill.classList.remove('lift');
+      if(moved){ suppress=true; setTimeout(function(){ suppress=false; },60); var i=nearest(px); switchTab(tabs[i].dataset.tab); }
+      kick();
+    }
+    bar.addEventListener('pointerup',end); bar.addEventListener('pointercancel',end);
+    bar.addEventListener('pointerleave',function(e){ if(e.pointerType==='mouse'&&!drag){ tabs.forEach(function(x){ x.classList.remove('hover'); }); if(lean){ lean=0; kick(); } } });
+    bar.addEventListener('click',function(e){ if(suppress){ e.stopPropagation(); e.preventDefault(); } },true);
+    // press feedback: the lens lifts while a tab is held
+    bar.addEventListener('pointerdown',function(e){ if(e.target.closest('.tab')){ pill.classList.add('lift'); setTimeout(function(){ if(!drag||!drag.moved) pill.classList.remove('lift'); },180); } });
+    function init(){ settle(activeIndex(),true); }
+    // the glass library re-mounts the bar after load, so watch the tabs themselves for their real size
+    if('ResizeObserver' in window){ var ro=new ResizeObserver(function(){ settle(activeIndex(),true); }); tabs.forEach(function(t){ ro.observe(t); }); }
+    window.addEventListener('resize',function(){ settle(activeIndex(),true); });
+    requestAnimationFrame(init);
+    document.addEventListener('airadar-glass-ready',function(){ setTimeout(init,60); });
+  })();
   function updateBadge(){ var b=$('#badge'); b.hidden=!library.length; b.textContent=library.length>99?'99+':library.length; }
   var tt; function toast(m){ var el=$('#toast'); el.textContent=m; el.classList.add('on'); clearTimeout(tt); tt=setTimeout(function(){ el.classList.remove('on'); },1700); }
   updateBadge();
