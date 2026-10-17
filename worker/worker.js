@@ -1,6 +1,7 @@
 // AI Radar chat — Cloudflare Worker that sits between the website and OpenRouter.
 // The OpenRouter key lives ONLY here, as the secret OPENROUTER_API_KEY. Never put it in the website.
 //
+// Also answers { action: "preview", url } for the app's Add to Saved sheet (page title / description / site, no AI call).
 // News questions: fetches recent headlines from Google News RSS, falling back to Bing News RSS (both free, no key), and gives them to the model.
 //
 // Settings (Cloudflare → your Worker → Settings → Variables and Secrets):
@@ -87,6 +88,37 @@ async function rss(src, text, diag) {
   }
 }
 
+// Link preview for the app's "Add to Saved" sheet: fetches a public page and returns its title, description and site name.
+// No AI call, no key needed. Only public http(s) hosts; reads at most ~400 KB of HTML; 6s timeout.
+async function preview(raw) {
+  let u;
+  try { u = new URL(String(raw || "").slice(0, 2000)); } catch { return null; }
+  if (!/^https?:$/.test(u.protocol)) return null;
+  const host = u.hostname.toLowerCase();
+  if (host === "localhost" || host.endsWith(".local") || host.endsWith(".internal") || /^[\d.]+$/.test(host) || host.includes(":")) return null;
+  let r;
+  try {
+    r = await fetch(u.href, { redirect: "follow", signal: AbortSignal.timeout(6000), cf: { cacheTtl: 3600 },
+      headers: { "User-Agent": "Mozilla/5.0 (compatible; AIRadarBot/1.0; +https://airadar08.github.io)", "Accept": "text/html,application/xhtml+xml" } });
+  } catch { return null; }
+  if (!r.ok || !/html/i.test(r.headers.get("content-type") || "")) return null;
+  const reader = r.body.getReader(); const dec = new TextDecoder(); let html = "";
+  while (html.length < 400_000) { const { done, value } = await reader.read(); if (done) break; html += dec.decode(value, { stream: true }); if (/<\/head>/i.test(html)) break; }
+  try { reader.cancel(); } catch {}
+  const ent = (t) => t.replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#0?39;|&apos;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&#(\d+);/g, (_, n) => String.fromCharCode(+n)).replace(/\s+/g, " ").trim();
+  const meta = (name) => {
+    const re = new RegExp(`<meta[^>]+(?:property|name)=["']${name}["'][^>]*>`, "i");
+    const tag = html.match(re); if (!tag) return "";
+    const c = tag[0].match(/content=["']([^"']*)["']/i); return c ? ent(c[1]) : "";
+  };
+  const t = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+  const title = meta("og:title") || meta("twitter:title") || (t ? ent(t[1]) : "");
+  const description = meta("og:description") || meta("description") || meta("twitter:description");
+  const site = meta("og:site_name") || new URL(r.url || u.href).hostname.replace(/^www\./, "");
+  const type = meta("og:type");
+  return { url: r.url || u.href, title: title.slice(0, 300), description: description.slice(0, 600), site: site.slice(0, 80), type: type.slice(0, 40) };
+}
+
 function cors(origin, allowed) {
   return {
     "Access-Control-Allow-Origin": origin === allowed ? allowed : "null",
@@ -99,10 +131,10 @@ function cors(origin, allowed) {
 const json = (obj, status, headers) =>
   new Response(JSON.stringify(obj), { status, headers: { "Content-Type": "application/json", ...headers } });
 
-function limited(ip) {
+function limited(ip, limit = RATE.limit) {
   const now = Date.now();
   const list = (hits.get(ip) || []).filter((t) => now - t < RATE.windowMs);
-  if (list.length >= RATE.limit) { hits.set(ip, list); return true; }
+  if (list.length >= limit) { hits.set(ip, list); return true; }
   list.push(now); hits.set(ip, list);
   if (hits.size > 5000) hits.clear();
   return false;
@@ -117,13 +149,20 @@ export default {
     if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: h });
     if (req.method !== "POST") return json({ error: "Use POST." }, 405, h);
     if (origin !== allowed) return json({ error: "Not allowed." }, 403, h);
+    let body;
+    try { body = await req.json(); } catch { return json({ error: "Bad request." }, 400, h); }
+
+    // app "Add to Saved" sheet: { action: "preview", url } -> { title, description, site }
+    if (body && body.action === "preview") {
+      if (limited("p:" + (req.headers.get("CF-Connecting-IP") || "unknown"), 30)) return json({ error: "Too many previews. Try again in a minute." }, 429, h);
+      const p = await preview(body.url);
+      return p ? json(p, 200, h) : json({ error: "No preview for that link." }, 422, h);
+    }
+
     if (!env.OPENROUTER_API_KEY) return json({ error: "Chat is not configured yet." }, 500, h);
 
     const ip = req.headers.get("CF-Connecting-IP") || "unknown";
     if (limited(ip)) return json({ error: "You're asking quickly. Try again in a minute." }, 429, h);
-
-    let body;
-    try { body = await req.json(); } catch { return json({ error: "Bad request." }, 400, h); }
     const msgs = Array.isArray(body.messages) ? body.messages : [];
     const clean = msgs
       .filter((m) => m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string")

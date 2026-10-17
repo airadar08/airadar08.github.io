@@ -176,6 +176,63 @@ a{color:inherit}
 .toast{position:fixed;left:50%;top:calc(var(--top-h) + var(--gap)*2 + env(safe-area-inset-top,0px) + 6px);bottom:auto;transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:9px 14px;border-radius:999px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s var(--ease);z-index:20}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 .ios-hint{margin:10px 0 0;padding:10px 12px;border:1px dashed var(--line-2);border-radius:12px;font-size:12.5px;color:var(--muted)}
+/* + button (liquid glass) */
+.fab-host{position:absolute;z-index:7;right:max(calc(var(--gap) + 4px),env(safe-area-inset-right,0px));bottom:calc(var(--tabs-h) + var(--gap)*2 + env(safe-area-inset-bottom,0px) + 4px);transition:bottom .25s var(--ease)}
+body[data-tab="chat"] .fab-host{bottom:calc(var(--tabs-h) + var(--comp-h) + var(--gap)*3 + env(safe-area-inset-bottom,0px) + 4px)}
+.fab{position:relative;width:56px;height:56px;border-radius:50%;border:1px solid rgba(111,220,170,.35);background:rgba(18,39,30,.62);box-shadow:0 8px 24px rgba(0,0,0,.45);overflow:hidden}
+.fab:not([data-liquid-glass]){background:rgba(18,39,30,.85);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3)}
+.fab button{width:56px;height:56px;border:0;background:none;color:var(--mint);display:grid;place-items:center;cursor:pointer;border-radius:50%}
+.fab button svg{width:26px;height:26px}
+.fab button:active{transform:scale(.94)}
+body.sheet-open .fab-host{opacity:0;pointer-events:none}
+.view{padding-bottom:calc(var(--tabs-h) + var(--gap)*2 + env(safe-area-inset-bottom,0px) + 80px)}
+#view-chat{padding-bottom:calc(var(--tabs-h) + var(--comp-h) + var(--gap)*3 + env(safe-area-inset-bottom,0px) + 80px)}
+
+/* Saved extras */
+.f .n{opacity:.6;font-size:11.5px;margin-left:2px}
+.f.on .n{opacity:.75}
+.f.site{font-size:12px}
+.lib-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:4px 0 2px}
+.lib-tools .sp{flex:1}
+.sort{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted)}
+.sort select{border:1px solid var(--line-2);background:var(--card);border-radius:999px;padding:5px 10px;font-size:12.5px;color:var(--ink)}
+.tags button{font:inherit;font-size:11px;color:var(--muted);border:1px solid var(--line-2);background:none;border-radius:999px;padding:2px 8px;cursor:pointer}
+.tags button:hover{border-color:var(--mint);color:var(--mint-ink)}
+.note-box{font-size:13.5px;color:#d6ddd8;background:var(--card-2);border-left:2px solid var(--mint);border-radius:4px 10px 10px 4px;padding:7px 10px;white-space:pre-wrap;overflow-wrap:anywhere}
+.mini-btn.remove.confirm{background:#3a1a14;border-color:#6b2c20;color:#f0a58a}
+.plus-i{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--mint-soft);color:var(--mint);font-weight:700}
+
+/* Add to Saved sheet */
+.sheet-wrap{position:fixed;inset:0;z-index:30;display:flex;align-items:flex-end;justify-content:center}
+.scrim{position:absolute;inset:0;background:rgba(0,0,0,.55);opacity:0;transition:opacity .22s}
+.sheet-wrap.on .scrim{opacity:1}
+.sheet{position:relative;width:min(760px,100%);max-height:calc(100% - 28px - env(safe-area-inset-top,0px));overflow-y:auto;overscroll-behavior:contain;background:var(--card);border:1px solid var(--line-2);border-bottom:0;border-radius:26px 26px 0 0;padding:8px 16px calc(16px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:12px;transform:translateY(100%);transition:transform .26s var(--ease);box-shadow:0 -12px 40px rgba(0,0,0,.5)}
+.sheet-wrap.on .sheet{transform:none}
+.grab{width:40px;height:5px;border-radius:9px;background:var(--line-2);margin:2px auto 0}
+.sheet-head{display:flex;align-items:center;justify-content:space-between}
+.sheet-head h2{margin:0;font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.1}
+.fld{display:flex;flex-direction:column;gap:6px}
+.fld>span{font:500 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.fld>span em{font-style:normal;text-transform:none;letter-spacing:0;font-family:var(--sans);color:var(--dim);opacity:.8;margin-left:4px}
+.fld input,.fld textarea,.new-topic input{width:100%;border:1px solid var(--line-2);background:var(--bg);border-radius:12px;padding:11px 13px;color:var(--ink);font:15px/1.4 var(--sans);resize:vertical}
+.fld input:focus,.fld textarea:focus,.new-topic input:focus{outline:none;border-color:var(--mint)}
+.frow.wrap{flex-wrap:wrap;overflow:visible}
+.new-topic{display:flex;gap:8px;margin-top:4px}
+.new-topic input{padding:8px 12px;font-size:14px}
+.add-status{font-size:12.5px;color:var(--mint-ink)}
+.add-status:empty{display:none}
+.add-status.err{color:#f0a58a}
+#add-form.loading .add-status::before{content:"";display:inline-block;width:10px;height:10px;margin-right:7px;border-radius:50%;border:2px solid var(--mint);border-right-color:transparent;vertical-align:-1px;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.add-preview{display:flex;gap:10px;padding:10px;border:1px solid var(--line);border-radius:12px;background:var(--card-2)}
+.add-preview img{flex:none;width:72px;height:48px;object-fit:cover;border-radius:8px}
+.add-preview div{display:flex;flex-direction:column;gap:3px;min-width:0}
+.add-preview .k{font:500 10px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--mint-ink)}
+.add-preview .d{font-size:13px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.sheet-acts{display:flex;justify-content:flex-end;gap:8px;padding-top:4px;position:sticky;bottom:calc(-16px - env(safe-area-inset-bottom,0px));background:linear-gradient(transparent,var(--card) 30%);padding-bottom:4px}
+.sheet-acts .pill-btn{padding:10px 18px;font-size:14px}
+body.sheet-open{overflow:hidden}
+
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -189,7 +246,7 @@ a{color:inherit}
     </div>
     <div class="sp"></div>
     <button class="pill-btn mint" id="install" type="button" hidden>Install app</button>
-    <button class="icon-btn" id="clear" type="button" aria-label="New chat" title="New chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
+    <button class="icon-btn" id="clear" type="button" aria-label="New chat" title="New chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.4 2.6a2.1 2.1 0 0 1 3 3L12 15l-4 1 1-4z"></path></svg></button>
   </header></div>
 
   <main class="view chat-view" id="view-chat">
@@ -225,12 +282,22 @@ a{color:inherit}
 
   <main class="view" id="view-lib" hidden>
     <div class="lib-head"><h1>Saved</h1><span class="count" id="lib-count"></span></div>
+    <p class="note" style="margin:-6px 2px 12px">Private to this device. Tap + to add any link or note; topics are filled in for you.</p>
     <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><input id="lib-q" type="search" placeholder="Search your saved items" aria-label="Search your saved items" autocomplete="off"></label>
     <div class="filters">
       <div class="frow" id="f-type" role="group" aria-label="Type"></div>
       <div class="frow" id="f-date" role="group" aria-label="Date saved"></div>
       <div class="custom" id="f-custom" hidden><label>From <input type="date" id="d-from"></label><label>To <input type="date" id="d-to"></label></div>
-      <div class="frow" id="f-tag" role="group" aria-label="Topic"></div>
+      <div class="frow" id="f-tag" role="group" aria-label="Topics (pick several to narrow down)"></div>
+      <div class="frow" id="f-site" role="group" aria-label="Site"></div>
+    </div>
+    <div class="lib-tools" id="lib-tools" hidden>
+      <label class="sort">Sort <select id="lib-sort" aria-label="Sort"><option value="new">Newest</option><option value="old">Oldest</option><option value="az">A–Z</option></select></label>
+      <button class="mini-btn" type="button" id="f-clear" hidden>Clear filters</button>
+      <span class="sp"></span>
+      <button class="mini-btn" type="button" id="lib-export" title="Download your Saved items as a file">Export</button>
+      <button class="mini-btn" type="button" id="lib-import" title="Restore from an export file">Import</button>
+      <input type="file" id="import-file" accept="application/json,.json" hidden>
     </div>
     <div class="items" id="items"></div>
   </main>
@@ -241,14 +308,32 @@ a{color:inherit}
     <button class="send" type="submit" id="send" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"></path></svg></button>
   </form></div>
 
+  <div class="fab-host" id="fab-host"><div class="fab" id="fab-glass"><button type="button" id="fab" aria-label="Add to Saved" title="Add a link or note to Saved"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button></div></div>
+
   <div class="tabs-host"><nav class="tabs" id="tabbar" aria-label="Sections">
     <button class="tab on" type="button" data-tab="chat" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path></svg>Chat</button>
     <button class="tab" type="button" data-tab="posts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4.5"></circle><path d="M12 12 18.5 5.5"></path></svg>Posts</button>
     <button class="tab" type="button" data-tab="lib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"></path></svg>Saved<span class="badge" id="badge" hidden></span></button>
   </nav></div>
 </div>
+<div class="sheet-wrap" id="sheet" hidden>
+  <div class="scrim" data-close></div>
+  <form class="sheet" id="add-form" role="dialog" aria-modal="true" aria-labelledby="add-h" novalidate>
+    <div class="grab" aria-hidden="true"></div>
+    <div class="sheet-head"><h2 id="add-h">Add to Saved</h2><button class="icon-btn" type="button" data-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg></button></div>
+    <label class="fld" id="add-url-row"><span>Link <em>optional</em></span><input id="add-url" type="url" inputmode="url" placeholder="Paste a link: repo, article, video, model…" autocomplete="off" autocapitalize="off" spellcheck="false"></label>
+    <div class="add-status" id="add-status" aria-live="polite"></div>
+    <div class="add-preview" id="add-preview" hidden></div>
+    <label class="fld"><span>Title</span><input id="add-title" type="text" maxlength="300" placeholder="Filled in from the link" autocomplete="off"></label>
+    <label class="fld"><span>Note <em>optional</em></span><textarea id="add-note" rows="3" maxlength="4000" placeholder="Why you saved it, what to try…"></textarea></label>
+    <div class="fld" id="add-type-row"><span>Type</span><div class="frow wrap" id="add-types" role="group" aria-label="Type"></div></div>
+    <div class="fld"><span>Topics <em>suggested for you, tap to change</em></span><div class="frow wrap" id="add-topics" role="group" aria-label="Topics"></div>
+      <div class="new-topic"><input id="add-newtopic" type="text" maxlength="40" placeholder="New topic, e.g. Work project" autocomplete="off"><button class="mini-btn" type="button" id="add-topic-btn">Add topic</button></div></div>
+    <div class="sheet-acts"><button class="pill-btn" type="button" data-close>Cancel</button><button class="pill-btn mint" type="submit" id="add-save">Save</button></div>
+  </form>
+</div>
 <div class="toast" id="toast" role="status"></div>
 <script src="vendor/glass.js?v=1" defer></script>
-<script src="app.js?v=7"></script>
+<script src="app.js?v=8"></script>
 </body>
 </html>
