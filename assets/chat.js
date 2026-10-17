@@ -51,7 +51,7 @@
   }
   function has(text,w){ return w.length<=3 ? new RegExp('(^|[^a-z0-9])'+w.replace(/[^a-z0-9]/g,'')+'([^a-z0-9]|$)').test(text) : text.indexOf(w)>=0; }
   function matchSite(q,items){
-    var base=terms(q); if(!base.length) return [];
+    var base=ghTerms(q); if(!base.length) return [];   // same cleaning as repo search
     var groups=base.map(function(w){ return [w].concat(SYN[w]||[]); });
     var wantKind=/cheat ?sheets?/i.test(q)?'Cheatsheet':/prompt ?packs?|prompts?\b/i.test(q)?'Prompt pack':/\b(repos?|repositor(y|ies)|github)\b/i.test(q)?'Repo':'';
     return items.map(function(it){
@@ -71,30 +71,54 @@
     return fetch('https://api.github.com/search/repositories?q='+encodeURIComponent(q)+'&sort=stars&order=desc&per_page=30',{headers:{'Accept':'application/vnd.github+json'}})
       .then(function(r){ if(!r.ok) throw new Error('github '+r.status); return r.json(); }).then(function(j){ return j.items||[]; });
   }
+  // Repo search: turn a question into a clean GitHub query.
+  // "i want to create a good front end, provide me a good repo" -> topic:frontend, most-starred and still active,
+  // plus a few new AI repos for the same topic. Questions that are about AI (agents, TTS, LLMs...) get AI repos.
+  var GH_STOP=new Set("create creating build building built develop developing making provide recommend recommendation recommendations suggest suggestion suggestions looking look need needs want wants start starting learn learning some nice better awesome useful which should way ways kind type types help resource resources stuff anything everything work working simple easy quick also other really very just here our we us my mine".split(" "));
+  var GH_PHRASE=[[/front[\s-]?ends?/g,'frontend'],[/back[\s-]?ends?/g,'backend'],[/full[\s-]?stack/g,'fullstack'],[/user interfaces?|\bui\s*\/\s*ux\b/g,'ui'],[/web ?sites?|web ?pages?/g,'website'],[/landing pages?/g,'landing'],[/next\.?js/g,'nextjs'],[/tailwind ?css/g,'tailwind'],[/node\.?js/g,'nodejs'],[/vue\.?js/g,'vue'],[/react\.?js/g,'react'],[/design systems?/g,'designsystem'],[/text[\s-]to[\s-]speech/g,'tts'],[/speech[\s-]to[\s-]text/g,'stt'],[/large language models?/g,'llm'],[/mobile apps?/g,'mobile'],[/chat ?bots?/g,'chatbot']];
+  // words that work best as GitHub topics (the big projects tag themselves this way)
+  var GH_TOPIC={frontend:'frontend',backend:'backend',fullstack:'fullstack',ui:'ui',css:'css',react:'react',vue:'vue',svelte:'svelte',angular:'angular',nextjs:'nextjs',tailwind:'tailwindcss',website:'website',landing:'landing-page',portfolio:'portfolio',dashboard:'dashboard',designsystem:'design-system',nodejs:'nodejs',mobile:'mobile',flutter:'flutter',android:'android',ios:'ios',agents:'ai-agents',agent:'ai-agents',mcp:'mcp',rag:'rag',tts:'tts',stt:'speech-to-text',llm:'llm',chatbot:'chatbot',ollama:'ollama',automation:'automation',scraping:'web-scraping',scraper:'web-scraping'};
+  var GH_SYN={frontend:['frontend','front-end','ui','interface','design','component','css','react','vue','svelte'],ui:['ui','interface','design','component','css'],backend:['backend','api','server'],website:['website','site','landing','web page'],
+    agents:['agent','agentic'],agent:['agent','agentic'],tts:['tts','speech','voice'],stt:['speech','transcri','asr','whisper'],llm:['llm','model','language'],chatbot:['chat','bot','assistant']};
+  var GH_DEV=new Set('frontend backend fullstack ui css react vue svelte angular nextjs tailwind website landing portfolio dashboard designsystem nodejs mobile flutter android ios scraping scraper javascript typescript html'.split(' '));
+  var AI_WORD=/\b(ai|ml|llms?|gpt|agents?|agentic|rag|mcp|tts|stt|asr|whisper|diffusion|neural|machine learning|deep learning|chatbot|ollama|transformers?|embeddings?|fine[- ]?tun\w*|prompts?|copilot|claude|gemini|openai|llama|qwen|deepseek|voice|speech|vision)\b/i;
+  function ghTerms(q){
+    var s=q.toLowerCase(); GH_PHRASE.forEach(function(p){ s=s.replace(p[0],p[1]); });
+    return terms(s).filter(function(w){ return !GH_STOP.has(w)&&!/^(ai|ml)$/.test(w); }).slice(0,3);
+  }
   function githubTop(q){
     var m=q.toLowerCase().match(/\b(\d{1,2}|one|two|three|four|five|six|seven|eight|nine|ten)\b/);
     var n=m?(NUMW[m[1]]||parseInt(m[1],10)):5; n=Math.max(1,Math.min(10,n||5));
-    var kw=terms(q).slice(0,4);
-    var topic=kw.join(' ');
-    var since=daysAgo(180);
-    var main=(topic?topic+' ':'')+'ai created:>'+since;
-    var wide=(topic?topic+' ':'')+'ai pushed:>'+daysAgo(30)+' stars:>500';
-    function rel(i){
-      var hay=[i.full_name,i.description||'',(i.topics||[]).join(' ')].join(' ').toLowerCase();
-      var onTopic=kw.every(function(w){ return [w].concat(SYN[w]||[]).some(function(x){ return has(hay,x); }); });
-      return onTopic && AIRX.test(hay) && !i.fork && !i.archived;
+    var kw=ghTerms(q), topic=kw.join(' ');
+    // AI repos by default (this is an AI app); plain best-of repos only for software-building topics like frontend or websites
+    var aiQ=AI_WORD.test(q)||!kw.length||!kw.some(function(w){ return GH_DEV.has(w); });
+    var wantNew=/\b(trending|new|newest|latest|recent|fresh|hot|this (week|month)|right now)\b/i.test(q);
+    var quals=kw.map(function(w){ return GH_TOPIC[w]?'topic:'+GH_TOPIC[w]:w; }).join(' ');
+    var plain=kw.join(' ');
+    function hay(i,withTopics){ return [i.full_name,i.description||'',withTopics?(i.topics||[]).join(' '):''].join(' ').toLowerCase(); }
+    function onTopic(i,withTopics){ var h=hay(i,withTopics); return kw.every(function(w){ return [w].concat(GH_SYN[w]||SYN[w]||[]).some(function(x){ return has(h,x); }); }); }
+    function ok(i){ return !i.fork&&!i.archived&&(!aiQ||AIRX.test(hay(i,true))); }
+    function card(i){ return {name:i.full_name,url:i.html_url,desc:i.description||'',stars:i.stargazers_count,lang:i.language||'',created:(i.created_at||'').slice(0,10)}; }
+    var ai=aiQ&&!/topic:ai-agents|topic:llm|topic:mcp|topic:rag/.test(quals)?' ai':'';
+    var tries=wantNew
+      ? [quals+ai+' created:>'+daysAgo(180), quals+ai+' pushed:>'+daysAgo(30)+' stars:>500', plain+ai+' stars:>100']
+      : [quals+ai+' stars:>200 pushed:>'+daysAgo(120), quals+ai+' stars:>50', plain+ai+' stars:>50'];
+    var picks=[], seen={};
+    function run(k){
+      if(k>=tries.length||picks.length>=n) return Promise.resolve();
+      var qq=tries[k].trim(), viaTopic=/topic:/.test(qq);
+      return ghSearch(qq).then(function(a){
+        a.forEach(function(i){ if(picks.length<n&&!seen[i.id]&&ok(i)&&(viaTopic||onTopic(i,true))){ seen[i.id]=1; picks.push(i); } });
+      }).catch(function(e){ if(!picks.length&&k===0) throw e; }).then(function(){ return run(k+1); });
     }
-    return ghSearch(main).then(function(a){
-      var picks=a.filter(rel);
-      if(picks.length>=n) return {items:picks.slice(0,n),fresh:true};
-      return ghSearch(wide).then(function(b){
-        var seen={}; var all=picks.concat(b.filter(rel)).filter(function(i){ if(seen[i.id]) return false; seen[i.id]=1; return true; });
-        return {items:all.slice(0,n),fresh:false};
-      });
-    }).then(function(res){
-      return {n:n,topic:topic,since:since,fresh:res.fresh,items:res.items.map(function(i){
-        return {name:i.full_name,url:i.html_url,desc:i.description||'',stars:i.stargazers_count,lang:i.language||'',created:(i.created_at||'').slice(0,10)};
-      })};
+    return run(0).then(function(){
+      // a few brand-new AI repos for a non-AI topic ("frontend" -> AI UI builders, design skills for coding agents)
+      if(aiQ||!plain) return [];
+      return ghSearch(plain+' ai created:>'+daysAgo(180)).then(function(a){
+        return a.filter(function(i){ return !seen[i.id]&&!i.fork&&!i.archived&&AIRX.test(hay(i,true))&&onTopic(i,false); }).slice(0,3);
+      }).catch(function(){ return []; });
+    }).then(function(extra){
+      return {n:n,topic:topic,aiQ:aiQ,since:daysAgo(180),fresh:wantNew,items:picks.map(card),extra:extra.map(card)};
     });
   }
   function kfmt(n){ return n>=1000?(n/1000).toFixed(n>=10000?0:1).replace(/\.0$/,'')+'k':String(n); }
@@ -255,10 +279,15 @@
         if(g.items.length){
           t.remove();
           var what=g.topic?g.topic+' ':'';
-          var lead2=(site.length?'And ':'')+'Top '+g.items.length+' '+what+'AI repos on GitHub right now:';
-          var foot=g.fresh?'Most-starred repos created since '+g.since+', live from GitHub search.':'Most-starred, recently active repos, live from GitHub search.';
-          var m2={gh:true,lead:lead2,foot:foot,cards:g.items.map(function(r){ return {title:r.name,desc:r.desc,url:r.url,meta:'\u2605 '+kfmt(r.stars)+(r.lang?' \u00b7 '+r.lang:'')}; })};
+          var lead2=(site.length?'And ':'')+'Top '+g.items.length+' '+what+(g.aiQ?'AI ':'')+'repos on GitHub'+(g.fresh?' right now:':':');
+          var foot=g.fresh?'Most-starred repos created since '+g.since+', live from GitHub search.':'Most-starred, still actively updated repos, live from GitHub search.';
+          function ghCard(r){ return {title:r.name,desc:r.desc,url:r.url,meta:'\u2605 '+kfmt(r.stars)+(r.lang?' \u00b7 '+r.lang:'')}; }
+          var m2={gh:true,lead:lead2,foot:foot,cards:g.items.map(ghCard)};
           history.push({role:'assistant',content:lead2+' '+g.items.map(function(r,i){return (i+1)+'. '+r.name+' ('+kfmt(r.stars)+' stars)';}).join('; '),meta:m2}); bubble('assistant','',m2);
+          if(g.extra.length){
+            var m3={gh:true,lead:'New AI repos for '+(g.topic||'this')+':',foot:'Created in the last 6 months, live from GitHub search.',cards:g.extra.map(ghCard)};
+            history.push({role:'assistant',content:m3.lead+' '+g.extra.map(function(r){ return r.name; }).join('; '),meta:m3}); bubble('assistant','',m3);
+          }
           save(); busy=false; send.disabled=false; input.focus(); return;
         }
       }catch(e){ /* GitHub limit or offline: fall through to the AI answer */ }
