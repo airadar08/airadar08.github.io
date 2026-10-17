@@ -4,7 +4,8 @@
   var host=document.getElementById('radar');
   if(!host||!window.THREE) return;
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var dark=matchMedia('(prefers-color-scheme: dark)');
+  // the site is dark-only now; keep the dark palette regardless of the device setting
+  var dark={matches:true};
   var renderer;
   try{ renderer=new THREE.WebGLRenderer({antialias:true,alpha:true}); }catch(e){ return; }
   renderer.setPixelRatio(Math.min(devicePixelRatio||1,2));
