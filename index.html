@@ -13,7 +13,7 @@
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
 <style>
 /* Layout: inset photographic hero → editorial carousel → rotating logo wheel → bento → FAQ → sky CTA → wordmark footer */
 :root{
@@ -70,7 +70,7 @@ img{max-width:100%}
 .nav.solid .nav-pill{background:rgba(245,245,242,.55);box-shadow:0 10px 30px rgba(13,13,13,.04)}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
 .logo-mark{width:40px;height:40px;border-radius:50%;display:block}
-.logo-word{font-family:var(--serif);font-size:24px;letter-spacing:-.01em;color:#fff;transition:color .4s ease}
+.logo-word{font-family:var(--sans);font-weight:700;font-size:20px;letter-spacing:-.03em;color:#fff;transition:color .4s ease}
 .nav-links{display:flex;align-items:center;gap:30px;font-size:14px;font-weight:500}
 .nav-links a{text-decoration:none;color:#fff;display:inline-flex;align-items:center;gap:4px;transition:color .4s ease}
 .nav.solid .nav-links a,.nav.solid .logo-word{color:var(--ink)}
@@ -122,7 +122,7 @@ img{max-width:100%}
 .hero-shell{padding:8px 8px 0}
 .hero{border-radius:20px;padding-top:150px}
 .hero-copy{max-width:860px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:22px}
-.hero-eyebrow{font-family:var(--serif);font-size:18px;letter-spacing:.06em;text-transform:uppercase;color:#fff;display:flex;align-items:center;gap:10px}
+.hero-eyebrow{font-family:var(--sans);font-weight:600;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#fff;display:flex;align-items:center;gap:10px}
 .live{position:relative;width:8px;height:8px}
 .live i{position:absolute;inset:0;border-radius:50%;background:#2f9a5a}
 .live i:first-child{animation:ping 1.8s ease-out infinite}
@@ -252,7 +252,7 @@ img{max-width:100%}
 .cols a{text-decoration:none}
 .cols a:hover{color:var(--coral)}
 .cols .k{font-size:12px;color:#8a8a85}
-.wordmark{font-family:var(--serif);font-style:italic;font-size:30vw;line-height:.8;letter-spacing:-.04em;text-align:center;white-space:nowrap;margin-top:40px;height:22vw;overflow:hidden;background:linear-gradient(180deg,#0d0d0d 5%,#d6d6d1 80%);-webkit-background-clip:text;background-clip:text;color:transparent;transition:transform 1.4s var(--spring)}
+.wordmark{font-family:var(--sans);font-weight:800;font-size:24vw;line-height:.82;letter-spacing:-.065em;text-align:center;white-space:nowrap;margin-top:40px;height:22vw;overflow:hidden;background:linear-gradient(180deg,#0d0d0d 5%,#d6d6d1 80%);-webkit-background-clip:text;background-clip:text;color:transparent;transition:transform 1.4s var(--spring)}
 .js .wordmark.pending{transform:translateY(40%)}
 
 .tag-link{display:inline-flex;text-decoration:none;font-family:var(--serif);font-style:italic;font-size:26px;color:#fff;padding:6px 16px;border-radius:999px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background .25s ease}
