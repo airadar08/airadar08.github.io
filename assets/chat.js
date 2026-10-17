@@ -189,6 +189,8 @@
 .airc-card .m{font:500 11.5px var(--body);color:var(--muted)}
 .airc-lead{font-size:14px;line-height:1.45}
 .airc-foot{font-size:11.5px;color:var(--muted);margin-top:6px}
+.airc-divider{display:flex;align-items:center;gap:10px;margin:6px 0;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted,#9aa39c)}
+.airc-divider::before,.airc-divider::after{content:"";flex:1;height:1px;background:currentColor;opacity:.3}
 `;
   var st=document.createElement('style'); st.textContent=css; document.head.appendChild(st);
 
@@ -209,6 +211,13 @@
   var fab=root.querySelector('.airc-fab'), panel=root.querySelector('.airc-panel'), log=root.querySelector('.airc-log'),
       form=root.querySelector('.airc-form'), input=root.querySelector('textarea'), send=form.querySelector('button'), closeBtn=root.querySelector('.x');
   var history=[]; try{ history=JSON.parse(sessionStorage.getItem(KEY)||'[]'); }catch(e){}
+  // One conversation = one session: after 5 minutes without a message the next question starts fresh,
+  // so the AI only sees this visitor's current back-and-forth (up to CTX_MAX messages). History stays in this browser tab.
+  var SESSION_MS=5*60*1000, CTX_MAX=12;
+  function add(m){ m.t=Date.now(); history.push(m); }
+  function lastTime(){ for(var i=history.length-1;i>=0;i--){ if(history[i].role!=='divider') return history[i].t||0; } return 0; }
+  function sessionMsgs(){ var start=0; for(var i=history.length-1;i>=0;i--){ if(history[i].role==='divider'){ start=i+1; break; } } return history.slice(start).filter(function(m){ return m.role==='user'||m.role==='assistant'; }); }
+  function divider(){ var d=document.createElement('div'); d.className='airc-divider'; d.innerHTML='<span>New conversation</span>'; log.appendChild(d); }
   var busy=false;
 
   function esc(s){ return s.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
@@ -226,7 +235,7 @@
       return '<a class="airc-card" href="'+esc(c.url)+'"'+(ext?' target="_blank" rel="noopener"':'')+'>'+lead+'<span class="c">'+(c.kind?'<span class="k">'+esc(c.kind)+'</span>':'')+'<b>'+esc(c.title)+'</b>'+(c.desc?'<span class="d">'+esc(c.desc)+'</span>':'')+(c.meta?'<span class="m">'+esc(c.meta)+'</span>':'')+'</span></a>';
     }).join('')+'</div>';
   }
-  function save(){ try{ sessionStorage.setItem(KEY,JSON.stringify(history.slice(-20))); }catch(e){} }
+  function save(){ try{ sessionStorage.setItem(KEY,JSON.stringify(history.slice(-40))); }catch(e){} }
   function bubble(role,text,extra){
     var d=document.createElement('div'); d.className='airc-msg '+(role==='user'?'u':'a')+(extra&&extra.err?' err':'');
     var note=extra&&extra.site?'<em>· from our resources</em>':extra&&extra.gh?'<em>· searched GitHub</em>':(extra&&extra.web)?'<em>· searched the web</em>':'';
@@ -252,13 +261,14 @@
     SUGGEST.forEach(function(q){ w.appendChild(chip(q,q)); });
     log.appendChild(w);
   }
-  function render(){ log.innerHTML=''; welcome(); history.forEach(function(m){ bubble(m.role,m.content,m.meta); }); }
+  function render(){ log.innerHTML=''; welcome(); history.forEach(function(m){ if(m.role==='divider') divider(); else bubble(m.role,m.content,m.meta); }); }
 
   async function ask(q){
     q=q.trim(); if(!q||busy) return;
     var sug=log.querySelector('.airc-sug'); if(sug) sug.remove();
     busy=true; send.disabled=true;
-    history.push({role:'user',content:q}); bubble('user',q); save();
+    if(history.length&&Date.now()-lastTime()>SESSION_MS&&history[history.length-1].role!=='divider'){ add({role:'divider'}); divider(); }
+    add({role:'user',content:q}); bubble('user',q); save();
     function typing(){ var t=document.createElement('div'); t.className='airc-msg a airc-typing'; t.setAttribute('aria-label','Thinking'); t.innerHTML='<i></i><i></i><i></i>'; log.appendChild(t); log.scrollTop=log.scrollHeight; return t; }
     var t=typing();
     // Step 1: our own resources first
@@ -269,7 +279,7 @@
       var cards=site.map(function(it){ return {kind:it.kind,title:it.title,desc:it.desc,img:it.img,url:it.url}; });
       var lead=site.length===1?'We have this on AI Radar:':'From our AI Radar resources:';
       var m1={site:true,cards:cards,lead:lead};
-      history.push({role:'assistant',content:lead+' '+site.map(function(i){return i.kind+': '+i.title;}).join('; '),meta:m1}); bubble('assistant','',m1); save();
+      add({role:'assistant',content:lead+' '+site.map(function(i){return i.kind+': '+i.title;}).join('; '),meta:m1}); bubble('assistant','',m1); save();
       t=typing();
     }
     // Step 2a: repo questions -> live GitHub search
@@ -283,10 +293,10 @@
           var foot=g.fresh?'Most-starred repos created since '+g.since+', live from GitHub search.':'Most-starred, still actively updated repos, live from GitHub search.';
           function ghCard(r){ return {title:r.name,desc:r.desc,url:r.url,meta:'\u2605 '+kfmt(r.stars)+(r.lang?' \u00b7 '+r.lang:'')}; }
           var m2={gh:true,lead:lead2,foot:foot,cards:g.items.map(ghCard)};
-          history.push({role:'assistant',content:lead2+' '+g.items.map(function(r,i){return (i+1)+'. '+r.name+' ('+kfmt(r.stars)+' stars)';}).join('; '),meta:m2}); bubble('assistant','',m2);
+          add({role:'assistant',content:lead2+' '+g.items.map(function(r,i){return (i+1)+'. '+r.name+' ('+kfmt(r.stars)+' stars)';}).join('; '),meta:m2}); bubble('assistant','',m2);
           if(g.extra.length){
             var m3={gh:true,lead:'New AI repos for '+(g.topic||'this')+':',foot:'Created in the last 6 months, live from GitHub search.',cards:g.extra.map(ghCard)};
-            history.push({role:'assistant',content:m3.lead+' '+g.extra.map(function(r){ return r.name; }).join('; '),meta:m3}); bubble('assistant','',m3);
+            add({role:'assistant',content:m3.lead+' '+g.extra.map(function(r){ return r.name; }).join('; '),meta:m3}); bubble('assistant','',m3);
           }
           save(); busy=false; send.disabled=false; input.focus(); return;
         }
@@ -295,9 +305,9 @@
     // Step 2b: AI answer with web news
     try{
       // keep roles alternating: resource/GitHub turns go in as short assistant summaries, same-role neighbours are merged
-      var msgs=[]; history.forEach(function(m){ var last=msgs[msgs.length-1]; if(last&&last.role===m.role){ last.content+='\n'+m.content; } else msgs.push({role:m.role,content:m.content}); });
+      var msgs=[]; sessionMsgs().forEach(function(m){ var last=msgs[msgs.length-1]; if(last&&last.role===m.role){ last.content+='\n'+m.content; } else msgs.push({role:m.role,content:m.content}); });
       while(msgs.length&&msgs[msgs.length-1].role!=='user') msgs.pop(); // this turn's resource cards stay on screen only
-      msgs=msgs.slice(-6); while(msgs.length&&msgs[0].role!=='user') msgs.shift();
+      msgs=msgs.slice(-CTX_MAX); while(msgs.length&&msgs[0].role!=='user') msgs.shift();
       var payload=JSON.stringify({messages:msgs});
       var r,data;
       for(var attempt=0;attempt<2;attempt++){ // retry once if the model returns an empty answer
@@ -313,7 +323,7 @@
           if(cut>txt.length*0.4) data.reply=txt.slice(0,cut+1).trim();
         }
         var offTopic=/\bonly (cover|help with|answer)\b[^.]*\bAI\b/i.test(data.reply);
-        var meta={sources:offTopic?[]:(data.sources||[]),web:!offTopic&&!!data.web}; history.push({role:'assistant',content:data.reply,meta:meta}); bubble('assistant',data.reply,meta); }
+        var meta={sources:offTopic?[]:(data.sources||[]),web:!offTopic&&!!data.web}; add({role:'assistant',content:data.reply,meta:meta}); bubble('assistant',data.reply,meta); }
     }catch(e){ t.remove(); bubble('assistant',"Couldn't connect. Check your internet and try again.",{err:true}); history.pop(); }
     save(); busy=false; send.disabled=false; input.focus();
   }

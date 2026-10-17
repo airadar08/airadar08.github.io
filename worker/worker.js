@@ -12,7 +12,7 @@
 const DEFAULT_MODEL = "nvidia/nemotron-3.5-super-vl:free";   // free on OpenRouter (rate-limited)
 const DEFAULT_ORIGIN = "https://airadar08.github.io";
 const MAX_INPUT = 500;        // characters per user message
-const MAX_TURNS = 6;          // past messages sent to the model
+const MAX_TURNS = 12;         // past messages sent to the model (the site sends only the visitor's current 5-minute session)
 const RATE = { limit: 8, windowMs: 60_000 };   // per visitor IP, per Worker instance
 const hits = new Map();
 

@@ -103,6 +103,8 @@ a{color:inherit}
 .typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
 @keyframes blink{0%,80%,100%{opacity:.3;transform:none}40%{opacity:1;transform:translateY(-3px)}}
 .note{font-size:12.5px;color:var(--muted)}
+.divider{display:flex;align-items:center;gap:10px;font:500 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line-2)}
 .err{color:#f0a58a}
 
 /* composer */
@@ -355,6 +357,6 @@ body.sheet-open{overflow:hidden}
 </div>
 <div class="toast" id="toast" role="status"></div>
 <script src="vendor/glass.js?v=1" defer></script>
-<script src="app.js?v=13"></script>
+<script src="app.js?v=14"></script>
 </body>
 </html>

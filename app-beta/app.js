@@ -20,6 +20,11 @@
   var chat=load(CHAT_KEY,[]);           // [{role:'user'|'bot', text, data}]
   function saveLib(){ if(!store(LIB_KEY,library)) toast("Couldn't save: storage is full or blocked"); updateBadge(); }
   function saveChat(){ store(CHAT_KEY,chat.slice(-40)); }
+  // Chat sessions: after 5 minutes without a message the next question starts a fresh conversation for the AI
+  // (a "New conversation" divider marks it); within a session the AI sees up to CTX_MAX messages.
+  var SESSION_MS=5*60*1000, CTX_MAX=12;
+  function lastChatTime(){ for(var i=chat.length-1;i>=0;i--){ if(chat[i].role!=='divider') return chat[i].t||0; } return 0; }
+  function sessionChat(){ var start=0; for(var i=chat.length-1;i>=0;i--){ if(chat[i].role==='divider'){ start=i+1; break; } } return chat.slice(start).filter(function(m){ return m.role!=='divider'; }); }
 
   /* ---------------- topics, types ---------------- */
   // Topics are assigned automatically from the title, description, note and (for repos) GitHub topics.
@@ -224,10 +229,10 @@
     }).catch(function(){ return []; });
   }
   function ai(history){
-    var msgs=[]; history.forEach(function(m){ var role=m.role==='user'?'user':'assistant'; var c=m.role==='user'?m.text:(m.data&&m.data.answer)||m.text||''; if(!c) return;
+    var msgs=[]; history.filter(function(m){ return m.role!=='divider'; }).forEach(function(m){ var role=m.role==='user'?'user':'assistant'; var c=m.role==='user'?m.text:(m.data&&m.data.answer)||m.text||''; if(!c) return;
       var last=msgs[msgs.length-1]; if(last&&last.role===role) last.content+='\n'+c; else msgs.push({role:role,content:c.slice(0,role==='user'?500:1500)}); });
     while(msgs.length&&msgs[msgs.length-1].role!=='user') msgs.pop();
-    msgs=msgs.slice(-6); while(msgs.length&&msgs[0].role!=='user') msgs.shift();
+    msgs=msgs.slice(-CTX_MAX); while(msgs.length&&msgs[0].role!=='user') msgs.shift();
     var body=JSON.stringify({messages:msgs});
     function once(){ return withTimeout(fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:body}),40000)
       .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ d.ok=r.ok; d.status=r.status; return d; }); }); }
@@ -303,6 +308,7 @@
   }
   function group(title,list,question){ return list&&list.length?'<div class="group-h">'+esc(title)+'</div><div class="cards">'+list.map(function(c,i){ return cardHTML(c,i,question); }).join('')+'</div>':''; }
 
+  function renderDivider(){ var d=document.createElement('div'); d.className='divider'; d.textContent='New conversation'; log.appendChild(d); }
   function renderUser(text){ hello.hidden=true; var d=document.createElement('div'); d.className='msg me'; d.textContent=text; log.appendChild(d); scrollDown(); }
   function renderBot(data){
     hello.hidden=true;
@@ -331,7 +337,8 @@
   async function ask(q){
     q=q.trim(); if(!q||busy) return;
     busy=true; send.disabled=true;
-    chat.push({role:'user',text:q}); renderUser(q); saveChat();
+    if(chat.length&&Date.now()-lastChatTime()>SESSION_MS&&chat[chat.length-1].role!=='divider'){ chat.push({role:'divider',t:Date.now()}); renderDivider(); }
+    chat.push({role:'user',text:q,t:Date.now()}); renderUser(q); saveChat();
     var t=typing(), data;
     try{
       if(POST_Q.test(q)&&!/\b(saved?|bookmark(ed)?)\b/i.test(q)){
@@ -352,9 +359,9 @@
         var resP=Promise.all([loadIndex(),loadPosts()]).then(function(a){ return matchResources(q,a[0].concat(a[1].filter(function(p){ return p.type==='News'||p.type==='Fact'; }).map(postAsResource))); }).catch(function(){ return []; });
         var ghRes=null;
         var srcP=isRepo?githubTop(q).then(function(g){ ghRes=g; return g.items; }).catch(function(){ return null; }):Promise.all([hn(q),wiki(q)]).then(function(a){ return a[1].concat(a[0]); });
-        var aiP=isRepo?Promise.resolve(null):ai(chat).catch(function(){ return {ok:false,error:"Couldn't reach the AI service. Check your connection and try again."}; });
+        var aiP=isRepo?Promise.resolve(null):ai(sessionChat()).catch(function(){ return {ok:false,error:"Couldn't reach the AI service. Check your connection and try again."}; });
         var res=await resP, src=await srcP, ans=await aiP;
-        if(isRepo&&src===null){ isRepo=false; ans=await ai(chat).catch(function(){ return {ok:false}; }); src=[]; }
+        if(isRepo&&src===null){ isRepo=false; ans=await ai(sessionChat()).catch(function(){ return {ok:false}; }); src=[]; }
         var answer='', error=false, web=false;
         if(isRepo){
           var tp=ghRes&&ghRes.topic?' '+ghRes.topic:'', kind=ghRes&&ghRes.aiQ?' AI':'';
@@ -369,7 +376,7 @@
         data={kind:isRepo?'github':'answer',question:q,answer:answer,extra:isRepo&&ghRes?ghRes.extra:[],error:error,resources:res,sources:src,web:!offTopic&&(web||(!isRepo&&src.length>0)),canSave:!error&&!offTopic};
       }
     }catch(e){ data={kind:'answer',question:q,answer:'Something went wrong. Try again.',error:true,resources:[],sources:[]}; }
-    t.remove(); renderBot(data); chat.push({role:'bot',data:data}); saveChat();
+    t.remove(); renderBot(data); chat.push({role:'bot',data:data,t:Date.now()}); saveChat();
     busy=false; send.disabled=false;
   }
 
@@ -412,7 +419,7 @@
   $('#clear').addEventListener('click',function(){ if(!$('#view-chat').hidden&&!chat.length){ input.focus(); return; } chat=[]; saveChat(); log.innerHTML=''; hello.hidden=false; switchTab('chat'); input.focus(); });
 
   // restore the last conversation
-  chat.forEach(function(m){ if(m.role==='user') renderUser(m.text); else if(m.data) renderBot(m.data); });
+  chat.forEach(function(m){ if(m.role==='divider') renderDivider(); else if(m.role==='user') renderUser(m.text); else if(m.data) renderBot(m.data); });
 
   /* ---------------- UI: Saved (library) ---------------- */
   var fType='All', fDate='all', fTags=new Set(), fSite='', sortBy='new', q='';
