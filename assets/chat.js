@@ -282,7 +282,8 @@
           var txt=data.reply, cut=Math.max(txt.lastIndexOf('. '),txt.lastIndexOf('.\n'),txt.lastIndexOf(')\n'),txt.lastIndexOf('\n- '));
           if(cut>txt.length*0.4) data.reply=txt.slice(0,cut+1).trim();
         }
-        var meta={sources:data.sources||[],web:!!data.web}; history.push({role:'assistant',content:data.reply,meta:meta}); bubble('assistant',data.reply,meta); }
+        var offTopic=/\bonly (cover|help with|answer)\b[^.]*\bAI\b/i.test(data.reply);
+        var meta={sources:offTopic?[]:(data.sources||[]),web:!offTopic&&!!data.web}; history.push({role:'assistant',content:data.reply,meta:meta}); bubble('assistant',data.reply,meta); }
     }catch(e){ t.remove(); bubble('assistant',"Couldn't connect. Check your internet and try again.",{err:true}); history.pop(); }
     save(); busy=false; send.disabled=false; input.focus();
   }
