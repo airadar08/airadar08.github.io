@@ -1,5 +1,24 @@
 [
  {
+  "slug": "mksglu-context-mode",
+  "repo": "mksglu/context-mode",
+  "url": "https://github.com/mksglu/context-mode",
+  "tagline": "An MCP server that keeps raw tool output out of your AI coding agent's context window",
+  "stars": "30.4k",
+  "trend": "+4.2k",
+  "language": "TypeScript",
+  "license": "ELv2",
+  "what": [
+   "Sandboxes tool output: 315 KB down to 5.4 KB",
+   "Tracks edits and tasks in SQLite across compaction",
+   "Agent writes scripts instead of reading 50 files"
+  ],
+  "read": "A practical fix for context bloat. Source-available (ELv2), not OSI open source.",
+  "img": "repos/img/mksglu-context-mode.jpg",
+  "date": "2026-10-17",
+  "post": ""
+ },
+ {
   "slug": "debpalash-voicestudio",
   "repo": "debpalash/VoiceStudio",
   "url": "https://github.com/debpalash/VoiceStudio",
