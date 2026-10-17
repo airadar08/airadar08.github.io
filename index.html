@@ -310,7 +310,7 @@ img{max-width:100%}
 
 
 /* ---------- 3D radar behind the hero copy (assets/hero.js, Three.js) ---------- */
-#radar{position:absolute;left:50%;top:-40px;width:min(1060px,150vw);aspect-ratio:1/1;transform:translateX(-50%);z-index:0;pointer-events:none}
+.hero>#radar{position:absolute;left:50%;top:-40px;width:min(1060px,150vw);height:min(1060px,150vw);transform:translateX(-50%);z-index:0;pointer-events:none}
 #radar canvas{position:absolute;inset:0;width:100%!important;height:100%!important}
 #radar .fallback{position:absolute;inset:22% 18%;opacity:.7}
 #radar.live .fallback{display:none}
@@ -322,7 +322,7 @@ img{max-width:100%}
 .hero-copy,.phones{position:relative;z-index:1}
 .hero h1{text-shadow:0 4px 40px rgba(5,7,6,.85)}
 .hero .sub{text-shadow:0 2px 20px rgba(5,7,6,.9)}
-@media (max-width:900px){#radar{top:0;width:170vw}}
+@media (max-width:900px){.hero>#radar{top:10px;width:170vw;height:170vw}}
 
 /* ---------- responsive ---------- */
 @media (max-width:900px){
