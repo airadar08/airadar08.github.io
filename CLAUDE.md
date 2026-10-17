@@ -17,6 +17,7 @@ Static site for the @ai_radar_ X account, served by GitHub Pages at https://aira
 - `repos/index.html` — Repos page; renders from `data/repos.json` (newest first). Home shows the 4 newest in the hidden-until-filled `#repos-strip`. Card images in `repos/img/`.
 - `data/repos.json` — featured repos, written by `tools/update_site.py repo`.
 - `tools/` — renderers (`render_cheatsheet.py`, `render_repo.py`), `post_x.js` browser snippet, `update_site.py`. Used by the scheduled posting task.
+- `app-beta/` — UNLISTED test build of the AI Radar app (installable PWA, `noindex`, not linked from the site): chat with source cards (AI Radar resources first, then GitHub for repo questions, otherwise Hacker News + Wikipedia + the Worker's answer and news), save any card or answer to an on-device library (localStorage `airadar-library-v1`), Library tab with type/date/topic/search filters, and chat recall of saved items ("what did I save about RAG last year?"). Service worker `sw.js`, `manifest.webmanifest`, icons in `app-beta/icons/`. Promote to `app/` once approved.
 - `.nojekyll` — keeps GitHub Pages from running Jekyll.
 
 ## Brand
