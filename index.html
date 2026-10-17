@@ -187,15 +187,29 @@ img{max-width:100%}
 .feed i{width:7px;height:7px;border-radius:50%;background:#2f9a5a;flex:0 0 auto}
 .feed i.off{background:#b9b9b3}
 
-/* ---------- wheel ---------- */
-.wheel-sec{position:relative;overflow:hidden;padding-top:330px;padding-bottom:140px}
-.wheel{position:absolute;left:50%;top:70px;width:1500px;height:1500px;margin-left:-750px;border-radius:50%;will-change:transform}
+/* ---------- wheel: full ring orbiting the copy (desktop), scrolling row (phones) ---------- */
+.wheel-sec{position:relative;overflow:hidden;padding-block:72px 96px}
+.wheel-wrap{position:relative;max-width:1160px;margin:0 auto;height:var(--wh,900px);display:grid;place-items:center}
+.wheel{position:absolute;left:50%;top:50%;width:var(--wd,800px);height:var(--wd,800px);margin:calc(var(--wd,800px) / -2) 0 0 calc(var(--wd,800px) / -2);border-radius:50%;will-change:transform}
+.wheel::before{content:"";position:absolute;inset:0;border-radius:50%;border:1px dashed #dcdcd6}
 .spoke{position:absolute;left:50%;top:50%;width:0;height:0}
-.chip{position:absolute;left:0;top:0;transform:translate(-50%,-50%) rotate(calc(var(--r) * -1));display:flex;flex-direction:column;align-items:center;gap:8px}
-.chip-inner{display:flex;flex-direction:column;align-items:center;gap:8px;transform:rotate(calc(var(--spin,0deg) * -1))}
-.chip b{width:var(--s,64px);height:var(--s,64px);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;color:#fff;box-shadow:0 14px 30px rgba(13,13,13,.14);border:3px solid #fff}
-.chip span{font-size:12px;font-weight:500;color:#4a4a47;white-space:nowrap}
-.wheel-copy{position:relative;z-index:2;max-width:540px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:20px}
+.chip{position:absolute;left:0;top:0;transform:translate(-50%,-50%) rotate(calc(var(--r) * -1))}
+.chip-inner{display:flex;flex-direction:column;align-items:center;gap:7px}
+.chip b{width:var(--s,64px);height:var(--s,64px);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;color:#fff;box-shadow:0 14px 30px rgba(13,13,13,.14);border:3px solid #fff;transition:transform .35s var(--spring)}
+.chip:hover b{transform:scale(1.08)}
+.chip span{font-size:12px;font-weight:500;color:#4a4a47;white-space:nowrap;background:rgba(245,245,242,.85);padding:2px 6px;border-radius:6px}
+.wheel-copy{position:relative;z-index:2;max-width:430px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px}
+.lab-row{display:none}
+@media (max-width:799px){
+  .wheel{display:none}
+  .wheel-wrap{height:auto;display:block}
+  .wheel-copy{max-width:540px}
+  .lab-row{display:block;overflow:hidden;margin:0 -24px 36px;mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+  .lab-track{display:flex;gap:18px;width:max-content;padding:6px 0 10px;animation:labs 32s linear infinite}
+  .lab-track .chip{position:static;transform:none}
+  .lab-track .chip b{--s:54px!important;font-size:13px}
+  @keyframes labs{to{transform:translateX(-50%)}}
+}
 
 /* ---------- bento ---------- */
 .bento-sec{padding-block:40px 120px}
@@ -302,9 +316,7 @@ img{max-width:100%}
   .stage{min-height:0}
   .phones{height:360px}
   .phone-stage{transform:scale(.62);transform-origin:top center}
-  .wheel{width:680px;height:680px;margin-left:-340px;top:40px}
-  .wheel .chip{scale:.78}
-  .wheel-sec{padding-top:250px;padding-bottom:90px}
+  .wheel-sec{padding-block:56px 72px}
   .bento-sec,.faq-sec{padding-block:20px 80px}
   .res-sec{padding-block:10px 70px}
   .res-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
@@ -319,6 +331,7 @@ img{max-width:100%}
   .mini{width:auto;flex:1 1 200px}
 }
 @media (prefers-reduced-motion:reduce){
+  .lab-track{animation:none!important;flex-wrap:wrap;width:auto;justify-content:center}
   *,*::before,*::after{animation:none!important;transition:none!important}
   .js .w,.js .appear,.js .phone-wrap,.js .reveal.pending,.js .wordmark.pending{opacity:1!important;filter:none!important}
   .js .w,.js .appear,.js .reveal.pending,.js .wordmark.pending{transform:none!important}
@@ -488,7 +501,9 @@ img{max-width:100%}
 
 <!-- ============ WHEEL ============ -->
 <section class="wheel-sec gutter" id="labs">
+  <div class="wheel-wrap" id="wheel-wrap">
   <div class="wheel" id="wheel" aria-hidden="true"></div>
+  <div class="lab-row" aria-hidden="true"><div class="lab-track" id="lab-track"></div></div>
   <div class="wheel-copy reveal">
     <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="3"></circle></svg>Who we track</span>
     <h2 class="h-section">Every major AI lab, on one radar</h2>
@@ -497,6 +512,7 @@ img{max-width:100%}
       <span class="icon-roll" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
       <span class="roll" data-roll>See trending repos</span>
     </a>
+  </div>
   </div>
 </section>
 
@@ -743,39 +759,53 @@ img{max-width:100%}
 
   /* ---- Logo wheel ---- */
   var labs=[['OAI','OpenAI','#0d0d0d',66],['A\\','Anthropic','#d97757',72],['GDM','Google DeepMind','#4a7fe0',64],['Meta','Meta AI','#3d6fd6',60],['Mi','Mistral AI','#f08a3c',70],['HF','Hugging Face','#f2c84b',66],['NV','NVIDIA','#5f9e2f',62],['MS','Microsoft','#2b88d8',68],['xAI','xAI','#2a2a2a',60],['DS','DeepSeek','#4d6bfe',70],['Px','Perplexity','#1f6f6b',62],['Co','Cohere','#c8577a',66]];
-  var wheel=document.getElementById('wheel'), R=wheel.offsetWidth/2-60;
+  var wheel=document.getElementById('wheel'), wrap=document.getElementById('wheel-wrap'), track=document.getElementById('lab-track'), R=0;
+  function chipHTML(l,ang,scale){
+    return '<div class="chip" style="--r:'+ang+'deg"><div class="chip-inner"><b style="--s:'+Math.round(l[3]*scale)+'px;background:'+l[2]+';'+(l[2]==='#f2c84b'?'color:#0d0d0d':'')+'"></b><span></span></div></div>';
+  }
+  function fill(el,l){ el.querySelector('b').textContent=l[0]; el.querySelector('span').textContent=l[1]; }
   function buildWheel(){
-    wheel.innerHTML=''; R=wheel.offsetWidth/2-60;
+    wheel.innerHTML='';
+    if(window.innerWidth<800){ // phones: a scrolling row (list twice for a seamless loop)
+      if(!track.childElementCount) labs.concat(labs).forEach(function(l){ var d=document.createElement('div'); d.innerHTML=chipHTML(l,0,1); var c=d.firstChild; fill(c,l); track.appendChild(c); });
+      wrap.style.removeProperty('--wh'); return;
+    }
+    // ring radius: big enough to clear the copy, small enough that every circle (and its label) stays on screen
+    var W=wrap.clientWidth;
+    R=Math.max(300,Math.min(420,W/2-80));
+    var scale=Math.max(.82,Math.min(1,R/420));
+    wrap.style.setProperty('--wd',(R*2)+'px');
+    wrap.style.setProperty('--wh',(R*2+130)+'px');
     labs.forEach(function(l,i){
       var ang=i*(360/labs.length);
       var sp=document.createElement('div'); sp.className='spoke'; sp.style.transform='rotate('+ang+'deg) translateY(-'+R+'px)';
-      sp.innerHTML='<div class="chip" style="--r:'+ang+'deg"><div class="chip-inner"><b style="--s:'+l[3]+'px;background:'+l[2]+';'+(l[2]==='#f2c84b'?'color:#0d0d0d':'')+'"></b><span></span></div></div>';
-      sp.querySelector('b').textContent=l[0]; sp.querySelector('span').textContent=l[1];
+      sp.innerHTML=chipHTML(l,ang,scale); fill(sp,l);
       wheel.appendChild(sp);
     });
   }
   buildWheel();
-  window.addEventListener('resize',function(){ buildWheel(); });
+  var rz; window.addEventListener('resize',function(){ clearTimeout(rz); rz=setTimeout(buildWheel,150); });
 
   /* ---- Scroll-linked motion with spring smoothing ---- */
   var par=document.getElementById('phone-par'), hero=document.getElementById('hero'), nav=document.getElementById('nav');
   var wheelSec=document.getElementById('labs');
-  var spin=0, spinV=0, target=0, last=0;
+  var spin=0, spinV=0, target=0, last=0, drift=0;
   function onScroll(){
     var y=window.scrollY;
     if(!reduce) par.style.transform='translate3d(0,'+(y*0.1).toFixed(1)+'px,0)';
     nav.classList.toggle('solid', hero.getBoundingClientRect().bottom<90);
     var r=wheelSec.getBoundingClientRect();
     var p=(window.innerHeight-r.top)/(window.innerHeight+r.height); // 0 → 1 while section crosses the screen
-    target=(Math.max(0,Math.min(1,p))-0.35)*90;
+    target=Math.max(0,Math.min(1,p))*120;
   }
+  var chipInners=wheel.getElementsByClassName('chip-inner');
   function tick(){
     // critically-damped-ish spring toward the scroll target
-    var k=0.06, d=0.78;
+    var k=0.06, d=0.78; drift+=0.03;
     spinV=(spinV+(target-spin)*k)*d; spin+=spinV;
-    wheel.style.transform='rotate('+spin.toFixed(2)+'deg)';
-    wheel.style.setProperty('--spin',spin.toFixed(2)+'deg');
-    wheel.querySelectorAll('.chip-inner').forEach(function(c){ c.style.transform='rotate('+(-spin).toFixed(2)+'deg)'; });
+    var a=(spin+drift).toFixed(2);
+    wheel.style.transform='rotate('+a+'deg)';
+    for(var ci=0;ci<chipInners.length;ci++) chipInners[ci].style.transform='rotate('+(-a)+'deg)';
     raf(tick);
   }
   window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
