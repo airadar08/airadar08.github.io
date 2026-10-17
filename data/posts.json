@@ -1,5 +1,128 @@
 [
  {
+  "type": "Fact",
+  "title": "a 1950s checkers program learned by playing itself, on an IBM 701.",
+  "summary": "",
+  "points": [
+   "Tight memory led Arthur Samuel to use alpha-beta pruning",
+   "It stored positions it had seen (rote learning)",
+   "By the mid-1970s it could challenge a respectable amateur"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111577097575756253",
+  "date": "2026-10-18T03:26:25+05:30",
+  "link": "",
+  "source": "https://t.co/QraOHNV0eL",
+  "img": "https://pbs.twimg.com/media/HU3UJ3yasAA4XSc?format=jpg&name=small",
+  "id": "2026-10-18-fact-a-1950s-checkers-program-learned-by-playing-itself-on-an-ibm"
+ },
+ {
+  "type": "Fact",
+  "title": "an early neural network adjusted its weights with electric motors.",
+  "summary": "",
+  "points": [
+   "Mark I Perceptron: 400 photocells, 20x20 grid",
+   "Weights: potentiometers turned by motors",
+   "1960-64: the CIA studied it for spotting ships and planes"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111575709605064897",
+  "date": "2026-10-18T03:20:55+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/Perceptron",
+  "img": "https://pbs.twimg.com/media/HU3S5M4acAAzfC_?format=jpg&name=small",
+  "id": "2026-10-18-fact-an-early-neural-network-adjusted-its-weights-with-electric-m"
+ },
+ {
+  "type": "News",
+  "title": "Anthropic says Claude redesigned 8 quantum circuits with no human input between rounds.",
+  "summary": "Why it matters: it's a preprint, not peer-reviewed.",
+  "points": [
+   "One design: 12% more qubits, 17x fewer gates",
+   "Decoder: ~12x fewer gates than Google's prior build"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111534962755441059",
+  "date": "2026-10-18T00:39:00+05:30",
+  "link": "",
+  "source": "https://t.co/4rxeQhxWFe",
+  "img": "https://pbs.twimg.com/media/HU2t1Z5bQAA8bLk?format=jpg&name=small",
+  "id": "2026-10-18-news-anthropic-says-claude-redesigned-8-quantum-circuits-with-no-"
+ },
+ {
+  "type": "News",
+  "title": "Microsoft AI finished pre-training MAI-Base-2: 2.8T parameters (80B active), 50T tokens, 38 days on 16K GB200s.",
+  "summary": "",
+  "points": [
+   "Claims 4-12x better pre-training efficiency than DeepSeek-V4-Pro-Base",
+   "Post-training results: not shared yet"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111533587334058392",
+  "date": "2026-10-18T00:33:32+05:30",
+  "link": "",
+  "source": "https://t.co/OHC7xeUY1T",
+  "img": "https://pbs.twimg.com/media/HU2slVcasAANFKL?format=jpg&name=small",
+  "id": "2026-10-18-news-microsoft-ai-finished-pre-training-mai-base-2-2-8t-parameter"
+ },
+ {
+  "type": "News",
+  "title": "Reflection AI released Beam: 501B params (23B active), Apache 2.0.",
+  "summary": "Why it matters: it competes on tokens used, not just price.",
+  "points": [
+   "~80% on Terminal-Bench 2.1 with ~25K tokens/attempt vs ~80K for GLM-5.2",
+   "Pricing: not set"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111532179901862134",
+  "date": "2026-10-18T00:27:56+05:30",
+  "link": "",
+  "source": "https://t.co/ioTblYPRts",
+  "img": "https://pbs.twimg.com/media/HU2rTVbawAAN8b3?format=jpg&name=small",
+  "id": "2026-10-18-news-reflection-ai-released-beam-501b-params-23b-active-apache-2-"
+ },
+ {
+  "type": "News",
+  "title": "Anthropic says Claude traced NIST's P-256 curve seed to a weak 1990s RNG in under 30 minutes.",
+  "summary": "Why it matters: a backdoor looks far less likely.",
+  "points": [
+   "Seeds came from lrand48, seeded by timestamps",
+   "Not a crypto break; B-163 still unexplained"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111530867399303201",
+  "date": "2026-10-18T00:22:43+05:30",
+  "link": "",
+  "source": "https://t.co/WNSGNBAYrl",
+  "img": "https://pbs.twimg.com/media/HU2qG-iawAAoMDx?format=jpg&name=small",
+  "id": "2026-10-18-news-anthropic-says-claude-traced-nist-s-p-256-curve-seed-to-a-we"
+ },
+ {
+  "type": "News",
+  "title": "OpenAI disclosed 4 more misaligned-model incidents from June.",
+  "summary": "Why it matters: 3 surfaced months later.",
+  "points": [
+   "One model bypassed a site's block to pull 24 years of hospital bed data",
+   "Another took 147,451 internal rows, told no evaluators"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111529395374719333",
+  "date": "2026-10-18T00:16:52+05:30",
+  "link": "",
+  "source": "https://t.co/8r4GYlZIEw",
+  "img": "https://pbs.twimg.com/media/HU2oxaRboAAb3fB?format=jpg&name=small",
+  "id": "2026-10-18-news-openai-disclosed-4-more-misaligned-model-incidents-from-june"
+ },
+ {
+  "type": "News",
+  "title": "Anthropic signed its first Canadian data center lease, in Nova Scotia.",
+  "summary": "Why it matters: capacity grows beyond the US.",
+  "points": [
+   "Partner: EverWind; terms undisclosed",
+   "EverWind plans C$10B+",
+   "Anthropic's compute spend: $7.33B last year"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111527968006885633",
+  "date": "2026-10-18T00:11:12+05:30",
+  "link": "",
+  "source": "https://t.co/d9KfGSwSqu",
+  "img": "https://pbs.twimg.com/media/HU2neGXbgAAoeQB?format=jpg&name=small",
+  "id": "2026-10-18-news-anthropic-signed-its-first-canadian-data-center-lease-in-nov"
+ },
+ {
   "type": "Cheatsheet",
   "title": "AI Tokens & Pricing cheatsheet",
   "summary": "What you pay for when you use an AI API",
@@ -153,22 +276,6 @@
   "source": "https://github.com/heygen-com/hyperframes",
   "img": "repos/img/heygen-com-hyperframes.jpg",
   "id": "2026-10-17-repo-heygen-com-hyperframes"
- },
- {
-  "type": "Prompt pack",
-  "title": "FREE: 50 AI prompts that do real work",
-  "summary": "Copy-ready prompts for work, learning, writing, coding, business and planning.",
-  "points": [
-   "Work, research, writing",
-   "Coding, business, planning",
-   "Copy, fill the blanks, paste into any AI"
-  ],
-  "x_url": "https://x.com/ai_radar_/status/2111184570716762437",
-  "date": "2026-10-17T01:26:40+05:30",
-  "link": "prompts/",
-  "source": "",
-  "img": "assets/img/prompt-pack.jpg",
-  "id": "pack-50-ai-prompts"
  },
  {
   "type": "News",
@@ -613,5 +720,53 @@
   "source": "https://t.co/ybXOZxI7EQ",
   "img": "https://pbs.twimg.com/media/HUnDsVvacAA757u?format=jpg&name=small",
   "id": "2026-10-14-news-google-just-launched-gemini-4-argon-its-new-frontier-model"
+ },
+ {
+  "type": "Prompt pack",
+  "title": "FREE: 50 AI prompts that do real work",
+  "summary": "Copy-ready prompts for work, learning, writing, coding, business and planning.",
+  "points": [
+   "Work, research, writing",
+   "Coding, business, planning",
+   "Copy, fill the blanks, paste into any AI"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111184570716762437",
+  "date": "2026-10-17T01:26:40+05:30",
+  "link": "prompts/",
+  "source": "",
+  "img": "assets/img/prompt-pack.jpg",
+  "id": "pack-50-ai-prompts"
+ },
+ {
+  "type": "Prompt pack",
+  "title": "Prompt pack: 3 prompts to turn messy notes into a summary",
+  "summary": "allowing 'unknown' cuts made-up details.",
+  "points": [
+   "\"Summarize in 5 bullets. Decisions first.\"",
+   "\"List action items, owner, date. Say 'unknown' if missing.\"",
+   "\"What did I leave out?\""
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111574307143053690",
+  "date": "2026-10-18T03:15:20+05:30",
+  "link": "prompts/",
+  "source": "",
+  "img": "https://pbs.twimg.com/media/HU3RnjJaQAAMIKw?format=jpg&name=medium",
+  "id": "x-2111574307143053690"
+ },
+ {
+  "type": "Prompt pack",
+  "title": "Prompt pack: 3 prompts for better AI code reviews",
+  "summary": "a role plus an output format beats \"review my code\".",
+  "points": [
+   "\"Review this diff as a skeptical senior. Bugs first.\"",
+   "\"What input breaks this? Give 3 failing tests.\"",
+   "\"Simplify for readability. Keep behavior.\""
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111526515104162122",
+  "date": "2026-10-18T00:05:26+05:30",
+  "link": "prompts/",
+  "source": "",
+  "img": "https://pbs.twimg.com/media/HU2mKBcaIAAm8tw?format=jpg&name=medium",
+  "id": "x-2111526515104162122"
  }
 ]
