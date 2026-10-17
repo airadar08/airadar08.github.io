@@ -120,6 +120,7 @@ img{max-width:100%}
   background:conic-gradient(from 0deg,rgba(52,201,138,.20),rgba(52,201,138,0) 9%,transparent 100%);
   transform-origin:50% 50%;animation:sweep 14s linear infinite}
 @keyframes sweep{to{transform:rotate(360deg)}}
+.hero.sky::before{background:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/44px 44px,linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/44px 44px}
 .sky>*{position:relative;z-index:1}
 
 /* ---------- hero ---------- */
@@ -310,8 +311,8 @@ img{max-width:100%}
 
 
 /* ---------- 3D radar behind the hero copy (assets/hero.js, Three.js) ---------- */
-.hero>#radar{position:absolute;left:50%;top:-20px;width:min(1180px,160vw);height:min(1180px,160vw);transform:translateX(-50%);z-index:0;pointer-events:none}
-#radar canvas{position:absolute;inset:0;width:100%!important;height:100%!important}
+.hero>#radar{position:absolute;inset:0;z-index:0;pointer-events:none}
+#radar canvas{position:absolute;inset:0}
 #radar .fallback{position:absolute;inset:22% 18%;opacity:.7}
 #radar.live .fallback{display:none}
 #radar .rtags{position:absolute;inset:0;pointer-events:none;overflow:visible}
@@ -324,7 +325,7 @@ img{max-width:100%}
 .phone-stage{z-index:1}
 .hero h1{text-shadow:0 4px 40px rgba(5,7,6,.85)}
 .hero .sub{text-shadow:0 2px 20px rgba(5,7,6,.9)}
-@media (max-width:900px){.hero>#radar{top:20px;width:190vw;height:190vw}}
+
 
 /* ---------- responsive ---------- */
 @media (max-width:900px){
@@ -860,8 +861,7 @@ img{max-width:100%}
   }).catch(function(){});
 })();
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script src="assets/hero.js?v=17" defer></script>
+<script src="assets/hero.js?v=18" defer></script>
 <script src="assets/chat.js?v=16" defer></script>
 </body>
 </html>
