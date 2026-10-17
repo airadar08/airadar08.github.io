@@ -264,10 +264,13 @@
     }
     // Step 2b: AI answer with web news
     try{
-      var payload=JSON.stringify({messages:history.filter(function(m){ return !(m.meta&&m.meta.cards); }).map(function(m){return {role:m.role,content:m.content};}).slice(-6)});
+      // keep roles alternating: resource/GitHub turns go in as short assistant summaries, same-role neighbours are merged
+      var msgs=[]; history.forEach(function(m){ var last=msgs[msgs.length-1]; if(last&&last.role===m.role){ last.content+='\n'+m.content; } else msgs.push({role:m.role,content:m.content}); });
+      msgs=msgs.slice(-6); while(msgs.length&&msgs[0].role!=='user') msgs.shift();
+      var payload=JSON.stringify({messages:msgs});
       var r,data;
       for(var attempt=0;attempt<2;attempt++){ // retry once if the model returns an empty answer
-        r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:payload});
+        r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:payload,signal:(window.AbortSignal&&AbortSignal.timeout)?AbortSignal.timeout(40000):undefined});
         data=await r.json().catch(function(){return {};});
         if(!(r.ok&&data.reply&&/^Sorry, I couldn't come up with an answer/.test(data.reply))) break;
       }
