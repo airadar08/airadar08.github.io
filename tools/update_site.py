@@ -4,6 +4,7 @@
   python3 tools/update_site.py repo <card.jpg> <repo.json> [post_url]
   python3 tools/update_site.py post <post.json> [card.png]          # any post (news, fact, ...) -> data/posts.json
   python3 tools/update_site.py link <id|slug|latest> <x_post_url>   # add the X link after posting
+  python3 tools/update_site.py sync <x_posts.json>                  # add posts read from the X profile by tools/scrape_x.js
 
 cheatsheet: copies the image to cheatsheets/img/<slug>.jpg and inserts entries after the
             <!-- new-cheatsheet:page --> and <!-- new-cheatsheet:home --> markers (newest first).
@@ -79,4 +80,5 @@ if __name__ == "__main__":
         d = json.loads(pathlib.Path(sys.argv[2]).read_text(encoding="utf-8"))
         print("post saved:", posts.add(d, sys.argv[3] if len(sys.argv) == 4 else None)["id"])
     elif kind == "link" and len(sys.argv) == 4: print("linked:", posts.link(sys.argv[2], sys.argv[3])["id"])
+    elif kind == "sync" and len(sys.argv) == 3: print("new posts added to the archive:", posts.sync(sys.argv[2]))
     else: sys.exit(__doc__)
