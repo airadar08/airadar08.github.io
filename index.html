@@ -352,8 +352,59 @@ img{max-width:100%}
   html{scroll-behavior:auto}
 }
 </style>
+<style>
+/* ---------- intro loader (once per visit) ---------- */
+#intro{display:none}
+html.intro{overflow:hidden}
+html.intro #intro{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:radial-gradient(60% 50% at 50% 45%,rgba(52,201,138,.10),transparent 70%),#0a0c0b;color:#eef1ee;transition:transform .85s cubic-bezier(.76,0,.24,1),border-radius .85s cubic-bezier(.76,0,.24,1)}
+#intro.out{transform:translateY(-102%);border-radius:0 0 48px 48px}
+#intro .in-wrap{display:flex;flex-direction:column;align-items:center;gap:26px;transition:opacity .45s,transform .85s cubic-bezier(.76,0,.24,1)}
+#intro.out .in-wrap{opacity:0;transform:translateY(-40px) scale(.96)}
+#intro .scope{position:relative;width:200px;height:200px;border-radius:50%;
+  background:repeating-radial-gradient(circle,rgba(52,201,138,.0) 0 31px,rgba(52,201,138,.22) 31px 32px);border:1px solid rgba(52,201,138,.35);overflow:hidden}
+#intro .scope::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 49.6%,rgba(52,201,138,.18) 49.6% 50.4%,transparent 50.4%),linear-gradient(0deg,transparent 49.6%,rgba(52,201,138,.18) 49.6% 50.4%,transparent 50.4%)}
+#intro .sweep{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,rgba(52,201,138,.55),rgba(52,201,138,0) 70deg,transparent 360deg);animation:introSpin 1.6s linear infinite}
+#intro .blip{position:absolute;width:7px;height:7px;border-radius:50%;background:#6fdcaa;box-shadow:0 0 12px 3px rgba(52,201,138,.7);opacity:0;animation:introBlip 1.6s ease-out infinite}
+#intro .blip:nth-of-type(2){left:64%;top:26%;animation-delay:.25s}
+#intro .blip:nth-of-type(3){left:24%;top:62%;animation-delay:.9s}
+#intro .blip:nth-of-type(4){left:70%;top:70%;animation-delay:1.2s}
+#intro .scope img{position:absolute;left:50%;top:50%;width:62px;height:62px;margin:-31px 0 0 -31px;border-radius:50%;box-shadow:0 0 0 6px #0a0c0b,0 0 30px rgba(52,201,138,.5)}
+#intro .name{font:700 30px/1 Inter,system-ui,sans-serif;letter-spacing:-.03em}
+#intro .bar{width:200px;height:2px;border-radius:2px;background:rgba(255,255,255,.1);overflow:hidden}
+#intro .bar i{display:block;height:100%;width:0;background:#34c98a;box-shadow:0 0 10px #34c98a}
+#intro .pct{font:500 12px 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.14em;color:#9aa39c;margin-top:-14px}
+@keyframes introSpin{to{transform:rotate(360deg)}}
+@keyframes introBlip{0%{opacity:0;transform:scale(.4)}15%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.4)}}
+</style>
+<script>
+/* show the intro once per visit; never with reduced motion */
+(function(){ try{ if(!sessionStorage.getItem('air-intro')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){ document.documentElement.classList.add('intro'); window.__airIntro=1450; } }catch(e){} })();
+</script>
 </head>
 <body>
+<div id="intro" aria-hidden="true">
+  <div class="in-wrap">
+    <div class="scope"><span class="sweep"></span><span class="blip"></span><span class="blip"></span><span class="blip"></span><img src="assets/logo.svg" alt=""></div>
+    <div class="name">AI Radar</div>
+    <div class="bar"><i></i></div>
+    <div class="pct">00%</div>
+  </div>
+</div>
+<script>
+(function(){
+  var root=document.documentElement, el=document.getElementById('intro');
+  if(!root.classList.contains('intro')||!el) return;
+  var bar=el.querySelector('.bar i'), pct=el.querySelector('.pct'), t0=Date.now(), D=1300;
+  // a timer, not requestAnimationFrame, so it still finishes in a background tab
+  var tick=setInterval(function(){
+    var k=Math.min(1,(Date.now()-t0)/D), e=1-Math.pow(1-k,3), n=Math.round(e*100);
+    bar.style.width=n+'%'; pct.textContent=(n<10?'0':'')+n+'%';
+    if(k>=1){ clearInterval(tick); el.classList.add('out');
+      try{ sessionStorage.setItem('air-intro','1'); }catch(err){}
+      setTimeout(function(){ root.classList.remove('intro'); el.remove(); },900); }
+  },30);
+})();
+</script>
 
 <div class="cursor" aria-hidden="true"></div>
 <div class="pblur pblur-top" aria-hidden="true"><div></div><div></div><div></div><div></div><div></div></div>
@@ -704,11 +755,11 @@ img{max-width:100%}
     words.forEach(function(w,i){
       var s=document.createElement('span'); s.className='w'; s.textContent=w; s.setAttribute('aria-hidden','true');
       el.appendChild(s); if(i<words.length-1) el.appendChild(document.createTextNode(' '));
-      setTimeout(function(){ s.classList.add('in'); }, reduce?0:start+i*step);
+      setTimeout(function(){ s.classList.add('in'); }, reduce?0:(window.__airIntro||0)+start+i*step);
     });
   });
   document.querySelectorAll('.appear,.phone-wrap').forEach(function(el){
-    setTimeout(function(){ el.classList.add('in'); }, reduce?0:(+el.dataset.delay||0));
+    setTimeout(function(){ el.classList.add('in'); }, reduce?0:(window.__airIntro||0)+(+el.dataset.delay||0));
   });
 
   /* ---- Scroll reveals (only for things below the first screen) ---- */
