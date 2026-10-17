@@ -284,10 +284,26 @@ img{max-width:100%}
   .bento{grid-template-columns:repeat(1,minmax(0,1fr))}
   .bento>*{grid-column:auto!important;grid-row:auto!important}
   .c-wide{flex-direction:column}
+  /* stacked columns: flex-basis would otherwise become a height */
+  .two-col>*,.bento-head>*,.footer-top>*{flex:0 0 auto!important;width:100%}
+  .how{padding-block:80px}
+  .stage{min-height:0}
   .phones{height:360px}
   .phone-stage{transform:scale(.62);transform-origin:top center}
-  .wheel{width:1000px;height:1000px;margin-left:-500px;top:60px}
-  .wheel-sec{padding-top:260px}
+  .wheel{width:680px;height:680px;margin-left:-340px;top:40px}
+  .wheel .chip{scale:.78}
+  .wheel-sec{padding-top:250px;padding-bottom:90px}
+  .bento-sec,.faq-sec{padding-block:20px 80px}
+  .res-sec{padding-block:10px 70px}
+  .res-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .res .body{padding:12px 12px 14px;gap:5px}
+  .res b{font-size:18px}
+  .res .desc{font-size:12.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .res .kind{font-size:9px;padding:3px 7px}
+  .card h3,.c-peach h3,.c-black h3{font-size:28px}
+  .c-peach{min-height:0}
+  .footer-top{padding-top:48px;gap:28px}
+  .cols{gap:48px;padding-top:36px}
   .mini{width:auto;flex:1 1 200px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -766,6 +782,6 @@ img{max-width:100%}
   }).catch(function(){});
 })();
 </script>
-<script src="assets/chat.js?v=15" defer></script>
+<script src="assets/chat.js?v=16" defer></script>
 </body>
 </html>

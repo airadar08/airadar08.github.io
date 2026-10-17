@@ -112,6 +112,7 @@
   display:grid;grid-template-rows:auto 1fr auto;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:22px;overflow:hidden;
   box-shadow:0 30px 80px -30px rgba(0,0,0,.45);transform-origin:bottom right;opacity:0;transform:translateY(16px) scale(.97);pointer-events:none;transition:opacity .3s var(--ease),transform .35s var(--ease)}
 .airc-open .airc-panel{opacity:1;transform:none;pointer-events:auto}
+@media (max-width:560px){.airc-fab{padding:7px}.airc-fab span:not(.dot){display:none}.airc-fab .dot{position:absolute;top:6px;right:6px}}
 @media (max-width:560px){.airc-panel{right:0;left:0;bottom:0;width:100%;height:min(88vh,calc(100% - 40px));border-radius:22px 22px 0 0;border-bottom:0;padding-bottom:env(safe-area-inset-bottom,0px)}}
 .airc-head{display:flex;align-items:center;gap:12px;padding:14px 14px 14px 16px;border-bottom:1px solid var(--line);background:var(--surface)}
 .airc-head > svg{width:36px;height:36px;flex:none}
