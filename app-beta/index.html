@@ -236,6 +236,13 @@ body.sheet-open .fab-host{opacity:0;pointer-events:none}
 .lv-Intermediate{background:#262212;color:#e7c66a}
 .lv-Advanced{background:#2a1716;color:#f09a8c}
 .f.lv.on{border-color:currentColor}
+.ex-note{font-size:12.5px;color:var(--muted);padding:2px 4px 4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.spin{width:12px;height:12px;border-radius:50%;border:2px solid var(--line-2);border-top-color:var(--mint);animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ex-icon{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font:700 12px/1 var(--mono,ui-monospace,monospace);border:1px solid var(--line-2);background:var(--card-2);color:var(--muted)}
+.k-Repo{color:#e7c66a}.k-Model{color:#f5b84a}.k-App{color:#8fb7ff}.k-Dataset{color:#c49bff}.k-Paper{color:#f09a8c}.k-Article{color:#ff9a5a}
+.src-badge{background:var(--card-2)}
+.src-badge.radar{background:var(--mint-soft)!important;color:var(--mint-ink)!important;border-color:transparent!important}
 .g-letter{font-family:var(--serif);font-size:28px;color:var(--mint);padding:10px 4px 0}
 .g-def{font-size:14px;line-height:1.55;color:#d6ddd8}
 .item.g .acts .save{margin-left:auto}
@@ -331,11 +338,11 @@ body.sheet-open{overflow:hidden}
 
   <main class="view" id="view-explore" hidden>
     <div class="lib-head"><h1>Explore</h1><span class="count" id="ex-count"></span></div>
-    <p class="note" style="margin:-6px 2px 12px">Every AI Radar repo, cheatsheet and prompt pack, plus AI terms in plain English. All free.</p>
+    <p class="note" style="margin:-6px 2px 12px">Search all of AI: AI Radar picks first, then GitHub, Hugging Face, papers and articles. Plus AI terms in plain English.</p>
     <div class="frow" id="ex-mode" role="group" aria-label="Section" style="margin-bottom:10px"></div>
-    <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><input id="ex-q" type="search" placeholder="Search repos, cheatsheets, prompt packs" aria-label="Search Explore" autocomplete="off"></label>
+    <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><input id="ex-q" type="search" placeholder="Search all AI: repos, models, papers…" aria-label="Search Explore" autocomplete="off"></label>
     <section id="ex-res">
-      <h2 class="ex-h">I want to…</h2>
+      <h2 class="ex-h" id="ex-tasks-h">I want to…</h2>
       <div class="tasks" id="ex-tasks"></div>
       <div class="filters">
         <div class="frow" id="ex-type" role="group" aria-label="Type"></div>
@@ -420,6 +427,6 @@ body.sheet-open{overflow:hidden}
 </div>
 <div class="toast" id="toast" role="status"></div>
 <script src="vendor/glass.js?v=1" defer></script>
-<script src="app.js?v=16"></script>
+<script src="app.js?v=17"></script>
 </body>
 </html>

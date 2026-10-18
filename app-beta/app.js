@@ -932,45 +932,126 @@
   function renderExplore(){
     var isRes=ex.mode==='res';
     $('#ex-mode').innerHTML=chip('data-exmode','res','Resources',isRes)+chip('data-exmode','gloss','Glossary',!isRes);
-    $('#ex-q').placeholder=isRes?'Search repos, cheatsheets, prompt packs':'Search AI terms';
+    $('#ex-q').placeholder=isRes?'Search all AI: repos, models, papers…':'Search AI terms';
     $('#ex-res').hidden=!isRes; $('#ex-gloss').hidden=isRes;
     if(isRes) renderResources(); else renderGlossary();
   }
+  /* global search: AI Radar first, then GitHub, Hugging Face (models, apps, datasets, papers) and Hacker News, all live from the browser */
+  var TASK_Q={'build-agents':'ai agent framework','run-local':'local llm','prompts':'prompt engineering','own-data':'rag','code':'ai coding agent','voice':'text to speech','visuals':'image generation','secure':'prompt injection','everyday':'ai productivity','learn':'llm course'};
+  var webCache={}, webSeq=0, web=null, webQ='';
+  function n2(x){ return x>=1e6?(x/1e6).toFixed(x>=1e7?0:1).replace(/\.0$/,'')+'M':kfmt(x); }
+  function hfTerms(q){ var k=ghTerms(q); return k.length?k:terms(q).slice(0,3); }
+  function hfList(kind,path,q,sort){
+    var k=hfTerms(q); if(!k.length) return Promise.resolve([]);
+    function call(term){ return withTimeout(fetch('https://huggingface.co/api/'+path+'?search='+encodeURIComponent(term)+'&sort='+sort+'&direction=-1&limit=15&full=false'),9000).then(function(r){ return r.ok?r.json():[]; }); }
+    return call(k.join(' ')).then(function(a){ if((a||[]).length>=3||k.length<2) return a||[];
+      var longest=k.slice().sort(function(x,y){ return y.length-x.length; })[0]; return call(longest).then(function(b){ return (a||[]).concat(b||[]); }); })
+    .then(function(a){ var seen={}; return a.filter(function(m){ if(seen[m.id]) return false; seen[m.id]=1; return true; }).map(function(m){
+      var pop=kind==='App'?(m.likes||0):(m.downloads||m.likes||0), name=m.id.split('/').pop().replace(/[-_]+/g,' ');
+      return {src:'Hugging Face',kind:kind,title:m.id,desc:kind==='Model'?(m.pipeline_tag?m.pipeline_tag.replace(/-/g,' '):'Model')+(m.library_name?' · '+m.library_name:''):kind==='App'?(m.sdk?m.sdk+' app: ':'App: ')+name:'Dataset: '+name,
+        url:'https://huggingface.co/'+(kind==='App'?'spaces/':kind==='Dataset'?'datasets/':'')+m.id,pop:pop,popLabel:kind==='App'?'♥ '+n2(pop):'↓ '+n2(pop)+' downloads',date:m.lastModified||m.createdAt||'',free:true};
+    }); }).catch(function(){ return []; });
+  }
+  function webGithub(q){
+    var kw=ghTerms(q); if(!kw.length) return Promise.resolve({items:[]});
+    var aiQ=AI_WORD.test(q)||!kw.some(function(w){ return GH_DEV.has(w); });
+    function map(a){ return a.filter(function(i){ return !i.fork&&!i.archived&&(!aiQ||AIRX.test([i.full_name,i.description||'',(i.topics||[]).join(' ')].join(' '))); }).slice(0,15).map(function(i){
+      return {src:'GitHub',kind:'Repo',title:i.full_name,desc:i.description||'',url:i.html_url,pop:i.stargazers_count||0,popLabel:'★ '+n2(i.stargazers_count||0)+(i.language?' · '+i.language:''),date:i.pushed_at||i.created_at||'',free:true}; }); }
+    return gh(kw.join(' ')+' stars:>20').then(function(a){ var r=map(a); if(r.length>=5||!aiQ) return r;
+      return gh(kw.join(' ')+' ai stars:>10').then(function(b){ var seen={}; return r.concat(map(b)).filter(function(x){ if(seen[x.url]) return false; seen[x.url]=1; return true; }); }).catch(function(){ return r; }); })
+      .then(function(items){ return {items:items}; })
+      .catch(function(e){ return {items:[],err:/40[13]/.test(String(e&&e.message))?'GitHub search limit reached, try again in a minute.':''}; });
+  }
+  function webPapers(q){
+    var k=terms(q).slice(0,6).join(' '); if(!k) return Promise.resolve([]);
+    return withTimeout(fetch('https://huggingface.co/api/papers/search?q='+encodeURIComponent(k)),9000).then(function(r){ return r.ok?r.json():[]; }).then(function(a){
+      return (a||[]).slice(0,15).map(function(x){ var p=x.paper||x;
+        return {src:'Papers',kind:'Paper',title:p.title||x.title,desc:(p.ai_summary||p.summary||x.summary||'').slice(0,220),url:'https://huggingface.co/papers/'+p.id,pop:p.upvotes||0,popLabel:'▲ '+n2(p.upvotes||0)+' upvotes',date:p.publishedAt||x.publishedAt||'',free:true}; });
+    }).catch(function(){ return []; });
+  }
+  function webArticles(q){
+    var k=terms(q).slice(0,5).join(' '); if(!k) return Promise.resolve([]);
+    var since=Math.floor(Date.now()/1000)-730*86400, aiQ=AI_WORD.test(q);
+    return withTimeout(fetch('https://hn.algolia.com/api/v1/search?tags=story&hitsPerPage=40&query='+encodeURIComponent(k)+'&numericFilters=created_at_i>'+since),9000).then(function(r){ return r.ok?r.json():{hits:[]}; }).then(function(j){
+      return (j.hits||[]).filter(function(h){ return h.url&&h.title&&(aiQ||AIRX.test(h.title+' '+h.url)); }).slice(0,15).map(function(h){
+        return {src:'Hacker News',kind:'Article',title:h.title,desc:siteOf(h.url)+(h.num_comments?' · '+h.num_comments+' comments':''),url:h.url,pop:h.points||0,popLabel:'▲ '+n2(h.points||0)+' points',date:h.created_at||'',free:false}; });
+    }).catch(function(){ return []; });
+  }
+  function runWeb(q){
+    var key=q.trim().toLowerCase(); if(!key) return;
+    if(webCache[key]){ web=webCache[key]; webQ=key; return; }
+    var seq=++webSeq; web={loading:true,items:[]}; webQ=key;
+    Promise.all([webGithub(q),hfList('Model','models',q,'downloads'),hfList('App','spaces',q,'likes'),hfList('Dataset','datasets',q,'downloads'),webPapers(q),webArticles(q)]).then(function(r){
+      var items=r[0].items.concat(r[1],r[2],r[3],r[4],r[5]);
+      // relevance and popularity are ranked within each source, so stars and downloads can be mixed fairly
+      var by={}; items.forEach(function(i){ (by[i.kind]=by[i.kind]||[]).push(i); });
+      Object.keys(by).forEach(function(k){ var g=by[k], max=Math.log10(1+Math.max.apply(null,g.map(function(i){ return i.pop; }).concat([1])));
+        g.forEach(function(i,n){ i.rel=1-n/g.length; i.popScore=Math.log10(1+i.pop)/max; i.tags=tagsFor([i.title,i.desc].join(' ')); i.text=[i.title,i.desc,i.kind,i.src].join(' ').toLowerCase(); }); });
+      var res={items:items,err:r[0].err||''}; webCache[key]=res;
+      if(seq===webSeq){ web=res; if(!$('#view-explore').hidden&&ex.mode==='res') renderResources(); }
+    });
+  }
+  function webQuery(){ return ex.q.trim()||(ex.task?TASK_Q[ex.task]||'':''); }
+  function badge(i){ return i.src==='AI Radar'?'<span class="src-badge radar">AI Radar</span>':'<span class="src-badge">'+esc(i.src)+'</span>'; }
   function renderResources(){
-    var words=terms(ex.q), all=exItems.map(enrich);
+    var words=terms(ex.q), all=exItems.map(enrich), wq=webQuery(), global=!!wq;
+    if(global&&webQ!==wq.toLowerCase()) runWeb(wq);
     var cnt=function(skip,fn){ return all.filter(function(i){ return exPass(i,skip,words)&&fn(i); }).length; };
     $('#ex-tasks').innerHTML=TASKS.map(function(k){
-      var n=cnt('task',function(i){ return i.tasks.indexOf(k.id)>-1; }); if(!n&&ex.task!==k.id) return '';
-      return '<button class="task'+(ex.task===k.id?' on':'')+'" type="button" data-task="'+k.id+'" aria-pressed="'+(ex.task===k.id)+'"><b>'+esc(k.label)+'</b><span>'+esc(k.hint)+'</span><span class="n">'+n+'</span></button>';
+      var n=cnt('task',function(i){ return i.tasks.indexOf(k.id)>-1; });
+      return '<button class="task'+(ex.task===k.id?' on':'')+'" type="button" data-task="'+k.id+'" aria-pressed="'+(ex.task===k.id)+'"><b>'+esc(k.label)+'</b><span>'+esc(k.hint)+'</span><span class="n">'+(n?n+' on AI Radar + web':'Search the web')+'</span></button>';
     }).join('');
-    var types=['Repo','Cheatsheet','Prompt pack'];
-    $('#ex-type').innerHTML=chip('data-extype','','All',!ex.type,cnt('type',function(){ return true; }))+types.map(function(t){ return chip('data-extype',t,t==='Prompt pack'?'Prompt packs':t+'s',ex.type===t,cnt('type',function(i){ return i.type===t; })); }).join('')+
-      chip('data-exfree','1','Free only',ex.free,null,'free');
+    $('#ex-tasks-h').hidden=$('#ex-tasks').hidden=global&&!!ex.q.trim();
+    // the AI Radar part (level only applies to our own items)
+    var mine=all.filter(function(i){ return exPass(i,null,words); }).map(function(i){
+      return {src:'AI Radar',kind:i.type,title:i.title,desc:i.desc||'',url:i.url,img:i.img,pop:parseFloat(String(i.stars||'').replace(/k$/i,''))*(/k$/i.test(i.stars||'')?1000:1)||0,popLabel:i.stars?'★ '+i.stars:i.count?i.count+' prompts':'',date:exDate(i),free:true,tags:i.tags,level:i.level,ext:i.ext,cat:i.cat,rel:2,popScore:0,radar:i};
+    });
+    var pool=mine.concat(global&&web&&web.items?web.items.filter(function(i){ return (!ex.tags.size||Array.from(ex.tags).every(function(t){ return i.tags.indexOf(t)>-1; })); }):[]);
+    if(ex.free) pool=pool.filter(function(i){ return i.free; });
+    if(ex.level) pool=pool.filter(function(i){ return i.level===ex.level; });
+    // views: All / AI Radar / each kind, with counts
+    var kinds=['Repo','Model','App','Dataset','Paper','Article','Cheatsheet','Prompt pack'], kc={};
+    pool.forEach(function(i){ kc[i.kind]=(kc[i.kind]||0)+1; });
+    var VL={Repo:'Repos',Model:'Models',App:'Apps',Dataset:'Datasets',Paper:'Papers',Article:'Articles',Cheatsheet:'Cheatsheets','Prompt pack':'Prompt packs'};
+    if(ex.type&&ex.type!=='radar'&&!kc[ex.type]&&!(web&&web.loading)) ex.type='';
+    $('#ex-type').innerHTML=chip('data-extype','','All',!ex.type,pool.length)+chip('data-extype','radar','AI Radar',ex.type==='radar',mine.length)+
+      kinds.filter(function(k){ return kc[k]||ex.type===k; }).map(function(k){ return chip('data-extype',k,VL[k],ex.type===k,kc[k]||0); }).join('')+chip('data-exfree','1','Free only',ex.free,null,'free');
     $('#ex-level').innerHTML=chip('data-exlevel','','Any level',!ex.level)+LEVELS.map(function(l){ return chip('data-exlevel',l,l,ex.level===l,cnt('level',function(i){ return i.level===l; }),'lv lv-'+l); }).join('');
-    var tg={}; all.filter(function(i){ return exPass(i,'tag',words); }).forEach(function(i){ i.tags.forEach(function(t){ tg[t]=(tg[t]||0)+1; }); });
-    ex.tags.forEach(function(t){ if(!tg[t]) tg[t]=0; });
-    var keys=Object.keys(tg).sort(function(a,b){ return (ex.tags.has(b)-ex.tags.has(a))||tg[b]-tg[a]||a.localeCompare(b); });
+    $('#ex-level').hidden=global&&ex.type!=='radar'&&!ex.level;
+    var tg={}; pool.forEach(function(i){ (i.tags||[]).forEach(function(t){ tg[t]=(tg[t]||0)+1; }); }); ex.tags.forEach(function(t){ if(!tg[t]) tg[t]=0; });
+    var keys=Object.keys(tg).sort(function(a,b){ return (ex.tags.has(b)-ex.tags.has(a))||tg[b]-tg[a]||a.localeCompare(b); }).slice(0,14);
     $('#ex-tag').innerHTML=keys.map(function(t){ return chip('data-extag',t,'#'+esc(t),ex.tags.has(t),tg[t],'tag'); }).join(''); $('#ex-tag').hidden=!keys.length;
-    var list=all.filter(function(i){ return exPass(i,null,words); });
+    var list=pool.filter(function(i){ return !ex.type||(ex.type==='radar'?i.src==='AI Radar':i.kind===ex.type); });
+    var srt=$('#ex-sort'); if(global&&!srt.querySelector('[value="match"]')){ srt.insertAdjacentHTML('afterbegin','<option value="match">Best match</option><option value="pop">Most popular</option>'); }
+    if(!global&&srt.querySelector('[value="match"]')){ srt.querySelector('[value="match"]').remove(); srt.querySelector('[value="pop"]').remove(); if(/match|pop/.test(ex.sort)) ex.sort='new'; }
+    if(global&&ex.sort==='easy') ex.sort='match';
+    if(global&&!ex._sortSet){ ex.sort='match'; ex._sortSet=1; }
+    srt.value=ex.sort;
     var order={Beginner:0,Intermediate:1,Advanced:2};
-    list.sort(ex.sort==='az'?function(a,b){ return a.title.localeCompare(b.title); }:ex.sort==='easy'?function(a,b){ return order[a.level]-order[b.level]||exDate(b).localeCompare(exDate(a)); }:function(a,b){ return exDate(b).localeCompare(exDate(a)); });
+    var cmp={new:function(a,b){ return (b.date||'').localeCompare(a.date||''); },az:function(a,b){ return a.title.localeCompare(b.title); },
+      pop:function(a,b){ return (b.popScore||0)-(a.popScore||0)||(b.pop||0)-(a.pop||0); },match:function(a,b){ return (b.rel||0)-(a.rel||0)||(b.popScore||0)-(a.popScore||0); },
+      easy:function(a,b){ return (order[a.level]||0)-(order[b.level]||0)||(b.date||'').localeCompare(a.date||''); }}[ex.sort]||function(){ return 0; };
+    list.sort(cmp);
     var any=ex.task||ex.type||ex.level||ex.tags.size||ex.free||words.length;
-    $('#ex-count').textContent=list.length+(list.length===1?' resource':' resources')+(all.every(function(i){ return i.pricing==='Free'; })&&!ex.free?' · all free':'');
+    var loading=global&&web&&web.loading;
+    $('#ex-count').textContent=loading?'Searching…':list.length+(list.length===1?' result':' results');
     $('#ex-clear').hidden=!any;
-    if(!exItems.length){ $('#ex-items').innerHTML='<div class="empty"><b>Loading…</b></div>'; return; }
-    if(!list.length){ $('#ex-items').innerHTML='<div class="empty"><b>Nothing matches</b>Try fewer filters, or ask the chat: it also searches GitHub and the web.<button class="pill-btn mint" type="button" data-exask="'+esc(ex.q||'What should I learn first about AI?')+'" style="margin-top:10px">Ask “'+esc(ex.q||'what should I learn first?')+'”</button></div>'; return; }
-    $('#ex-items').innerHTML=list.map(function(i,n){
-      var saved=isSaved(i.url), card={type:i.type,title:i.title,desc:i.desc||'',url:i.url,site:'AI Radar',meta:i.meta||'',img:i.img||'',tags:i.tags};
-      var badges='<span class="lv lv-'+i.level+'">'+i.level+'</span><span class="free">'+esc(i.pricing)+'</span>'+(i.stars?'<span>★ '+esc(i.stars)+'</span>':'')+(i.count?'<span>'+i.count+' prompts</span>':'')+i.tags.slice(0,3).map(function(t){ return '<span>'+esc(t)+'</span>'; }).join('');
-      return '<article class="item ex" style="animation-delay:'+Math.min(n,8)*35+'ms" data-k="'+n+'">'+
-        (i.img?'<a class="ex-thumb" href="'+esc(i.url)+'" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="'+esc(i.img)+'" alt="" loading="lazy"></a>':'')+
-        '<div class="ex-body"><div class="t"><b>'+esc(i.title)+'</b><span class="type">'+esc(i.type==='Cheatsheet'&&i.cat?i.cat:i.type)+'</span></div>'+
+    var head=global?'<div class="ex-note">'+(loading?'<span class="spin" aria-hidden="true"></span>Searching GitHub, Hugging Face, papers and articles for “'+esc(wq)+'”…':'Results for “'+esc(wq)+'” from AI Radar, GitHub, Hugging Face, papers and Hacker News.')+(web&&web.err?' '+esc(web.err):'')+'</div>':'';
+    if(!exItems.length&&!global){ $('#ex-items').innerHTML='<div class="empty"><b>Loading…</b></div>'; return; }
+    if(!list.length&&!loading){ $('#ex-items').innerHTML=head+'<div class="empty"><b>Nothing matches</b>Try fewer filters or other words, or ask the chat.<button class="pill-btn mint" type="button" data-exask="'+esc(wq||'What should I learn first about AI?')+'" style="margin-top:10px">Ask “'+esc(wq||'what should I learn first?')+'”</button></div>'; exShown=[]; return; }
+    exShown=list.slice(0,80);
+    $('#ex-items').innerHTML=head+exShown.map(function(i,n){
+      var saved=isSaved(i.url), type=i.kind==='App'?'Tool':i.kind;
+      var card={type:type,title:i.title,desc:i.desc||'',url:i.url,site:i.src==='AI Radar'?'AI Radar':siteOf(i.url),meta:i.popLabel||'',img:i.img||'',tags:i.tags||[]};
+      var badges=badge(i)+(i.level?'<span class="lv lv-'+i.level+'">'+i.level+'</span>':'')+(i.free?'<span class="free">Free</span>':'')+(i.popLabel?'<span>'+esc(i.popLabel)+'</span>':'')+(i.date&&i.src!=='AI Radar'?'<span>'+esc(fmtDate(i.date))+'</span>':'')+(i.tags||[]).slice(0,2).map(function(t){ return '<span>'+esc(t)+'</span>'; }).join('');
+      var lead=i.img?'<a class="ex-thumb" href="'+esc(i.url)+'" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="'+esc(i.img)+'" alt="" loading="lazy"></a>':'<span class="ex-icon k-'+esc(i.kind.replace(/\s/g,''))+'" aria-hidden="true">'+esc({Repo:'GH',Model:'HF',App:'▶',Dataset:'DB',Paper:'PDF',Article:'HN'}[i.kind]||'AI')+'</span>';
+      return '<article class="item ex" style="animation-delay:'+Math.min(n,8)*35+'ms" data-k="'+n+'">'+lead+
+        '<div class="ex-body"><div class="t"><b>'+esc(i.title)+'</b><span class="type">'+esc(i.kind==='Cheatsheet'&&i.cat?i.cat:i.kind)+'</span></div>'+
         (i.desc?'<div class="q">'+esc(i.desc)+'</div>':'')+'<div class="badges">'+badges+'</div>'+
         '<div class="acts"><a class="mini-btn" href="'+esc(i.url)+'" target="_blank" rel="noopener">Open</a>'+(i.ext?'<a class="mini-btn" href="'+esc(i.ext)+'" target="_blank" rel="noopener">GitHub</a>':'')+
         '<button class="mini-btn exask" type="button">Ask about this</button>'+
         '<button class="save'+(saved?' on':'')+'" type="button" aria-pressed="'+saved+'" aria-label="'+(saved?'Saved':'Save')+' '+esc(i.title)+'" data-card="'+esc(JSON.stringify(card))+'">'+BM+'</button></div></div></article>';
     }).join('');
-    exShown=list;
   }
   var exShown=[];
   function renderGlossary(){
@@ -1001,11 +1082,11 @@
     else if((b=e.target.closest('[data-extag]'))){ var t=b.dataset.extag; ex.tags.has(t)?ex.tags.delete(t):ex.tags.add(t); renderResources(); }
     else if((b=e.target.closest('[data-gtag]'))){ ex.mode='res'; ex.q=''; $('#ex-q').value=''; ex.task=''; ex.type=''; ex.level=''; ex.tags=new Set([b.dataset.gtag]); renderExplore(); $('#view-explore').scrollTo({top:0,behavior:reduce?'auto':'smooth'}); }
     else if((b=e.target.closest('[data-exask]'))){ switchTab('chat'); ask(b.dataset.exask); }
-    else if((b=e.target.closest('.exask'))){ var it=exShown[+b.closest('.item').dataset.k]; if(it) askAbout({type:it.type,title:it.title,desc:it.desc}); }
+    else if((b=e.target.closest('.exask'))){ var it=exShown[+b.closest('.item').dataset.k]; if(it) askAbout({type:it.kind==='Repo'?'Repo':it.kind,title:it.title,desc:it.desc}); }
     else if(e.target.closest('#ex-clear')){ ex.q=''; $('#ex-q').value=''; ex.task=''; ex.type=''; ex.level=''; ex.tags.clear(); ex.free=false; renderExplore(); }
   });
-  var exT; $('#ex-q').addEventListener('input',function(e){ clearTimeout(exT); exT=setTimeout(function(){ ex.q=e.target.value; renderExplore(); },120); });
-  $('#ex-sort').addEventListener('change',function(e){ ex.sort=e.target.value; renderResources(); });
+  var exT; $('#ex-q').addEventListener('input',function(e){ clearTimeout(exT); exT=setTimeout(function(){ ex.q=e.target.value; renderExplore(); },ex.mode==='res'?450:120); });
+  $('#ex-sort').addEventListener('change',function(e){ ex.sort=e.target.value; ex._sortSet=1; renderResources(); });
 
   /* ---------------- tabs, badge, toast ---------------- */
   function switchTab(name){
