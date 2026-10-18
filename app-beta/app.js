@@ -327,6 +327,7 @@
       h+=group('On AI Radar',data.resources,data.question);
       h+=group(data.kind==='github'?'Top repos on GitHub':'Sources',data.sources,data.question);
       if(data.extra&&data.extra.length) h+=group('New AI repos for this',data.extra,data.question);
+      if(data.global&&data.global.length) h+=group('Across AI: repos, models, apps, papers',data.global,data.question)+'<button class="mini-btn more-explore" type="button" data-explore-q="'+esc(data.question)+'">See all results in Explore →</button>';
     }
     if(data.answer&&data.canSave){
       var on=library.some(function(i){ return i.type==='Answer'&&i.question===data.question&&i.text===data.answer; });
@@ -362,8 +363,9 @@
         var resP=Promise.all([loadIndex(),loadPosts()]).then(function(a){ return matchResources(q,a[0].concat(a[1].filter(function(p){ return p.type==='News'||p.type==='Fact'; }).map(postAsResource))); }).catch(function(){ return []; });
         var ghRes=null;
         var srcP=isRepo?githubTop(q).then(function(g){ ghRes=g; return g.items; }).catch(function(){ return null; }):Promise.all([hn(q),wiki(q)]).then(function(a){ return a[1].concat(a[0]); });
+        var globP=withTimeout(chatGlobal(q,isRepo),11000).catch(function(){ return []; });
         var aiP=isRepo?Promise.resolve(null):ai(sessionChat()).catch(function(){ return {ok:false,error:"Couldn't reach the AI service. Check your connection and try again."}; });
-        var res=await resP, src=await srcP, ans=await aiP;
+        var res=await resP, src=await srcP, ans=await aiP, glob=await globP;
         if(isRepo&&src===null){ isRepo=false; ans=await ai(sessionChat()).catch(function(){ return {ok:false}; }); src=[]; }
         var answer='', error=false, web=false;
         if(isRepo){
@@ -374,9 +376,10 @@
           (ans.sources||[]).forEach(function(s){ src.unshift({type:typeOf(s.url),title:s.title,url:s.url,site:s.label||siteOf(s.url)}); });
         }else{ answer=(ans&&ans.error)||'Something went wrong. Try again.'; error=true; }
         var offTopic=/\bonly (cover|help with|answer)\b[^.]*\bAI\b/i.test(answer);
-        if(offTopic){ res=[]; src=[]; }
+        if(offTopic){ res=[]; src=[]; glob=[]; }
         var seen={}; src=(src||[]).filter(function(s){ if(!s.url||seen[s.url]) return false; return seen[s.url]=1; }).slice(0,isRepo?10:5);
-        data={kind:isRepo?'github':'answer',question:q,answer:answer,extra:isRepo&&ghRes?ghRes.extra:[],error:error,resources:res,sources:src,web:!offTopic&&(web||(!isRepo&&src.length>0)),canSave:!error&&!offTopic};
+        var have={}; (src||[]).concat(res||[]).forEach(function(x){ if(x&&x.url) have[x.url]=1; }); glob=(glob||[]).filter(function(g){ return !have[g.url]; });
+        data={kind:isRepo?'github':'answer',question:q,answer:answer,extra:isRepo&&ghRes?ghRes.extra:[],error:error,resources:res,sources:src,global:glob,web:!offTopic&&(web||(!isRepo&&src.length>0)),canSave:!error&&!offTopic};
       }
     }catch(e){ data={kind:'answer',question:q,answer:'Something went wrong. Try again.',error:true,resources:[],sources:[]}; }
     t.remove(); renderBot(data); chat.push({role:'bot',data:data,t:Date.now()}); saveChat();
@@ -394,6 +397,7 @@
     syncSaveButtons(); if(!$('#view-lib').hidden) renderLibrary();
   }
   log.addEventListener('click',function(e){
+    var mx=e.target.closest('.more-explore'); if(mx){ ex.mode='res'; ex.q=mx.dataset.exploreQ; $('#ex-q').value=ex.q; ex.task=''; ex.type=''; switchTab('explore'); return; }
     var l=e.target.closest('a[href="#library"]'); if(l){ e.preventDefault(); switchTab('lib'); return; }
     var b=e.target.closest('.save');
     if(b){ toggleSave(b); return; }
@@ -990,6 +994,14 @@
       var res={items:items,err:r[0].err||''}; webCache[key]=res;
       if(seq===webSeq){ web=res; if(!$('#view-explore').hidden&&ex.mode==='res') renderResources(); }
     });
+  }
+  // Chat: best few results from the global sources (the chat already covers HN; GitHub too when it is a repo question)
+  function chatGlobal(q,isRepo){
+    if(!ghTerms(q).length) return Promise.resolve([]);
+    function top(p,n){ return p.then(function(a){ a=(a&&a.items)||a||[]; return a.slice(0,8).sort(function(x,y){ return (y.pop||0)-(x.pop||0); }).slice(0,n); }).catch(function(){ return []; }); }
+    return Promise.all([isRepo?Promise.resolve([]):top(webGithub(q),2),top(hfList('Model','models',q,'downloads'),2),top(hfList('App','spaces',q,'likes'),2),top(webPapers(q),2),top(hfList('Dataset','datasets',q,'downloads'),1)])
+      .then(function(r){ return [].concat.apply([],r).map(function(i){
+        return {type:i.kind==='App'?'Tool':i.kind,title:i.title,desc:i.desc,url:i.url,site:i.src==='Papers'?'Hugging Face papers':i.src==='Hugging Face'?'huggingface.co':'github.com',meta:i.popLabel+(i.date?' · '+fmtDate(i.date):''),tags:tagsFor([i.title,i.desc].join(' '))}; }); });
   }
   function webQuery(){ return ex.q.trim()||(ex.task?TASK_Q[ex.task]||'':''); }
   function badge(i){ return i.src==='AI Radar'?'<span class="src-badge radar">AI Radar</span>':'<span class="src-badge">'+esc(i.src)+'</span>'; }
