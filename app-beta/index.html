@@ -165,7 +165,7 @@ a{color:inherit}
 
 /* tabs */
 .tabs-host{position:absolute;z-index:6;left:max(var(--gap),env(safe-area-inset-left,0px));right:max(var(--gap),env(safe-area-inset-right,0px));bottom:calc(var(--gap) + env(safe-area-inset-bottom,0px))}
-.tabs{position:relative;display:grid;grid-template-columns:repeat(3,1fr);border-radius:26px;background:rgba(10,12,11,.66);border:1px solid rgba(255,255,255,.08);overflow:hidden}
+.tabs{position:relative;display:grid;grid-template-columns:repeat(4,1fr);border-radius:26px;background:rgba(10,12,11,.66);border:1px solid rgba(255,255,255,.08);overflow:hidden}
 .tabs:not([data-liquid-glass]){background:rgba(17,20,18,.85);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3)}
 .tab{height:var(--tabs-h);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:0;background:none;color:#aab3ac;text-shadow:0 1px 6px rgba(0,0,0,.55);font-size:11.5px;font-weight:600;cursor:pointer;position:relative}
 .tab svg{width:22px;height:22px}
@@ -210,6 +210,35 @@ body.sheet-open .fab-host{opacity:0;pointer-events:none}
 .view{padding-bottom:calc(var(--tabs-h) + var(--gap)*2 + env(safe-area-inset-bottom,0px) + 80px)}
 #view-chat{padding-bottom:calc(var(--tabs-h) + var(--comp-h) + var(--gap)*3 + env(safe-area-inset-bottom,0px) + 80px)}
 
+/* Explore */
+.ex-h{font-family:var(--serif);font-weight:400;font-size:26px;margin:16px 2px 10px}
+.tasks{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.task{display:grid;gap:2px;text-align:left;border:1px solid var(--line);background:var(--card);border-radius:14px;padding:11px 12px;cursor:pointer;color:var(--ink);font:inherit;transition:border-color .2s,background .2s}
+.task b{font-size:13.5px;line-height:1.3}
+.task span{font-size:11.5px;color:var(--muted);line-height:1.35}
+.task .n{color:var(--mint-ink);font-weight:600;margin-top:3px}
+.task.on{border-color:var(--mint);background:var(--mint-soft)}
+@media (min-width:720px){.tasks{grid-template-columns:repeat(3,1fr)}}
+.f.free.on{background:var(--mint-soft);border-color:var(--mint);color:var(--mint-ink)}
+.item.ex{flex-direction:row;gap:12px;animation:exin .4s var(--ease,ease) both}
+@keyframes exin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.item.ex{animation:none}}
+.ex-thumb{flex:none;width:76px;aspect-ratio:4/5;border-radius:10px;overflow:hidden;border:1px solid var(--line-2);background:var(--card-2)}
+.ex-thumb img{width:100%;height:100%;object-fit:cover;object-position:top}
+.ex-body{display:flex;flex-direction:column;gap:7px;min-width:0;flex:1}
+.ex-body .acts .save{margin-left:auto}
+.item.ex a.mini-btn,.item.g a.mini-btn{text-decoration:none;color:var(--ink)}
+.badges{display:flex;flex-wrap:wrap;gap:5px}
+.badges span{font-size:11px;font-weight:600;border:1px solid var(--line-2);border-radius:999px;padding:2px 8px;color:var(--ink)}
+.badges .free{background:var(--mint-soft);border-color:transparent;color:var(--mint-ink)}
+.badges .lv{border-color:transparent}
+.lv-Beginner{background:#12271e;color:#6fdcaa}
+.lv-Intermediate{background:#262212;color:#e7c66a}
+.lv-Advanced{background:#2a1716;color:#f09a8c}
+.f.lv.on{border-color:currentColor}
+.g-letter{font-family:var(--serif);font-size:28px;color:var(--mint);padding:10px 4px 0}
+.g-def{font-size:14px;line-height:1.55;color:#d6ddd8}
+.item.g .acts .save{margin-left:auto}
 /* Saved extras */
 .f .n{opacity:.6;font-size:11.5px;margin-left:2px}
 .f.on .n{opacity:.75}
@@ -222,6 +251,18 @@ body.sheet-open .fab-host{opacity:0;pointer-events:none}
 .tags button:hover{border-color:var(--mint);color:var(--mint-ink)}
 .note-box{font-size:13.5px;color:#d6ddd8;background:var(--card-2);border-left:2px solid var(--mint);border-radius:4px 10px 10px 4px;padding:7px 10px;white-space:pre-wrap;overflow-wrap:anywhere}
 .mini-btn.remove.confirm{background:#3a1a14;border-color:#6b2c20;color:#f0a58a}
+.f.col{font-weight:600}
+.f.col.new{border-style:dashed;color:var(--mint-ink)}
+.in-cols{display:flex;flex-wrap:wrap;gap:5px}
+.in-cols button{font:inherit;font-size:11.5px;font-weight:600;color:var(--mint-ink);background:var(--mint-soft);border:0;border-radius:999px;padding:3px 9px;cursor:pointer}
+.col-pick{display:grid;gap:8px;padding:10px;border:1px solid var(--line-2);border-radius:12px;background:var(--card-2)}
+.col-pick .lbl{font-size:12px;color:var(--muted)}
+.col-pick .pick.on{border-color:var(--mint);color:var(--mint-ink);background:var(--mint-soft)}
+.col-new{display:flex;gap:6px}
+.col-new input{flex:1;min-width:0;border:1px solid var(--line-2);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 12px;font:inherit;font-size:13px}
+.col-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:8px 0 2px;padding:10px 12px;border:1px solid var(--line-2);border-radius:14px;background:var(--card)}
+.col-tools b{font-size:15px}
+.col-tools .sp{flex:1}
 .plus-i{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--mint-soft);color:var(--mint);font-weight:700}
 
 /* Add to Saved sheet */
@@ -288,6 +329,25 @@ body.sheet-open{overflow:hidden}
     <div class="log" id="log" aria-live="polite"></div>
   </main>
 
+  <main class="view" id="view-explore" hidden>
+    <div class="lib-head"><h1>Explore</h1><span class="count" id="ex-count"></span></div>
+    <p class="note" style="margin:-6px 2px 12px">Every AI Radar repo, cheatsheet and prompt pack, plus AI terms in plain English. All free.</p>
+    <div class="frow" id="ex-mode" role="group" aria-label="Section" style="margin-bottom:10px"></div>
+    <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><input id="ex-q" type="search" placeholder="Search repos, cheatsheets, prompt packs" aria-label="Search Explore" autocomplete="off"></label>
+    <section id="ex-res">
+      <h2 class="ex-h">I want to…</h2>
+      <div class="tasks" id="ex-tasks"></div>
+      <div class="filters">
+        <div class="frow" id="ex-type" role="group" aria-label="Type"></div>
+        <div class="frow" id="ex-level" role="group" aria-label="Level"></div>
+        <div class="frow" id="ex-tag" role="group" aria-label="Topics"></div>
+      </div>
+      <div class="lib-tools"><label class="sort">Sort <select id="ex-sort" aria-label="Sort"><option value="new">Newest</option><option value="easy">Easiest first</option><option value="az">A–Z</option></select></label><span class="sp"></span><button class="mini-btn" type="button" id="ex-clear" hidden>Clear filters</button></div>
+      <div class="items" id="ex-items"></div>
+    </section>
+    <section id="ex-gloss" hidden><div class="items" id="ex-gloss-list"></div></section>
+  </main>
+
   <main class="view" id="view-posts" hidden>
     <div class="lib-head"><h1>Posts</h1><span class="count" id="posts-count"></span></div>
     <p class="note" style="margin:-6px 2px 12px">Every post from @ai_radar_, newest first. Save any of them to keep them in Saved.</p>
@@ -307,6 +367,7 @@ body.sheet-open{overflow:hidden}
     <p class="note" style="margin:-6px 2px 12px">Private to this device. Tap + to add any link or note; topics are filled in for you.</p>
     <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><input id="lib-q" type="search" placeholder="Search your saved items" aria-label="Search your saved items" autocomplete="off"></label>
     <div class="filters">
+      <div class="frow" id="f-col" role="group" aria-label="Collections"></div>
       <div class="frow" id="f-type" role="group" aria-label="Type"></div>
       <div class="frow" id="f-date" role="group" aria-label="Date saved"></div>
       <div class="custom" id="f-custom" hidden><label>From <input type="date" id="d-from"></label><label>To <input type="date" id="d-to"></label></div>
@@ -321,6 +382,7 @@ body.sheet-open{overflow:hidden}
       <button class="mini-btn" type="button" id="lib-import" title="Restore from an export file">Import</button>
       <input type="file" id="import-file" accept="application/json,.json" hidden>
     </div>
+    <div class="col-tools" id="col-tools" hidden><b id="col-name"></b><span class="sp"></span><button class="mini-btn" type="button" id="col-share">Share collection</button><button class="mini-btn remove" type="button" id="col-del">Delete collection</button></div>
     <div class="items" id="items"></div>
   </main>
 
@@ -335,6 +397,7 @@ body.sheet-open{overflow:hidden}
   <div class="tabs-host"><nav class="tabs" id="tabbar" aria-label="Sections">
     <span class="tab-glow" id="tab-glow" aria-hidden="true"></span><span class="tab-pill" id="tab-pill" aria-hidden="true"></span>
     <button class="tab on" type="button" data-tab="chat" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path></svg>Chat</button>
+    <button class="tab" type="button" data-tab="explore"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m15.5 8.5-2 5-5 2 2-5z"></path></svg>Explore</button>
     <button class="tab" type="button" data-tab="posts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4.5"></circle><path d="M12 12 18.5 5.5"></path></svg>Posts</button>
     <button class="tab" type="button" data-tab="lib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"></path></svg>Saved<span class="badge" id="badge" hidden></span></button>
   </nav></div>
@@ -357,6 +420,6 @@ body.sheet-open{overflow:hidden}
 </div>
 <div class="toast" id="toast" role="status"></div>
 <script src="vendor/glass.js?v=1" defer></script>
-<script src="app.js?v=14"></script>
+<script src="app.js?v=16"></script>
 </body>
 </html>

@@ -17,6 +17,9 @@
   function load(k,d){ try{ var v=JSON.parse(localStorage.getItem(k)); return v==null?d:v; }catch(e){ return d; } }
   function store(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); return true; }catch(e){ return false; } }
   var library=load(LIB_KEY,[]);
+  var COL_KEY='airadar-collections-v1';
+  var collections=load(COL_KEY,[]);   // named lists of saved items; each item keeps its list names in item.cols
+  function saveCols(){ store(COL_KEY,collections); }
   var chat=load(CHAT_KEY,[]);           // [{role:'user'|'bot', text, data}]
   function saveLib(){ if(!store(LIB_KEY,library)) toast("Couldn't save: storage is full or blocked"); updateBadge(); }
   function saveChat(){ store(CHAT_KEY,chat.slice(-40)); }
@@ -119,20 +122,20 @@
     function get(u,t){ return fetch(ROOT+u,{cache:'no-cache'}).then(function(r){ return r.ok?(t?r.text():r.json()):(t?'':[]); }).catch(function(){ return t?'':[]; }); }
     indexP=Promise.all([get('data/repos.json'),get('data/packs.json'),get('cheatsheets/',1)]).then(function(res){
       var items=[];
-      (res[0]||[]).forEach(function(r){ items.push({type:'Repo',title:r.repo,desc:r.tagline||'',img:r.img?ROOT+r.img:'',url:ROOT+'repos/#'+r.slug,site:'AI Radar',
+      (res[0]||[]).forEach(function(r){ items.push({type:'Repo',title:r.repo,desc:r.tagline||'',img:r.img?ROOT+r.img:'',url:ROOT+'repos/#'+r.slug,site:'AI Radar',date:r.date||'',link:'repos/#'+r.slug,ext:r.url||'',stars:r.stars||'',lic:r.license||'',
         text:[r.repo,r.tagline,(r.what||[]).join(' '),r.read,r.language].join(' ').toLowerCase(),meta:r.stars?'★ '+r.stars+(r.language?' · '+r.language:''):''}); });
-      (res[1]||[]).forEach(function(k){ items.push({type:'Prompt pack',title:k.title,desc:k.desc||'',img:k.cover?ROOT+k.cover:'',url:ROOT+k.url,site:'AI Radar',
+      (res[1]||[]).forEach(function(k){ items.push({type:'Prompt pack',title:k.title,desc:k.desc||'',img:k.cover?ROOT+k.cover:'',url:ROOT+k.url,site:'AI Radar',date:k.date||'',link:k.url,count:k.count||0,
         text:[k.title,k.desc,k.keyword,'prompt prompts prompting pack'].join(' ').toLowerCase()}); });
       if(res[2]){ try{
         var doc=new DOMParser().parseFromString(res[2],'text/html');
         doc.querySelectorAll('article.sheet[id]').forEach(function(a){
           var b=a.querySelector('.meta b'), d=a.querySelector('.meta .desc'), k=a.querySelector('.meta .kind'), im=a.querySelector('img');
           var t=b?b.textContent.trim():a.id;
-          items.push({type:'Cheatsheet',title:t,desc:d?d.textContent.trim():'',img:im?ROOT+'cheatsheets/'+im.getAttribute('src'):'',url:ROOT+'cheatsheets/#'+a.id,site:'AI Radar',
+          items.push({type:'Cheatsheet',title:t,desc:d?d.textContent.trim():'',img:im?ROOT+'cheatsheets/'+im.getAttribute('src'):'',url:ROOT+'cheatsheets/#'+a.id,site:'AI Radar',date:'',link:'cheatsheets/#'+a.id,cat:k?k.textContent.trim():'',
             text:[t,d&&d.textContent,k&&k.textContent,im&&im.alt,a.id.replace(/-/g,' '),'cheatsheet'].join(' ').toLowerCase()});
         });
       }catch(e){} }
-      return items;
+      window.__airIndex=items; return items;
     });
     return indexP;
   }
@@ -422,7 +425,7 @@
   chat.forEach(function(m){ if(m.role==='divider') renderDivider(); else if(m.role==='user') renderUser(m.text); else if(m.data) renderBot(m.data); });
 
   /* ---------------- UI: Saved (library) ---------------- */
-  var fType='All', fDate='all', fTags=new Set(), fSite='', sortBy='new', q='';
+  var fType='All', fDate='all', fTags=new Set(), fSite='', fCol='', sortBy='new', q='', pickOpen='';
   var DATES=[['all','All time'],['week','This week'],['month','This month'],['year','This year'],['custom','Custom']];
   function inRange(iso,mode,fromSel,toSel){
     mode=mode||fDate; fromSel=fromSel||'#d-from'; toSel=toSel||'#d-to';
@@ -436,6 +439,7 @@
   function siteKey(i){ return i.site||siteOf(i.url)||''; }
   // does item i pass every filter except `skip` (so each filter row can show how many items it would leave)
   function passes(i,skip,words){
+    if(skip!=='col'&&fCol&&(i.cols||[]).indexOf(fCol)<0) return false;
     if(skip!=='type'&&fType!=='All'&&i.type!==fType) return false;
     if(skip!=='date'&&!inRange(i.savedAt)) return false;
     if(skip!=='tag'&&fTags.size){ var tg=i.tags||[]; var ok=true; fTags.forEach(function(t){ if(tg.indexOf(t)<0) ok=false; }); if(!ok) return false; }
@@ -464,7 +468,12 @@
     if(fSite&&sk.indexOf(fSite)<0) sk.unshift(fSite);
     $('#f-site').innerHTML=sk.length>1||fSite?chip('data-site','','All sites',!fSite,bs.length,'site')+sk.map(function(k){ return chip('data-site',k,esc(k),fSite===k,sites[k]||0,'site'); }).join(''):'';
     $('#f-site').hidden=!(sk.length>1||fSite);
-    var any=fType!=='All'||fDate!=='all'||fTags.size||fSite||words.length;
+    var bc=base('col');
+    $('#f-col').innerHTML=chip('data-col','','All saved',!fCol,bc.length,'col')+collections.map(function(c){ return chip('data-col',c,'▤ '+esc(c),fCol===c,bc.filter(function(i){ return (i.cols||[]).indexOf(c)>-1; }).length,'col'); }).join('')+
+      '<button class="f col new" type="button" data-newcol>+ New collection</button>';
+    $('#col-tools').hidden=!fCol;
+    if(fCol) $('#col-name').textContent=fCol;
+    var any=fCol||fType!=='All'||fDate!=='all'||fTags.size||fSite||words.length;
     $('#f-clear').hidden=!any;
   }
   function renderLibrary(){
@@ -484,14 +493,57 @@
         (i.type==='Answer'?'<div class="body">'+esc(i.text)+'</div>':(i.desc?'<div class="q">'+esc(i.desc)+'</div>':''))+
         (i.note&&i.note!==i.title?'<div class="note-box">'+esc(i.note)+'</div>':'')+
         (i.tags&&i.tags.length?'<div class="tags">'+i.tags.map(function(t){ return '<button type="button" data-tag="'+esc(t)+'">#'+esc(t)+'</button>'; }).join('')+'</div>':'')+
+        ((i.cols||[]).length?'<div class="in-cols">'+i.cols.map(function(c){ return '<button type="button" data-col="'+esc(c)+'">▤ '+esc(c)+'</button>'; }).join('')+'</div>':'')+
         '<div class="meta"><span>Saved '+esc(fmtDate(i.savedAt))+'</span>'+(siteKey(i)?'<span>'+esc(siteKey(i))+'</span>':'')+(i.meta?'<span>'+esc(i.meta)+'</span>':'')+'</div>'+
         (i.question&&i.type!=='Answer'?'<div class="q">From: “'+esc(i.question)+'”</div>':'')+
-        '<div class="acts">'+link+(i.type==='Answer'?'<button class="mini-btn more" type="button">Show all</button>':'')+srcs+
+        '<div class="acts">'+link+'<button class="mini-btn askit" type="button">Ask about this</button>'+(i.type==='Answer'?'<button class="mini-btn more" type="button">Show all</button>':'')+srcs+
+        '<button class="mini-btn colbtn'+((i.cols||[]).length?' on':'')+'" type="button" aria-expanded="'+(pickOpen===i.id)+'">Collections</button>'+
         '<button class="mini-btn edit" type="button">Edit</button>'+
         (web?'<button class="mini-btn copy" type="button">Copy link</button>':'')+
         '<button class="mini-btn share" type="button">Share</button>'+
-        '<button class="mini-btn remove" type="button">Delete</button></div></article>';
+        '<button class="mini-btn remove" type="button">Delete</button></div>'+(pickOpen===i.id?pickerHTML(i):'')+'</article>';
     }).join('');
+  }
+  function pickerHTML(i){
+    var mine=i.cols||[];
+    return '<div class="col-pick"><span class="lbl">Add to collection</span><div class="tags">'+collections.map(function(c){ var on=mine.indexOf(c)>-1; return '<button type="button" class="pick'+(on?' on':'')+'" data-pick="'+esc(c)+'" aria-pressed="'+on+'">'+(on?'✓ ':'')+esc(c)+'</button>'; }).join('')+
+      '</div><form class="col-new"><input type="text" maxlength="40" placeholder="New collection name" aria-label="New collection name"><button class="mini-btn" type="submit">Add</button></form></div>';
+  }
+  function cleanCol(n){ return (n||'').replace(/\s+/g,' ').trim().slice(0,40); }
+  function addCollection(n){ n=cleanCol(n); if(!n) return ''; var hit=collections.find(function(c){ return c.toLowerCase()===n.toLowerCase(); }); if(hit) return hit; collections.push(n); saveCols(); return n; }
+  function toggleIn(item,c,force){ var cs=(item.cols||[]).slice(), k=cs.indexOf(c); if(k>-1&&force!==true) cs.splice(k,1); else if(k<0&&force!==false) cs.push(c); item.cols=cs; saveLib(); }
+  function askAbout(i){
+    var q=i.type==='Repo'?'What does '+i.title+' do, and how do I get started with it?':
+      i.type==='Answer'?'Tell me more about: '+(i.question||i.title):
+      'Explain "'+i.title+'"'+(i.desc?' ('+i.desc.slice(0,160)+')':'')+' simply, and why it matters.';
+    switchTab('chat'); ask(q);
+  }
+  // share a collection as a link: the items travel inside the link itself, nothing is uploaded
+  function b64e(str){ var b=new TextEncoder().encode(str), s=''; b.forEach(function(x){ s+=String.fromCharCode(x); }); return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,''); }
+  function b64d(str){ var s=atob(str.replace(/-/g,'+').replace(/_/g,'/')), b=new Uint8Array(s.length); for(var k=0;k<s.length;k++) b[k]=s.charCodeAt(k); return new TextDecoder().decode(b); }
+  function shareCollection(name){
+    var list=library.filter(function(i){ return (i.cols||[]).indexOf(name)>-1&&i.url&&/^https?:/.test(i.url); });
+    if(!list.length){ toast('Add some links to this collection first'); return; }
+    var data={n:name,i:list.slice(0,60).map(function(i){ return {t:(i.title||'').slice(0,140),u:i.url,y:i.type,d:(i.desc||'').slice(0,160)}; })};
+    var url=location.origin+location.pathname+'#col='+b64e(JSON.stringify(data));
+    if(url.length>12000){ toast('Too many items to share in one link'); return; }
+    if(navigator.share) navigator.share({title:'AI Radar collection: '+name,url:url}).catch(function(e){ if(e&&e.name!=='AbortError') copyText(url); });
+    else copyText(url);
+  }
+  function importSharedCollection(hash){
+    var d; try{ d=JSON.parse(b64d(hash.slice(5))); }catch(e){ toast("That collection link is broken"); return; }
+    var name=cleanCol(d&&d.n), items=Array.isArray(d&&d.i)?d.i:[];
+    items=items.filter(function(x){ return x&&/^https?:\/\//.test(x.u||''); }).slice(0,60);
+    if(!name||!items.length) return;
+    if(!confirm('Add the collection "'+name+'" ('+items.length+' link'+(items.length===1?'':'s')+') to your Saved?')){ try{ history.replaceState(null,'',location.pathname); }catch(e){} return; }
+    name=addCollection(name); var added=0;
+    items.forEach(function(x){
+      var n=normUrl(x.u), it=library.find(function(y){ return y.url&&normUrl(y.url)===n; });
+      if(!it){ it={id:newId(),type:typeof x.y==='string'?x.y.slice(0,30):typeOf(x.u),title:String(x.t||x.u).slice(0,300),desc:String(x.d||'').slice(0,1200),note:'',url:x.u,site:siteOf(x.u),tags:tagsFor([x.t,x.d].join(' ')),savedAt:new Date().toISOString(),cols:[]}; library.unshift(it); added++; }
+      it.cols=(it.cols||[]); if(it.cols.indexOf(name)<0) it.cols.push(name);
+    });
+    saveLib(); fCol=name; switchTab('lib'); syncSaveButtons();
+    toast('Added '+added+' new, collection "'+name+'" ready');
   }
   function byId(id){ return library.find(function(i){ return i.id===id; }); }
   function copyText(t){
@@ -512,7 +564,16 @@
     else if((b=e.target.closest('[data-date]'))){ fDate=b.dataset.date; renderLibrary(); }
     else if((b=e.target.closest('[data-tag]'))){ var t=b.dataset.tag; if(b.closest('.item')){ fTags.add(t); } else { fTags.has(t)?fTags.delete(t):fTags.add(t); } renderLibrary(); if(b.closest('.item')) $('#view-lib').scrollTo({top:0,behavior:reduce?'auto':'smooth'}); }
     else if((b=e.target.closest('[data-site]'))){ fSite=b.dataset.site; renderLibrary(); }
-    else if(e.target.closest('#f-clear')){ fType='All'; fDate='all'; fTags.clear(); fSite=''; q=''; $('#lib-q').value=''; renderLibrary(); }
+    else if((b=e.target.closest('[data-newcol]'))){ var nm=addCollection(prompt('Name your collection (e.g. "My RAG stack")')); if(nm){ fCol=nm; renderLibrary(); toast('Collection created. Use "Collections" on any item to add it.'); } }
+    else if((b=e.target.closest('[data-pick]'))&&item){ toggleIn(item,b.dataset.pick); renderLibrary(); }
+    else if((b=e.target.closest('[data-col]'))){ fCol=b.dataset.col; pickOpen=''; renderLibrary(); if(b.closest('.item')) $('#view-lib').scrollTo({top:0,behavior:reduce?'auto':'smooth'}); }
+    else if(e.target.closest('#col-share')){ shareCollection(fCol); }
+    else if((b=e.target.closest('#col-del'))){
+      if(!b.classList.contains('confirm')){ b.classList.add('confirm'); b.textContent='Tap again (items stay saved)'; setTimeout(function(){ if(b.isConnected){ b.classList.remove('confirm'); b.textContent='Delete collection'; } },3500); return; }
+      var gone=fCol; collections=collections.filter(function(c){ return c!==gone; }); saveCols();
+      library.forEach(function(i){ if(i.cols) i.cols=i.cols.filter(function(c){ return c!==gone; }); }); saveLib(); fCol=''; renderLibrary(); toast('Collection deleted');
+    }
+    else if(e.target.closest('#f-clear')){ fCol=''; fType='All'; fDate='all'; fTags.clear(); fSite=''; q=''; $('#lib-q').value=''; renderLibrary(); }
     else if(e.target.closest('#lib-export')){ exportLib(); }
     else if(e.target.closest('#lib-import')){ $('#import-file').click(); }
     else if(!item){ return; }
@@ -520,10 +581,17 @@
       if(!b.classList.contains('confirm')){ b.classList.add('confirm'); b.textContent='Tap again to delete'; setTimeout(function(){ if(b.isConnected){ b.classList.remove('confirm'); b.textContent='Delete'; } },3500); return; }
       library=library.filter(function(i){ return i.id!==item.id; }); saveLib(); renderLibrary(); syncSaveButtons(); toast('Deleted');
     }
+    else if(e.target.closest('.askit')){ askAbout(item); }
+    else if(e.target.closest('.colbtn')){ pickOpen=pickOpen===item.id?'':item.id; renderLibrary(); }
     else if(e.target.closest('.edit')){ openSheet({edit:item}); }
     else if(e.target.closest('.copy')){ copyText(item.url); }
     else if(e.target.closest('.share')){ shareItem(item); }
     else if((b=e.target.closest('.more'))){ var body=it.querySelector('.body'); body.classList.toggle('open'); b.textContent=body.classList.contains('open')?'Show less':'Show all'; }
+  });
+  $('#view-lib').addEventListener('submit',function(e){
+    var f=e.target.closest('.col-new'); if(!f) return; e.preventDefault();
+    var it=byId(f.closest('.item').dataset.id), nm=addCollection(f.querySelector('input').value);
+    if(it&&nm){ toggleIn(it,nm,true); renderLibrary(); toast('Added to "'+nm+'"'); }
   });
   $('#lib-q').addEventListener('input',function(e){ q=e.target.value; renderLibrary(); });
   $('#lib-sort').addEventListener('change',function(e){ sortBy=e.target.value; renderLibrary(); });
@@ -531,7 +599,7 @@
 
   /* export / import (a JSON file you keep; nothing leaves the device otherwise) */
   function exportLib(){
-    var data={app:'AI Radar',kind:'saved',version:1,exportedAt:new Date().toISOString(),topics:customTopics,items:library};
+    var data={app:'AI Radar',kind:'saved',version:1,exportedAt:new Date().toISOString(),topics:customTopics,collections:collections,items:library};
     var blob=new Blob([JSON.stringify(data,null,1)],{type:'application/json'});
     var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='ai-radar-saved-'+new Date().toISOString().slice(0,10)+'.json';
     document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); },1000);
@@ -545,12 +613,14 @@
       var d=JSON.parse(txt), items=Array.isArray(d)?d:(d&&d.items)||[], added=0, updated=0;
       if(!Array.isArray(items)) throw new Error('bad');
       (Array.isArray(d.topics)?d.topics:[]).forEach(function(t){ addCustomTopic(str(t,40),true); });
+      (Array.isArray(d.collections)?d.collections:[]).forEach(function(c){ addCollection(str(c,40)); });
       items.forEach(function(x){
         if(!x||typeof x!=='object'||!(x.title||x.url||x.note||x.text)) return;
         var it={id:str(x.id,40)||newId(),type:str(x.type,30)||typeOf(x.url||''),title:str(x.title,300)||str(x.url,300)||'Untitled',desc:str(x.desc,1200),note:str(x.note,4000),
           url:str(x.url,2000),site:str(x.site,120),meta:str(x.meta,200),question:str(x.question,500),img:/^https?:\/\//.test(x.img||'')?str(x.img,2000):'',text:str(x.text,20000),
           sources:Array.isArray(x.sources)?x.sources.slice(0,8).map(function(s){ return {title:str(s&&s.title,200),url:/^https?:/.test(s&&s.url||'')?str(s.url,2000):''}; }):undefined,
           tags:Array.isArray(x.tags)?x.tags.map(function(t){ return str(t,40); }).filter(Boolean).slice(0,8):[],
+          cols:Array.isArray(x.cols)?x.cols.map(function(c){ return addCollection(str(c,40)); }).filter(Boolean).slice(0,12):[],
           savedAt:!isNaN(Date.parse(x.savedAt))?new Date(x.savedAt).toISOString():new Date().toISOString()};
         if(!it.text) delete it.text; if(!it.sources) delete it.sources;
         var j=library.findIndex(function(y){ return y.id===it.id||(it.url&&normUrl(y.url)===normUrl(it.url)); });
@@ -809,12 +879,140 @@
   $('#posts-q').addEventListener('input',function(e){ pq=e.target.value; pShown=20; renderPosts(); });
   $('#pd-from').addEventListener('change',renderPosts); $('#pd-to').addEventListener('change',renderPosts);
 
+
+  /* ---------------- UI: Explore (every AI Radar resource + glossary) ---------------- */
+  // Tags come from TOPICS (same as Saved); tasks and level are worked out here from each item's text.
+  var TASKS=[
+    {id:'build-agents',label:'Build an AI agent',hint:'Tools, memory and MCP',tags:['Agents','MCP'],rx:/agent memory/i},
+    {id:'run-local',label:'Run AI on my computer',hint:'Private, offline models',tags:['Local LLMs']},
+    {id:'prompts',label:'Write better prompts',hint:'Copy-ready prompts',tags:['Prompts']},
+    {id:'own-data',label:'Use AI on my own data',hint:'RAG and fine-tuning',tags:['RAG','Fine-tuning','Datasets']},
+    {id:'code',label:'Code faster with AI',hint:'Coding agents and reviews',tags:['Coding']},
+    {id:'voice',label:'Work with voice and audio',hint:'Speech and transcription',tags:['Audio & Voice']},
+    {id:'visuals',label:'Make images, video and 3D',hint:'Generation and editing',tags:['Image','Video'],rx:/\b3d\b|\bcad\b/i},
+    {id:'secure',label:'Keep an AI app safe',hint:'Injection and guardrails',tags:['Security']},
+    {id:'everyday',label:'Get everyday work done',hint:'Notes and summaries',tags:['Spreadsheets'],rx:/\bnotes?\b|summar|action items|meeting|email/i},
+    {id:'learn',label:'Learn the basics',hint:'Plain-English guides',tags:['Learning'],rx:/token|pricing|jargon|cheatsheet/i}
+  ];
+  var LEVELS=['Beginner','Intermediate','Advanced'];
+  function levelOf(it){
+    var t=it.text;
+    if(it.type==='Prompt pack'||/basics|beginner|plain english|\b101\b|jargon|explained|one-page|getting started/.test(t)) return 'Beginner';
+    if(it.type==='Cheatsheet') return /agent|rag|fine[- ]?tun|injection|securit/.test(t)?'Intermediate':'Beginner';
+    if(/mcp server|framework|plugin|fine[- ]?tun|\bsdk\b|kernel|compiler|inference engine|quantiz|cuda|context window/.test(t)) return 'Advanced';
+    return 'Intermediate';
+  }
+  function enrich(it){
+    if(it._x) return it;
+    it.tags=tagsFor(it.text); it.level=levelOf(it); it.pricing='Free';
+    it.tasks=TASKS.filter(function(k){ return k.tags.some(function(g){ return it.tags.indexOf(g)>-1; })||(k.rx&&k.rx.test(it.text)); }).map(function(k){ return k.id; });
+    it._x=1; return it;
+  }
+  var ex={mode:'res',q:'',task:'',type:'',level:'',tags:new Set(),free:false,sort:'new'}, exItems=[], gloss=null, glossP=null;
+  function loadGlossary(){ if(glossP) return glossP; glossP=fetch('glossary.json',{cache:'no-cache'}).then(function(r){ return r.json(); }).then(function(d){ gloss=d.sort(function(a,b){ return a.term.localeCompare(b.term); }); return gloss; }).catch(function(){ glossP=null; gloss=[]; return gloss; }); return glossP; }
+  function loadExplore(){
+    return Promise.all([loadIndex(),loadPosts().catch(function(){ return []; })]).then(function(){
+      exItems=(window.__airIndex||[]); return exItems;
+    });
+  }
+  function exPass(i,skip,words){
+    if(skip!=='task'&&ex.task&&i.tasks.indexOf(ex.task)<0) return false;
+    if(skip!=='type'&&ex.type&&i.type!==ex.type) return false;
+    if(skip!=='level'&&ex.level&&i.level!==ex.level) return false;
+    if(skip!=='tag'&&ex.tags.size){ var ok=true; ex.tags.forEach(function(t){ if(i.tags.indexOf(t)<0) ok=false; }); if(!ok) return false; }
+    if(skip!=='free'&&ex.free&&i.pricing!=='Free') return false;
+    if(words&&words.length&&!words.every(function(w){ return hit(i.text,w); })) return false;
+    return true;
+  }
+  function exDate(i){
+    if(i.date) return i.date;
+    var p=(POSTS||[]).find(function(x){ return x.link===i.link; });
+    return i.date=(p&&p.date)||'';
+  }
+  function renderExplore(){
+    var isRes=ex.mode==='res';
+    $('#ex-mode').innerHTML=chip('data-exmode','res','Resources',isRes)+chip('data-exmode','gloss','Glossary',!isRes);
+    $('#ex-q').placeholder=isRes?'Search repos, cheatsheets, prompt packs':'Search AI terms';
+    $('#ex-res').hidden=!isRes; $('#ex-gloss').hidden=isRes;
+    if(isRes) renderResources(); else renderGlossary();
+  }
+  function renderResources(){
+    var words=terms(ex.q), all=exItems.map(enrich);
+    var cnt=function(skip,fn){ return all.filter(function(i){ return exPass(i,skip,words)&&fn(i); }).length; };
+    $('#ex-tasks').innerHTML=TASKS.map(function(k){
+      var n=cnt('task',function(i){ return i.tasks.indexOf(k.id)>-1; }); if(!n&&ex.task!==k.id) return '';
+      return '<button class="task'+(ex.task===k.id?' on':'')+'" type="button" data-task="'+k.id+'" aria-pressed="'+(ex.task===k.id)+'"><b>'+esc(k.label)+'</b><span>'+esc(k.hint)+'</span><span class="n">'+n+'</span></button>';
+    }).join('');
+    var types=['Repo','Cheatsheet','Prompt pack'];
+    $('#ex-type').innerHTML=chip('data-extype','','All',!ex.type,cnt('type',function(){ return true; }))+types.map(function(t){ return chip('data-extype',t,t==='Prompt pack'?'Prompt packs':t+'s',ex.type===t,cnt('type',function(i){ return i.type===t; })); }).join('')+
+      chip('data-exfree','1','Free only',ex.free,null,'free');
+    $('#ex-level').innerHTML=chip('data-exlevel','','Any level',!ex.level)+LEVELS.map(function(l){ return chip('data-exlevel',l,l,ex.level===l,cnt('level',function(i){ return i.level===l; }),'lv lv-'+l); }).join('');
+    var tg={}; all.filter(function(i){ return exPass(i,'tag',words); }).forEach(function(i){ i.tags.forEach(function(t){ tg[t]=(tg[t]||0)+1; }); });
+    ex.tags.forEach(function(t){ if(!tg[t]) tg[t]=0; });
+    var keys=Object.keys(tg).sort(function(a,b){ return (ex.tags.has(b)-ex.tags.has(a))||tg[b]-tg[a]||a.localeCompare(b); });
+    $('#ex-tag').innerHTML=keys.map(function(t){ return chip('data-extag',t,'#'+esc(t),ex.tags.has(t),tg[t],'tag'); }).join(''); $('#ex-tag').hidden=!keys.length;
+    var list=all.filter(function(i){ return exPass(i,null,words); });
+    var order={Beginner:0,Intermediate:1,Advanced:2};
+    list.sort(ex.sort==='az'?function(a,b){ return a.title.localeCompare(b.title); }:ex.sort==='easy'?function(a,b){ return order[a.level]-order[b.level]||exDate(b).localeCompare(exDate(a)); }:function(a,b){ return exDate(b).localeCompare(exDate(a)); });
+    var any=ex.task||ex.type||ex.level||ex.tags.size||ex.free||words.length;
+    $('#ex-count').textContent=list.length+(list.length===1?' resource':' resources')+(all.every(function(i){ return i.pricing==='Free'; })&&!ex.free?' · all free':'');
+    $('#ex-clear').hidden=!any;
+    if(!exItems.length){ $('#ex-items').innerHTML='<div class="empty"><b>Loading…</b></div>'; return; }
+    if(!list.length){ $('#ex-items').innerHTML='<div class="empty"><b>Nothing matches</b>Try fewer filters, or ask the chat: it also searches GitHub and the web.<button class="pill-btn mint" type="button" data-exask="'+esc(ex.q||'What should I learn first about AI?')+'" style="margin-top:10px">Ask “'+esc(ex.q||'what should I learn first?')+'”</button></div>'; return; }
+    $('#ex-items').innerHTML=list.map(function(i,n){
+      var saved=isSaved(i.url), card={type:i.type,title:i.title,desc:i.desc||'',url:i.url,site:'AI Radar',meta:i.meta||'',img:i.img||'',tags:i.tags};
+      var badges='<span class="lv lv-'+i.level+'">'+i.level+'</span><span class="free">'+esc(i.pricing)+'</span>'+(i.stars?'<span>★ '+esc(i.stars)+'</span>':'')+(i.count?'<span>'+i.count+' prompts</span>':'')+i.tags.slice(0,3).map(function(t){ return '<span>'+esc(t)+'</span>'; }).join('');
+      return '<article class="item ex" style="animation-delay:'+Math.min(n,8)*35+'ms" data-k="'+n+'">'+
+        (i.img?'<a class="ex-thumb" href="'+esc(i.url)+'" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="'+esc(i.img)+'" alt="" loading="lazy"></a>':'')+
+        '<div class="ex-body"><div class="t"><b>'+esc(i.title)+'</b><span class="type">'+esc(i.type==='Cheatsheet'&&i.cat?i.cat:i.type)+'</span></div>'+
+        (i.desc?'<div class="q">'+esc(i.desc)+'</div>':'')+'<div class="badges">'+badges+'</div>'+
+        '<div class="acts"><a class="mini-btn" href="'+esc(i.url)+'" target="_blank" rel="noopener">Open</a>'+(i.ext?'<a class="mini-btn" href="'+esc(i.ext)+'" target="_blank" rel="noopener">GitHub</a>':'')+
+        '<button class="mini-btn exask" type="button">Ask about this</button>'+
+        '<button class="save'+(saved?' on':'')+'" type="button" aria-pressed="'+saved+'" aria-label="'+(saved?'Saved':'Save')+' '+esc(i.title)+'" data-card="'+esc(JSON.stringify(card))+'">'+BM+'</button></div></div></article>';
+    }).join('');
+    exShown=list;
+  }
+  var exShown=[];
+  function renderGlossary(){
+    if(!gloss){ $('#ex-gloss-list').innerHTML='<div class="empty"><b>Loading…</b></div>'; loadGlossary().then(function(){ if(ex.mode==='gloss') renderGlossary(); }); return; }
+    var words=terms(ex.q), tagsWithItems={};
+    exItems.forEach(function(i){ enrich(i).tags.forEach(function(t){ tagsWithItems[t]=1; }); });
+    var list=gloss.filter(function(g){ var h=(g.term+' '+g.def).toLowerCase(); return !words.length||words.every(function(w){ return hit(h,w); }); });
+    if(words.length){ var qq=ex.q.trim().toLowerCase(); var rank=function(g){ var t=g.term.toLowerCase(); return t===qq?0:t.indexOf(qq)===0?1:t.indexOf(qq)>-1?2:3; }; list=list.slice().sort(function(a,b){ return rank(a)-rank(b)||a.term.localeCompare(b.term); }); }
+    $('#ex-count').textContent=list.length+(list.length===1?' term':' terms'); $('#ex-clear').hidden=!ex.q;
+    if(!list.length){ $('#ex-gloss-list').innerHTML='<div class="empty"><b>No term matches</b><button class="pill-btn mint" type="button" data-exask="What is '+esc(ex.q)+' in AI? Explain simply." style="margin-top:10px">Ask what “'+esc(ex.q)+'” means</button></div>'; return; }
+    var last='';
+    $('#ex-gloss-list').innerHTML=list.map(function(g){
+      var L=g.term[0].toUpperCase(), head=L!==last&&!words.length?'<div class="g-letter">'+L+'</div>':''; last=L;
+      return head+'<article class="item g"><div class="t"><b>'+esc(g.term)+'</b>'+(g.tag?'<span class="type">'+esc(g.tag)+'</span>':'')+'</div><div class="g-def">'+esc(g.def)+'</div>'+
+        '<div class="acts"><button class="mini-btn" type="button" data-exask="What is '+esc(g.term)+' in AI? Explain simply with an example.">Ask about this</button>'+
+        (g.tag&&tagsWithItems[g.tag]?'<button class="mini-btn" type="button" data-gtag="'+esc(g.tag)+'">'+esc(g.tag)+' resources</button>':'')+
+        '<button class="save'+(isSaved(ROOT+'app-beta/#glossary-'+g.term.toLowerCase().replace(/[^a-z0-9]+/g,'-'))?' on':'')+'" type="button" aria-label="Save '+esc(g.term)+'" data-card="'+esc(JSON.stringify({type:'Note',title:g.term,desc:g.def,url:ROOT+'app-beta/#glossary-'+g.term.toLowerCase().replace(/[^a-z0-9]+/g,'-'),site:'AI Radar glossary',tags:g.tag?[g.tag]:[]}))+'">'+BM+'</button></div></article>';
+    }).join('');
+  }
+  $('#view-explore').addEventListener('click',function(e){
+    var b;
+    if((b=e.target.closest('.save'))){ toggleSave(b); }
+    else if((b=e.target.closest('[data-exmode]'))){ ex.mode=b.dataset.exmode; renderExplore(); $('#view-explore').scrollTo({top:0}); }
+    else if((b=e.target.closest('[data-task]'))){ ex.task=ex.task===b.dataset.task?'':b.dataset.task; renderResources(); }
+    else if((b=e.target.closest('[data-extype]'))){ ex.type=b.dataset.extype; renderResources(); }
+    else if((b=e.target.closest('[data-exfree]'))){ ex.free=!ex.free; renderResources(); }
+    else if((b=e.target.closest('[data-exlevel]'))){ ex.level=b.dataset.exlevel; renderResources(); }
+    else if((b=e.target.closest('[data-extag]'))){ var t=b.dataset.extag; ex.tags.has(t)?ex.tags.delete(t):ex.tags.add(t); renderResources(); }
+    else if((b=e.target.closest('[data-gtag]'))){ ex.mode='res'; ex.q=''; $('#ex-q').value=''; ex.task=''; ex.type=''; ex.level=''; ex.tags=new Set([b.dataset.gtag]); renderExplore(); $('#view-explore').scrollTo({top:0,behavior:reduce?'auto':'smooth'}); }
+    else if((b=e.target.closest('[data-exask]'))){ switchTab('chat'); ask(b.dataset.exask); }
+    else if((b=e.target.closest('.exask'))){ var it=exShown[+b.closest('.item').dataset.k]; if(it) askAbout({type:it.type,title:it.title,desc:it.desc}); }
+    else if(e.target.closest('#ex-clear')){ ex.q=''; $('#ex-q').value=''; ex.task=''; ex.type=''; ex.level=''; ex.tags.clear(); ex.free=false; renderExplore(); }
+  });
+  var exT; $('#ex-q').addEventListener('input',function(e){ clearTimeout(exT); exT=setTimeout(function(){ ex.q=e.target.value; renderExplore(); },120); });
+  $('#ex-sort').addEventListener('change',function(e){ ex.sort=e.target.value; renderResources(); });
+
   /* ---------------- tabs, badge, toast ---------------- */
   function switchTab(name){
     document.querySelectorAll('.tab').forEach(function(t){ var on=t.dataset.tab===name; t.classList.toggle('on',on); if(on) t.setAttribute('aria-current','page'); else t.removeAttribute('aria-current'); });
-    $('#view-chat').hidden=name!=='chat'; $('#view-lib').hidden=name!=='lib'; $('#view-posts').hidden=name!=='posts'; $('#composer-host').hidden=name!=='chat'; document.body.dataset.tab=name;
-    if(name==='lib') renderLibrary(); else if(name==='posts'){ loadPosts().then(renderPosts); } else scrollDown();
-    try{ history.replaceState(null,'',name==='lib'?'#saved':name==='posts'?'#posts':'#'); }catch(e){}
+    $('#view-chat').hidden=name!=='chat'; $('#view-lib').hidden=name!=='lib'; $('#view-posts').hidden=name!=='posts'; $('#view-explore').hidden=name!=='explore'; $('#composer-host').hidden=name!=='chat'; document.body.dataset.tab=name;
+    if(name==='lib') renderLibrary(); else if(name==='posts'){ loadPosts().then(renderPosts); } else if(name==='explore'){ renderExplore(); loadExplore().then(function(){ if(!$('#view-explore').hidden) renderExplore(); }); } else scrollDown();
+    try{ history.replaceState(null,'',name==='lib'?'#saved':name==='posts'?'#posts':name==='explore'?'#explore':'#'); }catch(e){}
     if(window.__pillTo) window.__pillTo(name);
   }
   document.querySelectorAll('.tab').forEach(function(t){ t.addEventListener('click',function(){ switchTab(t.dataset.tab); }); });
@@ -891,7 +1089,8 @@
   function updateBadge(){ var b=$('#badge'); b.hidden=!library.length; b.textContent=library.length>99?'99+':library.length; }
   var tt; function toast(m){ var el=$('#toast'); el.textContent=m; el.classList.add('on'); clearTimeout(tt); tt=setTimeout(function(){ el.classList.remove('on'); },1700); }
   updateBadge();
-  if(location.hash==='#library'||location.hash==='#saved') switchTab('lib'); else if(location.hash==='#posts') switchTab('posts');
+  if(/^#col=/.test(location.hash)) importSharedCollection(location.hash);
+  else if(location.hash==='#library'||location.hash==='#saved') switchTab('lib'); else if(location.hash==='#posts') switchTab('posts'); else if(location.hash==='#explore'||/^#glossary/.test(location.hash)){ if(/^#glossary/.test(location.hash)) ex.mode='gloss'; switchTab('explore'); }
   loadPosts();
 
   /* ---------------- install + offline ---------------- */
