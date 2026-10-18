@@ -237,13 +237,19 @@
     while(msgs.length&&msgs[msgs.length-1].role!=='user') msgs.pop();
     msgs=msgs.slice(-CTX_MAX); while(msgs.length&&msgs[0].role!=='user') msgs.shift();
     var body=JSON.stringify({messages:msgs});
-    function once(){ return withTimeout(fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:body}),40000)
-      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ d.ok=r.ok; d.status=r.status; return d; }); }); }
-    // the free model is sometimes busy: retry once after a short pause
-    return once().then(function(d){
+    // a slow free model or a dropped connection comes back as {ok:false, status:0} instead of failing the whole answer
+    function once(ms){ return withTimeout(fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:body}),ms)
+      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ d.ok=r.ok; d.status=r.status; return d; }); })
+      .catch(function(e){ return {ok:false,status:0,slow:/timeout/.test(String(e&&e.message)),error:''}; }); }
+    // the free model is sometimes busy or slow: retry once after a short pause
+    return once(45000).then(function(d){
       var bad=!d.ok||!d.reply||/^Sorry, I couldn't come up with an answer/.test(d.reply);
       if(!bad||d.status===429||d.status===400||d.status===403) return d;
-      return new Promise(function(r){ setTimeout(r,1500); }).then(once);
+      return new Promise(function(r){ setTimeout(r,1200); }).then(function(){ return once(35000); }).then(function(d2){
+        if(d2.ok&&d2.reply) return d2;
+        if(!d2.status) d2.error=d2.slow||d.slow?'The AI is taking too long to answer right now. Tap Retry, or ask again in a moment.':"Couldn't connect to the AI. Check your internet connection, then tap Retry.";
+        return d2;
+      });
     });
   }
 
@@ -373,6 +379,7 @@
       if(data.extra&&data.extra.length) h+=group('New AI repos for this',data.extra,data.question);
       if(data.global&&data.global.length) h+=group('Across AI: repos, models, apps, papers',data.global,data.question)+'<button class="mini-btn more-explore" type="button" data-explore-q="'+esc(data.question)+'">See all results in Explore →</button>';
     }
+    if(data.error&&data.question) h+='<div class="row-actions"><button class="mini-btn retry" type="button" data-retry="'+esc(data.question)+'">Retry</button></div>';
     if(data.answer&&data.canSave){
       var on=library.some(function(i){ return i.type==='Answer'&&i.question===data.question&&i.text===data.answer; });
       h+='<div class="row-actions"><button class="mini-btn save-answer'+(on?' on':'')+'" type="button">'+BM+(on?'Answer saved':'Save answer')+'</button></div>';
@@ -403,14 +410,14 @@
           answer:r.total?('Found '+r.total+' saved item'+(r.total>1?'s':'')+(r.kw.length?' about '+r.kw.join(' '):'')+when+(r.total>10?'. Showing the newest 10.':'.')):
             (library.length?'Nothing in your library matches that'+when+'. Try fewer words, or open the Saved tab to browse with filters.':'Nothing saved yet. Tap the bookmark on any answer or source, or the + button to add any link.')};
       }else{
-        if(BEST_Q.test(q)&&!(REPO_Q.test(q)&&/\b(trending|new|newest|latest|this (week|month))\b/i.test(q))){ t.dataset.best='1'; startStages(t); data=await bestData(q); }
+        if(BEST_Q.test(q)&&!(REPO_Q.test(q)&&/\b(trending|new|newest|latest|this (week|month))\b/i.test(q))){ t.dataset.best='1'; startStages(t); data=await bestData(q); if(!data){ stopStages(t); var stg=t.querySelector('.stage'); if(stg) stg.textContent='Searching the web…'; } }
         if(!data){
         var isRepo=REPO_Q.test(q);
         var resP=Promise.all([loadIndex(),loadPosts()]).then(function(a){ return matchResources(q,a[0].concat(a[1].filter(function(p){ return p.type==='News'||p.type==='Fact'; }).map(postAsResource))); }).catch(function(){ return []; });
         var ghRes=null;
         var srcP=isRepo?githubTop(q).then(function(g){ ghRes=g; return g.items; }).catch(function(){ return null; }):Promise.all([hn(q),wiki(q)]).then(function(a){ return a[1].concat(a[0]); });
         var globP=withTimeout(chatGlobal(q,isRepo),11000).catch(function(){ return []; });
-        var aiP=isRepo?Promise.resolve(null):ai(sessionChat()).catch(function(){ return {ok:false,error:"Couldn't reach the AI service. Check your connection and try again."}; });
+        var aiP=isRepo?Promise.resolve(null):ai(sessionChat()).catch(function(){ return {ok:false,error:"Couldn't connect to the AI. Check your internet connection, then tap Retry."}; });
         var res=await resP, src=await srcP, ans=await aiP, glob=await globP;
         if(isRepo&&src===null){ isRepo=false; ans=await ai(sessionChat()).catch(function(){ return {ok:false}; }); src=[]; }
         var answer='', error=false, web=false;
@@ -445,6 +452,7 @@
   }
   log.addEventListener('click',function(e){
     var rf=e.target.closest('[data-refine]'); if(rf){ ask(rf.dataset.refine); return; }
+    var rt=e.target.closest('[data-retry]'); if(rt){ rt.disabled=true; ask(rt.dataset.retry); return; }
     var mx=e.target.closest('.more-explore'); if(mx){ ex.mode='res'; ex.q=mx.dataset.exploreQ; $('#ex-q').value=ex.q; ex.task=''; ex.type=''; switchTab('explore'); return; }
     var l=e.target.closest('a[href="#library"]'); if(l){ e.preventDefault(); switchTab('lib'); return; }
     var b=e.target.closest('.save');

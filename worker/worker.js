@@ -396,9 +396,11 @@ export default {
           "X-Title": "AI Radar",
         },
         body: JSON.stringify(payload),
+        signal: AbortSignal.timeout(35000),   // never leave the app waiting on a stuck free model
       });
-    } catch {
-      return json({ error: "Couldn't reach the AI service. Try again." }, 502, h);
+    } catch (e) {
+      const slow = e && (e.name === "TimeoutError" || e.name === "AbortError");
+      return json({ error: slow ? "The AI is taking too long to answer right now. Tap Retry, or ask again in a moment." : "Couldn't reach the AI service. Try again." }, 504, h);
     }
     if (!r.ok) {
       const code = r.status === 402 ? "The chat is out of credit right now." : r.status === 429 ? "The AI service is busy. Try again shortly." : "The AI service had a problem. Try again.";
