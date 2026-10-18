@@ -1,5 +1,20 @@
 [
  {
+  "type": "Fact",
+  "title": "in 1956, a program found a better proof than Russell and Whitehead.",
+  "summary": "Why it matters: it pioneered heuristic search.",
+  "points": [
+   "Logic Theorist proved 38 of Principia's first 52 theorems",
+   "A journal rejected the paper, unaware a program was an author"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111734392360144898",
+  "date": "2026-10-18T13:51:27+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/Logic_Theorist",
+  "img": "https://pbs.twimg.com/media/HU5jNn8bUAA3uCm?format=jpg&name=small",
+  "id": "2026-10-18-fact-in-1956-a-program-found-a-better-proof-than-russell-and-whit"
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: vectorize-io/hindsight",
   "summary": "Memory for AI agents that learns, not just logs chats. Why it matters: agents stop forgetting between sessions.",
