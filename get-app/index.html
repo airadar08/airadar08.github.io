@@ -417,6 +417,34 @@ img{max-width:100%}
 .card .lbl{color:var(--muted)}
 .c-peach .lbl,.c-black .lbl{color:inherit}
 .logo-word{white-space:nowrap}
+
+/* phone gallery: every screen of the app in a phone frame */
+.gal-sec{padding-block:20px 120px;overflow:hidden}
+.gal-head{display:flex;flex-direction:column;gap:18px;align-items:center;text-align:center;max-width:640px;margin:0 auto}
+.gallery{display:flex;gap:26px;justify-content:center;align-items:flex-start;margin-top:56px;padding-bottom:12px}
+.gp{margin:0;flex:0 0 auto;width:204px;display:flex;flex-direction:column;gap:16px;align-items:center;text-decoration:none;color:var(--ink)}
+.gp:nth-child(even){margin-top:64px}
+.gp:nth-child(3){width:236px;margin-top:-12px}
+.gp .ph{position:relative;width:100%;aspect-ratio:300/620;border-radius:36px;background:#e9e9ec;padding:3px;box-shadow:0 34px 70px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.6);transition:transform .7s var(--spring),box-shadow .5s ease}
+.gp .ph-in{height:100%;border-radius:33px;background:#0d0d0d;padding:7px}
+.gp .scr{position:relative;height:100%;border-radius:27px;overflow:hidden;background:#0a0c0b}
+.gp .scr img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.gp .isl{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:62px;height:18px;border-radius:999px;background:#0d0d0d;z-index:2}
+.gp:hover .ph{transform:translateY(-12px) rotate(-1.5deg);box-shadow:0 44px 80px rgba(0,0,0,.55),0 0 0 1px rgba(52,201,138,.4),inset 0 0 0 1px rgba(255,255,255,.6)}
+.gp figcaption{display:flex;flex-direction:column;gap:4px;align-items:center;text-align:center}
+.gp figcaption b{font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.05}
+.gp figcaption span{font-size:13px;line-height:1.45;color:var(--muted);max-width:200px}
+.gp .new{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--coral);color:#03120b;border-radius:999px;padding:3px 8px;align-self:center}
+.swipe{display:none;font-size:12.5px;color:var(--muted);text-align:center;margin-top:6px}
+@media (max-width:1100px){.gp{width:166px}.gp:nth-child(3){width:194px}.gallery{gap:16px}.gp figcaption span{max-width:170px}}
+@media (max-width:900px){
+  .gallery{justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;margin:44px -24px 0;padding:24px 24px 18px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .gallery::-webkit-scrollbar{display:none}
+  .gp,.gp:nth-child(3){width:min(62vw,240px);margin-top:0!important;scroll-snap-align:center}
+  .gp:first-child{margin-left:calc(50% - min(31vw,120px) - 24px)}
+  .gp:last-child{margin-right:calc(50% - min(31vw,120px) - 24px)}
+  .swipe{display:block}
+}
 /* phones: the two tilted screens must sit centred and stay on screen */
 @media (max-width:520px){
   .hero{padding-top:118px}
@@ -568,6 +596,7 @@ html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
     </a>
     <div class="nav-links">
       <a class="roll-host" href="#best"><span class="roll" data-roll>Best for you</span></a>
+      <a class="roll-host" href="#screens"><span class="roll" data-roll>Screens</span></a>
       <a class="roll-host" href="#features"><span class="roll" data-roll>Features</span></a>
       <a class="roll-host" href="#install"><span class="roll" data-roll>Install</span></a>
       <a class="roll-host" href="../"><span class="roll" data-roll>Website</span></a>
@@ -645,6 +674,25 @@ html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
         </div></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ EVERY SCREEN (phone gallery) ============ -->
+<section class="gal-sec gutter" id="screens">
+  <div class="wrap">
+    <div class="gal-head reveal">
+      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg>Made for your phone</span>
+      <h2 class="h-section">Every screen, one thumb away</h2>
+      <p class="body">The real app, as it looks on your phone today.</p>
+    </div>
+    <div class="gallery" id="gallery">
+      <figure class="gp reveal"><div class="ph"><div class="ph-in"><div class="scr"><span class="isl" aria-hidden="true"></span><img src="img/chat.jpg" alt="Chat screen answering Explain RAG simply with sources" loading="lazy" width="585" height="1266"></div></div></div><figcaption><b>Chat</b><span>Short answers with sources, and matching tools under every answer</span></figcaption></figure>
+      <figure class="gp reveal"><div class="ph"><div class="ph-in"><div class="scr"><span class="isl" aria-hidden="true"></span><img src="img/search.jpg" alt="Explore screen searching voice cloning with view chips" loading="lazy" width="585" height="1266"></div></div></div><figcaption><b>Explore</b><span>One search across GitHub, Hugging Face, papers and articles</span></figcaption></figure>
+      <figure class="gp reveal"><div class="ph"><div class="ph-in"><div class="scr"><span class="isl" aria-hidden="true"></span><img src="img/best.jpg" alt="Best for you picks for cloning a voice on a laptop" loading="lazy" width="585" height="1266"></div></div></div><figcaption><span class="new">New</span><b>Best for you</b><span>Your goal in, the top picks out, with why, trade-off and first step</span></figcaption></figure>
+      <figure class="gp reveal"><div class="ph"><div class="ph-in"><div class="scr"><span class="isl" aria-hidden="true"></span><img src="img/saved.jpg" alt="Saved screen with the Agent stack collection" loading="lazy" width="585" height="1266"></div></div></div><figcaption><b>Saved</b><span>Collections you can share with one link, kept on your phone</span></figcaption></figure>
+      <figure class="gp reveal"><div class="ph"><div class="ph-in"><div class="scr"><span class="isl" aria-hidden="true"></span><img src="img/glossary.jpg" alt="Glossary screen with Agent and Agentic definitions" loading="lazy" width="585" height="1266"></div></div></div><figcaption><b>Glossary</b><span>AI words in plain English, one tap from the resources</span></figcaption></figure>
+    </div>
+    <p class="swipe" aria-hidden="true">Swipe to see every screen →</p>
   </div>
 </section>
 
@@ -841,6 +889,11 @@ html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
     document.addEventListener('mouseover',function(e){ cur$.classList.toggle('big', !!e.target.closest('a,button,input,.card')); });
     (function loop(){ cx+=(mx-cx)*0.22; cy+=(my-cy)*0.22; cur$.style.transform='translate3d('+cx.toFixed(1)+'px,'+cy.toFixed(1)+'px,0)'; raf(loop); })();
   }
+
+  /* ---- Phone gallery: on phones, open centred on the Best for you screen ---- */
+  var gal=document.getElementById('gallery');
+  function centre(){ if(window.innerWidth>900) return; var mid=gal.children[2]; gal.scrollLeft=mid.offsetLeft-(gal.clientWidth-mid.offsetWidth)/2; }
+  centre(); window.addEventListener('load',centre);
 
   /* ---- Copy the app link ---- */
   var cp=document.getElementById('copy');
