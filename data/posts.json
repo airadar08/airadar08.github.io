@@ -6,10 +6,14 @@
   "link": "cheatsheets/#mcp-explained",
   "img": "cheatsheets/img/mcp-explained.jpg",
   "id": "2026-10-18-cheatsheet-mcp-explained",
-  "date": "2026-10-18T20:01:03+05:30",
-  "x_url": "",
+  "date": "2026-10-18T20:03:41+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2111828065064272330",
   "source": "",
-  "points": []
+  "points": [
+   "Host, client, server: who does what",
+   "Tools, resources, prompts and how a tool call flows",
+   "stdio vs Streamable HTTP, and when to use each"
+  ]
  },
  {
   "type": "Fact",
