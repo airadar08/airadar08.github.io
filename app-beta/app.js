@@ -1018,7 +1018,9 @@
     var mine=all.filter(function(i){ return exPass(i,null,words); }).map(function(i){
       return {src:'AI Radar',kind:i.type,title:i.title,desc:i.desc||'',url:i.url,img:i.img,pop:parseFloat(String(i.stars||'').replace(/k$/i,''))*(/k$/i.test(i.stars||'')?1000:1)||0,popLabel:i.stars?'★ '+i.stars:i.count?i.count+' prompts':'',date:exDate(i),free:true,tags:i.tags,level:i.level,ext:i.ext,cat:i.cat,rel:2,popScore:0,radar:i};
     });
-    var pool=mine.concat(global&&web&&web.items?web.items.filter(function(i){ return (!ex.tags.size||Array.from(ex.tags).every(function(t){ return i.tags.indexOf(t)>-1; })); }):[]);
+    // a web result that is already an AI Radar pick (same GitHub repo) is shown once, as the pick
+    var mineUrls={}; all.forEach(function(i){ if(i.ext) mineUrls[i.ext.toLowerCase().replace(/\/$/,'')]=1; });
+    var pool=mine.concat(global&&web&&web.items?web.items.filter(function(i){ return !mineUrls[i.url.toLowerCase().replace(/\/$/,'')]&&(!ex.tags.size||Array.from(ex.tags).every(function(t){ return i.tags.indexOf(t)>-1; })); }):[]);
     if(ex.free) pool=pool.filter(function(i){ return i.free; });
     if(ex.level) pool=pool.filter(function(i){ return i.level===ex.level; });
     // views: All / AI Radar / each kind, with counts
