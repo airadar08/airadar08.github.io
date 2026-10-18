@@ -1,5 +1,49 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: MadsLorentzen/ai-job-search",
+  "summary": "A job-hunt framework built on Claude Code: score postings, tailor CVs, write cover letters, prep interviews",
+  "points": [
+   "Scores each job posting against your profile",
+   "Drafts a tailored CV and cover letter, then a reviewer agent critiques them",
+   "Builds interview prep from the role"
+  ],
+  "link": "repos/#madslorentzen-ai-job-search",
+  "source": "https://github.com/MadsLorentzen/ai-job-search",
+  "img": "repos/img/madslorentzen-ai-job-search.jpg",
+  "x_url": "",
+  "id": "2026-10-18-repo-madslorentzen-ai-job-search",
+  "date": "2026-10-18T20:49:25+05:30"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: HKUDS/CLI-Anything",
+  "summary": "Turns existing desktop software into command-line tools that AI agents can drive",
+  "points": [
+   "Generates a CLI harness for an app: GIS, video editors, game engines, notes",
+   "A hub to browse and install community-built CLIs",
+   "Agents get structured commands instead of clicking a GUI"
+  ],
+  "link": "repos/#hkuds-cli-anything",
+  "source": "https://github.com/HKUDS/CLI-Anything",
+  "img": "repos/img/hkuds-cli-anything.jpg",
+  "x_url": "",
+  "id": "2026-10-18-repo-hkuds-cli-anything",
+  "date": "2026-10-18T20:49:25+05:30"
+ },
+ {
+  "type": "Cheatsheet",
+  "title": "Context windows explained cheatsheet",
+  "summary": "What your AI can actually see, and how to use it well",
+  "link": "cheatsheets/#context-windows",
+  "img": "cheatsheets/img/context-windows.jpg",
+  "id": "2026-10-18-cheatsheet-context-windows",
+  "date": "2026-10-18T20:49:25+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Cheatsheet",
   "title": "AI image prompting cheatsheet",
   "summary": "Write prompts that get the picture you mean",

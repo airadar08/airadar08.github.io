@@ -1,5 +1,43 @@
 [
  {
+  "slug": "hkuds-cli-anything",
+  "repo": "HKUDS/CLI-Anything",
+  "url": "https://github.com/HKUDS/CLI-Anything",
+  "tagline": "Turns existing desktop software into command-line tools that AI agents can drive",
+  "stars": "54.4k",
+  "trend": "+582",
+  "language": "Python",
+  "license": "Apache-2.0",
+  "what": [
+   "Generates a CLI harness for an app: GIS, video editors, game engines, notes",
+   "A hub to browse and install community-built CLIs",
+   "Agents get structured commands instead of clicking a GUI"
+  ],
+  "read": "A practical bridge between agents and everyday software. Quality varies by harness.",
+  "img": "repos/img/hkuds-cli-anything.jpg",
+  "date": "2026-10-18",
+  "post": ""
+ },
+ {
+  "slug": "madslorentzen-ai-job-search",
+  "repo": "MadsLorentzen/ai-job-search",
+  "url": "https://github.com/MadsLorentzen/ai-job-search",
+  "tagline": "A job-hunt framework built on Claude Code: score postings, tailor CVs, write cover letters, prep interviews",
+  "stars": "51.9k",
+  "trend": "+2.2k",
+  "language": "Python",
+  "license": "MIT",
+  "what": [
+   "Scores each job posting against your profile",
+   "Drafts a tailored CV and cover letter, then a reviewer agent critiques them",
+   "Builds interview prep from the role"
+  ],
+  "read": "Its author used it to get hired. Portal search is Denmark-only; swap in your own job boards.",
+  "img": "repos/img/madslorentzen-ai-job-search.jpg",
+  "date": "2026-10-18",
+  "post": ""
+ },
+ {
   "slug": "vectorize-io-hindsight",
   "repo": "vectorize-io/hindsight",
   "url": "https://github.com/vectorize-io/hindsight",
