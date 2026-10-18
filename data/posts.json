@@ -1,5 +1,22 @@
 [
  {
+  "type": "Prompt pack",
+  "title": "FREE: 38 AI prompts for job seekers",
+  "summary": "38 copy-ready prompts for the whole job hunt: targeting roles, resumes, outreach, interview practice, case rounds and offers.",
+  "points": [
+   "Job search & targeting",
+   "Resume & LinkedIn",
+   "Cover letters & outreach",
+   "Interview prep"
+  ],
+  "link": "prompt-packs/ai-prompts-for-job-seekers/",
+  "img": "prompt-packs/ai-prompts-for-job-seekers/cover.jpg",
+  "x_url": "",
+  "id": "pack-ai-prompts-for-job-seekers",
+  "date": "2026-10-18T17:16:32+05:30",
+  "source": ""
+ },
+ {
   "type": "Fact",
   "title": "in 1956, a program found a better proof than Russell and Whitehead.",
   "summary": "Why it matters: it pioneered heuristic search.",
