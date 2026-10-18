@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>AI Radar App · Ask anything about AI, keep what matters</title>
-<meta name="description" content="The free AI Radar app: answers about AI with sources, one search across GitHub, Hugging Face and research papers, and Best for you picks for what you want to do.">
-<meta property="og:title" content="The AI Radar app">
-<meta property="og:description" content="Ask anything about AI, get the best tools for your goal, keep what matters. Free, no account.">
-<meta property="og:image" content="https://airadar08.github.io/get-app/img/best.jpg">
+<title>AI Radar for Android · Coming soon on Google Play</title>
+<meta name="description" content="The AI Radar Android app, coming soon on Google Play: a smart AI assistant that searches GitHub, Hugging Face and the web and answers with sources. Free, no account.">
+<meta property="og:title" content="AI Radar for Android, coming soon">
+<meta property="og:description" content="Ask anything about AI and get answers with sources. Coming soon on Google Play.">
+<meta property="og:image" content="https://airadar08.github.io/get-app/img/chat.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0a0c0b">
 <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
@@ -361,7 +361,7 @@ img{max-width:100%}
 .facts{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0;padding:0;list-style:none}
 .facts li{font-size:12.5px;color:#c9d6cf;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 12px}
 
-/* Best for you: steps carousel */
+/* "How it answers": steps carousel */
 .ask-bubble{align-self:flex-end;background:var(--coral);color:#03120b;border-radius:16px 16px 4px 16px;padding:10px 14px;font-size:14px;line-height:1.4;max-width:88%}
 .slide-h{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mint-ink)}
 .slide-h i{font-style:normal;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--coral);color:#03120b;font-size:12px;letter-spacing:0}
@@ -395,7 +395,7 @@ img{max-width:100%}
 .srcs span b{color:var(--mint-ink);font-weight:500;font-family:var(--mono);font-size:11.5px;margin-left:4px}
 .c-black h3{color:#03120b}
 
-/* install */
+/* coming soon section */
 .inst-sec{padding-block:40px 120px}
 .inst{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:40px}
 .inst .card{gap:14px}
@@ -418,13 +418,26 @@ img{max-width:100%}
 .c-peach .lbl,.c-black .lbl{color:inherit}
 .logo-word{white-space:nowrap}
 
+/* "Coming soon on Google Play" badge (not a link until the app is live) */
+.soon{display:inline-flex;align-items:center;gap:12px;padding:10px 20px 10px 16px;border-radius:12px;background:#000;color:#fff;border:1px solid rgba(255,255,255,.28);box-shadow:0 16px 40px rgba(52,201,138,.14);cursor:default}
+.soon svg{width:24px;height:24px;color:var(--coral)}
+.soon>span{display:flex;flex-direction:column;line-height:1.1;font-size:18px;font-weight:600;letter-spacing:-.01em}
+.soon small{font-size:10.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#c9d6cf}
+.soon-band{display:flex;gap:56px;align-items:center;justify-content:space-between;background:var(--peach-card);border:1px solid #1f4434;border-radius:28px;padding:clamp(28px,5vw,56px)}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;counter-reset:st;flex:0 1 380px;min-width:0}
+.steps li{counter-increment:st;display:grid;grid-template-columns:34px minmax(0,1fr);gap:2px 12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.steps li::before{content:counter(st);grid-row:span 2;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--coral);color:#03120b;font-weight:700;font-size:13px}
+.steps b{font-size:15px}
+.steps span{font-size:13.5px;color:var(--muted);line-height:1.45}
+@media (max-width:900px){.soon-band{flex-direction:column;align-items:stretch;gap:32px}.steps{flex:0 0 auto}}
+
 /* phone gallery: every screen of the app in a phone frame */
 .gal-sec{padding-block:20px 120px;overflow:hidden}
 .gal-head{display:flex;flex-direction:column;gap:18px;align-items:center;text-align:center;max-width:640px;margin:0 auto}
 .gallery{display:flex;gap:26px;justify-content:center;align-items:flex-start;margin-top:56px;padding-bottom:12px}
 .gp{margin:0;flex:0 0 auto;width:204px;display:flex;flex-direction:column;gap:16px;align-items:center;text-decoration:none;color:var(--ink)}
-.gp:nth-child(even){margin-top:64px}
-.gp:nth-child(3){width:236px;margin-top:-12px}
+.gp:nth-child(odd){margin-top:64px}
+.gp.big{width:236px;margin-top:-12px}
 .gp .ph{position:relative;width:100%;aspect-ratio:300/620;border-radius:36px;background:#e9e9ec;padding:3px;box-shadow:0 34px 70px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.6);transition:transform .7s var(--spring),box-shadow .5s ease}
 .gp .ph-in{height:100%;border-radius:33px;background:#0d0d0d;padding:7px}
 .gp .scr{position:relative;height:100%;border-radius:27px;overflow:hidden;background:#0a0c0b}
@@ -436,11 +449,11 @@ img{max-width:100%}
 .gp figcaption span{font-size:13px;line-height:1.45;color:var(--muted);max-width:200px}
 .gp .new{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--coral);color:#03120b;border-radius:999px;padding:3px 8px;align-self:center}
 .swipe{display:none;font-size:12.5px;color:var(--muted);text-align:center;margin-top:6px}
-@media (max-width:1100px){.gp{width:166px}.gp:nth-child(3){width:194px}.gallery{gap:16px}.gp figcaption span{max-width:170px}}
+@media (max-width:1100px){.gp{width:166px}.gp.big{width:194px}.gallery{gap:16px}.gp figcaption span{max-width:170px}}
 @media (max-width:900px){
   .gallery{justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;margin:44px -24px 0;padding:24px 24px 18px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .gallery::-webkit-scrollbar{display:none}
-  .gp,.gp:nth-child(3){width:min(62vw,240px);margin-top:0!important;scroll-snap-align:center}
+  .gp,.gp.big{width:min(62vw,240px);margin-top:0!important;scroll-snap-align:center}
   .gp:first-child{margin-left:calc(50% - min(31vw,120px) - 24px)}
   .gp:last-child{margin-right:calc(50% - min(31vw,120px) - 24px)}
   .swipe{display:block}
@@ -595,13 +608,13 @@ html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
       <span class="logo-word">AI Radar</span>
     </a>
     <div class="nav-links">
-      <a class="roll-host" href="#best"><span class="roll" data-roll>Best for you</span></a>
+      <a class="roll-host" href="#how"><span class="roll" data-roll>How it answers</span></a>
       <a class="roll-host" href="#screens"><span class="roll" data-roll>Screens</span></a>
       <a class="roll-host" href="#features"><span class="roll" data-roll>Features</span></a>
-      <a class="roll-host" href="#install"><span class="roll" data-roll>Install</span></a>
+      <a class="roll-host" href="#soon"><span class="roll" data-roll>Coming soon</span></a>
       <a class="roll-host" href="../"><span class="roll" data-roll>Website</span></a>
     </div>
-    <a class="btn btn-dark roll-host" href="../app-beta/"><span class="roll" data-roll>Open the app</span></a>
+    <a class="btn btn-dark roll-host" href="https://x.com/ai_radar_" target="_blank" rel="noopener"><span class="roll" data-roll>Follow on X</span></a>
   </nav>
 </header>
 
@@ -613,37 +626,37 @@ html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
       <svg class="fallback" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="none" stroke="#34c98a" stroke-opacity=".5" stroke-width=".3"></circle><circle cx="16" cy="16" r="9.5" fill="none" stroke="#34c98a" stroke-opacity=".35" stroke-width=".3"></circle><circle cx="16" cy="16" r="5" fill="none" stroke="#34c98a" stroke-opacity=".35" stroke-width=".3"></circle><path d="M16 16 16 2A14 14 0 0 1 28.1 9Z" fill="#34c98a" fill-opacity=".18"></path><circle cx="16" cy="16" r=".7" fill="#34c98a"></circle></svg>
     </div>
     <div class="hero-copy">
-      <a class="new-pill appear" data-delay="150" href="#best"><b>New</b><span class="long">Best for you: say your goal, get the top picks</span><span class="short">Best for you picks</span></a>
-      <h1 class="h-display" data-words data-start="250" data-step="70">Ask anything about AI. Keep what matters.</h1>
-      <p class="sub" data-words data-start="650" data-step="20">The free AI Radar app: answers with sources, one search across GitHub, Hugging Face and research papers, and an AI that picks the best tools for what you want to do.</p>
+      <a class="new-pill appear" data-delay="150" href="#soon"><b>Android</b><span class="long">Coming soon on Google Play</span><span class="short">Coming soon on Google Play</span></a>
+      <h1 class="h-display" data-words data-start="250" data-step="70">Ask anything about AI. Get answers with sources.</h1>
+      <p class="sub" data-words data-start="650" data-step="20">The AI Radar Android app: a smart AI assistant that searches GitHub, Hugging Face and the web for you and shows where every answer comes from.</p>
       <div class="hero-ctas">
-        <a class="btn btn-dark roll-host appear" data-delay="1000" href="../app-beta/"><span class="icon-roll" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span><span class="roll" data-roll>Open the app</span></a>
-        <a class="btn btn-light roll-host appear" data-delay="1150" href="#install"><span class="roll" data-roll>Add to home screen</span></a>
+        <span class="appear" data-delay="1000"><span class="soon" role="note"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.2 2.6c-.3.3-.4.7-.4 1.2v16.4c0 .5.1.9.4 1.2l9.1-9.4zM14.8 13.4l2.8 2.9-11.2 6.3c-.4.2-.8.2-1.1.1zM18.9 9.1l2.6 1.5c.8.5.8 1.3 0 1.8l-2.7 1.5-3-3.1zM5.3 1.3c.3-.1.7 0 1.1.2l11.2 6.3-2.8 2.9z"/></svg><span><small>Coming soon on</small>Google Play</span></span></span>
+        <a class="btn btn-light roll-host appear" data-delay="1150" href="https://x.com/ai_radar_" target="_blank" rel="noopener"><span class="roll" data-roll>Follow for the launch</span></a>
       </div>
-      <ul class="facts appear" data-delay="1300" aria-label="At a glance"><li>Free</li><li>No account</li><li>Android · iPhone · desktop</li></ul>
+      <ul class="facts appear" data-delay="1300" aria-label="At a glance"><li>Free</li><li>No account</li><li>Android</li></ul>
     </div>
 
     <div class="phones">
       <div class="phone-stage">
         <div class="phone-par" id="phone-par">
-          <div class="phone-wrap phone-a" data-delay="500"><div class="phone"><div class="phone-in"><div class="screen" style="background:#0a0c0b"><div class="island"></div><img class="shot" src="img/best.jpg" alt="Best for you in the AI Radar app: two picks for cloning your voice on a laptop, each with why, trade-off and first step" width="585" height="1266"></div></div></div></div>
-          <div class="phone-wrap phone-b" data-delay="700"><div class="phone"><div class="phone-in"><div class="screen" style="background:#0a0c0b"><div class="island"></div><img class="shot" src="img/chat.jpg" alt="AI Radar chat explaining RAG with sources" width="585" height="1266"></div></div></div></div>
+          <div class="phone-wrap phone-a" data-delay="500"><div class="phone"><div class="phone-in"><div class="screen" style="background:#0a0c0b"><div class="island"></div><img class="shot" src="img/chat.jpg" alt="AI Radar app answering which open-source tools run LLMs locally, citing Ollama, llama.cpp and Open WebUI" width="585" height="1266"></div></div></div></div>
+          <div class="phone-wrap phone-b" data-delay="700"><div class="phone"><div class="phone-in"><div class="screen" style="background:#0a0c0b"><div class="island"></div><img class="shot" src="img/posts.jpg" alt="Posts screen with every AI Radar post and filters" width="585" height="1266"></div></div></div></div>
         </div>
       </div>
     </div>
   </section>
 </div>
 
-<!-- ============ BEST FOR YOU ============ -->
-<section class="how gutter" id="best">
+<!-- ============ HOW THE BOT ANSWERS ============ -->
+<section class="how gutter" id="how">
   <div class="wrap two-col">
     <div class="how-left reveal">
-      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.2 6.8H21l-5.5 4 2.1 6.8L12 15.6l-5.6 4 2.1-6.8-5.5-4h6.8z"/></svg>New · Best for you</span>
-      <h2 class="h-section">Say what you want to do. Get the best picks.</h2>
-      <p class="body" style="max-width:440px">Ask “best free way to clone my voice on my laptop” and the app does the research: it reads your goal, runs its own searches, throws out dead projects and tells you which few to use, and why.</p>
+      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>How it answers</span>
+      <h2 class="h-section">It searches first, then answers with sources.</h2>
+      <p class="body" style="max-width:440px">The AI Radar bot is an agent with live tools. For every AI question it looks things up, reads what it finds and writes a short answer you can check, with every fact numbered to its source.</p>
       <div class="ctrls">
         <button class="round" id="prev" type="button" aria-label="Previous step"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"></path></svg></button>
-        <div class="dots" role="tablist" aria-label="Steps"><button class="dot" role="tab" aria-label="Understands"></button><button class="dot" role="tab" aria-label="Searches"></button><button class="dot" role="tab" aria-label="Checks"></button><button class="dot" role="tab" aria-label="Recommends"></button></div>
+        <div class="dots" role="tablist" aria-label="Steps"><button class="dot" role="tab" aria-label="Understands"></button><button class="dot" role="tab" aria-label="Searches"></button><button class="dot" role="tab" aria-label="Reads"></button><button class="dot" role="tab" aria-label="Answers"></button></div>
         <button class="round" id="next" type="button" aria-label="Next step"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
       </div>
     </div>
@@ -652,25 +665,25 @@ html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
         <div class="stage-bg" aria-hidden="true"></div>
         <div class="slide" aria-hidden="false"><div class="glass">
           <div class="slide-h"><i>1</i>Understands</div>
-          <p class="slide-t">It works out what you really need.</p>
-          <div class="ask-bubble">best free way to clone my own voice on my laptop</div>
-          <div class="chips"><span class="need">Clone your own voice on a laptop</span><span>Free</span><span>Runs locally</span><span>Beginner</span></div>
+          <p class="slide-t">You ask in your own words. AI questions only.</p>
+          <div class="ask-bubble">Best open-source tools to run LLMs locally on a laptop?</div>
+          <div class="chips"><span class="need">AI question: let's look it up</span><span>Off-topic? A polite no</span></div>
         </div></div>
         <div class="slide" aria-hidden="true"><div class="glass">
           <div class="slide-h"><i>2</i>Searches</div>
-          <p class="slide-t">It plans its own searches, everywhere.</p>
-          <ul class="srch"><li>GitHub repos<span>“voice cloning”</span></li><li>Hugging Face models<span>“tts”</span></li><li>Hugging Face apps<span>“voice-clone”</span></li><li>Research papers<span>“zero-shot voice cloning”</span></li><li>AI Radar picks<span>our own posts</span></li></ul>
+          <p class="slide-t">It picks the right tools and runs them at once.</p>
+          <ul class="srch"><li>AI Radar posts<span>our own picks first</span></li><li>GitHub<span>repos, stars, activity</span></li><li>Hugging Face<span>models, datasets, Spaces</span></li><li>News and the web<span>anything recent</span></li><li>Wikipedia<span>concepts</span></li></ul>
         </div></div>
         <div class="slide" aria-hidden="true"><div class="glass">
-          <div class="slide-h"><i>3</i>Checks</div>
-          <p class="slide-t">It throws out what you shouldn't use.</p>
-          <div class="funnel"><div>Results found<b>21</b></div><div>Archived or forked repos<b class="x">removed</b></div><div>Untouched for 2+ years<b class="x">removed</b></div><div>Duplicates<b class="x">merged</b></div><div>Compared side by side<b>14</b></div></div>
+          <div class="slide-h"><i>3</i>Reads</div>
+          <p class="slide-t">It opens the best results before it answers.</p>
+          <div class="funnel"><div>Repo details and README<b>github_repo</b></div><div>Model and dataset cards<b>hf_item</b></div><div>A page you share<b>read_page</b></div><div>Never invents repos, numbers or links<b class="x">rule</b></div></div>
         </div></div>
         <div class="slide" aria-hidden="true"><div class="glass">
-          <div class="slide-h"><i>4</i>Recommends</div>
-          <p class="slide-t">The top few, with reasons.</p>
-          <div class="pk"><i>1</i><div><small>AI Radar pick · Repo · ★ 74.2k · AGPL-3.0</small><b>debpalash/VoiceStudio</b><p><em>Why</em> Runs fully offline and bundles 16 speech engines in one app</p><p><em>Start</em> Install it and clone a voice from a short clip</p></div></div>
-          <div class="pk"><i>2</i><div><small>Repo · GitHub · ★ 63.1k · MIT</small><b>RVC-Boss/GPT-SoVITS</b><p><em>Trade-off</em> Setup takes some Python steps</p></div></div>
+          <div class="slide-h"><i>4</i>Answers</div>
+          <p class="slide-t">A short answer, every fact numbered.</p>
+          <div class="pk"><i>1</i><div><small>Repo · GitHub · ★ 183.7k · MIT</small><b>ollama/ollama</b><p>The easiest way to start: one command runs a model locally <em>[1]</em></p></div></div>
+          <div class="pk"><i>2</i><div><small>Repo · GitHub · ★ 131.6k · MIT</small><b>ggml-org/llama.cpp</b><p>The engine behind many local tools, tuned for laptops <em>[2]</em></p></div></div>
         </div></div>
       </div>
     </div>
@@ -681,16 +694,15 @@ html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
 <section class="gal-sec gutter" id="screens">
   <div class="wrap">
     <div class="gal-head reveal">
-      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg>Made for your phone</span>
-      <h2 class="h-section">Every screen, one thumb away</h2>
-      <p class="body">The real app, as it looks on your phone today.</p>
+      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg>The app</span>
+      <h2 class="h-section">Three tabs. Everything AI in your pocket.</h2>
+      <p class="body">Real screens from the AI Radar Android app.</p>
     </div>
     <div class="gallery" id="gallery">
-      <figure class="gp reveal"><div class="ph"><div class="ph-in"><div class="scr"><span class="isl" aria-hidden="true"></span><img src="img/chat.jpg" alt="Chat screen answering Explain RAG simply with sources" loading="lazy" width="585" height="1266"></div></div></div><figcaption><b>Chat</b><span>Short answers with sources, and matching tools under every answer</span></figcaption></figure>
-      <figure class="gp reveal"><div class="ph"><div class="ph-in"><div class="scr"><span class="isl" aria-hidden="true"></span><img src="img/search.jpg" alt="Explore screen searching voice cloning with view chips" loading="lazy" width="585" height="1266"></div></div></div><figcaption><b>Explore</b><span>One search across GitHub, Hugging Face, papers and articles</span></figcaption></figure>
-      <figure class="gp reveal"><div class="ph"><div class="ph-in"><div class="scr"><span class="isl" aria-hidden="true"></span><img src="img/best.jpg" alt="Best for you picks for cloning a voice on a laptop" loading="lazy" width="585" height="1266"></div></div></div><figcaption><span class="new">New</span><b>Best for you</b><span>Your goal in, the top picks out, with why, trade-off and first step</span></figcaption></figure>
-      <figure class="gp reveal"><div class="ph"><div class="ph-in"><div class="scr"><span class="isl" aria-hidden="true"></span><img src="img/saved.jpg" alt="Saved screen with the Agent stack collection" loading="lazy" width="585" height="1266"></div></div></div><figcaption><b>Saved</b><span>Collections you can share with one link, kept on your phone</span></figcaption></figure>
-      <figure class="gp reveal"><div class="ph"><div class="ph-in"><div class="scr"><span class="isl" aria-hidden="true"></span><img src="img/glossary.jpg" alt="Glossary screen with Agent and Agentic definitions" loading="lazy" width="585" height="1266"></div></div></div><figcaption><b>Glossary</b><span>AI words in plain English, one tap from the resources</span></figcaption></figure>
+      <figure class="gp reveal"><div class="ph"><div class="ph-in"><div class="scr"><span class="isl" aria-hidden="true"></span><img src="img/home.jpg" alt="Chat start screen with suggested AI questions" loading="lazy" width="585" height="1266"></div></div></div><figcaption><b>Ask</b><span>Start with a question or tap a suggestion</span></figcaption></figure>
+      <figure class="gp reveal big"><div class="ph"><div class="ph-in"><div class="scr"><span class="isl" aria-hidden="true"></span><img src="img/chat.jpg" alt="Answer listing Ollama, llama.cpp and Open WebUI with numbered sources" loading="lazy" width="585" height="1266"></div></div></div><figcaption><b>Answers with sources</b><span>A short answer, each fact numbered to where it came from</span></figcaption></figure>
+      <figure class="gp reveal"><div class="ph"><div class="ph-in"><div class="scr"><span class="isl" aria-hidden="true"></span><img src="img/posts.jpg" alt="Posts screen with filters and an AI image prompting cheatsheet" loading="lazy" width="585" height="1266"></div></div></div><figcaption><b>Posts</b><span>Every @ai_radar_ post, with filters</span></figcaption></figure>
+      <figure class="gp reveal"><div class="ph"><div class="ph-in"><div class="scr"><span class="isl" aria-hidden="true"></span><img src="img/saved.jpg" alt="Saved screen with filters by type, date, topic and site" loading="lazy" width="585" height="1266"></div></div></div><figcaption><b>Saved</b><span>Your private library, kept on your phone</span></figcaption></figure>
     </div>
     <p class="swipe" aria-hidden="true">Swipe to see every screen →</p>
   </div>
@@ -702,65 +714,67 @@ html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
     <div class="bento-head reveal">
       <div style="display:flex;flex-direction:column;gap:18px;align-items:flex-start;max-width:640px">
         <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>What's inside</span>
-        <h2 class="h-section">Four tabs. Everything AI in your pocket.</h2>
+        <h2 class="h-section">Built for people who keep up with AI</h2>
       </div>
-      <div class="mini"><span class="serif">₹0</span><p>Free to use, no account, and your saves never leave your phone.</p></div>
+      <div class="mini"><span class="serif">₹0</span><p>Free to use, no account, and your saved items never leave your phone.</p></div>
     </div>
     <div class="bento">
       <article class="card c-peach reveal">
         <div class="top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></span><span class="lbl">CHAT</span></div>
-        <h3>Ask in your own words</h3>
-        <p>Short answers with the sources beside them, plus matching repos, models, apps and papers under every answer.</p>
-        <div class="shot-box"><img src="img/chat.jpg" alt="Chat answer with sources" loading="lazy" width="585" height="1266"></div>
+        <h3>An AI that looks things up</h3>
+        <p>Ask about models, tools, repos, prompts or the latest launches. It searches live and answers with numbered sources you can open.</p>
+        <div class="shot-box"><img src="img/chat.jpg" alt="An answer with numbered sources" loading="lazy" width="585" height="1266"></div>
       </article>
       <article class="card c-mid reveal">
-        <div class="top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></span><span class="lbl">EXPLORE</span></div>
-        <h3>Search all of AI</h3>
-        <p>One search across AI Radar, GitHub, Hugging Face, papers and Hacker News. Switch views, sort by most popular or newest.</p>
+        <div class="top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12 18.5 5.5"/></svg></span><span class="lbl">POSTS</span></div>
+        <h3>Every AI Radar post</h3>
+        <p>News, AI facts, repos, cheatsheets and prompt packs from @ai_radar_, with filters by type, date and topic.</p>
       </article>
-      <article class="card c-black reveal">
-        <div class="top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg></span><span class="lbl">GET IT</span></div>
-        <h3>On your home screen in 10 seconds</h3>
-        <p>No store download. Open the link, add it to your home screen, and it opens like any other app. Google Play and App Store versions are coming soon.</p>
-        <a class="btn btn-light roll-host" style="align-self:flex-start;margin-top:auto" href="../app-beta/"><span class="roll" data-roll>Open the app</span></a>
+      <article class="card c-black reveal" id="soon-card">
+        <div class="top"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.2 2.6c-.3.3-.4.7-.4 1.2v16.4c0 .5.1.9.4 1.2l9.1-9.4zM14.8 13.4l2.8 2.9-11.2 6.3c-.4.2-.8.2-1.1.1zM18.9 9.1l2.6 1.5c.8.5.8 1.3 0 1.8l-2.7 1.5-3-3.1zM5.3 1.3c.3-.1.7 0 1.1.2l11.2 6.3-2.8 2.9z"/></svg></span><span class="lbl">COMING SOON</span></div>
+        <h3>Coming soon on Google Play</h3>
+        <p>The Android app is almost ready. Follow @ai_radar_ on X and turn on notifications to hear the moment it's out.</p>
+        <a class="btn btn-light roll-host" style="align-self:flex-start;margin-top:auto" href="https://x.com/ai_radar_" target="_blank" rel="noopener"><span class="roll" data-roll>Follow @ai_radar_</span></a>
       </article>
       <article class="card c-mid reveal">
         <div class="top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span><span class="lbl">SAVED</span></div>
-        <h3>Keep it in collections</h3>
-        <p>Save any link, answer or note. Group them into collections and share one with a single link.</p>
+        <h3>Keep what matters</h3>
+        <p>Save answers, sources and posts, or add any link with the + button. Ask the chat to find them again later.</p>
       </article>
       <article class="card c-wide reveal">
         <div style="display:flex;flex-direction:column;gap:12px;min-width:0;flex:1">
-          <div class="top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12 18.5 5.5"/></svg></span><span class="lbl">SOURCES</span></div>
+          <div class="top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></span><span class="lbl">LIVE TOOLS</span></div>
           <h3>AI Radar first, then the whole AI world</h3>
-          <p>Every result shows how popular it is, so you can see what people trust.</p>
-          <div class="srcs"><span>GitHub<b>★ stars</b></span><span>Hugging Face<b>↓ downloads</b></span><span>Spaces<b>♥ likes</b></span><span>Papers<b>▲ upvotes</b></span><span>Hacker News<b>▲ points</b></span></div>
+          <p>The bot checks our own posts first, then goes where AI builders look. Every source shows how popular it is.</p>
+          <div class="srcs"><span>GitHub<b>★ stars</b></span><span>Hugging Face<b>↓ downloads</b></span><span>News<b>latest</b></span><span>The web<b>pages</b></span><span>Wikipedia<b>concepts</b></span></div>
         </div>
       </article>
       <article class="card c-wide reveal">
         <div style="display:flex;flex-direction:column;gap:12px;min-width:0;flex:1">
-          <div class="top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/></svg></span><span class="lbl">GLOSSARY</span></div>
-          <h3>AI words, in plain English</h3>
-          <p>Short definitions from agents and RAG to tokens and quantization. Ask the chat for an example, or jump to the resources on any term.</p>
+          <div class="top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><span class="lbl">PRIVATE</span></div>
+          <h3>No account. Your library stays on your phone.</h3>
+          <p>Saved items live on your device, not on a server. Export them to a file for a backup and import them on a new phone.</p>
         </div>
       </article>
     </div>
   </div>
 </section>
 
-<!-- ============ INSTALL ============ -->
-<section class="inst-sec gutter" id="install">
+<!-- ============ COMING SOON ============ -->
+<section class="inst-sec gutter" id="soon">
   <div class="wrap">
-    <div class="reveal" style="display:flex;flex-direction:column;gap:18px;align-items:flex-start;max-width:640px">
-      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Get the app</span>
-      <h2 class="h-section">Add it to your home screen</h2>
-      <p class="body">AI Radar installs from your browser. Pick your phone and follow three taps.</p>
-    </div>
-    <div class="linkbox reveal"><code id="app-url">airadar08.github.io/app-beta</code><button class="btn copy roll-host" type="button" id="copy"><span class="roll" data-roll>Copy link</span></button><a class="btn btn-dark roll-host" href="../app-beta/"><span class="roll" data-roll>Open the app</span></a></div>
-    <div class="inst">
-      <article class="card reveal"><div class="top"><span class="lbl">ANDROID · CHROME</span></div><ol><li>Open the link in Chrome.</li><li>Tap the three-dot menu at the top right.</li><li>Tap <b>Install app</b> or <b>Add to Home screen</b>.</li></ol></article>
-      <article class="card reveal"><div class="top"><span class="lbl">IPHONE · SAFARI</span></div><ol><li>Open the link in Safari.</li><li>Tap the Share button.</li><li>Tap <b>Add to Home Screen</b>.</li></ol></article>
-      <article class="card reveal"><div class="top"><span class="lbl">COMPUTER · CHROME OR EDGE</span></div><ol><li>Open the link.</li><li>Click the install icon at the right of the address bar.</li><li>Click <b>Install</b>.</li></ol></article>
+    <div class="soon-band reveal">
+      <div style="display:flex;flex-direction:column;gap:18px;align-items:flex-start;max-width:600px;min-width:0">
+        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Launching soon</span>
+        <h2 class="h-section">Coming soon on Google Play</h2>
+        <p class="body">The AI Radar Android app is in its final testing. Follow @ai_radar_ on X with notifications on, and you'll know the moment it's live.</p>
+        <div class="hero-ctas" style="justify-content:flex-start"><span class="soon" role="note"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.2 2.6c-.3.3-.4.7-.4 1.2v16.4c0 .5.1.9.4 1.2l9.1-9.4zM14.8 13.4l2.8 2.9-11.2 6.3c-.4.2-.8.2-1.1.1zM18.9 9.1l2.6 1.5c.8.5.8 1.3 0 1.8l-2.7 1.5-3-3.1zM5.3 1.3c.3-.1.7 0 1.1.2l11.2 6.3-2.8 2.9z"/></svg><span><small>Coming soon on</small>Google Play</span></span><a class="btn btn-dark roll-host" href="https://x.com/ai_radar_" target="_blank" rel="noopener"><span class="icon-roll" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span><span class="roll" data-roll>Follow @ai_radar_</span></a></div>
+      </div>
+      <ol class="steps">
+        <li><b>Follow @ai_radar_ on X</b><span>Turn on notifications for the account.</span></li>
+        <li><b>We post the launch</b><span>With the Google Play link, the day it goes live.</span></li>
+        <li><b>Install and ask</b><span>Free, no account. Ask your first AI question.</span></li>
+      </ol>
     </div>
   </div>
 </section>
@@ -780,9 +794,9 @@ html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
 <!-- ============ CTA ============ -->
 <section class="gutter" style="padding-bottom:24px">
   <div class="cta sky reveal" style="max-width:1240px;margin:0 auto">
-    <h2 class="h-display" style="font-size:clamp(38px,5.4vw,70px)">Your AI radar, now in your pocket</h2>
-    <p class="sub" style="color:#fff;margin:0;max-width:480px;font-size:16px;line-height:1.6">Free, no account, ready in seconds.</p>
-    <a class="btn btn-dark roll-host" href="../app-beta/"><span class="icon-roll" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span><span class="roll" data-roll>Open the app</span></a>
+    <h2 class="h-display" style="font-size:clamp(38px,5.4vw,70px)">Your AI radar, soon in your pocket</h2>
+    <p class="sub" style="color:#fff;margin:0;max-width:480px;font-size:16px;line-height:1.6">The AI Radar Android app is coming soon on Google Play. Free, no account.</p>
+    <span class="soon" role="note"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.2 2.6c-.3.3-.4.7-.4 1.2v16.4c0 .5.1.9.4 1.2l9.1-9.4zM14.8 13.4l2.8 2.9-11.2 6.3c-.4.2-.8.2-1.1.1zM18.9 9.1l2.6 1.5c.8.5.8 1.3 0 1.8l-2.7 1.5-3-3.1zM5.3 1.3c.3-.1.7 0 1.1.2l11.2 6.3-2.8 2.9z"/></svg><span><small>Coming soon on</small>Google Play</span></span>
     <a class="tag-link roll-host" href="https://x.com/search?q=%23stayontheradar&amp;src=hashtag_click" target="_blank" rel="noopener"><span class="roll" data-roll>#stayontheradar</span></a>
   </div>
 </section>
@@ -803,7 +817,7 @@ html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
       </div>
     </div>
     <div class="cols">
-      <div><span class="k">App</span><a href="../app-beta/">Open the app</a><a href="#best">Best for you</a><a href="#install">Install</a></div>
+      <div><span class="k">App</span><a href="#soon">Coming soon on Google Play</a><a href="#how">How it answers</a><a href="#screens">Screens</a></div>
       <div><span class="k">Resources</span><a href="../repos/">Trending repos</a><a href="../cheatsheets/">Cheatsheets</a><a href="../prompt-packs/">Prompt packs</a></div>
       <div><span class="k">AI Radar</span><a href="../">Website</a><a href="https://x.com/ai_radar_" target="_blank" rel="noopener">@ai_radar_ on X</a></div>
     </div>
@@ -845,13 +859,13 @@ html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
 
   /* ---- FAQ ---- */
   var qa=[
-    ['Is the app free?','Yes. The app and everything in it are free.'],
-    ['Do I need an account?','No. Open the link and start asking. There is no sign-up.'],
-    ['How is Best for you different from a search?','A search lists everything that matches your words. Best for you reads what you are trying to do, runs several searches for you, removes stale or archived projects and recommends a few, each with the reason, the trade-off and a first step. It takes 10 to 20 seconds.'],
+    ['When is the app coming out?','Soon. The Android app is in its final testing and will be on Google Play. Follow @ai_radar_ on X with notifications on to hear the moment it is live.'],
+    ['Is it free?','Yes. The app and everything in it are free.'],
+    ['Do I need an account?','No. Install it and start asking. There is no sign-up.'],
+    ['What can I ask?','Anything about AI: models, tools, repos, prompts, research and news. It politely declines other topics.'],
+    ['How do I know the answers are right?','Every answer is built from live searches, and each fact is numbered to its source, so you can open it and check.'],
     ['Where are my saved items kept?','On your own phone, not on a server. Export them to a file for a backup and import them on a new phone.'],
-    ['Does it work offline?','The app opens offline and your saved items are there. Chat and search need an internet connection.'],
-    ['What can I ask?','Anything about AI: models, tools, repos, prompts, research and news. Questions on other topics get a polite no.'],
-    ['Is it on Google Play or the App Store?','Not yet. Store versions are coming soon. Until then, add it to your home screen from your browser.']
+    ['Is there an iPhone version?','Not yet. Android comes first.']
   ];
   var list=document.getElementById('faq');
   qa.forEach(function(p,i){
@@ -864,7 +878,7 @@ html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
       if(!open){ row.classList.add('open'); this.setAttribute('aria-expanded','true'); } });
   });
 
-  /* ---- Best for you steps: cross-fade with timed dots ---- */
+  /* ---- "How it answers" steps: cross-fade with timed dots ---- */
   var slides=[].slice.call(document.querySelectorAll('.slide')), dots=[].slice.call(document.querySelectorAll('.dot')), cur=0, timer=null, DUR=5000;
   function go(i,user){ cur=(i+slides.length)%slides.length;
     slides.forEach(function(s,k){ s.setAttribute('aria-hidden', k===cur?'false':'true'); });
@@ -890,20 +904,11 @@ html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
     (function loop(){ cx+=(mx-cx)*0.22; cy+=(my-cy)*0.22; cur$.style.transform='translate3d('+cx.toFixed(1)+'px,'+cy.toFixed(1)+'px,0)'; raf(loop); })();
   }
 
-  /* ---- Phone gallery: on phones, open centred on the Best for you screen ---- */
+  /* ---- Phone gallery: on phones, open centred on the answer screen ---- */
   var gal=document.getElementById('gallery');
-  function centre(){ if(window.innerWidth>900) return; var mid=gal.children[2]; gal.scrollLeft=mid.offsetLeft-(gal.clientWidth-mid.offsetWidth)/2; }
+  function centre(){ if(window.innerWidth>900) return; var mid=gal.querySelector('.gp.big')||gal.children[1]; gal.scrollLeft=mid.offsetLeft-(gal.clientWidth-mid.offsetWidth)/2; }
   centre(); window.addEventListener('load',centre);
 
-  /* ---- Copy the app link ---- */
-  var cp=document.getElementById('copy');
-  cp.addEventListener('click',function(){
-    var url='https://airadar08.github.io/app-beta/', lab=cp.querySelector('.roll');
-    function done(t){ var o=lab.getAttribute('aria-label'); lab.style.visibility='hidden'; cp.setAttribute('data-msg',t); cp.insertAdjacentHTML('beforeend','<span class="msg" style="position:absolute;inset:0;display:grid;place-items:center">'+t+'</span>');
-      setTimeout(function(){ var m=cp.querySelector('.msg'); if(m) m.remove(); lab.style.visibility=''; },1500); }
-    if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(function(){ done('Copied'); },sel); else sel();
-    function sel(){ var r=document.createRange(); r.selectNodeContents(document.getElementById('app-url')); var s=getSelection(); s.removeAllRanges(); s.addRange(r); done('Selected'); }
-  });
 })();
 </script>
 <script src="../assets/hero.js?v=19" defer></script>
