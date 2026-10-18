@@ -917,7 +917,7 @@
   }
   function exPass(i,skip,words){
     if(skip!=='task'&&ex.task&&i.tasks.indexOf(ex.task)<0) return false;
-    if(skip!=='type'&&ex.type&&i.type!==ex.type) return false;
+    // ex.type is the view chip (All / AI Radar / Repos…); it is applied to the merged list in renderResources
     if(skip!=='level'&&ex.level&&i.level!==ex.level) return false;
     if(skip!=='tag'&&ex.tags.size){ var ok=true; ex.tags.forEach(function(t){ if(i.tags.indexOf(t)<0) ok=false; }); if(!ok) return false; }
     if(skip!=='free'&&ex.free&&i.pricing!=='Free') return false;
