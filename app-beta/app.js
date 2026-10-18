@@ -110,6 +110,7 @@
   function fmtDate(iso){ try{ return new Date(iso).toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'}); }catch(e){ return iso; } }
   function fmtAnswer(s){
     var out=esc(s).replace(/\*\*(.+?)\*\*/g,'$1').replace(/^#+\s*/gm,'');
+    out=out.replace(/^\s*[-*•]\s+/gm,'• ').replace(/\n{3,}/g,'\n\n');
     out=out.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
     return out;
   }
@@ -231,12 +232,13 @@
       });
     }).catch(function(){ return []; });
   }
-  function ai(history){
+  function ai(history,sources){
     var msgs=[]; history.filter(function(m){ return m.role!=='divider'; }).forEach(function(m){ var role=m.role==='user'?'user':'assistant'; var c=m.role==='user'?m.text:(m.data&&m.data.answer)||m.text||''; if(!c) return;
       var last=msgs[msgs.length-1]; if(last&&last.role===role) last.content+='\n'+c; else msgs.push({role:role,content:c.slice(0,role==='user'?500:1500)}); });
     while(msgs.length&&msgs[msgs.length-1].role!=='user') msgs.pop();
     msgs=msgs.slice(-CTX_MAX); while(msgs.length&&msgs[0].role!=='user') msgs.shift();
-    var body=JSON.stringify({messages:msgs});
+    var body=JSON.stringify({messages:msgs,sources:(sources||[]).slice(0,12).map(function(c,i){
+      return {n:i+1,title:String(c.title||'').slice(0,160),url:c.url,site:c.site||siteOf(c.url),snippet:[c.desc,c.meta].filter(Boolean).join(' · ').slice(0,300)}; })});
     // a slow free model or a dropped connection comes back as {ok:false, status:0} instead of failing the whole answer
     function once(ms){ return withTimeout(fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:body}),ms)
       .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ d.ok=r.ok; d.status=r.status; return d; }); })
@@ -319,6 +321,43 @@
 
   function renderDivider(){ var d=document.createElement('div'); d.className='divider'; d.textContent='New conversation'; log.appendChild(d); }
   function renderUser(text){ hello.hidden=true; var d=document.createElement('div'); d.className='msg me'; d.textContent=text; log.appendChild(d); scrollDown(); }
+  /* ---------------- sources for an answer ---------------- */
+  function setStage(t,text){ if(!t) return; var el=t.querySelector('.stage'); if(!el){ el=document.createElement('div'); el.className='stage'; t.appendChild(el); } el.textContent=text; }
+  // AI Radar first, then Wikipedia, GitHub, Hugging Face (models, apps, datasets, papers) and Hacker News; each source capped at 7 s
+  function gatherSources(q,isRepo){
+    if(!ghTerms(q).length) return Promise.resolve({list:[],gh:null});
+    var gh=null, cap=function(p){ return withTimeout(p,7000).catch(function(){ return []; }); };
+    var radarP=cap(Promise.all([loadIndex(),loadPosts()]).then(function(a){ return matchResources(q,a[0].concat(a[1].filter(function(p){ return p.type==='News'||p.type==='Fact'; }).map(postAsResource))); }));
+    var repoP=isRepo?cap(githubTop(q).then(function(r){ gh=r; return r.items.concat(r.extra||[]); })):Promise.resolve([]);
+    var wikiP=isRepo?Promise.resolve([]):cap(wiki(q)), hnP=isRepo?Promise.resolve([]):cap(hn(q));
+    var globP=cap(chatGlobal(q,isRepo));
+    return Promise.all([radarP,wikiP,repoP,globP,hnP]).then(function(r){
+      var out=[], seen={};
+      [].concat(r[0].map(function(x){ x.site='AI Radar'; return x; }),r[1],r[2],r[3],r[4]).forEach(function(c){
+        if(!c||!c.url) return; var k=normUrl(c.url); if(seen[k]) return; seen[k]=1;
+        out.push({type:c.type||typeOf(c.url),title:c.title,url:c.url,site:c.site||siteOf(c.url),desc:c.desc||'',meta:c.meta||'',img:c.img||''});
+      });
+      return {list:out.slice(0,isRepo?12:10),gh:gh};
+    });
+  }
+  // answer text with [n] turned into small links to source n
+  function citeHTML(text,sources){
+    return fmtAnswer(text).replace(/\[(\d{1,2})\](?:\s*\[(\d{1,2})\])*/g,function(m){
+      return m.match(/\d{1,2}/g).map(function(n){ var c=sources[+n-1]; return c?'<a class="cite" href="'+esc(c.url)+'" target="_blank" rel="noopener" title="'+esc(c.title)+'">'+n+'</a>':''; }).join('');
+    });
+  }
+  function siteIcon(site){ return esc((site||'?').replace(/^www\./,'').charAt(0).toUpperCase()); }
+  function answerV2(data,fresh){
+    var src=data.sources||[], h='';
+    if(src.length) h+='<div class="srcs-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Sources</div><div class="strip">'+
+      src.map(function(c,i){ return '<a class="sc'+(c.site==='AI Radar'?' ours':'')+'" href="'+esc(c.url)+'" target="_blank" rel="noopener"><span class="sc-top"><span class="sc-n">'+(i+1)+'</span><span class="sc-ic">'+siteIcon(c.site)+'</span><span class="sc-s">'+esc(c.site||siteOf(c.url))+'</span></span><span class="sc-t">'+esc(c.title)+'</span></a>'; }).join('')+'</div>';
+    h+='<div class="answer'+(data.error?' err':'')+(fresh?' fresh':'')+'">'+(data.error?fmtAnswer(data.answer):citeHTML(data.answer,src))+'</div>';
+    if(src.length) h+='<details class="allsrc"><summary>All '+src.length+' sources · save any</summary>'+group('',src,data.question)+'</details>';
+    if(data.related&&data.related.length) h+='<div class="srcs-h">Related</div><div class="related">'+data.related.map(function(r){ return '<button class="rel" type="button" data-ask="'+esc(r)+'"><span>'+esc(r)+'</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>'; }).join('')+'</div>';
+    if(data.topical&&!data.error&&src.length) h+='<button class="mini-btn more-explore" type="button" data-explore-q="'+esc(data.question)+'">See all results in Explore →</button>';
+    return h;
+  }
+
   /* ---------------- Best for you (agentic search in the Worker) ---------------- */
   // Recommendation questions: the Worker plans searches, runs them on GitHub, Hugging Face, papers and HN,
   // drops stale or archived results and picks the best few with reasons. An older Worker without "best" -> normal answer.
@@ -366,8 +405,10 @@
     var d=document.createElement('div'); d.className='msg bot';
     var tag=data.kind==='memory'?'from your saved items':data.kind==='posts'?'from AI Radar posts':data.kind==='github'?'searched GitHub':data.kind==='best'?'searched across AI':data.web?'searched the web':'';
     var h='<div class="who"><img src="'+LOGO+'" alt="">AI Radar'+(tag?'<em>· '+tag+'</em>':'')+'</div>';
-    if(data.answer) h+='<div class="answer'+(data.error?' err':'')+'">'+fmtAnswer(data.answer)+'</div>';
-    if(data.kind==='best'){
+    if(data.v===2) h+=answerV2(data,!!data._fresh);
+    else if(data.answer) h+='<div class="answer'+(data.error?' err':'')+'">'+fmtAnswer(data.answer)+'</div>';
+    if(data.v===2){ /* already rendered above */ }
+    else if(data.kind==='best'){
       h+=bestHTML(data.best,data.question,'chat')+'<button class="mini-btn more-explore" type="button" data-explore-q="'+esc(data.question)+'">See all results in Explore →</button>';
     }else if(data.kind==='posts'){
       h+=group('Our posts',data.items,data.question);
@@ -412,31 +453,30 @@
       }else{
         if(BEST_Q.test(q)&&!(REPO_Q.test(q)&&/\b(trending|new|newest|latest|this (week|month))\b/i.test(q))){ t.dataset.best='1'; startStages(t); data=await bestData(q); if(!data){ stopStages(t); var stg=t.querySelector('.stage'); if(stg) stg.textContent='Searching the web…'; } }
         if(!data){
+        // like an AI search engine: find sources first, then the AI writes one answer from them and cites [n]
         var isRepo=REPO_Q.test(q);
-        var resP=Promise.all([loadIndex(),loadPosts()]).then(function(a){ return matchResources(q,a[0].concat(a[1].filter(function(p){ return p.type==='News'||p.type==='Fact'; }).map(postAsResource))); }).catch(function(){ return []; });
-        var ghRes=null;
-        var srcP=isRepo?githubTop(q).then(function(g){ ghRes=g; return g.items; }).catch(function(){ return null; }):Promise.all([hn(q),wiki(q)]).then(function(a){ return a[1].concat(a[0]); });
-        var globP=withTimeout(chatGlobal(q,isRepo),11000).catch(function(){ return []; });
-        var aiP=isRepo?Promise.resolve(null):ai(sessionChat()).catch(function(){ return {ok:false,error:"Couldn't connect to the AI. Check your internet connection, then tap Retry."}; });
-        var res=await resP, src=await srcP, ans=await aiP, glob=await globP;
-        if(isRepo&&src===null){ isRepo=false; ans=await ai(sessionChat()).catch(function(){ return {ok:false}; }); src=[]; }
-        var answer='', error=false, web=false;
-        if(isRepo){
-          var tp=ghRes&&ghRes.topic?' '+ghRes.topic:'', kind=ghRes&&ghRes.aiQ?' AI':'';
-          answer=src.length?('Top '+src.length+tp+kind+' repos on GitHub'+(ghRes&&ghRes.fresh?', most-starred among those created in the last 6 months.':': most-starred and still actively updated.')+(ghRes&&ghRes.extra.length?' Plus new AI repos for'+tp+' below.':'')):'GitHub search returned nothing for that. Try a broader topic, e.g. "top repos for frontend".';
-        }else if(ans&&ans.ok&&ans.reply){
-          answer=ans.reply; web=!!ans.web;
-          (ans.sources||[]).forEach(function(s){ src.unshift({type:typeOf(s.url),title:s.title,url:s.url,site:s.label||siteOf(s.url)}); });
+        setStage(t,'Searching AI Radar, GitHub, Hugging Face and the web…');
+        var g=await gatherSources(q,isRepo), src=g.list;
+        setStage(t,src.length?'Reading '+src.length+' sources…':'Thinking…');
+        var wt=setTimeout(function(){ setStage(t,'Writing the answer…'); },3500);
+        var ans=await ai(sessionChat(),src).catch(function(){ return {ok:false,error:"Couldn't connect to the AI. Check your internet connection, then tap Retry."}; });
+        clearTimeout(wt);
+        var answer='', error=false, related=[];
+        if(ans&&ans.ok&&ans.reply){
+          answer=ans.reply; related=Array.isArray(ans.related)?ans.related.slice(0,3):[];
+          // news headlines the Worker found are numbered after ours
+          (ans.sources||[]).forEach(function(x){ if(x&&x.url&&!src.some(function(c){ return normUrl(c.url)===normUrl(x.url); })) src.push({type:'News',title:x.title,url:x.url,site:x.label||siteOf(x.url),desc:'',meta:''}); });
+        }else if(isRepo&&src.length){
+          var tp=g.gh&&g.gh.topic?' '+g.gh.topic:'';
+          answer='Here are the most-starred'+tp+' repos on GitHub that are still actively updated. The AI summary is not available right now.';
         }else{ answer=(ans&&ans.error)||'Something went wrong. Try again.'; error=true; }
         var offTopic=/\bonly (cover|help with|answer)\b[^.]*\bAI\b/i.test(answer);
-        if(offTopic){ res=[]; src=[]; glob=[]; }
-        var seen={}; src=(src||[]).filter(function(s){ if(!s.url||seen[s.url]) return false; return seen[s.url]=1; }).slice(0,isRepo?10:5);
-        var have={}; (src||[]).concat(res||[]).forEach(function(x){ if(x&&x.url) have[x.url]=1; }); glob=(glob||[]).filter(function(g){ return !have[g.url]; });
-        data={kind:isRepo?'github':'answer',question:q,answer:answer,extra:isRepo&&ghRes?ghRes.extra:[],error:error,resources:res,sources:src,global:glob,web:!offTopic&&(web||(!isRepo&&src.length>0)),canSave:!error&&!offTopic};
+        if(offTopic||error){ if(offTopic) src=[]; related=[]; }
+        data={kind:'answer',v:2,question:q,answer:answer,sources:src,related:related,cited:/\[\d+\]/.test(answer),error:error,web:src.length>0&&!offTopic,canSave:!error&&!offTopic,topical:!offTopic};
         }
       }
     }catch(e){ data={kind:'answer',question:q,answer:'Something went wrong. Try again.',error:true,resources:[],sources:[]}; }
-    stopStages(t); t.remove(); renderBot(data); chat.push({role:'bot',data:data,t:Date.now()}); saveChat();
+    stopStages(t); t.remove(); data._fresh=true; renderBot(data); delete data._fresh; chat.push({role:'bot',data:data,t:Date.now()}); saveChat();
     busy=false; send.disabled=false;
   }
 
@@ -452,6 +492,7 @@
   }
   log.addEventListener('click',function(e){
     var rf=e.target.closest('[data-refine]'); if(rf){ ask(rf.dataset.refine); return; }
+    var ra=e.target.closest('[data-ask]'); if(ra&&ra.closest('.msg')){ ask(ra.dataset.ask); return; }
     var rt=e.target.closest('[data-retry]'); if(rt){ rt.disabled=true; ask(rt.dataset.retry); return; }
     var mx=e.target.closest('.more-explore'); if(mx){ ex.mode='res'; ex.q=mx.dataset.exploreQ; $('#ex-q').value=ex.q; ex.task=''; ex.type=''; switchTab('explore'); return; }
     var l=e.target.closest('a[href="#library"]'); if(l){ e.preventDefault(); switchTab('lib'); return; }
