@@ -1,6 +1,18 @@
 [
  {
   "type": "Cheatsheet",
+  "title": "AI image prompting cheatsheet",
+  "summary": "Write prompts that get the picture you mean",
+  "link": "cheatsheets/#ai-image-prompting",
+  "img": "cheatsheets/img/ai-image-prompting.jpg",
+  "id": "2026-10-18-cheatsheet-ai-image-prompting",
+  "date": "2026-10-18T20:14:15+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
+  "type": "Cheatsheet",
   "title": "MCP explained cheatsheet",
   "summary": "How AI apps plug into tools and data",
   "link": "cheatsheets/#mcp-explained",
