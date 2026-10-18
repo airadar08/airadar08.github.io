@@ -247,6 +247,34 @@ body.sheet-open .fab-host{opacity:0;pointer-events:none}
 .g-letter{font-family:var(--serif);font-size:28px;color:var(--mint);padding:10px 4px 0}
 .g-def{font-size:14px;line-height:1.55;color:#d6ddd8}
 .item.g .acts .save{margin-left:auto}
+/* Best for you */
+.best{border:1px solid #1f4434;background:linear-gradient(180deg,rgba(52,201,138,.08),rgba(52,201,138,0) 60%),var(--card);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:10px;margin:8px 0 4px}
+.best-h{display:flex;align-items:center;gap:8px;font-family:var(--serif);font-size:22px;line-height:1}
+.spark{color:var(--mint);font-size:16px}
+.looking{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.looking .lbl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:2px}
+.looking span:not(.lbl){font-size:12px;font-weight:600;border:1px solid var(--line-2);border-radius:999px;padding:3px 9px}
+.looking .need{background:var(--mint-soft);border-color:transparent!important;color:var(--mint-ink)}
+.picks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.pick{display:grid;grid-template-columns:26px minmax(0,1fr) 34px;gap:10px;align-items:start;background:var(--card-2);border:1px solid var(--line);border-radius:14px;padding:11px}
+.pick-n{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--mint);color:#03120b;font-weight:700;font-size:13px}
+.pick-b{display:flex;flex-direction:column;gap:4px;min-width:0}
+.pick-k{font-size:11px;color:var(--muted);letter-spacing:.02em}
+.pick-t{font-weight:700;font-size:15px;color:var(--ink);text-decoration:none;overflow-wrap:anywhere}
+.pick-t:hover{color:var(--mint-ink)}
+.pick-d{font-size:13px;color:var(--muted)}
+.pick dl{margin:4px 0 0;display:flex;flex-direction:column;gap:3px}
+.pick dl div{display:grid;grid-template-columns:72px minmax(0,1fr);gap:6px;font-size:13px;line-height:1.45}
+.pick dt{color:var(--mint-ink);font-weight:600}
+.pick dd{margin:0;color:#d6ddd8}
+.refine-row{display:flex;flex-wrap:wrap;gap:6px}
+.steps{font-size:11.5px;color:var(--muted);line-height:1.5}
+.stage{font-size:12.5px;color:var(--mint-ink);display:flex;align-items:center;gap:8px;margin-top:6px}
+.best-btn{width:100%;display:flex;align-items:center;gap:12px;text-align:left;border:1px solid #1f4434;background:linear-gradient(90deg,rgba(52,201,138,.14),rgba(52,201,138,.03)),var(--card);color:var(--ink);border-radius:16px;padding:13px 14px;cursor:pointer;font:inherit;margin:8px 0 2px}
+.best-btn b{display:block;font-size:15px}
+.best-btn small{display:block;font-size:12px;color:var(--muted);line-height:1.4}
+.best-btn .spark{font-size:20px}
+.best-btn:hover{border-color:var(--mint)}
 /* Saved extras */
 .f .n{opacity:.6;font-size:11.5px;margin-left:2px}
 .f.on .n{opacity:.75}
@@ -351,6 +379,7 @@ body.sheet-open{overflow:hidden}
         <div class="frow" id="ex-tag" role="group" aria-label="Topics"></div>
       </div>
       <div class="lib-tools"><label class="sort">Sort <select id="ex-sort" aria-label="Sort"><option value="new">Newest</option><option value="easy">Easiest first</option><option value="az">A–Z</option></select></label><span class="sp"></span><button class="mini-btn" type="button" id="ex-clear" hidden>Clear filters</button></div>
+      <div id="ex-best" hidden></div>
       <div class="items" id="ex-items"></div>
     </section>
     <section id="ex-gloss" hidden><div class="items" id="ex-gloss-list"></div></section>
@@ -428,6 +457,6 @@ body.sheet-open{overflow:hidden}
 </div>
 <div class="toast" id="toast" role="status"></div>
 <script src="vendor/glass.js?v=1" defer></script>
-<script src="app.js?v=20"></script>
+<script src="app.js?v=21"></script>
 </body>
 </html>

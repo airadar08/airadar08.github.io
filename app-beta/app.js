@@ -313,13 +313,57 @@
 
   function renderDivider(){ var d=document.createElement('div'); d.className='divider'; d.textContent='New conversation'; log.appendChild(d); }
   function renderUser(text){ hello.hidden=true; var d=document.createElement('div'); d.className='msg me'; d.textContent=text; log.appendChild(d); scrollDown(); }
+  /* ---------------- Best for you (agentic search in the Worker) ---------------- */
+  // Recommendation questions: the Worker plans searches, runs them on GitHub, Hugging Face, papers and HN,
+  // drops stale or archived results and picks the best few with reasons. An older Worker without "best" -> normal answer.
+  var BEST_Q=/\b(best|top \d*|recommend\w*|suggest\w*|which (tools?|repos?|models?|apps?|librar(y|ies)|frameworks?)|what (tools?|repos?|models?|apps?) (should|can|to)|alternatives? (to|for)|good (tools?|repos?|models?|apps?|librar(y|ies)|frameworks?) (for|to)|(tools?|repos?|models?|apps?) (for|to) )/i;
+  var bestCache={};
+  function bestCall(q){
+    var key=q.trim().toLowerCase(); if(bestCache[key]) return bestCache[key];
+    var p=loadIndex().then(function(items){ return matchResources(q,items).slice(0,3).map(function(i){ return {title:i.title,desc:i.desc,url:i.url,type:i.type,ext:i.ext||''}; }); }).catch(function(){ return []; })
+      .then(function(radar){ return withTimeout(fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'best',query:q.slice(0,500),radar:radar})}),70000); })
+      .then(function(r){ return r.json().then(function(d){ if(!r.ok||!d||(!d.picks&&!d.offtopic)) throw new Error((d&&d.error)||'no best'); return d; }); });
+    bestCache[key]=p; p.catch(function(){ delete bestCache[key]; }); return p;
+  }
+  function bestData(q){
+    return bestCall(q).then(function(b){
+      if(b.offtopic) return {kind:'answer',question:q,answer:b.summary,resources:[],sources:[],canSave:false};
+      return {kind:'best',question:q,answer:b.summary,best:b,canSave:true};
+    }).catch(function(){ return null; });   // fall back to the normal answer
+  }
+  var STAGES=['Understanding what you need…','Searching GitHub, Hugging Face, papers and articles…','Checking for stale or archived projects…','Picking the best for you…'];
+  function startStages(t){ var i=0, el=document.createElement('div'); el.className='stage'; el.textContent=STAGES[0]; t.appendChild(el);
+    t._st=setInterval(function(){ if(i<STAGES.length-1){ el.textContent=STAGES[++i]; } },5500); }
+  function stopStages(t){ if(t&&t._st) clearInterval(t._st); }
+  function bestHTML(b,q,where){
+    var c=b.constraints||{}, need=[];
+    if(b.need) need.push('<span class="need">'+esc(b.need)+'</span>');
+    if(c.free) need.push('<span>Free</span>'); if(c.local) need.push('<span>Runs locally</span>'); if(c.level&&c.level!=='any') need.push('<span>'+esc(c.level[0].toUpperCase()+c.level.slice(1))+'</span>');
+    var h='<div class="best"><div class="best-h"><span class="spark" aria-hidden="true">✦</span>Best for you</div>'+(need.length?'<div class="looking"><span class="lbl">Looking for</span>'+need.join('')+'</div>':'');
+    h+='<ol class="picks">'+(b.picks||[]).map(function(p,i){
+      var saved=isSaved(p.url), type=p.kind==='App'?'Tool':p.kind==='AI Radar'?(p.extra||'Repo'):p.kind;
+      var card={type:type,title:p.title,desc:p.why||p.desc||'',url:p.url,site:p.source==='AI Radar'?'AI Radar':siteOf(p.url),meta:p.kind==='AI Radar'?'':p.popLabel||'',question:q,tags:tagsFor([p.title,p.desc].join(' '))};
+      var facts=[p.kind==='AI Radar'?'AI Radar pick'+(p.extra?' · '+p.extra:''):p.kind+' · '+p.source,/^[★↓♥▲]/.test(p.popLabel||'')?p.popLabel:'',p.updated?'updated '+fmtDate(p.updated):'',p.license].filter(Boolean).map(esc).join(' · ');
+      return '<li class="pick"><div class="pick-n" aria-hidden="true">'+(i+1)+'</div><div class="pick-b"><span class="pick-k">'+facts+'</span><a class="pick-t" href="'+esc(p.url)+'" target="_blank" rel="noopener">'+esc(p.title)+'</a>'+
+        (p.desc&&p.kind!=='AI Radar'?'<span class="pick-d">'+esc(p.desc)+'</span>':'')+
+        '<dl>'+(p.why?'<div><dt>Why</dt><dd>'+esc(p.why)+'</dd></div>':'')+(p.tradeoff?'<div><dt>Trade-off</dt><dd>'+esc(p.tradeoff)+'</dd></div>':'')+(p.start?'<div><dt>Start</dt><dd>'+esc(p.start)+'</dd></div>':'')+'</dl></div>'+
+        '<button class="save'+(saved?' on':'')+'" type="button" aria-pressed="'+saved+'" aria-label="'+(saved?'Saved':'Save')+' '+esc(p.title)+'" data-card="'+esc(JSON.stringify(card))+'">'+BM+'</button></li>';
+    }).join('')+'</ol>';
+    if(b.refine&&b.refine.length) h+='<div class="refine-row">'+b.refine.map(function(r){ return '<button class="chip refine" type="button" data-refine="'+esc(q+' ('+r.toLowerCase()+')')+'">'+esc(r)+'</button>'; }).join('')+'</div>';
+    if(b.steps&&b.steps.length) h+='<div class="steps">'+b.steps.map(esc).join(' → ')+'</div>';
+    h+='</div>';
+    if(b.more&&b.more.length&&where!=='explore') h+=group('More options',b.more.map(function(m){ return {type:m.kind==='App'?'Tool':m.kind,title:m.title,desc:m.desc,url:m.url,site:m.source==='AI Radar'?'AI Radar':siteOf(m.url),meta:[m.popLabel,m.updated?fmtDate(m.updated):''].filter(Boolean).join(' · ')}; }),q);
+    return h;
+  }
   function renderBot(data){
     hello.hidden=true;
     var d=document.createElement('div'); d.className='msg bot';
-    var tag=data.kind==='memory'?'from your saved items':data.kind==='posts'?'from AI Radar posts':data.kind==='github'?'searched GitHub':data.web?'searched the web':'';
+    var tag=data.kind==='memory'?'from your saved items':data.kind==='posts'?'from AI Radar posts':data.kind==='github'?'searched GitHub':data.kind==='best'?'searched across AI':data.web?'searched the web':'';
     var h='<div class="who"><img src="'+LOGO+'" alt="">AI Radar'+(tag?'<em>· '+tag+'</em>':'')+'</div>';
     if(data.answer) h+='<div class="answer'+(data.error?' err':'')+'">'+fmtAnswer(data.answer)+'</div>';
-    if(data.kind==='posts'){
+    if(data.kind==='best'){
+      h+=bestHTML(data.best,data.question,'chat')+'<button class="mini-btn more-explore" type="button" data-explore-q="'+esc(data.question)+'">See all results in Explore →</button>';
+    }else if(data.kind==='posts'){
       h+=group('Our posts',data.items,data.question);
     }else if(data.kind==='memory'){
       h+=data.items.length?group('Saved items',data.items.map(function(it){ return {type:it.type,title:it.title,desc:it.type==='Answer'?(it.text||'').slice(0,160):(it.note?'Note: '+it.note+(it.desc?' · '+it.desc:''):it.desc),url:it.url||'#library',site:it.site||'',meta:'Saved '+fmtDate(it.savedAt)+(it.question?' · asked: '+it.question:'')}; }),data.question):'';
@@ -359,6 +403,8 @@
           answer:r.total?('Found '+r.total+' saved item'+(r.total>1?'s':'')+(r.kw.length?' about '+r.kw.join(' '):'')+when+(r.total>10?'. Showing the newest 10.':'.')):
             (library.length?'Nothing in your library matches that'+when+'. Try fewer words, or open the Saved tab to browse with filters.':'Nothing saved yet. Tap the bookmark on any answer or source, or the + button to add any link.')};
       }else{
+        if(BEST_Q.test(q)&&!(REPO_Q.test(q)&&/\b(trending|new|newest|latest|this (week|month))\b/i.test(q))){ t.dataset.best='1'; startStages(t); data=await bestData(q); }
+        if(!data){
         var isRepo=REPO_Q.test(q);
         var resP=Promise.all([loadIndex(),loadPosts()]).then(function(a){ return matchResources(q,a[0].concat(a[1].filter(function(p){ return p.type==='News'||p.type==='Fact'; }).map(postAsResource))); }).catch(function(){ return []; });
         var ghRes=null;
@@ -380,9 +426,10 @@
         var seen={}; src=(src||[]).filter(function(s){ if(!s.url||seen[s.url]) return false; return seen[s.url]=1; }).slice(0,isRepo?10:5);
         var have={}; (src||[]).concat(res||[]).forEach(function(x){ if(x&&x.url) have[x.url]=1; }); glob=(glob||[]).filter(function(g){ return !have[g.url]; });
         data={kind:isRepo?'github':'answer',question:q,answer:answer,extra:isRepo&&ghRes?ghRes.extra:[],error:error,resources:res,sources:src,global:glob,web:!offTopic&&(web||(!isRepo&&src.length>0)),canSave:!error&&!offTopic};
+        }
       }
     }catch(e){ data={kind:'answer',question:q,answer:'Something went wrong. Try again.',error:true,resources:[],sources:[]}; }
-    t.remove(); renderBot(data); chat.push({role:'bot',data:data,t:Date.now()}); saveChat();
+    stopStages(t); t.remove(); renderBot(data); chat.push({role:'bot',data:data,t:Date.now()}); saveChat();
     busy=false; send.disabled=false;
   }
 
@@ -397,6 +444,7 @@
     syncSaveButtons(); if(!$('#view-lib').hidden) renderLibrary();
   }
   log.addEventListener('click',function(e){
+    var rf=e.target.closest('[data-refine]'); if(rf){ ask(rf.dataset.refine); return; }
     var mx=e.target.closest('.more-explore'); if(mx){ ex.mode='res'; ex.q=mx.dataset.exploreQ; $('#ex-q').value=ex.q; ex.task=''; ex.type=''; switchTab('explore'); return; }
     var l=e.target.closest('a[href="#library"]'); if(l){ e.preventDefault(); switchTab('lib'); return; }
     var b=e.target.closest('.save');
@@ -407,7 +455,7 @@
       var j=library.findIndex(function(x){ return x.type==='Answer'&&x.question===data.question&&x.text===data.answer; });
       if(j>-1){ library.splice(j,1); toast('Removed from Saved'); }
       else{ library.unshift({id:'a'+Date.now().toString(36),type:'Answer',title:data.question,text:data.answer,url:'',site:'AI Radar chat',question:data.question,
-        sources:(data.resources||[]).concat(data.sources||[]).slice(0,6).map(function(s){ return {title:s.title,url:s.url}; }),
+        sources:(data.best?data.best.picks:[]).concat(data.resources||[]).concat(data.sources||[]).slice(0,6).map(function(s){ return {title:s.title,url:s.url}; }),
         tags:tagsFor(data.question+' '+data.answer),savedAt:new Date().toISOString()}); toast('Answer saved'); }
       saveLib(); syncSaveButtons();
     }
@@ -1050,6 +1098,15 @@
     var loading=global&&web&&web.loading;
     $('#ex-count').textContent=loading?'Searching…':list.length+(list.length===1?' result':' results');
     $('#ex-clear').hidden=!any;
+    var bq=wq;
+    if(global){
+      var bk=bq.trim().toLowerCase(), st=exBest[bk];
+      $('#ex-best').hidden=false;
+      $('#ex-best').innerHTML=!st?'<button class="best-btn" type="button" data-best="'+esc(bq)+'"><span class="spark" aria-hidden="true">✦</span><span><b>Find the best for me</b><small>AI plans the searches, checks every result and picks the top few with reasons</small></span></button>':
+        st.loading?'<div class="best best-wait"><div class="best-h"><span class="spark" aria-hidden="true">✦</span>Best for you</div><div class="stage"><span class="spin" aria-hidden="true"></span><span id="ex-stage">'+STAGES[st.stage||0]+'</span></div></div>':
+        st.err?'<div class="best"><div class="best-h"><span class="spark" aria-hidden="true">✦</span>Best for you</div><p class="ex-note">'+esc(st.err)+'</p><button class="mini-btn" type="button" data-best="'+esc(bq)+'">Try again</button></div>':
+        bestHTML(st.data,bq,'explore');
+    }else{ $('#ex-best').hidden=true; $('#ex-best').innerHTML=''; }
     var head=global?'<div class="ex-note">'+(loading?'<span class="spin" aria-hidden="true"></span>Searching GitHub, Hugging Face, papers and articles for “'+esc(wq)+'”…':'Results for “'+esc(wq)+'” from AI Radar, GitHub, Hugging Face, papers and Hacker News.')+(web&&web.err?' '+esc(web.err):'')+'</div>':'';
     if(!exItems.length&&!global){ $('#ex-items').innerHTML='<div class="empty"><b>Loading…</b></div>'; return; }
     if(!list.length&&!loading){ $('#ex-items').innerHTML=head+'<div class="empty"><b>Nothing matches</b>Try fewer filters or other words, or ask the chat.<button class="pill-btn mint" type="button" data-exask="'+esc(wq||'What should I learn first about AI?')+'" style="margin-top:10px">Ask “'+esc(wq||'what should I learn first?')+'”</button></div>'; exShown=[]; return; }
@@ -1067,7 +1124,17 @@
         '<button class="save'+(saved?' on':'')+'" type="button" aria-pressed="'+saved+'" aria-label="'+(saved?'Saved':'Save')+' '+esc(i.title)+'" data-card="'+esc(JSON.stringify(card))+'">'+BM+'</button></div></div></article>';
     }).join('');
   }
-  var exShown=[];
+  var exShown=[], exBest={};
+  function runBest(q){
+    var k=q.trim().toLowerCase(), st=exBest[k]={loading:true,stage:0};
+    var timer=setInterval(function(){ if(st.stage<STAGES.length-1){ st.stage++; var el=document.getElementById('ex-stage'); if(el) el.textContent=STAGES[st.stage]; } },5500);
+    renderResources();
+    bestCall(q).then(function(b){
+      if(b.offtopic){ exBest[k]={err:b.summary}; } else exBest[k]={data:b};
+    }).catch(function(e){
+      exBest[k]={err:/limited|quickly/i.test(String(e&&e.message))?String(e.message):'Best for you is not available right now. The results below still work.'};
+    }).then(function(){ clearInterval(timer); if(!$('#view-explore').hidden&&ex.mode==='res') renderResources(); });
+  }
   function renderGlossary(){
     if(!gloss){ $('#ex-gloss-list').innerHTML='<div class="empty"><b>Loading…</b></div>'; loadGlossary().then(function(){ if(ex.mode==='gloss') renderGlossary(); }); return; }
     var words=terms(ex.q), tagsWithItems={};
@@ -1097,6 +1164,8 @@
     else if((b=e.target.closest('[data-gtag]'))){ ex.mode='res'; ex.q=''; $('#ex-q').value=''; ex.task=''; ex.type=''; ex.level=''; ex.tags=new Set([b.dataset.gtag]); renderExplore(); $('#view-explore').scrollTo({top:0,behavior:reduce?'auto':'smooth'}); }
     else if((b=e.target.closest('[data-exask]'))){ switchTab('chat'); ask(b.dataset.exask); }
     else if((b=e.target.closest('.exask'))){ var it=exShown[+b.closest('.item').dataset.k]; if(it) askAbout({type:it.kind==='Repo'?'Repo':it.kind,title:it.title,desc:it.desc}); }
+    else if((b=e.target.closest('[data-best]'))){ runBest(b.dataset.best); }
+    else if((b=e.target.closest('[data-refine]'))){ ex.q=b.dataset.refine; $('#ex-q').value=ex.q; ex.task=''; renderResources(); runBest(ex.q); }
     else if(e.target.closest('#ex-clear')){ ex.q=''; $('#ex-q').value=''; ex.task=''; ex.type=''; ex.level=''; ex.tags.clear(); ex.free=false; renderExplore(); }
   });
   var exT; $('#ex-q').addEventListener('input',function(e){ clearTimeout(exT); exT=setTimeout(function(){ ex.q=e.target.value; renderExplore(); },ex.mode==='res'?450:120); });
