@@ -79,6 +79,16 @@ img{max-width:100%}
 .nav-links a:hover{color:var(--coral)!important}
 .nav .btn{padding:12px 20px;font-size:14px}
 
+/* "Get app" in the nav: a glass pill (not .btn, so the music button stays next to "Follow on X") */
+.getapp{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:#fff;font-size:14px;font-weight:500;padding:11px 16px;border-radius:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background .25s ease,color .4s ease,border-color .4s ease;white-space:nowrap}
+.getapp:hover{background:rgba(255,255,255,.14)}
+.getapp svg{width:16px;height:16px;color:var(--coral)}
+.nav.solid .getapp{color:var(--ink);border-color:#2a302b}
+.nav-right{display:flex;align-items:center;gap:10px}
+@media (max-width:480px){.nav-right>a.btn{display:none!important}.getapp{padding:10px 14px}.nav-right{gap:6px}}
+.logo-word{white-space:nowrap}
+@media (max-width:380px){.logo-mark{width:34px;height:34px}.logo-word{font-size:18px}.nav-pill{gap:8px;padding:8px 8px 8px 12px}.getapp{padding:9px 12px;font-size:13.5px}}
+
 /* ---------- progressive blur edges ---------- */
 .pblur{position:fixed;left:0;right:0;z-index:40;pointer-events:none}
 .pblur-top{top:0;height:110px}
@@ -486,7 +496,10 @@ html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
       <a class="roll-host" href="cheatsheets/"><span class="roll" data-roll>Cheatsheets</span></a>
       <a class="roll-host" href="prompt-packs/"><span class="roll" data-roll>Prompt packs</span></a>
     </div>
-    <a class="btn btn-dark roll-host" href="https://x.com/ai_radar_" target="_blank" rel="noopener"><span class="roll" data-roll>Follow on X</span></a>
+    <div class="nav-right">
+      <a class="getapp roll-host" href="get-app/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg><span class="roll" data-roll>Get app</span></a>
+      <a class="btn btn-dark roll-host" href="https://x.com/ai_radar_" target="_blank" rel="noopener"><span class="roll" data-roll>Follow on X</span></a>
+    </div>
   </nav>
 </header>
 
@@ -791,6 +804,7 @@ html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
       </div>
     </div>
     <div class="cols">
+      <div><span class="k">App</span><a href="get-app/">Get the AI Radar app</a><a href="app-beta/">Open the app</a></div>
       <div><span class="k">Resources</span><a href="repos/">Trending repos</a><a href="cheatsheets/">Cheatsheets</a><a href="prompt-packs/">Prompt packs</a><a href="#ask" data-open-chat>Ask AI Radar</a></div>
       <div><span class="k">AI Radar</span><a href="https://x.com/ai_radar_" target="_blank" rel="noopener">@ai_radar_ on X</a><a href="https://x.com/search?q=%23stayontheradar&amp;src=hashtag_click" target="_blank" rel="noopener">#stayontheradar</a><a href="#how">How it works</a></div>
     </div>
@@ -963,6 +977,6 @@ html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
 </script>
 <script src="assets/hero.js?v=19" defer></script>
 <script src="assets/chat.js?v=18" defer></script>
-<script src="assets/music.js?v=1" defer></script>
+<script src="assets/music.js?v=2" defer></script>
 </body>
 </html>

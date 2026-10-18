@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="{{R}}assets/site.css?v=6">
+<link rel="stylesheet" href="{{R}}assets/site.css?v=7">
 <style>
 .page-head{padding-block:48px 8px;display:grid;gap:14px;justify-items:start}
 .page-head h1{font-size:clamp(36px,5.4vw,60px);font-weight:800;line-height:1.02}
@@ -53,7 +53,7 @@ section h2 small{font:500 13px var(--mono);color:var(--muted);letter-spacing:0}
 <header class="site-head">
   <div class="container">
     <a class="brand" href="{{R}}" aria-label="AI Radar home"><svg viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="194" fill="#13a36b" stroke="#0f8a5a" stroke-width="8"/><g transform="translate(189 195) scale(0.74) translate(-224 -166)"><text x="182" y="285" text-anchor="middle" font-family="Inter,Helvetica,Arial,sans-serif" font-weight="900" font-size="230" letter-spacing="-10" fill="#ffffff">a</text><rect x="268" y="160" width="40" height="125" rx="6" fill="#ffffff"/><circle cx="288" cy="112" r="24" fill="#1d1d1f"/><path d="M299.4 69.5 A44 44 0 0 1 330.5 100.6" stroke="#1d1d1f" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.85"/><path d="M305.1 48.2 A66 66 0 0 1 351.8 94.9" stroke="#1d1d1f" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.55"/></g></svg>AI Radar</a>
-    <nav class="nav" aria-label="Main"><a class="hide-sm" href="{{R}}#resources">Resources</a><a class="hide-sm" href="{{R}}repos/">Repos</a><a class="hide-sm" href="{{R}}cheatsheets/">Cheatsheets</a><a class="hide-sm" href="{{R}}prompt-packs/" aria-current="page">Prompt packs</a><a class="btn btn-ink" href="https://x.com/ai_radar_">Follow on X</a></nav>
+    <nav class="nav" aria-label="Main"><a class="hide-sm" href="{{R}}#resources">Resources</a><a class="hide-sm" href="{{R}}repos/">Repos</a><a class="hide-sm" href="{{R}}cheatsheets/">Cheatsheets</a><a class="hide-sm" href="{{R}}prompt-packs/" aria-current="page">Prompt packs</a><a class="getapp" href="{{R}}get-app/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg>Get app</a><a class="btn btn-ink" href="https://x.com/ai_radar_">Follow on X</a></nav>
   </div>
 </header>
 <main class="container">
@@ -103,6 +103,6 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)nav.que
 document.querySelectorAll('section').forEach(s=>io.observe(s));
 </script>
 <script src="{{R}}assets/chat.js?v=18" defer></script>
-<script src="{{R}}assets/music.js?v=1" defer></script>
+<script src="{{R}}assets/music.js?v=2" defer></script>
 </body>
 </html>

@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI Radar App · Ask anything about AI, keep what matters</title>
+<meta name="description" content="The free AI Radar app: answers about AI with sources, one search across GitHub, Hugging Face and research papers, and Best for you picks for what you want to do.">
+<meta property="og:title" content="The AI Radar app">
+<meta property="og:description" content="Ask anything about AI, get the best tools for your goal, keep what matters. Free, no account.">
+<meta property="og:image" content="https://airadar08.github.io/get-app/img/best.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0c0b">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: inset photographic hero → editorial carousel → rotating logo wheel → bento → FAQ → sky CTA → wordmark footer */
+:root{
+  /* AI Radar dark: near-black ground, mint accent (matches the X profile and banner) */
+  --bg:#0a0c0b; --ink:#eef1ee; --muted:#9aa39c; --line:#1f2521; --card:#111412;
+  --peach:#12271e; --coral:#34c98a; --peach-card:#0e1a14; --white:#ffffff;
+  --btn:#34c98a; --btn-ink:#03120b; --navy:#cfe9dc;
+  --serif:'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --sans:'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --spring:cubic-bezier(.22,1.2,.36,1);
+  color-scheme:dark;
+  /* tokens the shared chat (assets/chat.js) reads */
+  --fg:var(--ink); --surface:#111412; --bg-2:#171b18; --on-ink:#0a0c0b;
+  --mint:#34c98a; --mint-ink:#6fdcaa; --mint-soft:#12271e;
+  --display:var(--serif); --body:var(--sans); --mono:'JetBrains Mono', ui-monospace, Menlo, monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{max-width:100%}
+:focus-visible{outline:2px solid var(--coral);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1160px;margin:0 auto}
+.gutter{padding-left:max(24px, env(safe-area-inset-left, 0px));padding-right:max(24px, env(safe-area-inset-right, 0px))}
+
+/* ---------- type ---------- */
+.serif{font-family:var(--serif);font-weight:400}
+.h-display{font-family:var(--serif);font-weight:400;font-size:clamp(46px,6.6vw,88px);line-height:1.02;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.h-section{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.2vw,54px);line-height:1.04;letter-spacing:-.015em;margin:0;text-wrap:balance}
+.body{font-size:16px;line-height:1.6;color:var(--muted);margin:0}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;background:var(--peach);color:var(--coral);padding:7px 13px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.eyebrow svg{width:12px;height:12px}
+
+/* ---------- buttons + rolling text ---------- */
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);font-size:15px;font-weight:500;padding:15px 26px;border-radius:12px;transition:background .25s ease, transform .25s var(--ease)}
+.btn-dark{background:var(--btn);color:var(--btn-ink);box-shadow:0 16px 40px rgba(52,201,138,.18)}
+.btn-dark:hover{background:#4fd99f}
+.btn-light{background:rgba(255,255,255,.07);color:var(--ink);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.btn-light:hover{background:rgba(255,255,255,.13)}
+.btn-glass{background:rgba(255,255,255,.35);color:var(--ink);border:1px solid rgba(255,255,255,.7)}
+.btn:active{transform:scale(.97)}
+.roll{display:inline-flex;overflow:hidden;line-height:1.2em;height:1.2em}
+.roll>span{display:block;white-space:pre;text-shadow:0 1.2em 0 currentColor;transition:transform .5s var(--ease)}
+.roll-host:hover .roll>span,.roll-host:focus-visible .roll>span{transform:translateY(-1.2em)}
+.icon-roll{position:relative;display:inline-block;width:16px;height:16px;overflow:hidden;flex:0 0 auto}
+.icon-roll svg{position:absolute;inset:0;width:16px;height:16px;transition:transform .45s var(--ease)}
+.icon-roll svg+svg{transform:translateX(-120%)}
+.roll-host:hover .icon-roll svg:first-child{transform:translateX(120%)}
+.roll-host:hover .icon-roll svg+svg{transform:none}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:calc(12px + env(safe-area-inset-top, 0px));padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));pointer-events:none}
+.nav-pill{pointer-events:auto;max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 10px 10px 16px;border-radius:22px;background:rgba(255,255,255,.1);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);transition:background .4s ease, box-shadow .4s ease}
+.nav.solid .nav-pill{background:rgba(14,17,15,.62);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-mark{width:40px;height:40px;border-radius:50%;display:block}
+.logo-word{font-family:var(--sans);font-weight:700;font-size:20px;letter-spacing:-.03em;color:#fff;transition:color .4s ease}
+.nav-links{display:flex;align-items:center;gap:30px;font-size:14px;font-weight:500}
+.nav-links a{text-decoration:none;color:#fff;display:inline-flex;align-items:center;gap:4px;transition:color .4s ease}
+.nav.solid .nav-links a,.nav.solid .logo-word{color:var(--ink)}
+.nav-links a:hover{color:var(--coral)!important}
+.nav .btn{padding:12px 20px;font-size:14px}
+
+/* ---------- progressive blur edges ---------- */
+.pblur{position:fixed;left:0;right:0;z-index:40;pointer-events:none}
+.pblur-top{top:0;height:110px}
+.pblur-bottom{bottom:0;height:120px}
+.pblur>div{position:absolute;inset:0}
+.pblur-bottom>div:nth-child(1){backdrop-filter:blur(.0625px);-webkit-backdrop-filter:blur(.0625px);mask:linear-gradient(transparent 0%,#000 12.5%,#000 25%,transparent 37.5%)}
+.pblur-bottom>div:nth-child(2){backdrop-filter:blur(.125px);-webkit-backdrop-filter:blur(.125px);mask:linear-gradient(transparent 12.5%,#000 25%,#000 37.5%,transparent 50%)}
+.pblur-bottom>div:nth-child(3){backdrop-filter:blur(.25px);-webkit-backdrop-filter:blur(.25px);mask:linear-gradient(transparent 25%,#000 37.5%,#000 50%,transparent 62.5%)}
+.pblur-bottom>div:nth-child(4){backdrop-filter:blur(.5px);-webkit-backdrop-filter:blur(.5px);mask:linear-gradient(transparent 37.5%,#000 50%,#000 62.5%,transparent 75%)}
+.pblur-bottom>div:nth-child(5){backdrop-filter:blur(1px);-webkit-backdrop-filter:blur(1px);mask:linear-gradient(transparent 50%,#000 62.5%,#000 75%,transparent 87.5%)}
+.pblur-bottom>div:nth-child(6){backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);mask:linear-gradient(transparent 62.5%,#000 75%,#000 87.5%,transparent 100%)}
+.pblur-bottom>div:nth-child(7){backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);mask:linear-gradient(transparent 75%,#000 87.5%,#000 100%)}
+.pblur-bottom>div:nth-child(8){backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);mask:linear-gradient(transparent 87.5%,#000 100%)}
+.pblur-top{transform:scaleY(-1)}
+.pblur-top>div:nth-child(1){backdrop-filter:blur(.0625px);-webkit-backdrop-filter:blur(.0625px);mask:linear-gradient(transparent 0%,#000 12.5%,#000 25%,transparent 37.5%)}
+.pblur-top>div:nth-child(2){backdrop-filter:blur(.25px);-webkit-backdrop-filter:blur(.25px);mask:linear-gradient(transparent 20%,#000 35%,#000 50%,transparent 65%)}
+.pblur-top>div:nth-child(3){backdrop-filter:blur(1px);-webkit-backdrop-filter:blur(1px);mask:linear-gradient(transparent 45%,#000 60%,#000 75%,transparent 90%)}
+.pblur-top>div:nth-child(4){backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);mask:linear-gradient(transparent 70%,#000 85%,#000 100%)}
+.pblur-top>div:nth-child(5){backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);mask:linear-gradient(transparent 85%,#000 100%)}
+
+/* ---------- custom cursor ---------- */
+.cursor{position:fixed;left:0;top:0;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:22px;background:#fff;mix-blend-mode:difference;pointer-events:none;z-index:100;opacity:0;transition:width .3s var(--ease),height .3s var(--ease),margin .3s var(--ease),opacity .3s ease}
+.cursor.on{opacity:1}
+.cursor.big{width:44px;height:44px;margin:-22px 0 0 -22px}
+@media (hover:none),(pointer:coarse){.cursor{display:none}}
+
+/* ---------- sky ---------- */
+.sky{position:relative;overflow:hidden;isolation:isolate;background:
+  radial-gradient(60% 55% at 50% 0%,rgba(52,201,138,.26),transparent 70%),
+  radial-gradient(35% 35% at 88% 92%,rgba(52,201,138,.10),transparent 70%),
+  #050706}
+.sky::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+  repeating-radial-gradient(circle at 50% 118%,rgba(52,201,138,.13) 0 1px,transparent 1px 86px),
+  linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/44px 44px,
+  linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/44px 44px;
+  mask:radial-gradient(90% 80% at 50% 70%,#000 40%,transparent 100%);-webkit-mask:radial-gradient(90% 80% at 50% 70%,#000 40%,transparent 100%)}
+.cta.sky::after{content:"";position:absolute;left:50%;bottom:-900px;width:1800px;height:1800px;margin-left:-900px;will-change:transform;border-radius:50%;pointer-events:none;z-index:0;
+  background:conic-gradient(from 0deg,rgba(52,201,138,.20),rgba(52,201,138,0) 9%,transparent 100%);
+  transform-origin:50% 50%;animation:sweep 14s linear infinite}
+@keyframes sweep{to{transform:rotate(360deg)}}
+.hero.sky::before{background:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/44px 44px,linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/44px 44px}
+.sky>*{position:relative;z-index:1}
+
+/* ---------- hero ---------- */
+.hero-shell{padding:8px 8px 0}
+.hero{border-radius:20px;padding-top:150px}
+.hero-copy{max-width:860px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:22px}
+.hero-eyebrow{font-family:var(--sans);font-weight:600;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#fff;display:flex;align-items:center;gap:10px}
+.live{position:relative;width:8px;height:8px}
+.live i{position:absolute;inset:0;border-radius:50%;background:#2f9a5a}
+.live i:first-child{animation:ping 1.8s ease-out infinite}
+@keyframes ping{0%{transform:scale(.6);opacity:.7}100%{transform:scale(2.6);opacity:0}}
+.hero h1{color:#fff}
+.hero .sub{color:#c9d6cf;font-size:17px;line-height:1.55;max-width:540px;margin:0;text-shadow:0 1px 18px rgba(16,35,63,.25)}
+.w{display:inline-block;will-change:filter,transform,opacity}
+.js .w{opacity:0;filter:blur(12px);transform:translateY(14px)}
+.w.in{opacity:1;filter:blur(0);transform:none;transition:opacity .9s var(--ease),filter .9s var(--ease),transform .9s var(--ease)}
+.appear{transition:opacity .9s var(--ease),transform 1s var(--spring)}
+.js .appear{opacity:0;transform:translateY(20px)}
+.js .appear.in{opacity:1;transform:none}
+.hero-ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding-top:6px}
+
+.phones{position:relative;height:520px;margin-top:64px;overflow:hidden}
+.phone-stage{position:absolute;left:50%;top:0;width:560px;margin-left:-280px;height:700px}
+.phone-par{position:absolute;inset:0;will-change:transform}
+.phone-wrap{position:absolute;top:0;transition:transform 1.4s var(--spring),opacity 1s ease}
+.js .phone-wrap{opacity:0;transform:translateY(220px) rotate(0deg)}
+.phone-a{left:10px;z-index:2}
+.phone-b{left:236px;top:24px;z-index:1}
+.js .phone-wrap.in{opacity:1}
+.phone-a.in,.no-js .phone-a{transform:rotate(-8deg)!important}
+.phone-b.in,.no-js .phone-b{transform:rotate(9deg)!important}
+.phone{width:300px;height:620px;border-radius:50px;background:#e9e9ec;padding:4px;box-shadow:0 40px 80px rgba(16,35,63,.3), inset 0 0 0 1px rgba(255,255,255,.6)}
+.phone-in{width:100%;height:100%;border-radius:46px;background:#0d0d0d;padding:9px}
+.screen{position:relative;width:100%;height:100%;border-radius:38px;overflow:hidden;font-size:12px}
+.island{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:92px;height:27px;border-radius:999px;background:#0d0d0d;z-index:3}
+
+/* ---------- reveal ---------- */
+.reveal{transition:opacity .9s var(--ease),transform 1s var(--spring),filter .9s var(--ease)}
+.js .reveal.pending{opacity:0;transform:translateY(28px);filter:blur(6px)}
+
+/* ---------- how it works ---------- */
+.how{padding-block:130px}
+.two-col{display:flex;gap:64px;align-items:center}
+.how-left{flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:22px;align-items:flex-start}
+.how-right{flex:1 1 640px;min-width:0}
+.stage{position:relative;border-radius:28px;overflow:hidden;min-height:480px;padding:clamp(18px,3vw,40px);display:grid;align-items:center}
+.stage-bg{position:absolute;inset:-30px;background:
+  radial-gradient(55% 65% at 12% 18%,#1f9a68 0%,transparent 62%),
+  radial-gradient(55% 65% at 95% 92%,#0f5a7a 0%,transparent 62%),
+  radial-gradient(45% 55% at 70% 8%,#174f3a 0%,transparent 70%),
+  linear-gradient(140deg,#0b2a1e,#0b1512 50%,#0a1f2a);filter:blur(5px)}
+.slide{grid-area:1/1;position:relative;transition:opacity .55s ease, transform .55s var(--ease)}
+.slide[aria-hidden="true"]{opacity:0;transform:scale(.985);pointer-events:none}
+.glass{background:rgba(14,17,15,.72);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:16px;font-size:13px;box-shadow:0 30px 60px rgba(0,0,0,.4)}
+.ctrls{display:flex;align-items:center;gap:18px;padding-top:12px}
+.round{width:44px;height:44px;border-radius:12px;border:1px solid #2a302b;background:var(--card);color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s ease,border-color .2s ease}
+.round:hover{background:var(--btn);color:var(--btn-ink);border-color:var(--btn)}
+.dots{display:flex;gap:8px;align-items:center}
+.dot{height:8px;width:8px;border:0;padding:0;cursor:pointer;border-radius:999px;background:#2b322d;position:relative;overflow:hidden;transition:width .4s var(--ease)}
+.dot.on{width:34px}
+.dot.on::after{content:"";position:absolute;inset:0;background:var(--btn);transform-origin:left;animation:fill var(--dur,6s) linear forwards}
+.dot.on.static::after{animation:none}
+@keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.row{display:flex;justify-content:space-between;gap:10px;padding:12px 14px;border-bottom:1px solid #f0f0ec}
+.row:last-child{border-bottom:0}
+.tag{font-weight:600;font-size:11px;letter-spacing:.04em}
+.feed{display:flex;flex-direction:column;gap:8px;color:#4a4a47}
+.feed div{display:flex;gap:8px;align-items:center}
+.feed i{width:7px;height:7px;border-radius:50%;background:#2f9a5a;flex:0 0 auto}
+.feed i.off{background:#b9b9b3}
+
+/* ---------- wheel: full ring orbiting the copy (desktop), scrolling row (phones) ---------- */
+.wheel-sec{position:relative;overflow:hidden;padding-block:72px 96px}
+.wheel-wrap{position:relative;max-width:1160px;margin:0 auto;height:var(--wh,900px);display:grid;place-items:center}
+.wheel{position:absolute;left:50%;top:50%;width:var(--wd,800px);height:var(--wd,800px);margin:calc(var(--wd,800px) / -2) 0 0 calc(var(--wd,800px) / -2);border-radius:50%;will-change:transform}
+.wheel::before{content:"";position:absolute;inset:0;border-radius:50%;border:1px dashed #26302a}
+.spoke{position:absolute;left:50%;top:50%;width:0;height:0}
+.chip{position:absolute;left:0;top:0;transform:translate(-50%,-50%) rotate(calc(var(--r) * -1))}
+.chip-inner{display:flex;flex-direction:column;align-items:center;gap:7px}
+.chip b{width:var(--s,64px);height:var(--s,64px);border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;white-space:pre-line;padding:8px;font-weight:700;font-size:13px;line-height:1.08;letter-spacing:-.01em;color:#fff;box-shadow:0 0 0 1px #2a322d,0 14px 30px rgba(0,0,0,.45);border:3px solid #0a0c0b;transition:transform .35s var(--spring)}
+.chip:hover b{transform:scale(1.08)}
+.chip span{font-size:12px;font-weight:500;color:#c3cbc5;white-space:nowrap;background:rgba(10,12,11,.82);padding:2px 6px;border-radius:6px}
+.wheel-copy{position:relative;z-index:2;max-width:430px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px}
+.lab-row{display:none}
+@media (max-width:799px){
+  .wheel{display:none}
+  .wheel-wrap{height:auto;display:block}
+  .wheel-copy{max-width:540px}
+  .lab-row{display:block;overflow:hidden;margin:0 -24px 36px;mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+  .lab-track{display:flex;gap:18px;width:max-content;padding:6px 0 10px;animation:labs 32s linear infinite}
+  .lab-track .chip{position:static;transform:none}
+  .lab-track .chip b{--s:74px!important;font-size:11.5px;padding:6px}
+  @keyframes labs{to{transform:translateX(-50%)}}
+}
+
+/* ---------- bento ---------- */
+.bento-sec{padding-block:40px 120px}
+.bento-head{display:flex;gap:40px;align-items:flex-end;justify-content:space-between}
+.mini{width:230px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.mini .serif{font-size:28px;line-height:1}
+.mini p{margin:0;font-size:13px;line-height:1.5;color:var(--muted)}
+.bento{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;margin-top:48px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:12px;transition:transform .45s var(--ease),box-shadow .45s ease}
+.card:hover{transform:translateY(-6px);box-shadow:0 22px 40px rgba(13,13,13,.07)}
+.card .top{display:flex;justify-content:space-between;align-items:center}
+.ic{width:40px;height:40px;border-radius:12px;background:var(--bg);display:flex;align-items:center;justify-content:center}
+.ic svg{width:20px;height:20px}
+.lbl{background:var(--bg);color:#4a4a47;padding:5px 10px;border-radius:999px;font-size:10px;font-weight:600;letter-spacing:.08em}
+.card h3{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.04;margin:0}
+.card p{margin:0;font-size:14px;line-height:1.6;color:var(--muted)}
+.c-peach{grid-column:span 2;grid-row:span 2;background:var(--peach-card);border-color:transparent;min-height:440px}
+.c-peach .ic,.c-peach .lbl{background:#163126;color:var(--coral)}
+.c-peach h3,.c-black h3{font-size:36px}
+.c-peach p{color:#a9bfb2}
+.c-mid{grid-column:span 2}
+.c-black{grid-column:span 2;grid-row:span 2;background:linear-gradient(160deg,#3ad191,#13a36b 70%);color:#03120b;border-color:transparent}
+.c-black .ic,.c-black .lbl{background:rgba(3,18,11,.14);color:#03120b}
+.c-black p{color:#0b3a26}
+.c-black .btn-light{background:#03120b;color:#eef1ee;border-color:#03120b}
+.c-wide{grid-column:span 3;flex-direction:row;gap:18px;align-items:flex-start}
+.stack{margin-top:auto;position:relative;height:140px}
+.stack>div{position:absolute;border-radius:14px;transition:transform .5s var(--ease)}
+.c-peach:hover .stack>div:nth-child(1){transform:translateY(-10px) rotate(-2deg)}
+.c-peach:hover .stack>div:nth-child(2){transform:translateY(-5px) rotate(1.5deg)}
+.bubble{padding:9px 12px;font-size:13px;line-height:1.4;max-width:88%}
+
+/* ---------- FAQ ---------- */
+.faq-sec{padding-block:40px 120px}
+.faq-left{flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:18px;align-items:flex-start;align-self:flex-start}
+.faq-list{flex:1 1 620px;min-width:0;display:flex;flex-direction:column;gap:10px}
+.faq{background:var(--card);border:1px solid var(--line);border-radius:14px;transition:background .3s ease,border-color .3s ease}
+.faq:hover{background:var(--peach-card);border-color:#1f4434}
+.faq button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 22px;background:transparent;border:0;cursor:pointer;text-align:left;font-family:var(--sans);font-size:16px;font-weight:500;color:var(--ink)}
+.faq button svg{flex:0 0 auto;width:18px;height:18px;transition:transform .35s var(--ease)}
+.faq.open button svg{transform:rotate(45deg)}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
+.faq.open .faq-a{grid-template-rows:1fr}
+.faq-a>div{overflow:hidden}
+.faq-a p{margin:0;padding:0 22px 20px;font-size:15px;line-height:1.6;color:var(--muted);max-width:620px}
+
+/* ---------- CTA + footer ---------- */
+.cta{border-radius:24px;padding:clamp(80px,10vw,140px) 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:20px}
+.cta h2{color:#fff;max-width:760px}
+.footer-top{display:flex;justify-content:space-between;gap:40px;align-items:flex-start;padding-top:72px}
+.news{display:flex;gap:8px;flex-wrap:wrap}
+.news input{flex:1 1 220px;min-width:0;padding:14px 18px;border-radius:12px;border:1px solid #dcdcd7;background:#fff;font-family:var(--sans);font-size:14px;color:var(--ink)}
+.cols{display:flex;gap:96px;flex-wrap:wrap;font-size:14px;padding-top:48px}
+.cols div{display:flex;flex-direction:column;gap:10px}
+.cols a{text-decoration:none}
+.cols a:hover{color:var(--coral)}
+.cols .k{font-size:12px;color:#8a8a85}
+.wordmark{font-family:var(--sans);font-weight:800;font-size:24vw;line-height:.82;letter-spacing:-.065em;text-align:center;white-space:nowrap;margin-top:40px;height:22vw;overflow:hidden;background:linear-gradient(180deg,#eef1ee 5%,#0a0c0b 85%);-webkit-background-clip:text;background-clip:text;color:transparent;transition:transform 1.4s var(--spring)}
+.js .wordmark.pending{transform:translateY(40%)}
+
+.tag-link{display:inline-flex;text-decoration:none;font-family:var(--serif);font-style:italic;font-size:26px;color:#fff;padding:6px 16px;border-radius:999px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background .25s ease}
+.tag-link:hover{background:rgba(255,255,255,.32)}
+
+
+/* ---------- resources (cards are added by tools/update_site.py and tools/make_pack.py) ---------- */
+.more{font-size:14px;font-weight:600;color:var(--coral);text-decoration:none;align-self:flex-start}
+.more:hover{text-decoration:underline;text-underline-offset:3px}
+.c-black .more{color:#03120b}
+.res-sec{padding-block:20px 100px}
+.res-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:32px}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.res{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;text-decoration:none;color:var(--ink);transition:transform .45s var(--ease),box-shadow .45s ease}
+.res:hover{transform:translateY(-6px);box-shadow:0 22px 40px rgba(13,13,13,.08)}
+.res .thumb{aspect-ratio:4/5;background:#151916;overflow:hidden}
+.res .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease)}
+.res:hover .thumb img{transform:scale(1.04)}
+.res .body{display:flex;flex-direction:column;gap:6px;padding:16px 18px 18px}
+.res .kind{align-self:flex-start;background:var(--peach);color:var(--coral);padding:4px 9px;border-radius:999px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.res b{font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.08}
+.res .desc{font-size:13.5px;line-height:1.5;color:var(--muted)}
+.res .stat{font-size:12.5px;color:#c3cbc5}
+
+
+
+
+/* ---------- 3D radar behind the hero copy (assets/hero.js, Three.js) ---------- */
+.hero>#radar{position:absolute;inset:0;z-index:0;pointer-events:none}
+#radar canvas{position:absolute;inset:0}
+#radar .fallback{position:absolute;inset:22% 18%;opacity:.7}
+#radar.live .fallback{display:none}
+#radar .rtags{position:absolute;inset:0;pointer-events:none;overflow:visible}
+#radar .rtag{position:absolute;left:0;top:0;display:flex;align-items:center;gap:6px;white-space:nowrap;font:500 11px/1 var(--mono);letter-spacing:.1em;
+  color:var(--ink);background:rgba(17,20,18,.85);border:1px solid #26302a;padding:6px 10px;border-radius:999px;
+  box-shadow:0 6px 18px -10px rgba(0,0,0,.6);opacity:0;will-change:transform,opacity;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+#radar .rtag i{width:7px;height:7px;border-radius:50%;flex:none}
+.hero-copy{position:relative;z-index:2}
+.phones{z-index:1}
+.phone-stage{z-index:1}
+.hero h1{text-shadow:0 4px 40px rgba(5,7,6,.85)}
+.hero .sub{text-shadow:0 2px 20px rgba(5,7,6,.9)}
+
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .two-col,.bento-head,.footer-top{flex-direction:column;align-items:stretch}
+  .nav-links{display:none}
+  .bento{grid-template-columns:repeat(1,minmax(0,1fr))}
+  .bento>*{grid-column:auto!important;grid-row:auto!important}
+  .c-wide{flex-direction:column}
+  /* stacked columns: flex-basis would otherwise become a height */
+  .two-col>*,.bento-head>*,.footer-top>*{flex:0 0 auto!important;width:100%}
+  .how{padding-block:80px}
+  .stage{min-height:0}
+  .phones{height:360px}
+  .phone-stage{transform:scale(.62);transform-origin:top center}
+  .wheel-sec{padding-block:56px 72px}
+  .bento-sec,.faq-sec{padding-block:20px 80px}
+  .res-sec{padding-block:10px 70px}
+  .res-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .res .body{padding:12px 12px 14px;gap:5px}
+  .res b{font-size:18px}
+  .res .desc{font-size:12.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .res .kind{font-size:9px;padding:3px 7px}
+  .card h3,.c-peach h3,.c-black h3{font-size:28px}
+  .c-peach{min-height:0}
+  .footer-top{padding-top:48px;gap:28px}
+  .cols{gap:48px;padding-top:36px}
+  .mini{width:auto;flex:1 1 200px}
+}
+@media (prefers-reduced-motion:reduce){
+  .lab-track{animation:none!important;flex-wrap:wrap;width:auto;justify-content:center}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .w,.js .appear,.js .phone-wrap,.js .reveal.pending,.js .wordmark.pending{opacity:1!important;filter:none!important}
+  .js .w,.js .appear,.js .reveal.pending,.js .wordmark.pending{transform:none!important}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- get-app page additions (same tokens and motion as the home page) ---------- */
+.phone .screen img.shot{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.hero .sub b{color:#fff;font-weight:600}
+.new-pill{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-size:13.5px;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:5px 14px 5px 5px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background .25s ease}
+.new-pill:hover{background:rgba(255,255,255,.14)}
+.new-pill b{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--coral);color:#03120b;border-radius:999px;padding:4px 9px}
+.facts{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0;padding:0;list-style:none}
+.facts li{font-size:12.5px;color:#c9d6cf;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 12px}
+
+/* Best for you: steps carousel */
+.ask-bubble{align-self:flex-end;background:var(--coral);color:#03120b;border-radius:16px 16px 4px 16px;padding:10px 14px;font-size:14px;line-height:1.4;max-width:88%}
+.slide-h{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mint-ink)}
+.slide-h i{font-style:normal;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--coral);color:#03120b;font-size:12px;letter-spacing:0}
+.slide-t{font-family:var(--serif);font-size:30px;line-height:1.05;margin:0;color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-size:12.5px;font-weight:600;border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:5px 11px;color:var(--ink)}
+.chips .need{background:var(--peach);border-color:transparent;color:var(--mint-ink)}
+.srch{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
+.srch li{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:10px;align-items:center;font-size:13.5px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:10px 12px}
+.srch li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 4px rgba(52,201,138,.15)}
+.srch li span{color:var(--muted);font-family:var(--mono);font-size:12px}
+.funnel{display:flex;flex-direction:column;gap:8px}
+.funnel div{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:14px;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)}
+.funnel b{font-family:var(--mono);font-weight:500;font-size:13px;color:var(--mint-ink);white-space:nowrap}
+.funnel .x{color:#f0a58a}
+.pk{display:grid;grid-template-columns:26px minmax(0,1fr);gap:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:12px}
+.pk>i{font-style:normal;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--coral);color:#03120b;font-weight:700;font-size:12.5px}
+.pk div{display:flex;flex-direction:column;gap:3px;min-width:0}
+.pk small{font-size:11.5px;color:var(--muted)}
+.pk b{font-size:15px}
+.pk p{margin:0;font-size:13px;line-height:1.45;color:#d6ddd8}
+.pk p em{font-style:normal;color:var(--mint-ink);font-weight:600}
+
+/* bento with real screens */
+.shot-box{margin-top:auto;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#151916;height:250px;position:relative}
+.shot-box img{width:100%;height:auto;display:block;transition:transform .9s var(--ease)}
+.card:hover .shot-box img{transform:translateY(-14%)}
+.c-peach .shot-box{height:300px}
+.srcs{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+.srcs span{font-size:12.5px;border:1px solid var(--line);border-radius:999px;padding:6px 11px;background:var(--bg)}
+.srcs span b{color:var(--mint-ink);font-weight:500;font-family:var(--mono);font-size:11.5px;margin-left:4px}
+.c-black h3{color:#03120b}
+
+/* install */
+.inst-sec{padding-block:40px 120px}
+.inst{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:40px}
+.inst .card{gap:14px}
+.inst ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:14.5px;line-height:1.5;color:#d6ddd8}
+.inst ol li::marker{color:var(--coral);font-weight:600}
+.inst kbd{font-family:var(--mono);font-size:12px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+.linkbox{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px 10px 10px 18px}
+.linkbox code{flex:1;min-width:0;font-family:var(--mono);font-size:14px;color:var(--mint-ink);overflow-wrap:anywhere}
+.linkbox .btn{padding:12px 18px;font-size:14px}
+.copy{background:rgba(255,255,255,.06);color:var(--ink);border:1px solid var(--line)}
+.copy:hover{background:rgba(255,255,255,.12)}
+
+@media (max-width:900px){
+  .inst{grid-template-columns:1fr}
+  .shot-box,.c-peach .shot-box{height:260px}
+  .nav .btn.hide-xs{display:none}
+}
+.new-pill .short{display:none}
+.card .lbl{color:var(--muted)}
+.c-peach .lbl,.c-black .lbl{color:inherit}
+.logo-word{white-space:nowrap}
+/* phones: the two tilted screens must sit centred and stay on screen */
+@media (max-width:520px){
+  .hero{padding-top:118px}
+  .phones{height:330px;margin-top:44px}
+  .phone-stage{transform:scale(.56)}
+  .slide-t{font-size:26px}
+  .stage{border-radius:22px}
+  .linkbox{padding:12px}
+  .linkbox code{flex-basis:100%}
+  .new-pill .long{display:none}
+  .new-pill .short{display:inline}
+}
+@media (max-width:380px){
+  .logo-mark{width:34px;height:34px}
+  .logo-word{font-size:18px}
+  .nav-pill{gap:8px;padding:8px 8px 8px 12px}
+  .nav .btn{padding:10px 14px;font-size:13.5px}
+  .h-display{font-size:42px}
+}
+
+</style>
+<style>
+/* ---------- intro loader (once per visit): a small radar sweep lights five card-colour blips, green last;
+   the green glides to the centre and opens a mint ring onto the page ---------- */
+#intro{display:none}
+html.intro{overflow:hidden}
+html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
+#intro canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+#intro .word{position:absolute;left:0;right:0;top:calc(50% + 120px);text-align:center;font:600 11px Inter,system-ui,sans-serif;letter-spacing:.42em;text-indent:.42em;text-transform:uppercase;color:#5d665f;opacity:0}
+</style>
+<script>
+/* show the intro once per visit; never with reduced motion or in a background tab */
+(function(){ try{ if(!sessionStorage.getItem('air-intro')&&!document.hidden&&!matchMedia('(prefers-reduced-motion: reduce)').matches){ document.documentElement.classList.add('intro'); window.__airIntro=4800; } }catch(e){} })();
+</script>
+</head>
+<body>
+<div id="intro" aria-hidden="true"><canvas></canvas><div class="word">AI Radar</div></div>
+<script>
+(function(){
+  'use strict';
+  var root=document.documentElement, el=document.getElementById('intro');
+  if(!root.classList.contains('intro')||!el) return;
+  var cv=el.querySelector('canvas'), g=cv.getContext('2d'), word=el.querySelector('.word');
+  if(!g){ root.classList.remove('intro'); el.remove(); window.__airIntro=0; return; }
+  var GROUND='#0a0c0b', MINT='#34c98a';
+  var R=92;                                         // radar radius (px)
+  // blips: angle clockwise from the top (deg), distance from centre (0..1 of R), colour. Green is last.
+  var BLIPS=[[38,.62,'#e0b400'],[112,.42,'#4a90f0'],[178,.74,'#9b7cf0'],[246,.5,'#f07a4f'],[318,.66,'#34c98a']];
+  // timeline (seconds)
+  var APPEAR=0.6, SWEEP_END=2.75, LOCK=2.75, GLIDE=3.05, GLIDE_LEN=0.9, BREATH=3.95, BREATH_LEN=0.4, OPEN=4.35, OPEN_LEN=1.2, END=OPEN+OPEN_LEN+0.05;
+  var W=0,H=0,DPR=1,t0=0,raf=0;
+
+  function clamp(x){ return x<0?0:x>1?1:x; }
+  function smooth(a,b,x){ var k=clamp((x-a)/(b-a)); return k*k*(3-2*k); }
+  function inOutCubic(k){ return k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2; }
+  function inOutQuart(k){ return k<.5?8*k*k*k*k:1-Math.pow(-2*k+2,4)/2; }
+  function outCubic(k){ return 1-Math.pow(1-k,3); }
+  function rgba(hex,a){ var n=parseInt(hex.slice(1),16); return 'rgba('+(n>>16)+','+(n>>8&255)+','+(n&255)+','+a+')'; }
+  function size(){ DPR=Math.min(2,window.devicePixelRatio||1); W=innerWidth; H=innerHeight; cv.width=W*DPR; cv.height=H*DPR; g.setTransform(DPR,0,0,DPR,0,0); }
+  addEventListener('resize',size); size();
+
+  var START=-90, TOTAL=BLIPS[4][0];                 // the sweep starts at the top and travels to the green blip
+  // sweep angle: eases in, cruises, and slows to a stop on the green blip
+  function sweepDeg(t){ var k=clamp((t-0.25)/(SWEEP_END-0.25)); var e=k<.15?(k*k)/(.3):(k<.75?.075+(k-.15)*1.2:.795+(1-Math.pow(1-(k-.75)/.25,1.463))*.205); return START+TOTAL*Math.min(1,e); }
+  function hitTime(deg){ for(var t=0.25;t<=SWEEP_END;t+=0.005){ if(sweepDeg(t)-START>=deg) return t; } return SWEEP_END; }
+  var HITS=BLIPS.map(function(b){ return hitTime(b[0]); });
+  function polar(deg,dist,cx,cy){ var a=(deg-90)*Math.PI/180; return [cx+Math.cos(a)*dist*R, cy+Math.sin(a)*dist*R]; }
+
+  function draw(t){
+    var cx=W/2, cy=H/2;
+    g.globalCompositeOperation='source-over'; g.clearRect(0,0,W,H);
+    g.fillStyle=GROUND; g.fillRect(0,0,W,H);
+    var show=smooth(0,APPEAR,t)*(1-smooth(GLIDE+0.2,GLIDE+GLIDE_LEN,t));     // radar fades in, then out as the green glides
+    var grow=0.92+0.08*outCubic(clamp(t/APPEAR));
+    if(show>0.002){
+      g.save(); g.translate(cx,cy); g.scale(grow,grow);
+      // faint disc and rings
+      var bg=g.createRadialGradient(0,0,0,0,0,R); bg.addColorStop(0,rgba(MINT,.06*show)); bg.addColorStop(1,rgba(MINT,.015*show));
+      g.fillStyle=bg; g.beginPath(); g.arc(0,0,R,0,Math.PI*2); g.fill();
+      g.lineWidth=1;
+      [1,.66,.33].forEach(function(f,i){ g.strokeStyle=rgba(MINT,(i?0.13:0.32)*show); g.beginPath(); g.arc(0,0,R*f,0,Math.PI*2); g.stroke(); });
+      g.strokeStyle=rgba(MINT,.1*show); g.beginPath(); g.moveTo(-R,0); g.lineTo(R,0); g.moveTo(0,-R); g.lineTo(0,R); g.stroke();
+      // tick marks round the rim
+      g.strokeStyle=rgba(MINT,.22*show);
+      for(var d=0;d<360;d+=15){ var a=d*Math.PI/180, l=d%45===0?7:4; g.beginPath(); g.moveTo(Math.cos(a)*(R-l),Math.sin(a)*(R-l)); g.lineTo(Math.cos(a)*R,Math.sin(a)*R); g.stroke(); }
+      // the sweep: a soft trailing wedge and a bright leading line; it fades once it has locked on the green
+      var sw=sweepDeg(t), sa=sw*Math.PI/180, sAlpha=show*(1-smooth(LOCK+0.05,LOCK+0.45,t));
+      if(sAlpha>0.002){
+        var trail=70*Math.PI/180, steps=24;
+        for(var i=0;i<steps;i++){ var a0=sa-trail*(i+1)/steps, a1=sa-trail*i/steps; g.fillStyle=rgba(MINT,0.20*sAlpha*Math.pow(1-i/steps,1.6)); g.beginPath(); g.moveTo(0,0); g.arc(0,0,R,a0,a1+0.004); g.closePath(); g.fill(); }
+        g.strokeStyle=rgba('#6fdcaa',0.85*sAlpha); g.lineWidth=1.5; g.beginPath(); g.moveTo(0,0); g.lineTo(Math.cos(sa)*R,Math.sin(sa)*R); g.stroke();
+      }
+      g.restore();
+    }
+    // blips
+    for(var b=0;b<5;b++){
+      var B=BLIPS[b], hit=HITS[b], since=t-hit; if(since<0) continue;
+      var p=polar(B[0],B[1],cx,cy), col=B[2], r=b===4?5.5:4.5, a=1;
+      if(b<4){
+        var lit=0.55+0.45*Math.exp(-since*3);                                    // flash on hit, then a steady glow
+        var out=smooth(GLIDE,GLIDE+0.5,t);                                       // fade away as the green takes over
+        a=lit*(1-out); r*=(1-0.5*out);
+        p=[p[0]+(cx-p[0])*0.18*out, p[1]+(cy-p[1])*0.18*out];
+      }else{
+        // the green glides to the centre along a gentle curve and grows
+        var k=inOutCubic(clamp((t-GLIDE)/GLIDE_LEN));
+        var ctrl=polar(B[0]+42,B[1]*0.55,cx,cy);
+        var x=(1-k)*(1-k)*p[0]+2*(1-k)*k*ctrl[0]+k*k*cx, y=(1-k)*(1-k)*p[1]+2*(1-k)*k*ctrl[1]+k*k*cy; p=[x,y];
+        r=5.5+(9-5.5)*k;
+        r*=1+0.3*outCubic(clamp((t-BREATH)/BREATH_LEN));                          // one breath at the centre
+        if(t>=OPEN) a=0;
+      }
+      if(a<=0.002) continue;
+      // ping ring when the sweep finds it
+      if(since<0.9){ var pk=since/0.9; g.strokeStyle=rgba(col,(1-pk)*0.7*a); g.lineWidth=1.2; g.beginPath(); g.arc(p[0],p[1],r+pk*16,0,Math.PI*2); g.stroke(); }
+      if(b===4&&t>=LOCK&&t<GLIDE+0.3){ var lk=clamp((t-LOCK)/0.6); g.strokeStyle=rgba(col,(1-lk)*0.8); g.lineWidth=1.4; g.beginPath(); g.arc(p[0],p[1],r+4+lk*22,0,Math.PI*2); g.stroke(); }
+      g.save(); g.shadowColor=rgba(col,0.9*a); g.shadowBlur=b===4?18:12; g.fillStyle=rgba(col,a); g.beginPath(); g.arc(p[0],p[1],r,0,Math.PI*2); g.fill(); g.restore();
+    }
+    // the opening: the green becomes an even mint ring that grows out and thins away; sonar ripples run ahead; the site shows inside
+    if(t>=OPEN){
+      var cover=Math.hypot(W/2,H/2)+2, r0=9*1.3, ko=inOutQuart(clamp((t-OPEN)/OPEN_LEN));
+      var outer=r0+(cover-r0)*ko, band=r0*(1-ko)+10*Math.sin(Math.PI*ko)*(1-ko), inner=Math.max(0,outer-band);
+      // ripples first, on the cover
+      for(var q=1;q<=2;q++){ var kq=clamp((t-OPEN)/(OPEN_LEN*0.9)), rq=outer+q*26*Math.sin(Math.PI*Math.min(1,kq*1.1)); g.strokeStyle=rgba(MINT,0.28*(1-kq)/q); g.lineWidth=1; g.beginPath(); g.arc(cx,cy,rq,0,Math.PI*2); g.stroke(); }
+      g.fillStyle=MINT; g.beginPath(); g.arc(cx,cy,outer,0,Math.PI*2); g.fill();
+      g.globalCompositeOperation='destination-out'; g.beginPath(); g.arc(cx,cy,inner,0,Math.PI*2); g.fill();
+      g.globalCompositeOperation='source-over';
+    }
+    word.style.opacity=(smooth(0.7,1.4,t)*(1-smooth(LOCK,LOCK+0.4,t))).toFixed(3);
+  }
+  var t0=performance.now(), done=false;
+  function finish(){ if(done) return; done=true; try{ sessionStorage.setItem('air-intro','1'); }catch(e){} root.classList.remove('intro'); el.remove(); }
+  requestAnimationFrame(function loop(now){ if(done) return; var t=(now-t0)/1000; if(t>=END){ finish(); return; } draw(t); requestAnimationFrame(loop); });
+  // never leave the page covered: finish if the tab is hidden or frames stall
+  document.addEventListener('visibilitychange',function(){ if(document.hidden) finish(); });
+  setTimeout(finish,(END+2.5)*1000);
+})();
+</script>
+
+<div class="cursor" aria-hidden="true"></div>
+<div class="pblur pblur-top" aria-hidden="true"><div></div><div></div><div></div><div></div><div></div></div>
+<div class="pblur pblur-bottom" aria-hidden="true"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+<header class="nav" id="nav">
+  <nav class="nav-pill" aria-label="Main">
+    <a class="logo" href="../" aria-label="AI Radar home">
+      <img class="logo-mark" src="../assets/logo.svg" alt="" width="40" height="40">
+      <span class="logo-word">AI Radar</span>
+    </a>
+    <div class="nav-links">
+      <a class="roll-host" href="#best"><span class="roll" data-roll>Best for you</span></a>
+      <a class="roll-host" href="#features"><span class="roll" data-roll>Features</span></a>
+      <a class="roll-host" href="#install"><span class="roll" data-roll>Install</span></a>
+      <a class="roll-host" href="../"><span class="roll" data-roll>Website</span></a>
+    </div>
+    <a class="btn btn-dark roll-host" href="../app-beta/"><span class="roll" data-roll>Open the app</span></a>
+  </nav>
+</header>
+
+<main id="top">
+<!-- ============ HERO ============ -->
+<div class="hero-shell">
+  <section class="hero sky gutter" id="hero">
+    <div id="radar" aria-hidden="true">
+      <svg class="fallback" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="none" stroke="#34c98a" stroke-opacity=".5" stroke-width=".3"></circle><circle cx="16" cy="16" r="9.5" fill="none" stroke="#34c98a" stroke-opacity=".35" stroke-width=".3"></circle><circle cx="16" cy="16" r="5" fill="none" stroke="#34c98a" stroke-opacity=".35" stroke-width=".3"></circle><path d="M16 16 16 2A14 14 0 0 1 28.1 9Z" fill="#34c98a" fill-opacity=".18"></path><circle cx="16" cy="16" r=".7" fill="#34c98a"></circle></svg>
+    </div>
+    <div class="hero-copy">
+      <a class="new-pill appear" data-delay="150" href="#best"><b>New</b><span class="long">Best for you: say your goal, get the top picks</span><span class="short">Best for you picks</span></a>
+      <h1 class="h-display" data-words data-start="250" data-step="70">Ask anything about AI. Keep what matters.</h1>
+      <p class="sub" data-words data-start="650" data-step="20">The free AI Radar app: answers with sources, one search across GitHub, Hugging Face and research papers, and an AI that picks the best tools for what you want to do.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-dark roll-host appear" data-delay="1000" href="../app-beta/"><span class="icon-roll" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span><span class="roll" data-roll>Open the app</span></a>
+        <a class="btn btn-light roll-host appear" data-delay="1150" href="#install"><span class="roll" data-roll>Add to home screen</span></a>
+      </div>
+      <ul class="facts appear" data-delay="1300" aria-label="At a glance"><li>Free</li><li>No account</li><li>Android · iPhone · desktop</li></ul>
+    </div>
+
+    <div class="phones">
+      <div class="phone-stage">
+        <div class="phone-par" id="phone-par">
+          <div class="phone-wrap phone-a" data-delay="500"><div class="phone"><div class="phone-in"><div class="screen" style="background:#0a0c0b"><div class="island"></div><img class="shot" src="img/best.jpg" alt="Best for you in the AI Radar app: two picks for cloning your voice on a laptop, each with why, trade-off and first step" width="585" height="1266"></div></div></div></div>
+          <div class="phone-wrap phone-b" data-delay="700"><div class="phone"><div class="phone-in"><div class="screen" style="background:#0a0c0b"><div class="island"></div><img class="shot" src="img/chat.jpg" alt="AI Radar chat explaining RAG with sources" width="585" height="1266"></div></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ BEST FOR YOU ============ -->
+<section class="how gutter" id="best">
+  <div class="wrap two-col">
+    <div class="how-left reveal">
+      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.2 6.8H21l-5.5 4 2.1 6.8L12 15.6l-5.6 4 2.1-6.8-5.5-4h6.8z"/></svg>New · Best for you</span>
+      <h2 class="h-section">Say what you want to do. Get the best picks.</h2>
+      <p class="body" style="max-width:440px">Ask “best free way to clone my voice on my laptop” and the app does the research: it reads your goal, runs its own searches, throws out dead projects and tells you which few to use, and why.</p>
+      <div class="ctrls">
+        <button class="round" id="prev" type="button" aria-label="Previous step"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"></path></svg></button>
+        <div class="dots" role="tablist" aria-label="Steps"><button class="dot" role="tab" aria-label="Understands"></button><button class="dot" role="tab" aria-label="Searches"></button><button class="dot" role="tab" aria-label="Checks"></button><button class="dot" role="tab" aria-label="Recommends"></button></div>
+        <button class="round" id="next" type="button" aria-label="Next step"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+      </div>
+    </div>
+    <div class="how-right reveal">
+      <div class="stage">
+        <div class="stage-bg" aria-hidden="true"></div>
+        <div class="slide" aria-hidden="false"><div class="glass">
+          <div class="slide-h"><i>1</i>Understands</div>
+          <p class="slide-t">It works out what you really need.</p>
+          <div class="ask-bubble">best free way to clone my own voice on my laptop</div>
+          <div class="chips"><span class="need">Clone your own voice on a laptop</span><span>Free</span><span>Runs locally</span><span>Beginner</span></div>
+        </div></div>
+        <div class="slide" aria-hidden="true"><div class="glass">
+          <div class="slide-h"><i>2</i>Searches</div>
+          <p class="slide-t">It plans its own searches, everywhere.</p>
+          <ul class="srch"><li>GitHub repos<span>“voice cloning”</span></li><li>Hugging Face models<span>“tts”</span></li><li>Hugging Face apps<span>“voice-clone”</span></li><li>Research papers<span>“zero-shot voice cloning”</span></li><li>AI Radar picks<span>our own posts</span></li></ul>
+        </div></div>
+        <div class="slide" aria-hidden="true"><div class="glass">
+          <div class="slide-h"><i>3</i>Checks</div>
+          <p class="slide-t">It throws out what you shouldn't use.</p>
+          <div class="funnel"><div>Results found<b>21</b></div><div>Archived or forked repos<b class="x">removed</b></div><div>Untouched for 2+ years<b class="x">removed</b></div><div>Duplicates<b class="x">merged</b></div><div>Compared side by side<b>14</b></div></div>
+        </div></div>
+        <div class="slide" aria-hidden="true"><div class="glass">
+          <div class="slide-h"><i>4</i>Recommends</div>
+          <p class="slide-t">The top few, with reasons.</p>
+          <div class="pk"><i>1</i><div><small>AI Radar pick · Repo · ★ 74.2k · AGPL-3.0</small><b>debpalash/VoiceStudio</b><p><em>Why</em> Runs fully offline and bundles 16 speech engines in one app</p><p><em>Start</em> Install it and clone a voice from a short clip</p></div></div>
+          <div class="pk"><i>2</i><div><small>Repo · GitHub · ★ 63.1k · MIT</small><b>RVC-Boss/GPT-SoVITS</b><p><em>Trade-off</em> Setup takes some Python steps</p></div></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES (bento) ============ -->
+<section class="bento-sec gutter" id="features">
+  <div class="wrap">
+    <div class="bento-head reveal">
+      <div style="display:flex;flex-direction:column;gap:18px;align-items:flex-start;max-width:640px">
+        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>What's inside</span>
+        <h2 class="h-section">Four tabs. Everything AI in your pocket.</h2>
+      </div>
+      <div class="mini"><span class="serif">₹0</span><p>Free to use, no account, and your saves never leave your phone.</p></div>
+    </div>
+    <div class="bento">
+      <article class="card c-peach reveal">
+        <div class="top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></span><span class="lbl">CHAT</span></div>
+        <h3>Ask in your own words</h3>
+        <p>Short answers with the sources beside them, plus matching repos, models, apps and papers under every answer.</p>
+        <div class="shot-box"><img src="img/chat.jpg" alt="Chat answer with sources" loading="lazy" width="585" height="1266"></div>
+      </article>
+      <article class="card c-mid reveal">
+        <div class="top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></span><span class="lbl">EXPLORE</span></div>
+        <h3>Search all of AI</h3>
+        <p>One search across AI Radar, GitHub, Hugging Face, papers and Hacker News. Switch views, sort by most popular or newest.</p>
+      </article>
+      <article class="card c-black reveal">
+        <div class="top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg></span><span class="lbl">GET IT</span></div>
+        <h3>On your home screen in 10 seconds</h3>
+        <p>No store download. Open the link, add it to your home screen, and it opens like any other app. Google Play and App Store versions are coming soon.</p>
+        <a class="btn btn-light roll-host" style="align-self:flex-start;margin-top:auto" href="../app-beta/"><span class="roll" data-roll>Open the app</span></a>
+      </article>
+      <article class="card c-mid reveal">
+        <div class="top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span><span class="lbl">SAVED</span></div>
+        <h3>Keep it in collections</h3>
+        <p>Save any link, answer or note. Group them into collections and share one with a single link.</p>
+      </article>
+      <article class="card c-wide reveal">
+        <div style="display:flex;flex-direction:column;gap:12px;min-width:0;flex:1">
+          <div class="top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12 18.5 5.5"/></svg></span><span class="lbl">SOURCES</span></div>
+          <h3>AI Radar first, then the whole AI world</h3>
+          <p>Every result shows how popular it is, so you can see what people trust.</p>
+          <div class="srcs"><span>GitHub<b>★ stars</b></span><span>Hugging Face<b>↓ downloads</b></span><span>Spaces<b>♥ likes</b></span><span>Papers<b>▲ upvotes</b></span><span>Hacker News<b>▲ points</b></span></div>
+        </div>
+      </article>
+      <article class="card c-wide reveal">
+        <div style="display:flex;flex-direction:column;gap:12px;min-width:0;flex:1">
+          <div class="top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/></svg></span><span class="lbl">GLOSSARY</span></div>
+          <h3>AI words, in plain English</h3>
+          <p>Short definitions from agents and RAG to tokens and quantization. Ask the chat for an example, or jump to the resources on any term.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INSTALL ============ -->
+<section class="inst-sec gutter" id="install">
+  <div class="wrap">
+    <div class="reveal" style="display:flex;flex-direction:column;gap:18px;align-items:flex-start;max-width:640px">
+      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Get the app</span>
+      <h2 class="h-section">Add it to your home screen</h2>
+      <p class="body">AI Radar installs from your browser. Pick your phone and follow three taps.</p>
+    </div>
+    <div class="linkbox reveal"><code id="app-url">airadar08.github.io/app-beta</code><button class="btn copy roll-host" type="button" id="copy"><span class="roll" data-roll>Copy link</span></button><a class="btn btn-dark roll-host" href="../app-beta/"><span class="roll" data-roll>Open the app</span></a></div>
+    <div class="inst">
+      <article class="card reveal"><div class="top"><span class="lbl">ANDROID · CHROME</span></div><ol><li>Open the link in Chrome.</li><li>Tap the three-dot menu at the top right.</li><li>Tap <b>Install app</b> or <b>Add to Home screen</b>.</li></ol></article>
+      <article class="card reveal"><div class="top"><span class="lbl">IPHONE · SAFARI</span></div><ol><li>Open the link in Safari.</li><li>Tap the Share button.</li><li>Tap <b>Add to Home Screen</b>.</li></ol></article>
+      <article class="card reveal"><div class="top"><span class="lbl">COMPUTER · CHROME OR EDGE</span></div><ol><li>Open the link.</li><li>Click the install icon at the right of the address bar.</li><li>Click <b>Install</b>.</li></ol></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq-sec gutter">
+  <div class="wrap two-col" style="align-items:flex-start">
+    <div class="faq-left reveal">
+      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17h.01"></path></svg>Questions</span>
+      <h2 class="h-section">Good to know</h2>
+      <p class="body">Anything else? Send us a DM on X.</p>
+    </div>
+    <div class="faq-list" id="faq"></div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="gutter" style="padding-bottom:24px">
+  <div class="cta sky reveal" style="max-width:1240px;margin:0 auto">
+    <h2 class="h-display" style="font-size:clamp(38px,5.4vw,70px)">Your AI radar, now in your pocket</h2>
+    <p class="sub" style="color:#fff;margin:0;max-width:480px;font-size:16px;line-height:1.6">Free, no account, ready in seconds.</p>
+    <a class="btn btn-dark roll-host" href="../app-beta/"><span class="icon-roll" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span><span class="roll" data-roll>Open the app</span></a>
+    <a class="tag-link roll-host" href="https://x.com/search?q=%23stayontheradar&amp;src=hashtag_click" target="_blank" rel="noopener"><span class="roll" data-roll>#stayontheradar</span></a>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="gutter" style="overflow:hidden">
+  <div class="wrap">
+    <div class="footer-top">
+      <div style="flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:14px">
+        <img class="logo-mark" src="../assets/logo.svg" alt="AI Radar" width="40" height="40">
+        <p style="margin:0;max-width:360px;font-size:13px;line-height:1.6;color:var(--muted)">AI Radar summarises public sources. Check the original before acting on anything you read here.</p>
+        <a class="roll-host" href="https://x.com/search?q=%23stayontheradar&amp;src=hashtag_click" target="_blank" rel="noopener" style="align-self:flex-start;text-decoration:none;font-family:var(--serif);font-style:italic;font-size:24px;color:#6fdcaa"><span class="roll" data-roll>#stayontheradar</span></a>
+      </div>
+      <div style="flex:0 1 420px;min-width:0;display:flex;flex-direction:column;gap:12px">
+        <p style="margin:0;font-size:14px;line-height:1.5;color:#c3cbc5">Get every post first: follow @ai_radar_ on X and turn on notifications.</p>
+        <a class="btn btn-dark roll-host" style="align-self:flex-start;padding:13px 22px;font-size:14px" href="https://x.com/ai_radar_" target="_blank" rel="noopener"><span class="roll" data-roll>Follow @ai_radar_</span></a>
+      </div>
+    </div>
+    <div class="cols">
+      <div><span class="k">App</span><a href="../app-beta/">Open the app</a><a href="#best">Best for you</a><a href="#install">Install</a></div>
+      <div><span class="k">Resources</span><a href="../repos/">Trending repos</a><a href="../cheatsheets/">Cheatsheets</a><a href="../prompt-packs/">Prompt packs</a></div>
+      <div><span class="k">AI Radar</span><a href="../">Website</a><a href="https://x.com/ai_radar_" target="_blank" rel="noopener">@ai_radar_ on X</a></div>
+    </div>
+  </div>
+  <div class="wordmark reveal" aria-hidden="true">AI Radar</div>
+</footer>
+
+<script>
+(function(){
+  var doc=document.documentElement;
+  doc.classList.add('js');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var raf=window.requestAnimationFrame.bind(window);
+
+  /* ---- Rolling text (same as the home page) ---- */
+  document.querySelectorAll('[data-roll]').forEach(function(el){
+    var t=el.textContent; el.setAttribute('aria-label',t); el.textContent='';
+    Array.from(t).forEach(function(ch,i){ var s=document.createElement('span'); s.textContent=ch; s.setAttribute('aria-hidden','true'); s.style.transitionDelay=(i*16)+'ms'; el.appendChild(s); });
+  });
+  /* ---- Hero words blur in one by one ---- */
+  document.querySelectorAll('[data-words]').forEach(function(el){
+    var start=+el.dataset.start||0, step=+el.dataset.step||60;
+    var words=el.textContent.trim().split(/\s+/); el.setAttribute('aria-label',el.textContent.trim()); el.textContent='';
+    words.forEach(function(w,i){ var s=document.createElement('span'); s.className='w'; s.textContent=w; s.setAttribute('aria-hidden','true');
+      el.appendChild(s); if(i<words.length-1) el.appendChild(document.createTextNode(' '));
+      setTimeout(function(){ s.classList.add('in'); }, reduce?0:(window.__airIntro||0)+start+i*step); });
+  });
+  document.querySelectorAll('.appear,.phone-wrap').forEach(function(el){ setTimeout(function(){ el.classList.add('in'); }, reduce?0:(window.__airIntro||0)+(+el.dataset.delay||0)); });
+
+  /* ---- Scroll reveals ---- */
+  var io=null, reveals=[].slice.call(document.querySelectorAll('.reveal'));
+  reveals.forEach(function(el){ if(el.getBoundingClientRect().top>window.innerHeight*0.95) el.classList.add('pending'); });
+  if('IntersectionObserver' in window){
+    io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return;
+      var el=e.target, sibs=[].slice.call(el.parentNode.children).filter(function(c){ return c.classList.contains('pending'); });
+      el.style.transitionDelay=Math.min(sibs.indexOf(el),5)*90+'ms'; el.classList.remove('pending'); io.unobserve(el); }); },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+    reveals.forEach(function(el){ if(el.classList.contains('pending')) io.observe(el); });
+  } else reveals.forEach(function(el){ el.classList.remove('pending'); });
+
+  /* ---- FAQ ---- */
+  var qa=[
+    ['Is the app free?','Yes. The app and everything in it are free.'],
+    ['Do I need an account?','No. Open the link and start asking. There is no sign-up.'],
+    ['How is Best for you different from a search?','A search lists everything that matches your words. Best for you reads what you are trying to do, runs several searches for you, removes stale or archived projects and recommends a few, each with the reason, the trade-off and a first step. It takes 10 to 20 seconds.'],
+    ['Where are my saved items kept?','On your own phone, not on a server. Export them to a file for a backup and import them on a new phone.'],
+    ['Does it work offline?','The app opens offline and your saved items are there. Chat and search need an internet connection.'],
+    ['What can I ask?','Anything about AI: models, tools, repos, prompts, research and news. Questions on other topics get a polite no.'],
+    ['Is it on Google Play or the App Store?','Not yet. Store versions are coming soon. Until then, add it to your home screen from your browser.']
+  ];
+  var list=document.getElementById('faq');
+  qa.forEach(function(p,i){
+    var row=document.createElement('div'); row.className='faq reveal'; var id='faq-a-'+i;
+    row.innerHTML='<button type="button" aria-expanded="false" aria-controls="'+id+'"><span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button><div class="faq-a" id="'+id+'"><div><p></p></div></div>';
+    row.querySelector('span').textContent=p[0]; row.querySelector('p').textContent=p[1]; list.appendChild(row);
+    if(row.getBoundingClientRect().top>window.innerHeight*0.95){ row.classList.add('pending'); if(io) io.observe(row); }
+    row.querySelector('button').addEventListener('click',function(){ var open=row.classList.contains('open');
+      list.querySelectorAll('.faq').forEach(function(r){ r.classList.remove('open'); r.querySelector('button').setAttribute('aria-expanded','false'); });
+      if(!open){ row.classList.add('open'); this.setAttribute('aria-expanded','true'); } });
+  });
+
+  /* ---- Best for you steps: cross-fade with timed dots ---- */
+  var slides=[].slice.call(document.querySelectorAll('.slide')), dots=[].slice.call(document.querySelectorAll('.dot')), cur=0, timer=null, DUR=5000;
+  function go(i,user){ cur=(i+slides.length)%slides.length;
+    slides.forEach(function(s,k){ s.setAttribute('aria-hidden', k===cur?'false':'true'); });
+    dots.forEach(function(d,k){ d.classList.remove('on'); d.setAttribute('aria-selected',k===cur?'true':'false'); });
+    var d=dots[cur]; void d.offsetWidth; d.classList.add('on'); d.style.setProperty('--dur',DUR+'ms'); if(user) restart(); }
+  function restart(){ if(timer) clearInterval(timer); if(!reduce) timer=setInterval(function(){ go(cur+1); },DUR); else dots.forEach(function(d){ d.classList.add('static'); }); }
+  dots.forEach(function(d,k){ d.addEventListener('click',function(){ go(k,true); }); });
+  document.getElementById('prev').addEventListener('click',function(){ go(cur-1,true); });
+  document.getElementById('next').addEventListener('click',function(){ go(cur+1,true); });
+  go(0); restart();
+
+  /* ---- Scroll: phone parallax, solid nav ---- */
+  var par=document.getElementById('phone-par'), hero=document.getElementById('hero'), nav=document.getElementById('nav');
+  function onScroll(){ var y=window.scrollY; if(!reduce) par.style.transform='translate3d(0,'+(y*0.1).toFixed(1)+'px,0)'; nav.classList.toggle('solid', hero.getBoundingClientRect().bottom<90); }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  /* ---- Custom cursor ---- */
+  var cur$=document.querySelector('.cursor'), mx=-100, my=-100, cx=-100, cy=-100;
+  if(window.matchMedia('(hover:hover) and (pointer:fine)').matches && !reduce){
+    window.addEventListener('mousemove',function(e){ mx=e.clientX; my=e.clientY; cur$.classList.add('on'); },{passive:true});
+    document.addEventListener('mouseleave',function(){ cur$.classList.remove('on'); });
+    document.addEventListener('mouseover',function(e){ cur$.classList.toggle('big', !!e.target.closest('a,button,input,.card')); });
+    (function loop(){ cx+=(mx-cx)*0.22; cy+=(my-cy)*0.22; cur$.style.transform='translate3d('+cx.toFixed(1)+'px,'+cy.toFixed(1)+'px,0)'; raf(loop); })();
+  }
+
+  /* ---- Copy the app link ---- */
+  var cp=document.getElementById('copy');
+  cp.addEventListener('click',function(){
+    var url='https://airadar08.github.io/app-beta/', lab=cp.querySelector('.roll');
+    function done(t){ var o=lab.getAttribute('aria-label'); lab.style.visibility='hidden'; cp.setAttribute('data-msg',t); cp.insertAdjacentHTML('beforeend','<span class="msg" style="position:absolute;inset:0;display:grid;place-items:center">'+t+'</span>');
+      setTimeout(function(){ var m=cp.querySelector('.msg'); if(m) m.remove(); lab.style.visibility=''; },1500); }
+    if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(function(){ done('Copied'); },sel); else sel();
+    function sel(){ var r=document.createRange(); r.selectNodeContents(document.getElementById('app-url')); var s=getSelection(); s.removeAllRanges(); s.addRange(r); done('Selected'); }
+  });
+})();
+</script>
+<script src="../assets/hero.js?v=19" defer></script>
+<script src="../assets/chat.js?v=18" defer></script>
+<script src="../assets/music.js?v=2" defer></script>
+</body>
+</html>

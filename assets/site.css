@@ -30,6 +30,12 @@ a{color:inherit}
 .nav .btn{margin-left:6px}
 @media (max-width:640px){.nav a.hide-sm{display:none}}
 
+/* "Get app" link in the header: outlined pill with a phone icon; stays visible on phones */
+.nav a.getapp{display:inline-flex;align-items:center;gap:7px;color:var(--fg);border:1px solid var(--line);padding:8px 13px}
+.nav a.getapp:hover{border-color:var(--mint);background:transparent}
+.nav a.getapp svg{width:15px;height:15px;color:var(--mint)}
+@media (max-width:440px){.site-head .nav a.btn-ink{display:none}.brand{font-size:17px}}
+
 /* buttons */
 .btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;font-size:15px;padding:11px 18px;border-radius:12px;border:1px solid transparent;transition:transform .25s var(--ease),background .2s,border-color .2s;cursor:pointer}
 .btn:hover{transform:translateY(-2px)}

@@ -85,7 +85,7 @@
     btn.title=playing?'Pause music':'Play music';
   }
   function addButton(){
-    var follow=document.querySelector('header .nav-pill > a.btn, .site-head .nav a.btn');
+    var follow=document.querySelector('header .nav-pill a.btn, .site-head .nav a.btn');   // first button in the bar (home: inside .nav-right)
     if(!follow) return;
     var css=document.createElement('style');
     css.textContent='.air-music{position:relative;flex:none;width:40px;height:40px;margin-right:8px;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:#eef1ee;display:inline-grid;place-items:center;cursor:pointer;padding:0;transition:background .2s,border-color .2s,color .2s}'+
