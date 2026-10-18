@@ -2,18 +2,17 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: vectorize-io/hindsight",
-  "summary": "Long-term memory for AI agents that learns from experience, not just recalls chat history",
+  "summary": "Memory for AI agents that learns, not just logs chats. Why it matters: agents stop forgetting between sessions.",
   "points": [
-   "Retain, recall and reflect on memories",
-   "Merges facts into evidence-backed beliefs",
-   "Isolated memory banks, no cross-leaks"
+   "Retain, recall, reflect: facts become beliefs",
+   "★ 44.6k stars, +445 in a day, MIT"
   ],
   "link": "repos/#vectorize-io-hindsight",
   "source": "https://github.com/vectorize-io/hindsight",
   "img": "repos/img/vectorize-io-hindsight.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2111726515440525410",
   "id": "2026-10-18-repo-vectorize-io-hindsight",
-  "date": "2026-10-18T13:16:57+05:30"
+  "date": "2026-10-18T13:20:09+05:30"
  },
  {
   "type": "Fact",
