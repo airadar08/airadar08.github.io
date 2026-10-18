@@ -1,19 +1,33 @@
 [
  {
+  "type": "Fact",
+  "title": "a 1973 report helped end UK state support for AI in most universities.",
+  "summary": "Why it matters: it fed the UK's first AI winter.",
+  "points": [
+   "Lighthill found AI had not delivered its promised impact",
+   "Toy-problem tricks hit a \"combinatorial explosion\""
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111824430829834485",
+  "date": "2026-10-18T19:49:14+05:30",
+  "link": "",
+  "source": "https://t.co/iUn6HghRFB",
+  "img": "https://pbs.twimg.com/media/HU61GvQbIAAEiTn?format=jpg&name=small",
+  "id": "2026-10-18-fact-a-1973-report-helped-end-uk-state-support-for-ai-in-most-uni"
+ },
+ {
   "type": "Prompt pack",
   "title": "FREE: 38 AI prompts for job seekers",
   "summary": "38 copy-ready prompts for the whole job hunt: targeting roles, resumes, outreach, interview practice, case rounds and offers.",
   "points": [
-   "Job search & targeting",
-   "Resume & LinkedIn",
-   "Cover letters & outreach",
-   "Interview prep"
+   "Job search, resume & LinkedIn",
+   "Cover letters, interview prep, offers",
+   "Copy, fill the blanks, paste into any AI"
   ],
   "link": "prompt-packs/ai-prompts-for-job-seekers/",
   "img": "prompt-packs/ai-prompts-for-job-seekers/cover.jpg",
   "x_url": "https://x.com/ai_radar_/status/2111788022689898973",
   "id": "pack-ai-prompts-for-job-seekers",
-  "date": "2026-10-18T17:25:02+05:30",
+  "date": "2026-10-18T17:24:34+05:30",
   "source": ""
  },
  {
@@ -27,7 +41,7 @@
   "x_url": "https://x.com/ai_radar_/status/2111734392360144898",
   "date": "2026-10-18T13:51:27+05:30",
   "link": "",
-  "source": "https://en.wikipedia.org/wiki/Logic_Theorist",
+  "source": "https://t.co/RUmdwcWEKC",
   "img": "https://pbs.twimg.com/media/HU5jNn8bUAA3uCm?format=jpg&name=small",
   "id": "2026-10-18-fact-in-1956-a-program-found-a-better-proof-than-russell-and-whit"
  },
@@ -200,6 +214,22 @@
   "source": "",
   "img": "prompt-packs/3-prompts-for-better-ai-code-reviews/cover.jpg",
   "id": "pack-3-prompts-for-better-ai-code-reviews"
+ },
+ {
+  "type": "News",
+  "title": "DeepSeek released V4.1-Flash-1017: MIT license, 1M context.",
+  "summary": "Why it matters: open weights beat closed on some agent coding, not deep reasoning.",
+  "points": [
+   "DeepSWE: 77.0 vs Opus 5's 74.0",
+   "Terminal-Bench 4.0: 42.3 (was 31.2)",
+   "HLE: Opus 5 leads, 56.3 vs 42.6"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111509759870607808",
+  "date": "2026-10-17T22:58:51+05:30",
+  "link": "",
+  "source": "https://t.co/cPHCSaqR2b",
+  "img": "https://pbs.twimg.com/media/HU2W5_WaoAAqgzQ?format=jpg&name=small",
+  "id": "2026-10-17-news-deepseek-released-v4-1-flash-1017-mit-license-1m-context"
  },
  {
   "type": "Cheatsheet",
