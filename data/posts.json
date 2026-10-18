@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: vectorize-io/hindsight",
+  "summary": "Long-term memory for AI agents that learns from experience, not just recalls chat history",
+  "points": [
+   "Retain, recall and reflect on memories",
+   "Merges facts into evidence-backed beliefs",
+   "Isolated memory banks, no cross-leaks"
+  ],
+  "link": "repos/#vectorize-io-hindsight",
+  "source": "https://github.com/vectorize-io/hindsight",
+  "img": "repos/img/vectorize-io-hindsight.jpg",
+  "x_url": "",
+  "id": "2026-10-18-repo-vectorize-io-hindsight",
+  "date": "2026-10-18T13:16:57+05:30"
+ },
+ {
   "type": "Fact",
   "title": "a 1950s checkers program learned by playing itself, on an IBM 701.",
   "summary": "",

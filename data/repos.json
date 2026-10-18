@@ -1,5 +1,24 @@
 [
  {
+  "slug": "vectorize-io-hindsight",
+  "repo": "vectorize-io/hindsight",
+  "url": "https://github.com/vectorize-io/hindsight",
+  "tagline": "Long-term memory for AI agents that learns from experience, not just recalls chat history",
+  "stars": "44.6k",
+  "trend": "+445",
+  "language": "Python",
+  "license": "MIT",
+  "what": [
+   "Retain, recall and reflect on memories",
+   "Merges facts into evidence-backed beliefs",
+   "Isolated memory banks, no cross-leaks"
+  ],
+  "read": "A serious take on agent memory: it builds beliefs from evidence, not just a log.",
+  "img": "repos/img/vectorize-io-hindsight.jpg",
+  "date": "2026-10-18",
+  "post": ""
+ },
+ {
   "slug": "mksglu-context-mode",
   "repo": "mksglu/context-mode",
   "url": "https://github.com/mksglu/context-mode",
