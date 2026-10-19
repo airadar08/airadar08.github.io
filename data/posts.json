@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: stablyai/orca",
+  "summary": "Desktop app to run several AI coding agents side by side, each in its own worktree",
+  "points": [
+   "Runs Codex, Claude Code, OpenCode or Pi in parallel",
+   "Each agent works in its own isolated git worktree",
+   "Phone app to watch and steer agents remotely"
+  ],
+  "link": "repos/#stablyai-orca",
+  "source": "https://github.com/stablyai/orca",
+  "img": "repos/img/stablyai-orca.jpg",
+  "x_url": "",
+  "id": "2026-10-19-repo-stablyai-orca",
+  "date": "2026-10-19T13:14:34+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "Vector databases explained cheatsheet",
   "summary": "How AI finds text by meaning, not keywords",

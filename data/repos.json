@@ -1,5 +1,24 @@
 [
  {
+  "slug": "stablyai-orca",
+  "repo": "stablyai/orca",
+  "url": "https://github.com/stablyai/orca",
+  "tagline": "Desktop app to run several AI coding agents side by side, each in its own worktree",
+  "stars": "97.2k",
+  "trend": "+1.1k",
+  "language": "TypeScript",
+  "license": "MIT",
+  "what": [
+   "Runs Codex, Claude Code, OpenCode or Pi in parallel",
+   "Each agent works in its own isolated git worktree",
+   "Phone app to watch and steer agents remotely"
+  ],
+  "read": "A strong pick if you already juggle several coding agents at once",
+  "img": "repos/img/stablyai-orca.jpg",
+  "date": "2026-10-19",
+  "post": ""
+ },
+ {
   "slug": "hkuds-cli-anything",
   "repo": "HKUDS/CLI-Anything",
   "url": "https://github.com/HKUDS/CLI-Anything",
