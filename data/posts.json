@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "Vector databases explained cheatsheet",
+  "summary": "How AI finds text by meaning, not keywords",
+  "link": "cheatsheets/#vector-databases-explained",
+  "img": "cheatsheets/img/vector-databases-explained.jpg",
+  "id": "2026-10-19-cheatsheet-vector-databases-explained",
+  "date": "2026-10-19T11:12:26+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: MadsLorentzen/ai-job-search",
   "summary": "A job-hunt framework built on Claude Code: score postings, tailor CVs, write cover letters, prep interviews",
