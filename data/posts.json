@@ -2,18 +2,33 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: stablyai/orca",
-  "summary": "Desktop app to run several AI coding agents side by side, each in its own worktree",
+  "summary": "Run Codex, Claude Code or OpenCode side by side, each in its own git worktree. Why it matters: parallel agents stay isolated.",
   "points": [
-   "Runs Codex, Claude Code, OpenCode or Pi in parallel",
-   "Each agent works in its own isolated git worktree",
-   "Phone app to watch and steer agents remotely"
+   "★ 97.2k stars, +1.1k today",
+   "One prompt, many agents",
+   "Phone app to steer them"
   ],
   "link": "repos/#stablyai-orca",
   "source": "https://github.com/stablyai/orca",
   "img": "repos/img/stablyai-orca.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2112088192568738199",
   "id": "2026-10-19-repo-stablyai-orca",
-  "date": "2026-10-19T13:14:34+05:30"
+  "date": "2026-10-19T13:17:20+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "AlexNet, the 2012 ImageNet winner, was trained in a bedroom on two $500 gaming GPUs.",
+  "summary": "Why it matters: cheap GPUs plus big data sparked deep learning's boom.",
+  "points": [
+   "5-6 days of training",
+   "15.3% top-5 error, 10.8+ points ahead of #2"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2112067364498157925",
+  "date": "2026-10-19T11:54:34+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/AlexNet",
+  "img": "",
+  "id": "2026-10-19-fact-alexnet-the-2012-imagenet-winner-was-trained-in-a-bedroom-on"
  },
  {
   "type": "Cheatsheet",
