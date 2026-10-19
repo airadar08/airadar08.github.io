@@ -1,31 +1,51 @@
 [
  {
-  "type": "Repo",
-  "title": "Trending AI repo: anomalyco/opencode",
-  "summary": "Open source AI coding agent for your terminal, with a desktop app in beta",
-  "points": [
-   "Coding agent you run from the terminal",
-   "Install with npm, brew, pacman, mise or Nix",
-   "Desktop app available in beta"
-  ],
-  "link": "repos/#anomalyco-opencode",
-  "source": "https://github.com/anomalyco/opencode",
-  "img": "repos/img/anomalyco-opencode.jpg",
-  "x_url": "",
-  "id": "2026-10-19-repo-anomalyco-opencode",
-  "date": "2026-10-19T15:29:12+05:30"
- },
- {
   "type": "Cheatsheet",
   "title": "AI evals explained cheatsheet",
   "summary": "How to test an AI app before users do",
   "link": "cheatsheets/#ai-evals-explained",
   "img": "cheatsheets/img/ai-evals-explained.jpg",
   "id": "2026-10-19-cheatsheet-ai-evals-explained",
-  "date": "2026-10-19T15:29:12+05:30",
-  "x_url": "",
+  "date": "2026-10-19T15:31:23+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2112121927901020177",
   "source": "",
-  "points": []
+  "points": [
+   "Code checks vs LLM judge vs human review",
+   "Build your first eval in 4 steps",
+   "Common traps that fool teams"
+  ]
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: anomalyco/opencode",
+  "summary": "Open source AI coding agent you run from the terminal. Why it matters: a free, open alternative to paid coding agents.",
+  "points": [
+   "★ 217k stars, +1.4k today",
+   "MIT licence, TypeScript",
+   "Desktop app in beta"
+  ],
+  "link": "repos/#anomalyco-opencode",
+  "source": "https://github.com/anomalyco/opencode",
+  "img": "repos/img/anomalyco-opencode.jpg",
+  "x_url": "https://x.com/ai_radar_/status/2112121569074159661",
+  "id": "2026-10-19-repo-anomalyco-opencode",
+  "date": "2026-10-19T15:29:58+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "The A* search algorithm for game pathfinding came from a wobbly 1960s robot, Shakey.",
+  "summary": "Why it matters: route-finding traces back to it.",
+  "points": [
+   "SRI, 1966-72, DARPA-funded",
+   "It shook as it moved, hence the name",
+   "Life: \"first electronic person\""
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2112096645349597483",
+  "date": "2026-10-19T13:50:55+05:30",
+  "link": "",
+  "source": "https://t.co/t4pPFDMUmn",
+  "img": "",
+  "id": "2026-10-19-fact-the-a-search-algorithm-for-game-pathfinding-came-from-a-wobb"
  },
  {
   "type": "Repo",
