@@ -431,33 +431,67 @@ img{max-width:100%}
 .steps span{font-size:13.5px;color:var(--muted);line-height:1.45}
 @media (max-width:900px){.soon-band{flex-direction:column;align-items:stretch;gap:32px}.steps{flex:0 0 auto}}
 
-/* phone gallery: every screen of the app in a phone frame */
+/* app tour: four tab buttons (Chat, Explore, Posts, Saved) switch one iPhone screen; on phones the tabs become a segmented control */
 .gal-sec{padding-block:20px 120px;overflow:hidden}
 .gal-head{display:flex;flex-direction:column;gap:18px;align-items:center;text-align:center;max-width:640px;margin:0 auto}
-.gallery{display:flex;gap:26px;justify-content:center;align-items:flex-start;margin-top:56px;padding-bottom:12px}
-.gp{margin:0;flex:0 0 auto;width:204px;display:flex;flex-direction:column;gap:16px;align-items:center;text-decoration:none;color:var(--ink)}
-.gp:nth-child(odd){margin-top:64px}
-.gp.big{width:236px;margin-top:-12px}
-.gp .ph{position:relative;width:100%;aspect-ratio:300/620;border-radius:36px;background:#e9e9ec;padding:3px;box-shadow:0 34px 70px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.6);transition:transform .7s var(--spring),box-shadow .5s ease}
-.gp .ph-in{height:100%;border-radius:33px;background:#0d0d0d;padding:7px}
-.gp .scr{position:relative;height:100%;border-radius:27px;overflow:hidden;background:#0a0c0b}
-.gp .scr img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
-.gp .isl{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:62px;height:18px;border-radius:999px;background:#0d0d0d;z-index:2}
-.gp:hover .ph{transform:translateY(-12px) rotate(-1.5deg);box-shadow:0 44px 80px rgba(0,0,0,.55),0 0 0 1px rgba(52,201,138,.4),inset 0 0 0 1px rgba(255,255,255,.6)}
-.gp figcaption{display:flex;flex-direction:column;gap:4px;align-items:center;text-align:center}
-.gp figcaption b{font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.05}
-.gp figcaption span{font-size:13px;line-height:1.45;color:var(--muted);max-width:200px}
-.gp .new{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--coral);color:#03120b;border-radius:999px;padding:3px 8px;align-self:center}
-.swipe{display:none;font-size:12.5px;color:var(--muted);text-align:center;margin-top:6px}
-@media (max-width:1100px){.gp{width:166px}.gp.big{width:194px}.gallery{gap:16px}.gp figcaption span{max-width:170px}}
-@media (max-width:900px){
-  .gallery{justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;margin:44px -24px 0;padding:24px 24px 18px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-  .gallery::-webkit-scrollbar{display:none}
-  .gp,.gp.big{width:min(62vw,240px);margin-top:0!important;scroll-snap-align:center}
-  .gp:first-child{margin-left:calc(50% - min(31vw,120px) - 24px)}
-  .gp:last-child{margin-right:calc(50% - min(31vw,120px) - 24px)}
-  .swipe{display:block}
+.at-tour{--pw:min(330px,76vw);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:center;margin-top:64px}
+.at-tabs{display:flex;flex-direction:column;gap:6px}
+.at-tab{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr);column-gap:16px;align-items:start;text-align:left;width:100%;padding:18px 18px 22px 16px;border-radius:18px;border:1px solid transparent;background:transparent;color:var(--ink);font:inherit;cursor:pointer;transition:background .35s var(--ease),border-color .35s var(--ease)}
+.at-tab:hover{background:rgba(255,255,255,.025)}
+.at-tab[aria-selected="true"]{background:var(--card,#111412);border-color:var(--line,#1f2521)}
+.at-tab:focus-visible{outline:2px solid #34c98a;outline-offset:2px}
+.at-ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;border:1px solid #2a322d;color:var(--muted);transition:color .35s,border-color .35s,background .35s}
+.at-ico svg{width:20px;height:20px}
+.at-tab[aria-selected="true"] .at-ico{color:#34c98a;border-color:#1f4434;background:#12271e}
+.at-t{display:flex;flex-direction:column;gap:4px;padding-top:2px}
+.at-t b{font-weight:600;font-size:17px;letter-spacing:-.01em}
+.at-sum{color:var(--muted);font-size:14.5px;line-height:1.5}
+.at-more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease)}
+.at-tab[aria-selected="true"] .at-more{grid-template-rows:1fr}
+.at-in{overflow:hidden;display:block}
+.at-ul{margin:12px 0 2px;display:flex;flex-direction:column;gap:8px}
+.at-li{display:flex;gap:10px;font-size:14px;line-height:1.45;color:#cfd6d1}
+.at-li svg{flex:none;width:15px;height:15px;margin-top:2px;color:#34c98a}
+.at-bar{position:absolute;left:76px;right:18px;bottom:10px;height:2px;border-radius:2px;background:#1f2521;overflow:hidden;opacity:0;transition:opacity .3s}
+.at-tab[aria-selected="true"] .at-bar{opacity:1}
+.at-bar i{display:block;height:100%;width:0;background:#34c98a}
+/* the iPhone (15 Pro proportions): titanium band, black bezel, Dynamic Island, status bar, home indicator */
+.at-stage{position:relative;display:grid;place-items:center;padding-block:10px}
+.at-stage::before{content:"";position:absolute;width:120%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(52,201,138,.16),rgba(52,201,138,0) 62%);pointer-events:none}
+.at-iphone{position:relative;width:var(--pw);aspect-ratio:433/882;padding:calc(var(--pw)*.009);border-radius:calc(var(--pw)*.158);box-sizing:border-box;background:linear-gradient(135deg,#8d8f8c 0%,#4a4c4a 18%,#2b2d2c 42%,#5f615f 70%,#a3a5a2 100%);box-shadow:0 50px 90px -35px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.5)}
+.at-bezel{position:relative;width:100%;height:100%;padding:calc(var(--pw)*.036);border-radius:calc(var(--pw)*.15);background:#050505;box-sizing:border-box;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+.at-key{position:absolute;width:calc(var(--pw)*.011);border-radius:2px;background:linear-gradient(90deg,#3c3e3c,#9a9c99 60%,#5b5d5b)}
+.at-k-action{left:calc(var(--pw)*-.009);top:17%;height:5.2%}
+.at-k-up{left:calc(var(--pw)*-.009);top:25.5%;height:8.6%}
+.at-k-down{left:calc(var(--pw)*-.009);top:36%;height:8.6%}
+.at-k-power{right:calc(var(--pw)*-.009);top:27%;height:13%}
+.at-screen{--sw:calc(var(--pw)*.91);position:relative;width:100%;height:100%;border-radius:calc(var(--pw)*.118);overflow:hidden;background:#0a0c0b}
+.at-shot{position:absolute;left:50%;bottom:0;height:94%;aspect-ratio:585/1266;transform:translateX(-50%)}
+.at-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.015);transition:opacity .55s var(--ease),transform .8s var(--ease)}
+.at-shot img.on{opacity:1;transform:none}
+.at-status{position:absolute;z-index:3;left:0;right:0;top:0;height:6.4%;display:flex;align-items:center;justify-content:space-between;padding:0 8.5% 0 10.5%;color:#fff;font:600 calc(var(--sw)*.043) -apple-system,'SF Pro Text',Inter,system-ui,sans-serif;letter-spacing:-.01em;box-sizing:border-box}
+.at-r{display:flex;align-items:center;gap:calc(var(--sw)*.016)}
+.at-status svg{height:calc(var(--sw)*.034);width:auto;display:block}
+.at-island{position:absolute;z-index:4;left:50%;top:1.35%;width:32%;height:4.35%;transform:translateX(-50%);border-radius:999px;background:#000}
+.at-island::after{content:"";position:absolute;right:11%;top:50%;width:13%;aspect-ratio:1;transform:translateY(-50%);border-radius:50%;background:radial-gradient(circle at 35% 35%,#1d2a3a,#05070a 65%)}
+.at-home{position:absolute;z-index:3;left:50%;bottom:.9%;width:35%;height:calc(var(--sw)*.013);min-height:3px;transform:translateX(-50%);border-radius:999px;background:rgba(255,255,255,.75)}
+.at-glare{position:absolute;inset:0;z-index:2;border-radius:inherit;background:linear-gradient(125deg,rgba(255,255,255,.06),rgba(255,255,255,0) 30%);pointer-events:none}
+.at-detail{display:none;text-align:center;max-width:46ch;margin:0 auto}
+.at-detail h3{margin:0 0 6px;font-family:var(--serif);font-weight:400;font-size:26px;line-height:1.1}
+.at-detail p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
+@media (max-width:860px){
+  .at-tour{grid-template-columns:minmax(0,1fr);gap:28px;margin-top:40px}
+  .at-tabs{flex-direction:row;gap:4px;padding:5px;border-radius:16px;background:var(--card,#111412);border:1px solid var(--line,#1f2521)}
+  .at-tab{flex:1 1 0;width:auto;min-width:0;grid-template-columns:auto;justify-items:center;padding:10px 6px;border-radius:12px}
+  .at-tab[aria-selected="true"]{background:#34c98a;border-color:#34c98a}
+  .at-tab[aria-selected="true"] b{color:#03120b}
+  .at-ico,.at-sum,.at-more,.at-bar{display:none}
+  .at-t b{font-size:14px}
+  .at-detail{display:block}
+  .at-stage{order:2}
 }
+@media (prefers-reduced-motion:reduce){.at-shot img,.at-more,.at-tab{transition:none}}
+
 /* phones: the two tilted screens must sit centred and stay on screen */
 @media (max-width:520px){
   .hero{padding-top:118px}
@@ -690,21 +724,38 @@ html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
   </div>
 </section>
 
-<!-- ============ EVERY SCREEN (phone gallery) ============ -->
+<!-- ============ APP TOUR: four tabs, one iPhone ============ -->
 <section class="gal-sec gutter" id="screens">
   <div class="wrap">
     <div class="gal-head reveal">
-      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg>The app</span>
-      <h2 class="h-section">Ask, read, keep. Everything AI in your pocket.</h2>
-      <p class="body">Real screens from the AI Radar Android app.</p>
+      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg>Inside the app</span>
+      <h2 class="h-section">Everything AI, in four tabs</h2>
+      <p class="body">Ask questions, find the right tool, catch up on every post and keep what you find. Here is what each part of the AI Radar app does.</p>
     </div>
-    <div class="gallery" id="gallery">
-      <figure class="gp reveal"><div class="ph"><div class="ph-in"><div class="scr"><span class="isl" aria-hidden="true"></span><img src="img/home.jpg" alt="Chat start screen with suggested AI questions" loading="lazy" width="585" height="1266"></div></div></div><figcaption><b>Ask</b><span>Start with a question or tap a suggestion</span></figcaption></figure>
-      <figure class="gp reveal big"><div class="ph"><div class="ph-in"><div class="scr"><span class="isl" aria-hidden="true"></span><img src="img/chat.jpg" alt="Answer listing Ollama, llama.cpp and Open WebUI with numbered sources" loading="lazy" width="585" height="1266"></div></div></div><figcaption><b>Answers with sources</b><span>A short answer, each fact numbered to where it came from</span></figcaption></figure>
-      <figure class="gp reveal"><div class="ph"><div class="ph-in"><div class="scr"><span class="isl" aria-hidden="true"></span><img src="img/posts.jpg" alt="Posts screen with filters and an AI image prompting cheatsheet" loading="lazy" width="585" height="1266"></div></div></div><figcaption><b>Posts</b><span>Every @ai_radar_ post, with filters</span></figcaption></figure>
-      <figure class="gp reveal"><div class="ph"><div class="ph-in"><div class="scr"><span class="isl" aria-hidden="true"></span><img src="img/saved.jpg" alt="Saved screen with filters by type, date, topic and site" loading="lazy" width="585" height="1266"></div></div></div><figcaption><b>Saved</b><span>Your private library, kept on your phone</span></figcaption></figure>
+    <div class="at-tour reveal">
+      <div class="at-tabs" role="tablist" aria-label="App screens"><button class="at-tab" role="tab" id="at-tab-chat" aria-controls="at-phone" aria-selected="true" tabindex="0" data-i="0"><span class="at-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></span><span class="at-t"><b>Chat</b><span class="at-sum">Ask anything about AI and get a clear answer with numbered sources.</span><span class="at-more"><span class="at-in"><span class="at-ul"><span class="at-li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Searches the web, GitHub and Hugging Face for you</span><span class="at-li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Real repos with stars and licences, not guesses</span><span class="at-li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Remembers the conversation for follow-up questions</span></span></span></span></span><span class="at-bar" aria-hidden="true"><i></i></span></button><button class="at-tab" role="tab" id="at-tab-explore" aria-controls="at-phone" aria-selected="false" tabindex="-1" data-i="1"><span class="at-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></span><span class="at-t"><b>Explore</b><span class="at-sum">Find the right repo, model or guide for what you want to do.</span><span class="at-more"><span class="at-in"><span class="at-ul"><span class="at-li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>AI Radar picks first, then GitHub, Hugging Face and papers</span><span class="at-li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Filter by topic, level and free-only</span><span class="at-li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>A glossary of AI terms in plain English</span></span></span></span></span><span class="at-bar" aria-hidden="true"><i></i></span></button><button class="at-tab" role="tab" id="at-tab-posts" aria-controls="at-phone" aria-selected="false" tabindex="-1" data-i="2"><span class="at-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12 18.5 5.5"/></svg></span><span class="at-t"><b>Posts</b><span class="at-sum">Every AI Radar post from X in one feed, newest first.</span><span class="at-more"><span class="at-in"><span class="at-ul"><span class="at-li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>News, AI facts, repos, cheatsheets and prompt packs</span><span class="at-li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Filter by type, topic and date, or search</span><span class="at-li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Updates on its own as new posts go out</span></span></span></span></span><span class="at-bar" aria-hidden="true"><i></i></span></button><button class="at-tab" role="tab" id="at-tab-saved" aria-controls="at-phone" aria-selected="false" tabindex="-1" data-i="3"><span class="at-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span><span class="at-t"><b>Saved</b><span class="at-sum">Your private library of repos, tools, links and notes.</span><span class="at-more"><span class="at-in"><span class="at-ul"><span class="at-li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Sorted into topics like Local LLMs and Agents for you</span><span class="at-li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Tap + to save any link; details fill in by themselves</span><span class="at-li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Stays on your phone, no account needed</span></span></span></span></span><span class="at-bar" aria-hidden="true"><i></i></span></button></div>
+      <div class="at-stage">
+        <div class="at-iphone" id="at-phone" role="tabpanel" aria-labelledby="at-tab-chat">
+          <span class="at-key at-k-action" aria-hidden="true"></span><span class="at-key at-k-up" aria-hidden="true"></span><span class="at-key at-k-down" aria-hidden="true"></span><span class="at-key at-k-power" aria-hidden="true"></span>
+          <div class="at-bezel"><div class="at-screen">
+            <div class="at-status" aria-hidden="true"><span>9:41</span><span class="at-r">
+              <svg viewBox="0 0 18 12" fill="#fff"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></svg>
+              <svg viewBox="0 0 16 12" fill="#fff"><path d="M8 2.2c2.4 0 4.6.9 6.2 2.5l1.3-1.4C13.5 1.3 10.9.2 8 .2S2.5 1.3.5 3.3l1.3 1.4C3.4 3.1 5.6 2.2 8 2.2z"/><path d="M8 5.6c1.5 0 2.8.6 3.8 1.5l1.3-1.4C11.8 4.4 10 3.6 8 3.6s-3.8.8-5.1 2.1l1.3 1.4C5.2 6.2 6.5 5.6 8 5.6z"/><path d="M8 9c.6 0 1.1.2 1.5.6L8 11.2 6.5 9.6C6.9 9.2 7.4 9 8 9z"/></svg>
+              <svg viewBox="0 0 27 12" fill="none"><rect x=".6" y=".6" width="22.8" height="10.8" rx="3.2" stroke="#fff" stroke-opacity=".45" stroke-width="1.1"/><rect x="2.3" y="2.3" width="17.5" height="7.4" rx="1.8" fill="#fff"/><path d="M25 4.2v3.6c.8-.3 1.4-1 1.4-1.8s-.6-1.5-1.4-1.8z" fill="#fff" fill-opacity=".45"/></svg>
+            </span></div>
+            <span class="at-island" aria-hidden="true"></span>
+            <div class="at-shot">
+              <img class="on" src="img/tour-chat.jpg" width="585" height="1266" alt="Chat: an answer about open-source tools for running LLMs on a laptop, with numbered sources">
+              <img src="img/tour-explore.jpg" width="585" height="1266" loading="lazy" alt="Explore: search results for voice cloning with filters for topic and free tools">
+              <img src="img/tour-posts.jpg" width="585" height="1266" loading="lazy" alt="Posts: the AI Radar feed with type, date and topic filters">
+              <img src="img/tour-saved.jpg" width="585" height="1266" loading="lazy" alt="Saved: a private library with filters and a saved ollama repo">
+            </div>
+            <span class="at-home" aria-hidden="true"></span><span class="at-glare" aria-hidden="true"></span>
+          </div></div>
+        </div>
+      </div>
+      <div class="at-detail" aria-live="polite"><h3></h3><p></p></div>
     </div>
-    <p class="swipe" aria-hidden="true">Swipe to see every screen →</p>
   </div>
 </section>
 
@@ -904,10 +955,46 @@ html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
     (function loop(){ cx+=(mx-cx)*0.22; cy+=(my-cy)*0.22; cur$.style.transform='translate3d('+cx.toFixed(1)+'px,'+cy.toFixed(1)+'px,0)'; raf(loop); })();
   }
 
-  /* ---- Phone gallery: on phones, open centred on the answer screen ---- */
-  var gal=document.getElementById('gallery');
-  function centre(){ if(window.innerWidth>900) return; var mid=gal.querySelector('.gp.big')||gal.children[1]; gal.scrollLeft=mid.offsetLeft-(gal.clientWidth-mid.offsetWidth)/2; }
-  centre(); window.addEventListener('load',centre);
+  /* ---- App tour: tab buttons switch the iPhone screen; moves on by itself until the visitor picks a tab ---- */
+  (function(){
+    var tabs=[].slice.call(document.querySelectorAll('.at-tab')), imgs=[].slice.call(document.querySelectorAll('.at-shot img')),
+        phone=document.getElementById('at-phone'), detail=document.querySelector('.at-detail');
+    if(!tabs.length) return;
+    var HEAD=['Ask anything about AI','Find the right tool','Every post, one feed','Your private AI library'];
+    var DUR=6000, cur=0, t0=performance.now(), paused=false, user=false, visible=false;
+    function bar(i){ return tabs[i].querySelector('.at-bar i'); }
+    function show(i,fromUser){
+      cur=i; if(fromUser){ user=true; tabs.forEach(function(t){ t.querySelector('.at-bar').style.opacity='0'; }); }
+      tabs.forEach(function(t,k){ var on=k===i; t.setAttribute('aria-selected',on); t.tabIndex=on?0:-1; bar(k).style.width='0'; });
+      imgs.forEach(function(im,k){ im.classList.toggle('on',k===i); });
+      phone.setAttribute('aria-labelledby',tabs[i].id);
+      detail.querySelector('h3').textContent=HEAD[i]; detail.querySelector('p').textContent=tabs[i].querySelector('.at-sum').textContent;
+      t0=performance.now();
+    }
+    tabs.forEach(function(t,i){
+      t.addEventListener('click',function(){ show(i,true); });
+      t.addEventListener('keydown',function(e){ var d=e.key==='ArrowDown'||e.key==='ArrowRight'?1:e.key==='ArrowUp'||e.key==='ArrowLeft'?-1:0; if(!d) return; e.preventDefault(); var n=(cur+d+tabs.length)%tabs.length; show(n,true); tabs[n].focus(); });
+    });
+    var tour=document.querySelector('.at-tour');
+    tour.addEventListener('pointerenter',function(e){ if(e.pointerType==='mouse') paused=true; });
+    tour.addEventListener('pointerleave',function(){ paused=false; });
+    // only run the timer while the tour is on screen
+    if('IntersectionObserver' in window) new IntersectionObserver(function(es){ visible=es[0].isIntersecting; },{threshold:.35}).observe(tour); else visible=true;
+    var last=performance.now();
+    function tick(now){
+      var dt=now-last; last=now;
+      if(!user&&!reduce){
+        if(paused||!visible||document.hidden) t0+=dt;
+        var k=Math.min(1,(now-t0)/DUR); bar(cur).style.width=(k*100).toFixed(2)+'%';
+        if(k>=1) show((cur+1)%tabs.length);
+      }
+      requestAnimationFrame(tick);
+    }
+    show(0);
+    if(reduce) tabs.forEach(function(t){ t.querySelector('.at-bar').style.opacity='0'; });
+    requestAnimationFrame(tick);
+  })();
+
 
 })();
 </script>
