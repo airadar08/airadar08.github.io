@@ -1,5 +1,24 @@
 [
  {
+  "slug": "anomalyco-opencode",
+  "repo": "anomalyco/opencode",
+  "url": "https://github.com/anomalyco/opencode",
+  "tagline": "Open source AI coding agent for your terminal, with a desktop app in beta",
+  "stars": "217k",
+  "trend": "+1.4k",
+  "language": "TypeScript",
+  "license": "MIT",
+  "what": [
+   "Coding agent you run from the terminal",
+   "Install with npm, brew, pacman, mise or Nix",
+   "Desktop app available in beta"
+  ],
+  "read": "Huge and active; check which models you can plug in first",
+  "img": "repos/img/anomalyco-opencode.jpg",
+  "date": "2026-10-19",
+  "post": ""
+ },
+ {
   "slug": "stablyai-orca",
   "repo": "stablyai/orca",
   "url": "https://github.com/stablyai/orca",

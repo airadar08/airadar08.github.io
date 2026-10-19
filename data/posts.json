@@ -1,6 +1,34 @@
 [
  {
   "type": "Repo",
+  "title": "Trending AI repo: anomalyco/opencode",
+  "summary": "Open source AI coding agent for your terminal, with a desktop app in beta",
+  "points": [
+   "Coding agent you run from the terminal",
+   "Install with npm, brew, pacman, mise or Nix",
+   "Desktop app available in beta"
+  ],
+  "link": "repos/#anomalyco-opencode",
+  "source": "https://github.com/anomalyco/opencode",
+  "img": "repos/img/anomalyco-opencode.jpg",
+  "x_url": "",
+  "id": "2026-10-19-repo-anomalyco-opencode",
+  "date": "2026-10-19T15:29:12+05:30"
+ },
+ {
+  "type": "Cheatsheet",
+  "title": "AI evals explained cheatsheet",
+  "summary": "How to test an AI app before users do",
+  "link": "cheatsheets/#ai-evals-explained",
+  "img": "cheatsheets/img/ai-evals-explained.jpg",
+  "id": "2026-10-19-cheatsheet-ai-evals-explained",
+  "date": "2026-10-19T15:29:12+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
+  "type": "Repo",
   "title": "Trending AI repo: stablyai/orca",
   "summary": "Run Codex, Claude Code or OpenCode side by side, each in its own git worktree. Why it matters: parallel agents stay isolated.",
   "points": [
