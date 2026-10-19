@@ -6,42 +6,44 @@
   "link": "cheatsheets/#vector-databases-explained",
   "img": "cheatsheets/img/vector-databases-explained.jpg",
   "id": "2026-10-19-cheatsheet-vector-databases-explained",
-  "date": "2026-10-19T11:12:26+05:30",
-  "x_url": "",
+  "date": "2026-10-19T11:22:01+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2112059172560998861",
   "source": "",
-  "points": []
+  "points": [
+   "How embeddings let AI search by meaning",
+   "Cosine vs dot product vs L2, plus HNSW, IVF and flat indexes",
+   "When to pick Chroma, pgvector, Qdrant or FAISS"
+  ]
  },
  {
-  "type": "Repo",
-  "title": "Trending AI repo: MadsLorentzen/ai-job-search",
-  "summary": "A job-hunt framework built on Claude Code: score postings, tailor CVs, write cover letters, prep interviews",
+  "type": "News",
+  "title": "StepFun released open weights for Step 5 Preview: 600B params (27B active), 1M context.",
+  "summary": "Why it matters: FP8 still needs 4x B300 GPUs.",
   "points": [
-   "Scores each job posting against your profile",
-   "Drafts a tailored CV and cover letter, then a reviewer agent critiques them",
-   "Builds interview prep from the role"
+   "88.3% on AA-LCR long-context reasoning",
+   "33.3% on Terminal-Bench 4.0, behind GLM-5.3"
   ],
-  "link": "repos/#madslorentzen-ai-job-search",
-  "source": "https://github.com/MadsLorentzen/ai-job-search",
-  "img": "repos/img/madslorentzen-ai-job-search.jpg",
-  "x_url": "",
-  "id": "2026-10-18-repo-madslorentzen-ai-job-search",
-  "date": "2026-10-18T20:49:25+05:30"
+  "x_url": "https://x.com/ai_radar_/status/2111846407493894589",
+  "date": "2026-10-18T21:16:34+05:30",
+  "link": "",
+  "source": "https://t.co/8qR4SKAkou",
+  "img": "https://pbs.twimg.com/media/HU7JE-9aQAAlL2-?format=jpg&name=small",
+  "id": "2026-10-18-news-stepfun-released-open-weights-for-step-5-preview-600b-params"
  },
  {
   "type": "Repo",
   "title": "Trending AI repo: HKUDS/CLI-Anything",
-  "summary": "Turns existing desktop software into command-line tools that AI agents can drive",
+  "summary": "Turns desktop apps into CLIs AI agents can drive. Why it matters: agents can use apps that have no API.",
   "points": [
-   "Generates a CLI harness for an app: GIS, video editors, game engines, notes",
-   "A hub to browse and install community-built CLIs",
-   "Agents get structured commands instead of clicking a GUI"
+   "Harnesses for GIS, video editors, game engines",
+   "★ 54.4k stars, +582 today, Apache-2.0"
   ],
   "link": "repos/#hkuds-cli-anything",
   "source": "https://github.com/HKUDS/CLI-Anything",
   "img": "repos/img/hkuds-cli-anything.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2111845179636543986",
   "id": "2026-10-18-repo-hkuds-cli-anything",
-  "date": "2026-10-18T20:49:25+05:30"
+  "date": "2026-10-18T21:11:41+05:30"
  },
  {
   "type": "Cheatsheet",
@@ -50,10 +52,59 @@
   "link": "cheatsheets/#context-windows",
   "img": "cheatsheets/img/context-windows.jpg",
   "id": "2026-10-18-cheatsheet-context-windows",
-  "date": "2026-10-18T20:49:25+05:30",
-  "x_url": "",
+  "date": "2026-10-18T21:06:20+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2111843834405834885",
   "source": "",
-  "points": []
+  "points": [
+   "What your AI can actually see, in tokens",
+   "Rough sizes: 1k, 128k and 1M tokens in pages",
+   "\"Lost in the middle\" and 4 habits to avoid it"
+  ]
+ },
+ {
+  "type": "News",
+  "title": "Schwab and JPMorgan block outside AI agents from moving client money.",
+  "summary": "Why it matters: no US federal law covers agent liability yet.",
+  "points": [
+   "Schwab blocks \"tens and twenties\" of agent attempts a week",
+   "Outside AI gets read-only MCP access, no transfers"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111842559207289225",
+  "date": "2026-10-18T21:01:16+05:30",
+  "link": "",
+  "source": "https://t.co/WcDJGHJPFO",
+  "img": "https://pbs.twimg.com/media/HU7Flq5bsAESffs?format=jpg&name=small",
+  "id": "2026-10-18-news-schwab-and-jpmorgan-block-outside-ai-agents-from-moving-clie"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: MadsLorentzen/ai-job-search",
+  "summary": "A job-hunt framework built on Claude Code. Why it matters: your CV data stays on your machine.",
+  "points": [
+   "Scores jobs, tailors CVs, writes cover letters",
+   "★ 51.9k stars, +2.2k today, MIT"
+  ],
+  "link": "repos/#madslorentzen-ai-job-search",
+  "source": "https://github.com/MadsLorentzen/ai-job-search",
+  "img": "repos/img/madslorentzen-ai-job-search.jpg",
+  "x_url": "https://x.com/ai_radar_/status/2111841314350465313",
+  "id": "2026-10-18-repo-madslorentzen-ai-job-search",
+  "date": "2026-10-18T20:56:20+05:30"
+ },
+ {
+  "type": "News",
+  "title": "OpenAI is building a humanoid robot, Sam Altman says, with a demo targeted for 2027.",
+  "summary": "Why it matters: no product, price or date yet.",
+  "points": [
+   "Focus is the robot's \"brain\", not the body",
+   "27 robotics roles open on its careers page"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2111840027735130204",
+  "date": "2026-10-18T20:51:13+05:30",
+  "link": "",
+  "source": "https://t.co/P8Hw7DRwHk",
+  "img": "https://pbs.twimg.com/media/HU7DSWsbYAEwtO0?format=jpg&name=small",
+  "id": "2026-10-18-news-openai-is-building-a-humanoid-robot-sam-altman-says-with-a-d"
  },
  {
   "type": "Cheatsheet",
@@ -177,9 +228,9 @@
   "id": "2026-10-18-fact-an-early-neural-network-adjusted-its-weights-with-electric-m"
  },
  {
-  "type": "Prompt pack",
-  "title": "FREE: 3 prompts to turn messy notes into a summary",
-  "summary": "Three copy-ready prompts that turn messy notes into decisions, action items and a gap check.",
+  "type": "News",
+  "title": "Prompt pack: 3 prompts to turn messy notes into a summary",
+  "summary": "Why it matters: allowing 'unknown' cuts made-up details.",
   "points": [
    "\"Summarize in 5 bullets. Decisions first.\"",
    "\"List action items, owner, date. Say 'unknown' if missing.\"",
@@ -189,7 +240,7 @@
   "date": "2026-10-18T03:15:20+05:30",
   "link": "prompt-packs/3-prompts-messy-notes-to-summary/",
   "source": "",
-  "img": "prompt-packs/3-prompts-messy-notes-to-summary/cover.jpg",
+  "img": "https://pbs.twimg.com/media/HU3RnjJaQAAMIKw?format=jpg&name=small",
   "id": "pack-3-prompts-messy-notes-to-summary"
  },
  {
@@ -284,9 +335,9 @@
   "id": "2026-10-18-news-anthropic-signed-its-first-canadian-data-center-lease-in-nov"
  },
  {
-  "type": "Prompt pack",
-  "title": "FREE: 3 prompts for better AI code reviews",
-  "summary": "Three copy-ready prompts that get sharper code reviews: a role, an output format, and failing tests.",
+  "type": "News",
+  "title": "Prompt pack: 3 prompts for better AI code reviews",
+  "summary": "Why it matters: a role plus an output format beats \"review my code\".",
   "points": [
    "\"Review this diff as a skeptical senior. Bugs first.\"",
    "\"What input breaks this? Give 3 failing tests.\"",
@@ -296,7 +347,7 @@
   "date": "2026-10-18T00:05:26+05:30",
   "link": "prompt-packs/3-prompts-for-better-ai-code-reviews/",
   "source": "",
-  "img": "prompt-packs/3-prompts-for-better-ai-code-reviews/cover.jpg",
+  "img": "https://pbs.twimg.com/media/HU2mKBcaIAAm8tw?format=jpg&name=small",
   "id": "pack-3-prompts-for-better-ai-code-reviews"
  },
  {
