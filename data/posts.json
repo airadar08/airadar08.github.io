@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "AI in Excel and Sheets cheatsheet",
+  "summary": "Built-in AI formulas for your spreadsheets",
+  "link": "cheatsheets/#ai-in-excel-and-sheets",
+  "img": "cheatsheets/img/ai-in-excel-and-sheets.jpg",
+  "id": "2026-10-20-cheatsheet-ai-in-excel-and-sheets",
+  "date": "2026-10-20T11:50:12+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: K-Dense-AI/scientific-agent-skills",
   "summary": "Free skills that let AI agents do real science work. Why it matters: researchers skip building lab tools by hand.",
