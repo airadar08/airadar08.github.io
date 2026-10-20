@@ -1,5 +1,43 @@
 [
  {
+  "slug": "graphify-labs-graphify",
+  "repo": "Graphify-Labs/graphify",
+  "url": "https://github.com/Graphify-Labs/graphify",
+  "tagline": "Turns any codebase into a knowledge graph your AI coding assistant can query",
+  "stars": "129.5k",
+  "trend": "+751",
+  "language": "Python",
+  "license": "Apache-2.0",
+  "what": [
+   "Parses ~40 languages locally with tree-sitter",
+   "Adds docs, SQL schemas, configs and PDFs",
+   "No vector store; every edge is explained"
+  ],
+  "read": "Strong for code maps; docs and PDFs still need an LLM pass",
+  "img": "repos/img/graphify-labs-graphify.jpg",
+  "date": "2026-10-20",
+  "post": ""
+ },
+ {
+  "slug": "headroomlabs-ai-headroom",
+  "repo": "headroomlabs-ai/headroom",
+  "url": "https://github.com/headroomlabs-ai/headroom",
+  "tagline": "Compresses what your AI agent reads so it uses fewer tokens, same answers",
+  "stars": "76.5k",
+  "trend": "+555",
+  "language": "Python",
+  "license": "Apache-2.0",
+  "what": [
+   "Shrinks tool outputs, logs, files and RAG chunks",
+   "~20% fewer tokens for coding agents",
+   "Library, local proxy or MCP server"
+  ],
+  "read": "Easy win for agent-heavy work; little gain on short chats or plain prose",
+  "img": "repos/img/headroomlabs-ai-headroom.jpg",
+  "date": "2026-10-20",
+  "post": ""
+ },
+ {
   "slug": "k-dense-ai-scientific-agent-skills",
   "repo": "K-Dense-AI/scientific-agent-skills",
   "url": "https://github.com/K-Dense-AI/scientific-agent-skills",

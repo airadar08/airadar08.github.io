@@ -1,5 +1,37 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: headroomlabs-ai/headroom",
+  "summary": "Compresses what your AI agent reads so it uses fewer tokens, same answers",
+  "points": [
+   "Shrinks tool outputs, logs, files and RAG chunks",
+   "~20% fewer tokens for coding agents",
+   "Library, local proxy or MCP server"
+  ],
+  "link": "repos/#headroomlabs-ai-headroom",
+  "source": "https://github.com/headroomlabs-ai/headroom",
+  "img": "repos/img/headroomlabs-ai-headroom.jpg",
+  "x_url": "",
+  "id": "2026-10-20-repo-headroomlabs-ai-headroom",
+  "date": "2026-10-20T17:23:08+05:30"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: Graphify-Labs/graphify",
+  "summary": "Turns any codebase into a knowledge graph your AI coding assistant can query",
+  "points": [
+   "Parses ~40 languages locally with tree-sitter",
+   "Adds docs, SQL schemas, configs and PDFs",
+   "No vector store; every edge is explained"
+  ],
+  "link": "repos/#graphify-labs-graphify",
+  "source": "https://github.com/Graphify-Labs/graphify",
+  "img": "repos/img/graphify-labs-graphify.jpg",
+  "x_url": "",
+  "id": "2026-10-20-repo-graphify-labs-graphify",
+  "date": "2026-10-20T17:23:08+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "AI in Excel and Sheets cheatsheet",
   "summary": "Built-in AI formulas for your spreadsheets",
