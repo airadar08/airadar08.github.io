@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: K-Dense-AI/scientific-agent-skills",
+  "summary": "Open skill library that turns AI coding agents into research assistants for science",
+  "points": [
+   "177 ready-to-use skills for science work",
+   "Links to 100+ scientific databases",
+   "Biology, chemistry, medicine, drug discovery"
+  ],
+  "link": "repos/#k-dense-ai-scientific-agent-skills",
+  "source": "https://github.com/K-Dense-AI/scientific-agent-skills",
+  "img": "repos/img/k-dense-ai-scientific-agent-skills.jpg",
+  "x_url": "",
+  "id": "2026-10-20-repo-k-dense-ai-scientific-agent-skills",
+  "date": "2026-10-20T10:59:35+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "AI evals explained cheatsheet",
   "summary": "How to test an AI app before users do",

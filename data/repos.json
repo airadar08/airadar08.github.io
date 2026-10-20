@@ -1,5 +1,24 @@
 [
  {
+  "slug": "k-dense-ai-scientific-agent-skills",
+  "repo": "K-Dense-AI/scientific-agent-skills",
+  "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
+  "tagline": "Open skill library that turns AI coding agents into research assistants for science",
+  "stars": "53k",
+  "trend": "+4.4k",
+  "language": "Python",
+  "license": "MIT",
+  "what": [
+   "177 ready-to-use skills for science work",
+   "Links to 100+ scientific databases",
+   "Biology, chemistry, medicine, drug discovery"
+  ],
+  "read": "Big, practical library. Install only the skills you need and read each one first.",
+  "img": "repos/img/k-dense-ai-scientific-agent-skills.jpg",
+  "date": "2026-10-20",
+  "post": ""
+ },
+ {
   "slug": "anomalyco-opencode",
   "repo": "anomalyco/opencode",
   "url": "https://github.com/anomalyco/opencode",
