@@ -2,18 +2,33 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: K-Dense-AI/scientific-agent-skills",
-  "summary": "Open skill library that turns AI coding agents into research assistants for science",
+  "summary": "Free skills that let AI agents do real science work. Why it matters: researchers skip building lab tools by hand.",
   "points": [
-   "177 ready-to-use skills for science work",
-   "Links to 100+ scientific databases",
-   "Biology, chemistry, medicine, drug discovery"
+   "177 skills, 100+ science databases",
+   "★ 53k stars, +4.4k this week"
   ],
   "link": "repos/#k-dense-ai-scientific-agent-skills",
   "source": "https://github.com/K-Dense-AI/scientific-agent-skills",
   "img": "repos/img/k-dense-ai-scientific-agent-skills.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2112416357916753985",
   "id": "2026-10-20-repo-k-dense-ai-scientific-agent-skills",
-  "date": "2026-10-20T10:59:35+05:30"
+  "date": "2026-10-20T11:01:21+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "Turing wrote a chess program in 1948 that no computer could run, so he played it by hand.",
+  "summary": "Why it matters: AI began on paper.",
+  "points": [
+   "Up to 30 min per move",
+   "1952: lost in 29 moves to Alick Glennie",
+   "Kasparov beat a 2012 recreation in 16"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2112126914089685069",
+  "date": "2026-10-19T15:51:12+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/Turochamp",
+  "img": "",
+  "id": "2026-10-19-fact-turing-wrote-a-chess-program-in-1948-that-no-computer-could-"
  },
  {
   "type": "Cheatsheet",
