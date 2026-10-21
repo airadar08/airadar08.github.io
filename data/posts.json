@@ -1,6 +1,34 @@
 [
  {
   "type": "Cheatsheet",
+  "title": "AI safety terms cheatsheet",
+  "summary": "The words labs use, in plain English",
+  "link": "cheatsheets/#ai-safety-terms",
+  "img": "cheatsheets/img/ai-safety-terms.jpg",
+  "id": "2026-10-21-cheatsheet-ai-safety-terms",
+  "date": "2026-10-21T11:27:42+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: cloudflare/security-audit-skill",
+  "summary": "A skill that turns your coding agent into a multi-phase security auditor",
+  "points": [
+   "Six phases: recon, hunting, validation, reporting",
+   "Fresh agents try to disprove every finding",
+   "Writes verified findings to findings.json"
+  ],
+  "link": "repos/#cloudflare-security-audit-skill",
+  "source": "https://github.com/cloudflare/security-audit-skill",
+  "img": "repos/img/cloudflare-security-audit-skill.jpg",
+  "x_url": "",
+  "id": "2026-10-21-repo-cloudflare-security-audit-skill",
+  "date": "2026-10-21T11:27:41+05:30"
+ },
+ {
+  "type": "Cheatsheet",
   "title": "AI for studying cheatsheet",
   "summary": "Learn faster without letting AI think for you",
   "link": "cheatsheets/#ai-for-studying",

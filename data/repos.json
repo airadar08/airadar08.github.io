@@ -1,5 +1,24 @@
 [
  {
+  "slug": "cloudflare-security-audit-skill",
+  "repo": "cloudflare/security-audit-skill",
+  "url": "https://github.com/cloudflare/security-audit-skill",
+  "tagline": "A skill that turns your coding agent into a multi-phase security auditor",
+  "stars": "34.6k",
+  "trend": "+1.7k",
+  "language": "JavaScript",
+  "license": "MIT",
+  "what": [
+   "Six phases: recon, hunting, validation, reporting",
+   "Fresh agents try to disprove every finding",
+   "Writes verified findings to findings.json"
+  ],
+  "read": "A serious audit workflow; needs a sandbox and a model with sub-agents.",
+  "img": "repos/img/cloudflare-security-audit-skill.jpg",
+  "date": "2026-10-21",
+  "post": ""
+ },
+ {
   "slug": "graphify-labs-graphify",
   "repo": "Graphify-Labs/graphify",
   "url": "https://github.com/Graphify-Labs/graphify",
