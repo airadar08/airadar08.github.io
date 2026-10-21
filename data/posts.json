@@ -1,5 +1,35 @@
 [
  {
+  "type": "News",
+  "title": "OpenAI acquired Orchestra Bio, a platform where AI agents help run drug development.",
+  "summary": "Why it matters: drugs take 10-15 years to reach approval.",
+  "points": [
+   "Joins GPT-Rosalind and Rosalind Workbench",
+   "Agents track studies and flag problems; scientists decide"
+  ],
+  "date": "2026-10-21T14:33:34+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2112832153830703155",
+  "source": "https://openai.com/index/openai-to-acquire-orchestra-bio/",
+  "link": "",
+  "id": "2026-10-21-news-openai-acquired-orchestra-bio-a-platform-where-ai-agents-hel",
+  "img": "posts/img/2026-10-21-news-openai-acquired-orchestra-bio-a-platform-where-ai-agents-hel.jpg"
+ },
+ {
+  "type": "News",
+  "title": "Anthropic drafted a US bill to let a judge halt a risky AI model's release.",
+  "summary": "Why it matters: a court, not an agency, holds the brake.",
+  "points": [
+   "Trigger: imminent risk of 50+ deaths or $1B+ damage",
+   "Evaluators have 72 hours to alert Commerce"
+  ],
+  "date": "2026-10-21T14:32:15+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2112831820903731380",
+  "source": "https://techcrunch.com/2026/10/20/anthropic-pitches-ai-safety-bill-that-may-block-a-model-if-50-people-could-be-killed/",
+  "link": "",
+  "id": "2026-10-21-news-anthropic-drafted-a-us-bill-to-let-a-judge-halt-a-risky-ai-m",
+  "img": "posts/img/2026-10-21-news-anthropic-drafted-a-us-bill-to-let-a-judge-halt-a-risky-ai-m.jpg"
+ },
+ {
   "type": "Cheatsheet",
   "title": "AI safety terms cheatsheet",
   "summary": "The words labs use, in plain English",
