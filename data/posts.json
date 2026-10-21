@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "AI coding assistants cheatsheet",
+  "summary": "Get better code from AI, with fewer surprises",
+  "link": "cheatsheets/#ai-coding-assistants",
+  "img": "cheatsheets/img/ai-coding-assistants.jpg",
+  "id": "2026-10-21-cheatsheet-ai-coding-assistants",
+  "date": "2026-10-21T15:02:09+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "News",
   "title": "OpenAI acquired Orchestra Bio, a platform where AI agents help run drug development.",
   "summary": "Why it matters: drugs take 10-15 years to reach approval.",
