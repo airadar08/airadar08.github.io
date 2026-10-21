@@ -6,10 +6,29 @@
   "link": "cheatsheets/#ai-coding-assistants",
   "img": "cheatsheets/img/ai-coding-assistants.jpg",
   "id": "2026-10-21-cheatsheet-ai-coding-assistants",
-  "date": "2026-10-21T15:02:09+05:30",
-  "x_url": "",
+  "date": "2026-10-21T15:05:09+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2112840101520932864",
   "source": "",
-  "points": []
+  "points": [
+   "Autocomplete vs chat vs agent mode, and when to use each",
+   "What to put in an AGENTS.md rules file",
+   "A 4-step task prompt + 5 rules to stay safe"
+  ]
+ },
+ {
+  "type": "Fact",
+  "title": "ImageNet's 14M images were labeled by ~49,000 workers from 167 countries.",
+  "summary": "Why it matters: deep learning's 2012 leap needed crowd-built data first.",
+  "points": [
+   "Fei-Fei Li's team used Mechanical Turk, 2008-2010",
+   "160M+ candidate images were filtered"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2112839701036167490",
+  "date": "2026-10-21T15:03:34+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/ImageNet",
+  "img": "",
+  "id": "2026-10-21-fact-imagenet-s-14m-images-were-labeled-by-49-000-workers-from-16"
  },
  {
   "type": "News",
@@ -21,7 +40,7 @@
   ],
   "date": "2026-10-21T14:33:34+05:30",
   "x_url": "https://x.com/ai_radar_/status/2112832153830703155",
-  "source": "https://openai.com/index/openai-to-acquire-orchestra-bio/",
+  "source": "https://t.co/eCJem7LN7M",
   "link": "",
   "id": "2026-10-21-news-openai-acquired-orchestra-bio-a-platform-where-ai-agents-hel",
   "img": "posts/img/2026-10-21-news-openai-acquired-orchestra-bio-a-platform-where-ai-agents-hel.jpg"
