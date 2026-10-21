@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "AI for studying cheatsheet",
+  "summary": "Learn faster without letting AI think for you",
+  "link": "cheatsheets/#ai-for-studying",
+  "img": "cheatsheets/img/ai-for-studying.jpg",
+  "id": "2026-10-21-cheatsheet-ai-for-studying",
+  "date": "2026-10-21T11:13:41+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: headroomlabs-ai/headroom",
   "summary": "Compresses what your AI agent reads so it uses fewer tokens, same answers",
