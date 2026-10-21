@@ -6,26 +6,45 @@
   "link": "cheatsheets/#ai-safety-terms",
   "img": "cheatsheets/img/ai-safety-terms.jpg",
   "id": "2026-10-21-cheatsheet-ai-safety-terms",
-  "date": "2026-10-21T11:27:42+05:30",
-  "x_url": "",
+  "date": "2026-10-21T11:30:44+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2112786141099569208",
   "source": "",
-  "points": []
+  "points": [
+   "RLHF, Constitutional AI and guardrails in one line each",
+   "Sycophancy, reward hacking, jailbreaks explained",
+   "How labs check safety, and which docs to read"
+  ]
  },
  {
   "type": "Repo",
   "title": "Trending AI repo: cloudflare/security-audit-skill",
-  "summary": "A skill that turns your coding agent into a multi-phase security auditor",
+  "summary": "Turns your coding agent into a security auditor. Why it matters: fewer false alarms.",
   "points": [
-   "Six phases: recon, hunting, validation, reporting",
-   "Fresh agents try to disprove every finding",
-   "Writes verified findings to findings.json"
+   "★ 34.6k stars, +1.7k today",
+   "Six phases, from recon to report",
+   "Fresh agents try to disprove each finding"
   ],
   "link": "repos/#cloudflare-security-audit-skill",
   "source": "https://github.com/cloudflare/security-audit-skill",
   "img": "repos/img/cloudflare-security-audit-skill.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2112785831115239788",
   "id": "2026-10-21-repo-cloudflare-security-audit-skill",
-  "date": "2026-10-21T11:27:41+05:30"
+  "date": "2026-10-21T11:29:30+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "In 1951, Minsky built a learning neural net from vacuum tubes and a B-24 bomber autopilot motor.",
+  "summary": "Why it matters: RL began as hardware.",
+  "points": [
+   "SNARC: ~40 \"synapses\", learned a maze by reward",
+   "Its simulated rats began following each other"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2112784517325070526",
+  "date": "2026-10-21T11:24:17+05:30",
+  "link": "",
+  "source": "https://t.co/JMzC3Bnupz",
+  "img": "",
+  "id": "2026-10-21-fact-in-1951-minsky-built-a-learning-neural-net-from-vacuum-tubes"
  },
  {
   "type": "Cheatsheet",
