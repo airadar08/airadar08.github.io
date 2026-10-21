@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: DietrichGebert/ponytail",
+  "summary": "One prompt that makes your coding agent write only the code a task needs",
+  "points": [
+   "Reuses what the repo already has before adding code",
+   "Never cuts validation, security or error handling",
+   "/ponytail-review and /ponytail-audit commands"
+  ],
+  "link": "repos/#dietrichgebert-ponytail",
+  "source": "https://github.com/DietrichGebert/ponytail",
+  "img": "repos/img/dietrichgebert-ponytail.jpg",
+  "x_url": "",
+  "id": "2026-10-22-repo-dietrichgebert-ponytail",
+  "date": "2026-10-22T00:06:48+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "AI coding assistants cheatsheet",
   "summary": "Get better code from AI, with fewer surprises",

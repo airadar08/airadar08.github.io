@@ -1,5 +1,24 @@
 [
  {
+  "slug": "dietrichgebert-ponytail",
+  "repo": "DietrichGebert/ponytail",
+  "url": "https://github.com/DietrichGebert/ponytail",
+  "tagline": "One prompt that makes your coding agent write only the code a task needs",
+  "stars": "171.2k",
+  "trend": "+2,051",
+  "language": "JavaScript",
+  "license": "MIT",
+  "what": [
+   "Reuses what the repo already has before adding code",
+   "Never cuts validation, security or error handling",
+   "/ponytail-review and /ponytail-audit commands"
+  ],
+  "read": "A neat discipline prompt; its savings are the author's own benchmark, so test it yourself",
+  "img": "repos/img/dietrichgebert-ponytail.jpg",
+  "date": "2026-10-22",
+  "post": ""
+ },
+ {
   "slug": "cloudflare-security-audit-skill",
   "repo": "cloudflare/security-audit-skill",
   "url": "https://github.com/cloudflare/security-audit-skill",
