@@ -2,18 +2,48 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: DietrichGebert/ponytail",
-  "summary": "One prompt that makes your coding agent write only the code a task needs",
+  "summary": "One prompt that makes your coding agent reuse what exists and write only what a task needs. Why it matters: smaller diffs to review.",
   "points": [
-   "Reuses what the repo already has before adding code",
-   "Never cuts validation, security or error handling",
-   "/ponytail-review and /ponytail-audit commands"
+   "★ 171.2k stars, +2,051 today",
+   "Keeps validation and security"
   ],
   "link": "repos/#dietrichgebert-ponytail",
   "source": "https://github.com/DietrichGebert/ponytail",
   "img": "repos/img/dietrichgebert-ponytail.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2112976956342071609",
   "id": "2026-10-22-repo-dietrichgebert-ponytail",
-  "date": "2026-10-22T00:06:48+05:30"
+  "date": "2026-10-22T00:08:58+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "In 1989, a neural net called ALVINN steered a CMU van from a 30x32-pixel camera view.",
+  "summary": "Why it matters: learned driving is 35+ years old.",
+  "points": [
+   "Trained on 1,200 simulated road images",
+   "Just 36,627 weights",
+   "Drove a wooded path at 0.5 m/s"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2112882905966051408",
+  "date": "2026-10-21T17:55:14+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/ALVINN",
+  "img": "",
+  "id": "2026-10-21-fact-in-1989-a-neural-net-called-alvinn-steered-a-cmu-van-from-a-"
+ },
+ {
+  "type": "News",
+  "title": "Anthropic's Claude flagged 493 security issues across 25 open-source projects.",
+  "summary": "Why it matters: less reachable code, less risk.",
+  "points": [
+   "OpenSSH: ~4,500 unused post-quantum lines were reachable pre-login",
+   "A cert check sat disabled 21 years"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2112862876302188658",
+  "date": "2026-10-21T16:35:39+05:30",
+  "link": "",
+  "source": "https://t.co/xDGZdhAjWd",
+  "img": "",
+  "id": "2026-10-21-news-anthropic-s-claude-flagged-493-security-issues-across-25-ope"
  },
  {
   "type": "Cheatsheet",
