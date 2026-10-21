@@ -6,42 +6,46 @@
   "link": "cheatsheets/#ai-for-studying",
   "img": "cheatsheets/img/ai-for-studying.jpg",
   "id": "2026-10-21-cheatsheet-ai-for-studying",
-  "date": "2026-10-21T11:13:41+05:30",
-  "x_url": "",
+  "date": "2026-10-21T11:16:01+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2112782436606304433",
   "source": "",
-  "points": []
- },
- {
-  "type": "Repo",
-  "title": "Trending AI repo: headroomlabs-ai/headroom",
-  "summary": "Compresses what your AI agent reads so it uses fewer tokens, same answers",
   "points": [
-   "Shrinks tool outputs, logs, files and RAG chunks",
-   "~20% fewer tokens for coding agents",
-   "Library, local proxy or MCP server"
-  ],
-  "link": "repos/#headroomlabs-ai-headroom",
-  "source": "https://github.com/headroomlabs-ai/headroom",
-  "img": "repos/img/headroomlabs-ai-headroom.jpg",
-  "x_url": "https://x.com/ai_radar_/status/2112512931640529250",
-  "id": "2026-10-20-repo-headroomlabs-ai-headroom",
-  "date": "2026-10-20T17:23:08+05:30"
+   "How to start ChatGPT, Gemini and Claude study modes",
+   "4 prompts that make AI tutor you, not do the work",
+   "A 30-minute study session, plus 4 mistakes to avoid"
+  ]
  },
  {
   "type": "Repo",
   "title": "Trending AI repo: Graphify-Labs/graphify",
-  "summary": "Turns any codebase into a knowledge graph your AI coding assistant can query",
+  "summary": "Turns any codebase into a graph AI coding tools can query. Why it matters: agents query a map, not grep.",
   "points": [
-   "Parses ~40 languages locally with tree-sitter",
-   "Adds docs, SQL schemas, configs and PDFs",
-   "No vector store; every edge is explained"
+   "★ 129.5k stars, +751 today",
+   "Parses ~40 languages locally",
+   "No vector store needed"
   ],
   "link": "repos/#graphify-labs-graphify",
   "source": "https://github.com/Graphify-Labs/graphify",
   "img": "repos/img/graphify-labs-graphify.jpg",
   "x_url": "https://x.com/ai_radar_/status/2112513383681708112",
   "id": "2026-10-20-repo-graphify-labs-graphify",
-  "date": "2026-10-20T17:23:08+05:30"
+  "date": "2026-10-20T17:26:53+05:30"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: headroomlabs-ai/headroom",
+  "summary": "Compresses tool outputs and logs before they reach the LLM. Why it matters: fewer tokens, same answers.",
+  "points": [
+   "★ 76.5k stars, +555 today",
+   "~20% fewer tokens for coding agents",
+   "Library, proxy or MCP server"
+  ],
+  "link": "repos/#headroomlabs-ai-headroom",
+  "source": "https://github.com/headroomlabs-ai/headroom",
+  "img": "repos/img/headroomlabs-ai-headroom.jpg",
+  "x_url": "https://x.com/ai_radar_/status/2112512931640529250",
+  "id": "2026-10-20-repo-headroomlabs-ai-headroom",
+  "date": "2026-10-20T17:25:06+05:30"
  },
  {
   "type": "Cheatsheet",
@@ -50,10 +54,14 @@
   "link": "cheatsheets/#ai-in-excel-and-sheets",
   "img": "cheatsheets/img/ai-in-excel-and-sheets.jpg",
   "id": "2026-10-20-cheatsheet-ai-in-excel-and-sheets",
-  "date": "2026-10-20T11:50:12+05:30",
+  "date": "2026-10-20T11:52:14+05:30",
   "x_url": "https://x.com/ai_radar_/status/2112429163324035552",
   "source": "",
-  "points": []
+  "points": [
+   "=COPILOT() and =AI() syntax side by side",
+   "Copy-ready formulas to summarize, classify and write",
+   "Tips for good results + the limits to know"
+  ]
  },
  {
   "type": "Repo",
