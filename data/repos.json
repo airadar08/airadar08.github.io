@@ -1,5 +1,24 @@
 [
  {
+  "slug": "hugohe3-ppt-master",
+  "repo": "hugohe3/ppt-master",
+  "url": "https://github.com/hugohe3/ppt-master",
+  "tagline": "An AI agent workflow that turns documents or a topic into native, editable PowerPoint decks",
+  "stars": "65.5k",
+  "trend": "+3,270",
+  "language": "Python",
+  "license": "MIT",
+  "what": [
+   "Makes a real .pptx from a PDF, doc or topic",
+   "Native shapes, charts, tables and slide masters",
+   "Can fill your own template or add narration"
+  ],
+  "read": "Strong idea; it runs inside your AI agent, so you still pay for model use",
+  "img": "repos/img/hugohe3-ppt-master.jpg",
+  "date": "2026-10-22",
+  "post": ""
+ },
+ {
   "slug": "dietrichgebert-ponytail",
   "repo": "DietrichGebert/ponytail",
   "url": "https://github.com/DietrichGebert/ponytail",

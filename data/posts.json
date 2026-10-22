@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: hugohe3/ppt-master",
+  "summary": "An AI agent workflow that turns documents or a topic into native, editable PowerPoint decks",
+  "points": [
+   "Makes a real .pptx from a PDF, doc or topic",
+   "Native shapes, charts, tables and slide masters",
+   "Can fill your own template or add narration"
+  ],
+  "link": "repos/#hugohe3-ppt-master",
+  "source": "https://github.com/hugohe3/ppt-master",
+  "img": "repos/img/hugohe3-ppt-master.jpg",
+  "x_url": "",
+  "id": "2026-10-22-repo-hugohe3-ppt-master",
+  "date": "2026-10-22T13:18:49+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "LLM Settings Explained cheatsheet",
   "summary": "Temperature, top-p and the knobs that shape output",
