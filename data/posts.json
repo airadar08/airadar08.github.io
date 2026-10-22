@@ -2,18 +2,32 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: hugohe3/ppt-master",
-  "summary": "An AI agent workflow that turns documents or a topic into native, editable PowerPoint decks",
+  "summary": "Turns a PDF, doc or topic into an editable PowerPoint deck via your AI agent. Why it matters: slides you can edit, not flat images.",
   "points": [
-   "Makes a real .pptx from a PDF, doc or topic",
-   "Native shapes, charts, tables and slide masters",
-   "Can fill your own template or add narration"
+   "Native shapes, charts and slide masters",
+   "★ 65.5k stars, +3,270 this week"
   ],
   "link": "repos/#hugohe3-ppt-master",
   "source": "https://github.com/hugohe3/ppt-master",
   "img": "repos/img/hugohe3-ppt-master.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2113176635512164501",
   "id": "2026-10-22-repo-hugohe3-ppt-master",
-  "date": "2026-10-22T13:18:49+05:30"
+  "date": "2026-10-22T13:22:25+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "In 1972, psychiatrists couldn't tell the chatbot PARRY from real paranoid patients.",
+  "summary": "Why it matters: Turing-style tests are 50+ years old.",
+  "points": [
+   "33 psychiatrists judged transcripts: 48% right",
+   "Later \"talked\" with ELIZA over ARPANET"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2113150923359051995",
+  "date": "2026-10-22T11:40:15+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/PARRY",
+  "img": "",
+  "id": "2026-10-22-fact-in-1972-psychiatrists-couldn-t-tell-the-chatbot-parry-from-r"
  },
  {
   "type": "Cheatsheet",
