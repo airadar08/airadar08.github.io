@@ -646,6 +646,7 @@ html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
       <a class="roll-host" href="#screens"><span class="roll" data-roll>Screens</span></a>
       <a class="roll-host" href="#features"><span class="roll" data-roll>Features</span></a>
       <a class="roll-host" href="#soon"><span class="roll" data-roll>Coming soon</span></a>
+      <a class="roll-host" href="#web"><span class="roll" data-roll>iPhone &amp; web</span></a>
       <a class="roll-host" href="../"><span class="roll" data-roll>Website</span></a>
     </div>
     <a class="btn btn-dark roll-host" href="https://x.com/ai_radar_" target="_blank" rel="noopener"><span class="roll" data-roll>Follow on X</span></a>
@@ -666,8 +667,9 @@ html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
       <div class="hero-ctas">
         <span class="appear" data-delay="1000"><span class="soon" role="note"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.2 2.6c-.3.3-.4.7-.4 1.2v16.4c0 .5.1.9.4 1.2l9.1-9.4zM14.8 13.4l2.8 2.9-11.2 6.3c-.4.2-.8.2-1.1.1zM18.9 9.1l2.6 1.5c.8.5.8 1.3 0 1.8l-2.7 1.5-3-3.1zM5.3 1.3c.3-.1.7 0 1.1.2l11.2 6.3-2.8 2.9z"/></svg><span><small>Coming soon on</small>Google Play</span></span></span>
         <a class="btn btn-light roll-host appear" data-delay="1150" href="https://x.com/ai_radar_" target="_blank" rel="noopener"><span class="roll" data-roll>Follow for the launch</span></a>
+        <a class="btn btn-dark roll-host appear" data-delay="1250" href="../app/"><span class="roll" data-roll>Use it now on iPhone</span></a>
       </div>
-      <ul class="facts appear" data-delay="1300" aria-label="At a glance"><li>Free</li><li>No account</li><li>Android</li></ul>
+      <ul class="facts appear" data-delay="1300" aria-label="At a glance"><li>Free</li><li>No account</li><li>Android</li><li>iPhone &amp; web</li></ul>
     </div>
 
     <div class="phones">
@@ -830,6 +832,25 @@ html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
   </div>
 </section>
 
+<!-- ============ IPHONE & WEB ============ -->
+<section class="inst-sec gutter" id="web">
+  <div class="wrap">
+    <div class="soon-band reveal">
+      <div style="display:flex;flex-direction:column;gap:18px;align-items:flex-start;max-width:600px;min-width:0">
+        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>Use it today</span>
+        <h2 class="h-section">On iPhone or in your browser, today</h2>
+        <p class="body">The AI Radar web app has the same four tabs as the Android app: Chat, Explore, Posts and Saved. Open it in Safari and add it to your Home Screen, and it opens full screen like an app. Free, no account.</p>
+        <div class="hero-ctas" style="justify-content:flex-start"><a class="btn btn-dark roll-host" href="../app/"><span class="roll" data-roll>Open the web app</span></a></div>
+      </div>
+      <ol class="steps">
+        <li><b>Open it in Safari</b><span>Go to airadar08.github.io/app on your iPhone.</span></li>
+        <li><b>Tap Share</b><span>The square with an arrow, at the bottom of Safari.</span></li>
+        <li><b>Add to Home Screen</b><span>Tap Add. AI Radar opens full screen, like an app.</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
 <!-- ============ FAQ ============ -->
 <section class="faq-sec gutter">
   <div class="wrap two-col" style="align-items:flex-start">
@@ -916,7 +937,7 @@ html.intro #intro{position:fixed;inset:0;z-index:9999;display:block}
     ['What can I ask?','Anything about AI: models, tools, repos, prompts, research and news. It politely declines other topics.'],
     ['How do I know the answers are right?','Every answer is built from live searches, and each fact is numbered to its source, so you can open it and check.'],
     ['Where are my saved items kept?','On your own phone, not on a server. Export them to a file for a backup and import them on a new phone.'],
-    ['Is there an iPhone version?','Not yet. Android comes first.']
+    ['Is there an iPhone version?','There is a web app you can use on iPhone today: open airadar08.github.io/app in Safari, tap Share, then Add to Home Screen. There is no App Store app yet.']
   ];
   var list=document.getElementById('faq');
   qa.forEach(function(p,i){
