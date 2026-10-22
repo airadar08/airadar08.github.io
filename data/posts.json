@@ -6,10 +6,29 @@
   "link": "cheatsheets/#ai-hallucinations",
   "img": "cheatsheets/img/ai-hallucinations.jpg",
   "id": "2026-10-22-cheatsheet-ai-hallucinations",
-  "date": "2026-10-22T20:12:36+05:30",
-  "x_url": "",
+  "date": "2026-10-22T20:22:51+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2113282441322594708",
   "source": "",
-  "points": []
+  "points": [
+   "What hallucinations are and why AI makes things up",
+   "Red flags: fake links, unsourced numbers, shifting answers",
+   "5 fixes + a 4-step check before you trust an answer"
+  ]
+ },
+ {
+  "type": "Fact",
+  "title": "In 1956 a program out-proved Russell, and a journal rejected the paper.",
+  "summary": "Why it matters: it pioneered search and heuristics.",
+  "points": [
+   "Logic Theorist proved 38 of 52 Principia theorems",
+   "Russell was delighted by its shorter proof"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2113275588572225571",
+  "date": "2026-10-22T19:55:37+05:30",
+  "link": "",
+  "source": "https://t.co/RUmdwcWEKC",
+  "img": "",
+  "id": "2026-10-22-fact-in-1956-a-program-out-proved-russell-and-a-journal-rejected-"
  },
  {
   "type": "Repo",
