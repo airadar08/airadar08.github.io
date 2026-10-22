@@ -1,7 +1,7 @@
 // AI Radar offline shell. App files are cached so the app opens offline; data (posts, search, chat)
 // always goes to the network and the app keeps its own offline cache for posts.
 // Bump VERSION to force every device to refetch.
-const VERSION = 'v1';
+const VERSION = 'v2';
 const SHELL = `airadar-shell-${VERSION}`;
 
 self.addEventListener('install', (e) => {
@@ -22,7 +22,9 @@ self.addEventListener('fetch', (e) => {
   // Page loads: network first (so updates arrive), cached shell when offline.
   if (req.mode === 'navigate') {
     e.respondWith(
-      fetch(req)
+      // no-cache: always ask the server whether the page changed, skipping the browser's 10-minute
+      // copy that GitHub Pages allows, so a new deploy shows on the next open.
+      fetch(req, { cache: 'no-cache' })
         .then((res) => {
           const copy = res.clone();
           caches.open(SHELL).then((c) => c.put('./', copy));
