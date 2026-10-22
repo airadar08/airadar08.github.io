@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "AI Hallucinations cheatsheet",
+  "summary": "Why AI makes things up, and how to stop it",
+  "link": "cheatsheets/#ai-hallucinations",
+  "img": "cheatsheets/img/ai-hallucinations.jpg",
+  "id": "2026-10-22-cheatsheet-ai-hallucinations",
+  "date": "2026-10-22T20:12:36+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: akitaonrails/ai-memory",
   "summary": "Shared memory for AI coding agents: quit Claude Code, open Codex, keep going. Why it matters: context isn't locked to one tool.",
