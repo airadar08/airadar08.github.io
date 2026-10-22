@@ -1,5 +1,29 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "Choosing an LLM cheatsheet",
+  "summary": "5 factors to pick the right model",
+  "link": "cheatsheets/#choosing-an-llm",
+  "img": "cheatsheets/img/choosing-an-llm.jpg",
+  "id": "2026-10-22-cheatsheet-choosing-an-llm",
+  "date": "2026-10-22T23:33:46+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
+  "type": "Cheatsheet",
+  "title": "Reasoning Models cheatsheet",
+  "summary": "Models that think before they answer",
+  "link": "cheatsheets/#reasoning-models",
+  "img": "cheatsheets/img/reasoning-models.jpg",
+  "id": "2026-10-22-cheatsheet-reasoning-models",
+  "date": "2026-10-22T23:33:46+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: ruvnet/ruflo",
   "summary": "Runs swarms of coding agents inside Claude Code and Codex. Why it matters: one toolkit to coordinate a team of agents.",
