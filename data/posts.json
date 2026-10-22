@@ -1,6 +1,22 @@
 [
  {
   "type": "Repo",
+  "title": "Trending AI repo: akitaonrails/ai-memory",
+  "summary": "Shared long-term memory for AI coding agents: quit one, the next picks up",
+  "points": [
+   "One memory shared by 20+ agents and harnesses",
+   "Handoffs: say where you stopped, what failed",
+   "Memory is a git-backed wiki of plain .md files"
+  ],
+  "link": "repos/#akitaonrails-ai-memory",
+  "source": "https://github.com/akitaonrails/ai-memory",
+  "img": "repos/img/akitaonrails-ai-memory.jpg",
+  "x_url": "",
+  "id": "2026-10-22-repo-akitaonrails-ai-memory",
+  "date": "2026-10-22T18:14:13+05:30"
+ },
+ {
+  "type": "Repo",
   "title": "Trending AI repo: hugohe3/ppt-master",
   "summary": "Turns a PDF, doc or topic into an editable PowerPoint deck via your AI agent. Why it matters: slides you can edit, not flat images.",
   "points": [

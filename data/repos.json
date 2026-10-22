@@ -1,5 +1,24 @@
 [
  {
+  "slug": "akitaonrails-ai-memory",
+  "repo": "akitaonrails/ai-memory",
+  "url": "https://github.com/akitaonrails/ai-memory",
+  "tagline": "Shared long-term memory for AI coding agents: quit one, the next picks up",
+  "stars": "12.6k",
+  "trend": "+2.8k",
+  "language": "Rust",
+  "license": "MIT",
+  "what": [
+   "One memory shared by 20+ agents and harnesses",
+   "Handoffs: say where you stopped, what failed",
+   "Memory is a git-backed wiki of plain .md files"
+  ],
+  "read": "Self-hosted, zero LLM calls by default. Worth a look if you juggle agents.",
+  "img": "repos/img/akitaonrails-ai-memory.jpg",
+  "date": "2026-10-22",
+  "post": ""
+ },
+ {
   "slug": "hugohe3-ppt-master",
   "repo": "hugohe3/ppt-master",
   "url": "https://github.com/hugohe3/ppt-master",
