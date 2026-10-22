@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+    <!-- viewport-fit=cover lets the app draw under the iPhone notch and home bar (safe areas come from CSS env()). -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+    <title>AI Radar</title>
+    <meta name="description" content="Ask anything about AI. Get answers with sources. Free, no account." />
+    <meta name="theme-color" content="#0a0c0b" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- Installable web app (Add to Home Screen). Paths are relative so the app can live in a subfolder. -->
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" type="image/png" href="icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="AI Radar" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <style id="expo-reset">
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        background: #0a0c0b;
+        color-scheme: dark;
+        -webkit-text-size-adjust: 100%;
+        -webkit-tap-highlight-color: transparent;
+      }
+      body {
+        overflow: hidden;
+        overscroll-behavior: none;
+      }
+      #root {
+        display: flex;
+        height: 100%;
+        flex: 1;
+      }
+    </style>
+  <link rel="icon" href="/app/favicon.ico"/></head>
+
+  <body>
+    <noscript> AI Radar needs JavaScript to run. </noscript>
+    <div id="root"></div>
+    <script>
+      // Offline shell. Skipped on the dev server so it never serves stale code.
+      if ('serviceWorker' in navigator && location.port !== '8081') {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('sw.js').catch(function () {});
+        });
+      }
+    </script>
+  <script src="/app/_expo/static/js/web/__expo-metro-runtime-8c088df87a31e4e6accd81c554ec290d.js" defer></script><script src="/app/_expo/static/js/web/__common-17ed2404aad1a15774ea387ef481fcad.js" defer></script><script src="/app/_expo/static/js/web/entry-510fcffca37d3eeed3abcb104431a6e4.js" defer></script>
+</body>
+</html>
