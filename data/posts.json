@@ -1,5 +1,37 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: Comfy-Org/ComfyUI",
+  "summary": "Node-graph engine for AI images, video, 3D and audio, run on your own GPU",
+  "points": [
+   "Visual node graph, build workflows without code",
+   "Runs big open models on 4GB VRAM + 8GB RAM",
+   "Image, video, 3D and audio models in one app"
+  ],
+  "link": "repos/#comfy-org-comfyui",
+  "source": "https://github.com/Comfy-Org/ComfyUI",
+  "img": "repos/img/comfy-org-comfyui.jpg",
+  "x_url": "",
+  "id": "2026-10-22-repo-comfy-org-comfyui",
+  "date": "2026-10-22T21:22:40+05:30"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: ruvnet/ruflo",
+  "summary": "Agent meta-harness that runs swarms of coding agents in Claude Code and Codex",
+  "points": [
+   "Coordinates multi-agent swarms and workflows",
+   "Adaptive memory and vector RAG built in",
+   "Plugin for Claude Code, MCP server for others"
+  ],
+  "link": "repos/#ruvnet-ruflo",
+  "source": "https://github.com/ruvnet/ruflo",
+  "img": "repos/img/ruvnet-ruflo.jpg",
+  "x_url": "",
+  "id": "2026-10-22-repo-ruvnet-ruflo",
+  "date": "2026-10-22T21:22:40+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "AI Hallucinations cheatsheet",
   "summary": "Why AI makes things up, and how to stop it",

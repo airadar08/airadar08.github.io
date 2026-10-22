@@ -1,5 +1,43 @@
 [
  {
+  "slug": "ruvnet-ruflo",
+  "repo": "ruvnet/ruflo",
+  "url": "https://github.com/ruvnet/ruflo",
+  "tagline": "Agent meta-harness that runs swarms of coding agents in Claude Code and Codex",
+  "stars": "78.4k",
+  "trend": "+3.6k",
+  "language": "TypeScript",
+  "license": "MIT",
+  "what": [
+   "Coordinates multi-agent swarms and workflows",
+   "Adaptive memory and vector RAG built in",
+   "Plugin for Claude Code, MCP server for others"
+  ],
+  "read": "Big, ambitious agent toolkit; review its plugins before you install them",
+  "img": "repos/img/ruvnet-ruflo.jpg",
+  "date": "2026-10-22",
+  "post": ""
+ },
+ {
+  "slug": "comfy-org-comfyui",
+  "repo": "Comfy-Org/ComfyUI",
+  "url": "https://github.com/Comfy-Org/ComfyUI",
+  "tagline": "Node-graph engine for AI images, video, 3D and audio, run on your own GPU",
+  "stars": "141.9k",
+  "trend": "+3.9k",
+  "language": "Python",
+  "license": "GPL-3.0",
+  "what": [
+   "Visual node graph, build workflows without code",
+   "Runs big open models on 4GB VRAM + 8GB RAM",
+   "Image, video, 3D and audio models in one app"
+  ],
+  "read": "The go-to local AI image/video workbench; steep at first, unmatched control",
+  "img": "repos/img/comfy-org-comfyui.jpg",
+  "date": "2026-10-22",
+  "post": ""
+ },
+ {
   "slug": "akitaonrails-ai-memory",
   "repo": "akitaonrails/ai-memory",
   "url": "https://github.com/akitaonrails/ai-memory",
