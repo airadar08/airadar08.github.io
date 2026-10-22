@@ -1,35 +1,33 @@
 [
  {
   "type": "Repo",
-  "title": "Trending AI repo: Comfy-Org/ComfyUI",
-  "summary": "Node-graph engine for AI images, video, 3D and audio, run on your own GPU",
-  "points": [
-   "Visual node graph, build workflows without code",
-   "Runs big open models on 4GB VRAM + 8GB RAM",
-   "Image, video, 3D and audio models in one app"
-  ],
-  "link": "repos/#comfy-org-comfyui",
-  "source": "https://github.com/Comfy-Org/ComfyUI",
-  "img": "repos/img/comfy-org-comfyui.jpg",
-  "x_url": "",
-  "id": "2026-10-22-repo-comfy-org-comfyui",
-  "date": "2026-10-22T21:22:40+05:30"
- },
- {
-  "type": "Repo",
   "title": "Trending AI repo: ruvnet/ruflo",
-  "summary": "Agent meta-harness that runs swarms of coding agents in Claude Code and Codex",
+  "summary": "Runs swarms of coding agents inside Claude Code and Codex. Why it matters: one toolkit to coordinate a team of agents.",
   "points": [
-   "Coordinates multi-agent swarms and workflows",
-   "Adaptive memory and vector RAG built in",
-   "Plugin for Claude Code, MCP server for others"
+   "Built-in memory, vector RAG and an MCP server",
+   "★ 78.4k stars, +3.6k this week"
   ],
   "link": "repos/#ruvnet-ruflo",
   "source": "https://github.com/ruvnet/ruflo",
   "img": "repos/img/ruvnet-ruflo.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2113298977378685030",
   "id": "2026-10-22-repo-ruvnet-ruflo",
-  "date": "2026-10-22T21:22:40+05:30"
+  "date": "2026-10-22T21:28:34+05:30"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: Comfy-Org/ComfyUI",
+  "summary": "Node-graph engine for AI images, video, 3D and audio on your own GPU. Why it matters: full local control, no code.",
+  "points": [
+   "Runs big open models on 4GB VRAM + 8GB RAM",
+   "★ 141.9k stars, +3.9k this week"
+  ],
+  "link": "repos/#comfy-org-comfyui",
+  "source": "https://github.com/Comfy-Org/ComfyUI",
+  "img": "repos/img/comfy-org-comfyui.jpg",
+  "x_url": "https://x.com/ai_radar_/status/2113298306596319331",
+  "id": "2026-10-22-repo-comfy-org-comfyui",
+  "date": "2026-10-22T21:25:54+05:30"
  },
  {
   "type": "Cheatsheet",
@@ -59,7 +57,7 @@
   "date": "2026-10-22T19:55:37+05:30",
   "link": "",
   "source": "https://t.co/RUmdwcWEKC",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HVPc7MYaQAAGpiN?format=jpg&name=small",
   "id": "2026-10-22-fact-in-1956-a-program-out-proved-russell-and-a-journal-rejected-"
  },
  {
