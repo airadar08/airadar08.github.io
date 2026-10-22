@@ -2,18 +2,48 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: akitaonrails/ai-memory",
-  "summary": "Shared long-term memory for AI coding agents: quit one, the next picks up",
+  "summary": "Shared memory for AI coding agents: quit Claude Code, open Codex, keep going. Why it matters: context isn't locked to one tool.",
   "points": [
-   "One memory shared by 20+ agents and harnesses",
-   "Handoffs: say where you stopped, what failed",
-   "Memory is a git-backed wiki of plain .md files"
+   "20+ agents, memory as plain markdown",
+   "★ 12.6k stars, +2.8k this week"
   ],
   "link": "repos/#akitaonrails-ai-memory",
   "source": "https://github.com/akitaonrails/ai-memory",
   "img": "repos/img/akitaonrails-ai-memory.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2113250548573253890",
   "id": "2026-10-22-repo-akitaonrails-ai-memory",
-  "date": "2026-10-22T18:14:13+05:30"
+  "date": "2026-10-22T18:16:07+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "IBM's TD-Gammon taught itself backgammon, and pros copied its openings.",
+  "summary": "Why it matters: self-play found moves experts missed.",
+  "points": [
+   "Pure self-play, ~1.5M games",
+   "It split 24-23 instead of slotting; tournament players followed"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2113247374470676915",
+  "date": "2026-10-22T18:03:30+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/TD-Gammon",
+  "img": "",
+  "id": "2026-10-22-fact-ibm-s-td-gammon-taught-itself-backgammon-and-pros-copied-its"
+ },
+ {
+  "type": "News",
+  "title": "Anthropic launched Claude Duet, an agent app that works after you close your laptop.",
+  "summary": "Why it matters: Claude shifts from answering to running errands.",
+  "points": [
+   "Own virtual machine and browser",
+   "6,000+ connectors",
+   "Asks approval to send, pay or sign"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2113239012307833005",
+  "date": "2026-10-22T17:30:17+05:30",
+  "link": "",
+  "source": "https://t.co/WOhLN2LZ9i",
+  "img": "",
+  "id": "2026-10-22-news-anthropic-launched-claude-duet-an-agent-app-that-works-after"
  },
  {
   "type": "Repo",
