@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "LLM Settings Explained cheatsheet",
+  "summary": "Temperature, top-p and the knobs that shape output",
+  "link": "cheatsheets/#llm-settings-explained",
+  "img": "cheatsheets/img/llm-settings-explained.jpg",
+  "id": "2026-10-22-cheatsheet-llm-settings-explained",
+  "date": "2026-10-22T11:12:32+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: DietrichGebert/ponytail",
   "summary": "One prompt that makes your coding agent reuse what exists and write only what a task needs. Why it matters: smaller diffs to review.",
