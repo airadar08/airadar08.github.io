@@ -1,27 +1,115 @@
 [
  {
   "type": "Cheatsheet",
-  "title": "Choosing an LLM cheatsheet",
-  "summary": "5 factors to pick the right model",
-  "link": "cheatsheets/#choosing-an-llm",
-  "img": "cheatsheets/img/choosing-an-llm.jpg",
-  "id": "2026-10-22-cheatsheet-choosing-an-llm",
-  "date": "2026-10-22T23:33:46+05:30",
-  "x_url": "",
-  "source": "",
-  "points": []
- },
- {
-  "type": "Cheatsheet",
   "title": "Reasoning Models cheatsheet",
   "summary": "Models that think before they answer",
   "link": "cheatsheets/#reasoning-models",
   "img": "cheatsheets/img/reasoning-models.jpg",
   "id": "2026-10-22-cheatsheet-reasoning-models",
-  "date": "2026-10-22T23:33:46+05:30",
-  "x_url": "",
+  "date": "2026-10-22T23:40:04+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2113332072605737078",
   "source": "",
-  "points": []
+  "points": [
+   "What reasoning models are and the test-time compute idea",
+   "When to use them, and when to skip",
+   "The cost and speed trade-offs"
+  ]
+ },
+ {
+  "type": "Cheatsheet",
+  "title": "Choosing an LLM cheatsheet",
+  "summary": "5 factors to pick the right model",
+  "link": "cheatsheets/#choosing-an-llm",
+  "img": "cheatsheets/img/choosing-an-llm.jpg",
+  "id": "2026-10-22-cheatsheet-choosing-an-llm",
+  "date": "2026-10-22T23:39:31+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2113331932872523813",
+  "source": "",
+  "points": [
+   "The 5 factors: open vs closed, cost, latency, quality, context",
+   "Open vs closed models side by side",
+   "A 4-step way to pick and test"
+  ]
+ },
+ {
+  "type": "News",
+  "title": "Recursive released Flint, an open coding model that runs on a laptop.",
+  "summary": "Why it matters: private, offline coding.",
+  "points": [
+   "40B parameters, 2.5B active per token",
+   "~131 tokens/sec on an M4 Pro MacBook (company test)",
+   "Apache 2.0, free on Hugging Face"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2113331732040868312",
+  "date": "2026-10-22T23:38:43+05:30",
+  "link": "",
+  "source": "https://t.co/sUecrO34rC",
+  "img": "https://pbs.twimg.com/media/HVQP_40bwAA59J_?format=jpg&name=small",
+  "id": "2026-10-22-news-recursive-released-flint-an-open-coding-model-that-runs-on-a"
+ },
+ {
+  "type": "News",
+  "title": "Perplexity's JOLT trains one model as both teacher and student, with ~6.5x fewer tokens on MATH.",
+  "summary": "",
+  "points": [
+   "Teacher sees verified solutions",
+   "JOLT+ beats GRPO: +4.2 pts MATH, +9.9 AppWorld",
+   "Tested on 5 benchmarks"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2113331497885380989",
+  "date": "2026-10-22T23:37:47+05:30",
+  "link": "",
+  "source": "https://t.co/BGE2AQhjvl",
+  "img": "https://pbs.twimg.com/media/HVQPyEFbUAAyhH7?format=jpg&name=small",
+  "id": "2026-10-22-news-perplexity-s-jolt-trains-one-model-as-both-teacher-and-stude"
+ },
+ {
+  "type": "News",
+  "title": "Two critical PHP flaws were disclosed, one found with OpenAI's GPT-5.6 Sol.",
+  "summary": "Why it matters: AI found them first.",
+  "points": [
+   "Wiz independently found both",
+   "Two months of coordinated fixes",
+   "$1B in subsidized Daybreak access for defenders"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2113331256205377755",
+  "date": "2026-10-22T23:36:49+05:30",
+  "link": "",
+  "source": "https://t.co/WcdZu0S0g5",
+  "img": "https://pbs.twimg.com/media/HVQPkIzawAAdI13?format=jpg&name=small",
+  "id": "2026-10-22-news-two-critical-php-flaws-were-disclosed-one-found-with-openai-"
+ },
+ {
+  "type": "News",
+  "title": "Mistral previewed Large 4, ~1T parameters, and teamed with NVIDIA on AI for engineering.",
+  "summary": "",
+  "points": [
+   "49B active, trained on 3,800 Blackwell GPUs",
+   "Open weights due end of October",
+   "New public benchmarks for AI in CAD and chip design"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2113331025317376430",
+  "date": "2026-10-22T23:35:54+05:30",
+  "link": "",
+  "source": "https://t.co/nJTPF2dvcF",
+  "img": "https://pbs.twimg.com/media/HVQPWi2aEAAhWA6?format=jpg&name=small",
+  "id": "2026-10-22-news-mistral-previewed-large-4-1t-parameters-and-teamed-with-nvid"
+ },
+ {
+  "type": "News",
+  "title": "OpenAI's frontier models and Codex are coming to Google Cloud.",
+  "summary": "Why it matters: buy OpenAI models where you already build.",
+  "points": [
+   "Sold via Model Garden and Marketplace",
+   "Existing Google Cloud commitments apply",
+   "GA planned \"in the coming weeks\""
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2113330795683430699",
+  "date": "2026-10-22T23:35:00+05:30",
+  "link": "",
+  "source": "https://t.co/MnUkRpCMwh",
+  "img": "https://pbs.twimg.com/media/HVQPJqraYAAaphJ?format=jpg&name=small",
+  "id": "2026-10-22-news-openai-s-frontier-models-and-codex-are-coming-to-google-clou"
  },
  {
   "type": "Repo",
