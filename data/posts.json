@@ -2,18 +2,33 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: morluto/rea",
-  "summary": "One MCP that lets your AI agent reverse engineer apps, sites and native binaries",
+  "summary": "One MCP that lets your agent reverse engineer apps and binaries. Why it matters: agents learn how apps work.",
   "points": [
-   "Agent explains how an app feature works, with evidence",
-   "Reads binaries via Hopper, Ghidra or IDA",
-   "Inspects Electron/JS apps, .NET, sites, GGUF files"
+   "★ 368.6k stars, +106.3k this week",
+   "Works with Claude Code, Codex, Cursor",
+   "Uses Ghidra, IDA or Hopper"
   ],
   "link": "repos/#morluto-rea",
   "source": "https://github.com/morluto/rea",
   "img": "repos/img/morluto-rea.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2113537343026327590",
   "id": "2026-10-23-repo-morluto-rea",
-  "date": "2026-10-23T13:13:48+05:30"
+  "date": "2026-10-23T13:15:44+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "the 2012 model that sparked deep learning trained on two ~$500 gaming GPUs.",
+  "summary": "Why it matters: cheap hardware started the boom.",
+  "points": [
+   "AlexNet: 60M parameters, 5-6 days of training",
+   "15.3% top-5 error on ImageNet, 10.8+ points ahead"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2113516389575385126",
+  "date": "2026-10-23T11:52:29+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/AlexNet",
+  "img": "",
+  "id": "2026-10-23-fact-the-2012-model-that-sparked-deep-learning-trained-on-two-500"
  },
  {
   "type": "Cheatsheet",
