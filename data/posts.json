@@ -1,6 +1,18 @@
 [
  {
   "type": "Cheatsheet",
+  "title": "AI Privacy Basics cheatsheet",
+  "summary": "What to share with chatbots, and what to switch off",
+  "link": "cheatsheets/#ai-privacy-basics",
+  "img": "cheatsheets/img/ai-privacy-basics.jpg",
+  "id": "2026-10-23-cheatsheet-ai-privacy-basics",
+  "date": "2026-10-23T11:12:51+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
+  "type": "Cheatsheet",
   "title": "Reasoning Models cheatsheet",
   "summary": "Models that think before they answer",
   "link": "cheatsheets/#reasoning-models",
