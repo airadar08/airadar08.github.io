@@ -61,6 +61,21 @@
   "date": "2026-10-23T21:53:49+05:30"
  },
  {
+  "type": "News",
+  "title": "inDrive, Pony.ai and Nvidia signed an MoU to explore robotaxi tests in Astana.",
+  "summary": "Why it matters: only an MoU, but snowy Astana is a real stress test.",
+  "points": [
+   "Tests start H1 2027, with a safety operator",
+   "Nvidia Hyperion stack, Gen-7 cars"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2113576345779462440",
+  "date": "2026-10-23T15:50:43+05:30",
+  "link": "",
+  "source": "https://techcrunch.com/2026/10/22/uber-rival-indrive-eyes-2027-robotaxi-tests-in-central-asia-with-pony-ai-and-nvidia/",
+  "img": "https://pbs.twimg.com/media/HVTuQK6bQAAV9rN?format=jpg&name=small",
+  "id": "2026-10-23-news-indrive-pony-ai-and-nvidia-signed-an-mou-to-explore-robotaxi"
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: morluto/rea",
   "summary": "One MCP that lets your agent reverse engineer apps and binaries. Why it matters: agents learn how apps work.",
