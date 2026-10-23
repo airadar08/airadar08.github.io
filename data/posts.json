@@ -1,63 +1,64 @@
 [
  {
-  "type": "Repo",
-  "title": "Trending AI repo: anthropics/claude-plugins-official",
-  "summary": "Anthropic's curated directory of Claude Code plugins",
-  "points": [
-   "Plugins made by Anthropic and partners",
-   "Plugins bundle skills, agents, MCP, commands",
-   "Browse in /plugin > Discover"
-  ],
-  "link": "repos/#anthropics-claude-plugins-official",
-  "source": "https://github.com/anthropics/claude-plugins-official",
-  "img": "repos/img/anthropics-claude-plugins-official.jpg",
-  "x_url": "",
-  "id": "2026-10-23-repo-anthropics-claude-plugins-official",
-  "date": "2026-10-23T21:52:32+05:30"
- },
- {
-  "type": "Repo",
-  "title": "Trending AI repo: cursor/plugins",
-  "summary": "Official Cursor plugin spec plus plugins for popular dev tools",
-  "points": [
-   "Each plugin is its own folder and manifest",
-   "Code review, learning, SDK and CLI plugins",
-   "Includes a plugin to scaffold new plugins"
-  ],
-  "link": "repos/#cursor-plugins",
-  "source": "https://github.com/cursor/plugins",
-  "img": "repos/img/cursor-plugins.jpg",
-  "x_url": "",
-  "id": "2026-10-23-repo-cursor-plugins",
-  "date": "2026-10-23T21:52:32+05:30"
- },
- {
-  "type": "Repo",
-  "title": "Trending AI repo: android/skills",
-  "summary": "Android best practices packaged as skills for AI coding agents",
-  "points": [
-   "SKILL.md files in the open agent-skills format",
-   "Targets tasks where LLMs underperform",
-   "Plugin for Claude Code and Codex"
-  ],
-  "link": "repos/#android-skills",
-  "source": "https://github.com/android/skills",
-  "img": "repos/img/android-skills.jpg",
-  "x_url": "",
-  "id": "2026-10-23-repo-android-skills",
-  "date": "2026-10-23T21:52:32+05:30"
- },
- {
   "type": "Cheatsheet",
   "title": "Agent Skills Explained cheatsheet",
   "summary": "SKILL.md, MCP and plugins, simply",
   "link": "cheatsheets/#agent-skills-explained",
   "img": "cheatsheets/img/agent-skills-explained.jpg",
   "id": "2026-10-23-cheatsheet-agent-skills-explained",
-  "date": "2026-10-23T21:52:32+05:30",
-  "x_url": "",
+  "date": "2026-10-23T21:56:52+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2113668490263683551",
   "source": "",
-  "points": []
+  "points": [
+   "What goes in a SKILL.md and how agents load it",
+   "Skill vs MCP vs plugin in one table",
+   "Safety checks before you install one"
+  ]
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: android/skills",
+  "summary": "Android best practices as skills for AI coding agents. Why it matters: grounds agents in current Android guidance.",
+  "points": [
+   "★ 9.4k stars, +1.4k this week",
+   "Apache-2.0, Kotlin"
+  ],
+  "link": "repos/#android-skills",
+  "source": "https://github.com/android/skills",
+  "img": "repos/img/android-skills.jpg",
+  "x_url": "https://x.com/ai_radar_/status/2113668275469230317",
+  "id": "2026-10-23-repo-android-skills",
+  "date": "2026-10-23T21:56:01+05:30"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: cursor/plugins",
+  "summary": "Official Cursor plugin spec plus plugins for dev tools. Why it matters: clear examples of how agent plugins are built.",
+  "points": [
+   "★ 13.7k stars, +2.0k this week",
+   "Code review, learning and SDK plugins"
+  ],
+  "link": "repos/#cursor-plugins",
+  "source": "https://github.com/cursor/plugins",
+  "img": "repos/img/cursor-plugins.jpg",
+  "x_url": "https://x.com/ai_radar_/status/2113668055029146095",
+  "id": "2026-10-23-repo-cursor-plugins",
+  "date": "2026-10-23T21:55:09+05:30"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: anthropics/claude-plugins-official",
+  "summary": "Anthropic's directory of Claude Code plugins. Why it matters: one place to find plugins. Trust before installing.",
+  "points": [
+   "★ 44.1k stars, +5.6k this week",
+   "Bundles skills, agents and MCP"
+  ],
+  "link": "repos/#anthropics-claude-plugins-official",
+  "source": "https://github.com/anthropics/claude-plugins-official",
+  "img": "repos/img/anthropics-claude-plugins-official.jpg",
+  "x_url": "https://x.com/ai_radar_/status/2113667722022379828",
+  "id": "2026-10-23-repo-anthropics-claude-plugins-official",
+  "date": "2026-10-23T21:53:49+05:30"
  },
  {
   "type": "Repo",
