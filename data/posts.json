@@ -1,6 +1,66 @@
 [
  {
   "type": "Repo",
+  "title": "Trending AI repo: anthropics/claude-plugins-official",
+  "summary": "Anthropic's curated directory of Claude Code plugins",
+  "points": [
+   "Plugins made by Anthropic and partners",
+   "Plugins bundle skills, agents, MCP, commands",
+   "Browse in /plugin > Discover"
+  ],
+  "link": "repos/#anthropics-claude-plugins-official",
+  "source": "https://github.com/anthropics/claude-plugins-official",
+  "img": "repos/img/anthropics-claude-plugins-official.jpg",
+  "x_url": "",
+  "id": "2026-10-23-repo-anthropics-claude-plugins-official",
+  "date": "2026-10-23T21:52:32+05:30"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: cursor/plugins",
+  "summary": "Official Cursor plugin spec plus plugins for popular dev tools",
+  "points": [
+   "Each plugin is its own folder and manifest",
+   "Code review, learning, SDK and CLI plugins",
+   "Includes a plugin to scaffold new plugins"
+  ],
+  "link": "repos/#cursor-plugins",
+  "source": "https://github.com/cursor/plugins",
+  "img": "repos/img/cursor-plugins.jpg",
+  "x_url": "",
+  "id": "2026-10-23-repo-cursor-plugins",
+  "date": "2026-10-23T21:52:32+05:30"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: android/skills",
+  "summary": "Android best practices packaged as skills for AI coding agents",
+  "points": [
+   "SKILL.md files in the open agent-skills format",
+   "Targets tasks where LLMs underperform",
+   "Plugin for Claude Code and Codex"
+  ],
+  "link": "repos/#android-skills",
+  "source": "https://github.com/android/skills",
+  "img": "repos/img/android-skills.jpg",
+  "x_url": "",
+  "id": "2026-10-23-repo-android-skills",
+  "date": "2026-10-23T21:52:32+05:30"
+ },
+ {
+  "type": "Cheatsheet",
+  "title": "Agent Skills Explained cheatsheet",
+  "summary": "SKILL.md, MCP and plugins, simply",
+  "link": "cheatsheets/#agent-skills-explained",
+  "img": "cheatsheets/img/agent-skills-explained.jpg",
+  "id": "2026-10-23-cheatsheet-agent-skills-explained",
+  "date": "2026-10-23T21:52:32+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
+  "type": "Repo",
   "title": "Trending AI repo: morluto/rea",
   "summary": "One MCP that lets your agent reverse engineer apps and binaries. Why it matters: agents learn how apps work.",
   "points": [

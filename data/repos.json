@@ -1,5 +1,62 @@
 [
  {
+  "slug": "android-skills",
+  "repo": "android/skills",
+  "url": "https://github.com/android/skills",
+  "tagline": "Android best practices packaged as skills for AI coding agents",
+  "stars": "9.4k",
+  "trend": "+1.4k",
+  "language": "Kotlin",
+  "license": "Apache-2.0",
+  "what": [
+   "SKILL.md files in the open agent-skills format",
+   "Targets tasks where LLMs underperform",
+   "Plugin for Claude Code and Codex"
+  ],
+  "read": "Useful if you build Android apps with coding agents",
+  "img": "repos/img/android-skills.jpg",
+  "date": "2026-10-23",
+  "post": ""
+ },
+ {
+  "slug": "cursor-plugins",
+  "repo": "cursor/plugins",
+  "url": "https://github.com/cursor/plugins",
+  "tagline": "Official Cursor plugin spec plus plugins for popular dev tools",
+  "stars": "13.7k",
+  "trend": "+2.0k",
+  "language": "TypeScript",
+  "license": "n/a",
+  "what": [
+   "Each plugin is its own folder and manifest",
+   "Code review, learning, SDK and CLI plugins",
+   "Includes a plugin to scaffold new plugins"
+  ],
+  "read": "Good plugin examples; no licence is listed in the repo",
+  "img": "repos/img/cursor-plugins.jpg",
+  "date": "2026-10-23",
+  "post": ""
+ },
+ {
+  "slug": "anthropics-claude-plugins-official",
+  "repo": "anthropics/claude-plugins-official",
+  "url": "https://github.com/anthropics/claude-plugins-official",
+  "tagline": "Anthropic's curated directory of Claude Code plugins",
+  "stars": "44.1k",
+  "trend": "+5.6k",
+  "language": "Python",
+  "license": "Apache-2.0",
+  "what": [
+   "Plugins made by Anthropic and partners",
+   "Plugins bundle skills, agents, MCP, commands",
+   "Browse in /plugin > Discover"
+  ],
+  "read": "Handy plugin store, but trust each plugin before installing",
+  "img": "repos/img/anthropics-claude-plugins-official.jpg",
+  "date": "2026-10-23",
+  "post": ""
+ },
+ {
   "slug": "morluto-rea",
   "repo": "morluto/rea",
   "url": "https://github.com/morluto/rea",
