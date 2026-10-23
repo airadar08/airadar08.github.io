@@ -6,10 +6,29 @@
   "link": "cheatsheets/#ai-privacy-basics",
   "img": "cheatsheets/img/ai-privacy-basics.jpg",
   "id": "2026-10-23-cheatsheet-ai-privacy-basics",
-  "date": "2026-10-23T11:12:51+05:30",
-  "x_url": "",
+  "date": "2026-10-23T11:18:45+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2113507901000261827",
   "source": "",
-  "points": []
+  "points": [
+   "What never to paste into a chatbot",
+   "Where to switch off training in ChatGPT, Claude and Gemini",
+   "How long temporary chats are kept, plus 4 safer habits"
+  ]
+ },
+ {
+  "type": "News",
+  "title": "MIT left 13 Claude Opus 4.7 agents alone on a virtual island for 30 hours. They played.",
+  "summary": "Why it matters: aimless play may train agents. Not peer-reviewed.",
+  "points": [
+   "Stacked blocks, built a \"memorial\" to a lost ring",
+   "Explorers later beat non-explorers"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2113501401599156301",
+  "date": "2026-10-23T10:52:55+05:30",
+  "link": "",
+  "source": "https://t.co/SwYSkVXVxQ",
+  "img": "",
+  "id": "2026-10-23-news-mit-left-13-claude-opus-4-7-agents-alone-on-a-virtual-island"
  },
  {
   "type": "Cheatsheet",
