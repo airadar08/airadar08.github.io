@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: morluto/rea",
+  "summary": "One MCP that lets your AI agent reverse engineer apps, sites and native binaries",
+  "points": [
+   "Agent explains how an app feature works, with evidence",
+   "Reads binaries via Hopper, Ghidra or IDA",
+   "Inspects Electron/JS apps, .NET, sites, GGUF files"
+  ],
+  "link": "repos/#morluto-rea",
+  "source": "https://github.com/morluto/rea",
+  "img": "repos/img/morluto-rea.jpg",
+  "x_url": "",
+  "id": "2026-10-23-repo-morluto-rea",
+  "date": "2026-10-23T13:13:48+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "AI Privacy Basics cheatsheet",
   "summary": "What to share with chatbots, and what to switch off",

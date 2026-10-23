@@ -1,5 +1,24 @@
 [
  {
+  "slug": "morluto-rea",
+  "repo": "morluto/rea",
+  "url": "https://github.com/morluto/rea",
+  "tagline": "One MCP that lets your AI agent reverse engineer apps, sites and native binaries",
+  "stars": "368.6k",
+  "trend": "+106.3k",
+  "language": "TypeScript",
+  "license": "MIT",
+  "what": [
+   "Agent explains how an app feature works, with evidence",
+   "Reads binaries via Hopper, Ghidra or IDA",
+   "Inspects Electron/JS apps, .NET, sites, GGUF files"
+  ],
+  "read": "Big leap for agent tooling; only use it on software you're allowed to inspect",
+  "img": "repos/img/morluto-rea.jpg",
+  "date": "2026-10-23",
+  "post": ""
+ },
+ {
   "slug": "ruvnet-ruflo",
   "repo": "ruvnet/ruflo",
   "url": "https://github.com/ruvnet/ruflo",
