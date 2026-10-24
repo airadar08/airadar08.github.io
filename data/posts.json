@@ -1,47 +1,51 @@
 [
  {
-  "type": "Repo",
-  "title": "Trending AI repo: yetone/magpie",
-  "summary": "Pick which model each coding agent uses, from one local gateway",
+  "type": "News",
+  "title": "1Password for Agents lets AI agents log in without seeing your password.",
+  "summary": "Source:",
   "points": [
-   "Runs Claude Code, Codex or Gemini CLI on any model",
-   "Translates OpenAI, Anthropic, Gemini formats",
-   "Fails over to another account when quota ends"
+   "The agent proves identity with a key",
+   "You approve or deny each login",
+   "Works with Claude Duet, OpenAI Dots, Grok Bot"
   ],
-  "link": "repos/#yetone-magpie",
-  "source": "https://github.com/yetone/magpie",
-  "img": "repos/img/yetone-magpie.jpg",
-  "x_url": "",
-  "id": "2026-10-25-repo-yetone-magpie",
-  "date": "2026-10-25T01:14:29+05:30"
+  "link": "",
+  "source": "https://t.co/XANORNDhJQ",
+  "date": "2026-10-25T01:24:14+05:30",
+  "id": "2026-10-25-news-1password-for-agents-lets-ai-agents-log-in-without-seeing-yo",
+  "x_url": "https://x.com/ai_radar_/status/2114083062967619640",
+  "img": "https://pbs.twimg.com/media/HVa7TqabcAAYhQy?format=jpg&name=small"
  },
  {
-  "type": "Repo",
-  "title": "Trending AI repo: lexmount/moli",
-  "summary": "A lightweight headless browser written in Rust, built for AI agents",
+  "type": "News",
+  "title": "Block released Dessa, a voice model that talks and listens at once and runs locally.",
+  "summary": "Source:",
   "points": [
-   "Fetches pages as Markdown, HTML or JSON",
-   "One binary speaks CDP and WebDriver",
-   "Playwright can connect over CDP"
+   "Trained on one NVIDIA GPU, per Block",
+   "Runs on a MacBook M4 Max or better",
+   "Not public yet"
   ],
-  "link": "repos/#lexmount-moli",
-  "source": "https://github.com/lexmount/moli",
-  "img": "repos/img/lexmount-moli.jpg",
-  "x_url": "",
-  "id": "2026-10-25-repo-lexmount-moli",
-  "date": "2026-10-25T01:14:29+05:30"
+  "link": "",
+  "source": "https://t.co/3A8VfPM7JZ",
+  "date": "2026-10-25T01:22:43+05:30",
+  "id": "2026-10-25-news-block-released-dessa-a-voice-model-that-talks-and-listens-at",
+  "x_url": "https://x.com/ai_radar_/status/2114082682326089921",
+  "img": "https://pbs.twimg.com/media/HVa68XgbYAAkAvM?format=jpg&name=small"
  },
  {
-  "type": "Cheatsheet",
-  "title": "Quantization Explained cheatsheet",
-  "summary": "Run bigger models on smaller hardware",
-  "link": "cheatsheets/#quantization-explained",
-  "img": "cheatsheets/img/quantization-explained.jpg",
-  "id": "2026-10-25-cheatsheet-quantization-explained",
-  "date": "2026-10-25T01:14:29+05:30",
-  "x_url": "",
-  "source": "",
-  "points": []
+  "type": "News",
+  "title": "OpenAI will stop training frontier models on the live internet, using cached and simulated web copies instead.",
+  "summary": "Source:",
+  "points": [
+   "Announced Oct 23",
+   "A model reached the internet via a misconfiguration on Sep 20",
+   "Unclear if cached data matches the open web"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2114082592878375154",
+  "date": "2026-10-25T01:22:22+05:30",
+  "link": "",
+  "source": "https://t.co/OcDnhP1ZbU",
+  "img": "https://pbs.twimg.com/media/HVa62dDbUAAEAyJ?format=jpg&name=small",
+  "id": "2026-10-25-news-openai-will-stop-training-frontier-models-on-the-live-intern"
  },
  {
   "type": "Cheatsheet",
@@ -50,55 +54,93 @@
   "link": "cheatsheets/#embeddings-explained",
   "img": "cheatsheets/img/embeddings-explained.jpg",
   "id": "2026-10-25-cheatsheet-embeddings-explained",
-  "date": "2026-10-25T01:14:29+05:30",
-  "x_url": "",
+  "date": "2026-10-25T01:21:58+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2114082493305618908",
   "source": "",
-  "points": []
+  "points": [
+   "How AI turns meaning into numbers",
+   "What they power: search, RAG, recommendations",
+   "Common pitfalls to avoid"
+  ]
+ },
+ {
+  "type": "Cheatsheet",
+  "title": "Quantization Explained cheatsheet",
+  "summary": "Run bigger models on smaller hardware",
+  "link": "cheatsheets/#quantization-explained",
+  "img": "cheatsheets/img/quantization-explained.jpg",
+  "id": "2026-10-25-cheatsheet-quantization-explained",
+  "date": "2026-10-25T01:21:38+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2114082406970126469",
+  "source": "",
+  "points": [
+   "What 4-bit and 8-bit models are",
+   "Memory a 7B model needs at each size",
+   "GGUF, Q4/Q5/Q8 and how to choose"
+  ]
  },
  {
   "type": "News",
-  "title": "OpenAI will stop training its frontier models on the live internet",
-  "summary": "Cached and simulated web copies replace the live web. Unclear if performance matches.",
+  "title": "Forced to pick a candidate, Grok's API chose Republicans 92% of the time. GPT chose Democrats 97%.",
+  "summary": "Why it matters: the prompt forced a pick via API.",
   "points": [
-   "Announced Oct 23",
-   "A model reached the internet via a misconfiguration on Sep 20"
+   "Convovo tested ~500 2026 races",
+   "They agreed under 10% of the time",
+   "Apps declined to pick"
   ],
+  "x_url": "https://x.com/ai_radar_/status/2114082266985234440",
+  "date": "2026-10-25T01:21:04+05:30",
   "link": "",
-  "source": "https://techcrunch.com/2026/10/23/openai-says-it-will-no-longer-train-its-ai-models-on-the-live-internet-citing-significant-risks/",
-  "date": "2026-10-25T01:14:29+05:30",
-  "id": "2026-10-25-news-openai-will-stop-training-its-frontier-models-on-the-live-in",
-  "x_url": "",
-  "img": "posts/img/2026-10-25-news-openai-will-stop-training-its-frontier-models-on-the-live-in.jpg"
+  "source": "https://t.co/P90efHn8av",
+  "img": "https://pbs.twimg.com/media/HVa6hiPaoAAU66V?format=jpg&name=small",
+  "id": "2026-10-25-news-forced-to-pick-a-candidate-grok-s-api-chose-republicans-92-o"
  },
  {
-  "type": "News",
-  "title": "Block released Dessa, a voice model that talks and listens at once and runs locally.",
-  "summary": "Trained on one NVIDIA GPU, per Block; runs on a MacBook M4 Max or better. Not public yet.",
+  "type": "Repo",
+  "title": "Trending AI repo: lexmount/moli",
+  "summary": "A lightweight headless browser in Rust for AI agents. Why it matters: web access without a full Chrome.",
   "points": [
-   "Full-duplex speech-to-speech",
-   "Safety researchers testing first"
+   "★ 18.7k stars, Apache/MIT",
+   "Pages as Markdown, HTML or JSON",
+   "Playwright connects over CDP"
   ],
-  "link": "",
-  "source": "https://techcrunch.com/2026/10/24/blocks-new-voice-model-sounds-eerily-human/",
-  "date": "2026-10-25T01:14:29+05:30",
-  "id": "2026-10-25-news-block-released-dessa-a-voice-model-that-talks-and-listens-at",
-  "x_url": "",
-  "img": "posts/img/2026-10-25-news-block-released-dessa-a-voice-model-that-talks-and-listens-at.jpg"
+  "link": "repos/#lexmount-moli",
+  "source": "https://github.com/lexmount/moli",
+  "img": "repos/img/lexmount-moli.jpg",
+  "x_url": "https://x.com/ai_radar_/status/2114082230893232508",
+  "id": "2026-10-25-repo-lexmount-moli",
+  "date": "2026-10-25T01:20:56+05:30"
  },
  {
-  "type": "News",
-  "title": "1Password for Agents lets AI agents log in without seeing your password.",
-  "summary": "The agent proves identity with a key and you approve each login.",
+  "type": "Repo",
+  "title": "Trending AI repo: yetone/magpie",
+  "summary": "Run Claude Code, Codex or Gemini CLI on the model you choose. Why it matters: cheaper models for coding agents.",
   "points": [
-   "Works with Claude Duet, OpenAI Dots, Grok Bot",
-   "Launched Oct 22"
+   "★ 20.7k stars, MIT",
+   "Translates OpenAI, Anthropic, Gemini formats",
+   "Fails over when quota runs out"
   ],
+  "link": "repos/#yetone-magpie",
+  "source": "https://github.com/yetone/magpie",
+  "img": "repos/img/yetone-magpie.jpg",
+  "x_url": "https://x.com/ai_radar_/status/2114082027649859940",
+  "id": "2026-10-25-repo-yetone-magpie",
+  "date": "2026-10-25T01:20:07+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "One 1973 report helped end UK university AI funding.",
+  "summary": "Why it matters: the UK's AI winter began with one review.",
+  "points": [
+   "Commissioned by the Science Research Council in 1972",
+   "James Lighthill said AI hadn't delivered and failed to scale"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2113938628414185485",
+  "date": "2026-10-24T15:50:18+05:30",
   "link": "",
-  "source": "https://techcrunch.com/2026/10/22/1password-launches-a-way-for-ai-agents-to-log-in-on-your-behalf-without-seeing-your-password/",
-  "date": "2026-10-25T01:14:29+05:30",
-  "id": "2026-10-25-news-1password-for-agents-lets-ai-agents-log-in-without-seeing-yo",
-  "x_url": "",
-  "img": "posts/img/2026-10-25-news-1password-for-agents-lets-ai-agents-log-in-without-seeing-yo.jpg"
+  "source": "https://t.co/iUn6HghRFB",
+  "img": "https://pbs.twimg.com/media/HVY37MIaUAAOFw1?format=jpg&name=small",
+  "id": "2026-10-24-fact-one-1973-report-helped-end-uk-university-ai-funding"
  },
  {
   "type": "Repo",
