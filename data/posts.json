@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: NVIDIA/OpenShell",
+  "summary": "A safe, private runtime for autonomous AI agents, with rules you set per agent",
+  "points": [
+   "Runs each agent in an isolated sandbox",
+   "Kernel checks every file, syscall and connection",
+   "Agents never see your real credentials"
+  ],
+  "link": "repos/#nvidia-openshell",
+  "source": "https://github.com/NVIDIA/OpenShell",
+  "img": "repos/img/nvidia-openshell.jpg",
+  "x_url": "",
+  "id": "2026-10-24-repo-nvidia-openshell",
+  "date": "2026-10-24T13:02:59+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "Agent Skills Explained cheatsheet",
   "summary": "SKILL.md, MCP and plugins, simply",

@@ -1,5 +1,24 @@
 [
  {
+  "slug": "nvidia-openshell",
+  "repo": "NVIDIA/OpenShell",
+  "url": "https://github.com/NVIDIA/OpenShell",
+  "tagline": "A safe, private runtime for autonomous AI agents, with rules you set per agent",
+  "stars": "19.0k",
+  "trend": "+1.1k",
+  "language": "Rust",
+  "license": "Apache-2.0",
+  "what": [
+   "Runs each agent in an isolated sandbox",
+   "Kernel checks every file, syscall and connection",
+   "Agents never see your real credentials"
+  ],
+  "read": "Serious guardrails for agents: policies are formally checked before they apply",
+  "img": "repos/img/nvidia-openshell.jpg",
+  "date": "2026-10-24",
+  "post": ""
+ },
+ {
   "slug": "android-skills",
   "repo": "android/skills",
   "url": "https://github.com/android/skills",
