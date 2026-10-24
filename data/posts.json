@@ -2,18 +2,18 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: NVIDIA/OpenShell",
-  "summary": "A safe, private runtime for autonomous AI agents, with rules you set per agent",
+  "summary": "A sandboxed runtime for AI agents. Why it matters: risky access changes wait for human review.",
   "points": [
-   "Runs each agent in an isolated sandbox",
+   "★ 19.0k stars, +1.1k today",
    "Kernel checks every file, syscall and connection",
-   "Agents never see your real credentials"
+   "Agents never see real keys"
   ],
   "link": "repos/#nvidia-openshell",
   "source": "https://github.com/NVIDIA/OpenShell",
   "img": "repos/img/nvidia-openshell.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2113897091043094975",
   "id": "2026-10-24-repo-nvidia-openshell",
-  "date": "2026-10-24T13:02:59+05:30"
+  "date": "2026-10-24T13:05:15+05:30"
  },
  {
   "type": "Cheatsheet",
