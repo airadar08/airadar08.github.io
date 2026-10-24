@@ -1,5 +1,43 @@
 [
  {
+  "slug": "lexmount-moli",
+  "repo": "lexmount/moli",
+  "url": "https://github.com/lexmount/moli",
+  "tagline": "A lightweight headless browser written in Rust, built for AI agents",
+  "stars": "18.7k",
+  "trend": "",
+  "language": "Rust",
+  "license": "Apache/MIT",
+  "what": [
+   "Fetches pages as Markdown, HTML or JSON",
+   "One binary speaks CDP and WebDriver",
+   "Playwright can connect over CDP"
+  ],
+  "read": "Promising, but its low-memory claims are the project's own benchmarks",
+  "img": "repos/img/lexmount-moli.jpg",
+  "date": "2026-10-25",
+  "post": ""
+ },
+ {
+  "slug": "yetone-magpie",
+  "repo": "yetone/magpie",
+  "url": "https://github.com/yetone/magpie",
+  "tagline": "Pick which model each coding agent uses, from one local gateway",
+  "stars": "20.7k",
+  "trend": "",
+  "language": "",
+  "license": "MIT",
+  "what": [
+   "Runs Claude Code, Codex or Gemini CLI on any model",
+   "Translates OpenAI, Anthropic, Gemini formats",
+   "Fails over to another account when quota ends"
+  ],
+  "read": "Handy router for agent users; the README says it takes no pull requests",
+  "img": "repos/img/yetone-magpie.jpg",
+  "date": "2026-10-25",
+  "post": ""
+ },
+ {
   "slug": "nvidia-openshell",
   "repo": "NVIDIA/OpenShell",
   "url": "https://github.com/NVIDIA/OpenShell",

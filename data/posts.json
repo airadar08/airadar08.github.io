@@ -1,6 +1,107 @@
 [
  {
   "type": "Repo",
+  "title": "Trending AI repo: yetone/magpie",
+  "summary": "Pick which model each coding agent uses, from one local gateway",
+  "points": [
+   "Runs Claude Code, Codex or Gemini CLI on any model",
+   "Translates OpenAI, Anthropic, Gemini formats",
+   "Fails over to another account when quota ends"
+  ],
+  "link": "repos/#yetone-magpie",
+  "source": "https://github.com/yetone/magpie",
+  "img": "repos/img/yetone-magpie.jpg",
+  "x_url": "",
+  "id": "2026-10-25-repo-yetone-magpie",
+  "date": "2026-10-25T01:14:29+05:30"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: lexmount/moli",
+  "summary": "A lightweight headless browser written in Rust, built for AI agents",
+  "points": [
+   "Fetches pages as Markdown, HTML or JSON",
+   "One binary speaks CDP and WebDriver",
+   "Playwright can connect over CDP"
+  ],
+  "link": "repos/#lexmount-moli",
+  "source": "https://github.com/lexmount/moli",
+  "img": "repos/img/lexmount-moli.jpg",
+  "x_url": "",
+  "id": "2026-10-25-repo-lexmount-moli",
+  "date": "2026-10-25T01:14:29+05:30"
+ },
+ {
+  "type": "Cheatsheet",
+  "title": "Quantization Explained cheatsheet",
+  "summary": "Run bigger models on smaller hardware",
+  "link": "cheatsheets/#quantization-explained",
+  "img": "cheatsheets/img/quantization-explained.jpg",
+  "id": "2026-10-25-cheatsheet-quantization-explained",
+  "date": "2026-10-25T01:14:29+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
+  "type": "Cheatsheet",
+  "title": "Embeddings Explained cheatsheet",
+  "summary": "How AI turns meaning into numbers",
+  "link": "cheatsheets/#embeddings-explained",
+  "img": "cheatsheets/img/embeddings-explained.jpg",
+  "id": "2026-10-25-cheatsheet-embeddings-explained",
+  "date": "2026-10-25T01:14:29+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
+  "type": "News",
+  "title": "OpenAI will stop training its frontier models on the live internet",
+  "summary": "Cached and simulated web copies replace the live web. Unclear if performance matches.",
+  "points": [
+   "Announced Oct 23",
+   "A model reached the internet via a misconfiguration on Sep 20"
+  ],
+  "link": "",
+  "source": "https://techcrunch.com/2026/10/23/openai-says-it-will-no-longer-train-its-ai-models-on-the-live-internet-citing-significant-risks/",
+  "date": "2026-10-25T01:14:29+05:30",
+  "id": "2026-10-25-news-openai-will-stop-training-its-frontier-models-on-the-live-in",
+  "x_url": "",
+  "img": "posts/img/2026-10-25-news-openai-will-stop-training-its-frontier-models-on-the-live-in.jpg"
+ },
+ {
+  "type": "News",
+  "title": "Block released Dessa, a voice model that talks and listens at once and runs locally.",
+  "summary": "Trained on one NVIDIA GPU, per Block; runs on a MacBook M4 Max or better. Not public yet.",
+  "points": [
+   "Full-duplex speech-to-speech",
+   "Safety researchers testing first"
+  ],
+  "link": "",
+  "source": "https://techcrunch.com/2026/10/24/blocks-new-voice-model-sounds-eerily-human/",
+  "date": "2026-10-25T01:14:29+05:30",
+  "id": "2026-10-25-news-block-released-dessa-a-voice-model-that-talks-and-listens-at",
+  "x_url": "",
+  "img": "posts/img/2026-10-25-news-block-released-dessa-a-voice-model-that-talks-and-listens-at.jpg"
+ },
+ {
+  "type": "News",
+  "title": "1Password for Agents lets AI agents log in without seeing your password.",
+  "summary": "The agent proves identity with a key and you approve each login.",
+  "points": [
+   "Works with Claude Duet, OpenAI Dots, Grok Bot",
+   "Launched Oct 22"
+  ],
+  "link": "",
+  "source": "https://techcrunch.com/2026/10/22/1password-launches-a-way-for-ai-agents-to-log-in-on-your-behalf-without-seeing-your-password/",
+  "date": "2026-10-25T01:14:29+05:30",
+  "id": "2026-10-25-news-1password-for-agents-lets-ai-agents-log-in-without-seeing-yo",
+  "x_url": "",
+  "img": "posts/img/2026-10-25-news-1password-for-agents-lets-ai-agents-log-in-without-seeing-yo.jpg"
+ },
+ {
+  "type": "Repo",
   "title": "Trending AI repo: NVIDIA/OpenShell",
   "summary": "A sandboxed runtime for AI agents. Why it matters: risky access changes wait for human review.",
   "points": [
