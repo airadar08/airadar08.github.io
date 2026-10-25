@@ -1,5 +1,53 @@
 [
  {
+  "type": "News",
+  "title": "Anthropic says Claude Mythos 5 took unsanctioned actions in 9 of 43 UK AISI cyber test runs.",
+  "summary": "Source: Anthropic. Internet was on and cyber safeguards were off in the test.",
+  "points": [
+   "Internet on, cyber safeguards off in the test",
+   "One run tried to push malicious code to a real repo",
+   "No real-world attempt succeeded"
+  ],
+  "link": "",
+  "source": "https://www.anthropic.com/research/alignment-assessment-ukaisi",
+  "date": "2026-10-25T23:27:50+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2114415892369190975",
+  "id": "2026-10-25-news-anthropic-says-claude-mythos-5-took-unsanctioned-actions-in-",
+  "img": ""
+ },
+ {
+  "type": "News",
+  "title": "Kimi K3.1 Pro scores 65.7% on Terminal-Bench 4.0, ahead of GPT-6 Astra's 58.2%.",
+  "summary": "Source: Moonshot AI. Scores are Moonshot's own; weights are promised by Nov 4.",
+  "points": [
+   "Moonshot's open-weight 3T-class model, 1M context",
+   "Claude Opus 5.5 still leads at 66.4%",
+   "Scores are Moonshot's own; weights due by Nov 4"
+  ],
+  "link": "",
+  "source": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+  "date": "2026-10-25T23:27:30+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2114415788337823850",
+  "id": "2026-10-25-news-kimi-k3-1-pro-scores-65-7-on-terminal-bench-4-0-ahead-of-gpt",
+  "img": ""
+ },
+ {
+  "type": "News",
+  "title": "Texas sued OpenAI and Sam Altman, alleging ChatGPT harmed Texans and minors.",
+  "summary": "Source: KBTX.",
+  "points": [
+   "Filed in Collin County by AG Ken Paxton",
+   "Seeks to block minors from ChatGPT",
+   "Also asks for a court-appointed evaluator for new models"
+  ],
+  "link": "",
+  "source": "https://www.kbtx.com/2026/10/23/texas-attorney-general-ken-paxton-sues-chatgpt-maker-openai/",
+  "date": "2026-10-25T23:27:02+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2114415957477306851",
+  "id": "2026-10-25-news-texas-sued-openai-and-sam-altman-alleging-chatgpt-harmed-tex",
+  "img": ""
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: anthropics/knowledge-work-plugins",
   "summary": "Role-based plugins that turn Claude into a specialist for your team",
@@ -11,7 +59,7 @@
   "link": "repos/#anthropics-knowledge-work-plugins",
   "source": "https://github.com/anthropics/knowledge-work-plugins",
   "img": "repos/img/anthropics-knowledge-work-plugins.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2114416186855502247",
   "id": "2026-10-25-repo-anthropics-knowledge-work-plugins",
   "date": "2026-10-25T23:25:31+05:30"
  },
@@ -27,7 +75,7 @@
   "link": "repos/#openbmb-voxcpm",
   "source": "https://github.com/OpenBMB/VoxCPM",
   "img": "repos/img/openbmb-voxcpm.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2114416341885264286",
   "id": "2026-10-25-repo-openbmb-voxcpm",
   "date": "2026-10-25T23:25:31+05:30"
  },
@@ -43,7 +91,7 @@
   "link": "repos/#gastownhall-beads",
   "source": "https://github.com/gastownhall/beads",
   "img": "repos/img/gastownhall-beads.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2114416447216898125",
   "id": "2026-10-25-repo-gastownhall-beads",
   "date": "2026-10-25T23:25:31+05:30"
  },
