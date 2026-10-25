@@ -32,7 +32,7 @@ Static site for the @ai_radar_ X account, served by GitHub Pages at https://aira
 - Motion: subtle (fade/rise, hover lift, the radar sweep). Always respect `prefers-reduced-motion`.
 
 ## News posts (standing format)
-Every news post uses the "AI Radar Notes" source card: `python3 tools/render_news.py news.json card.png` (kicker, headline, 4 stat tiles, two short sections, black "Our read" bar, sources in the footer, in the AI Radar house look: cream page, green accent), post text = one-sentence news + 3 "→" lines + "Source: <url>". Details in `tools/README.md`. Repos, cheatsheets and prompt packs keep their own fixed designs.
+Every news post uses the "AI Radar Notes" source card: `python3 tools/render_news.py news.json card.png` (kicker, headline, 4 stat tiles, two short sections, black "Our read" bar, sources in the footer, tinted in one of the 8 rotating slot colours; news and AI facts are NOT fixed green), post text = one-sentence news + 3 "→" lines + "Source: <url>". Details in `tools/README.md`. Repos, cheatsheets and prompt packs keep their own fixed designs.
 
 ## Adding a new prompt pack
 Write a pack JSON (see `tools/make_pack.py` docstring) and run `python3 tools/make_pack.py pack.json [x_post_url]`, then commit and push. The X post uses `prompt-packs/<slug>/cover.baked.html`; commenters get `https://airadar08.github.io/prompt-packs/<slug>/`.

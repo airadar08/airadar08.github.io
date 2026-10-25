@@ -17,7 +17,7 @@ Needs Python 3, Playwright (Chromium) and Pillow. No secrets live here.
 
 ## News posts (standing format, decided 2026-10-25)
 Every news post = ONE source-backed card in the "AI Radar Notes" style, made with `render_news.py` (see its docstring for the JSON):
-kicker, big headline, 4 stat tiles, 2 sections of short lines, "Our read:" takeaway, "Sources:" in the footer; fixed AI Radar house look (cream page, green accent, black "Our read" bar, same as cheatsheets).
+kicker, big headline, 4 stat tiles, 2 sections of short lines, "Our read:" takeaway, "Sources:" in the footer; rotating slot colour (8 colours; news and AI facts never use the fixed green house look), with the black "Our read" bar and colour-matched label tag; use a different slot for each post in a run.
 Post text: line 1 = the news as one plain sentence, blank line, 3 "→" fact lines, blank line, "Source: <original URL>" (X counts URL = 23, emoji/→ = 2; max 280).
 Only facts read in sources. Then: `python3 tools/update_site.py post <post.json> <card.png>`, post with post_x.js (use the .baked.html), `update_site.py link <id> <x_url>`, commit and push.
 Repos, cheatsheets and prompt packs keep their own fixed designs (render_repo.py, render_cheatsheet.py, make_pack.py).

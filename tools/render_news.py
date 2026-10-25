@@ -1,6 +1,6 @@
 """News card (the "AI Radar Notes" style): python3 tools/render_news.py news.json card.png
 Writes card.png, card.jpg and card.baked.html (the baked file is what tools/post_x.js posts).
-news.json: {"kicker": "AI agents · Coding", "title": "<max ~60 chars>",
+news.json: {"slot": <0-7 rotating colour; use a different one for each post in a run>, "kicker": "AI agents · Coding", "title": "<max ~60 chars>",
   "stats": [4 x {"big": "Oct 23", "label": "Computer Use announced"}],
   "sections": [2 x {"heading": "How it works", "items": [2-3 short lines]}],
   "read": "<one-line takeaway>", "sources": "Cursor, Flavio Copes"}
@@ -10,7 +10,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from render_cheatsheet import THEMES, RADAR, bake
 def fmt(t): return re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", html.escape(str(t)))
 def build(c):
-    name, bg, acc, lbl, hl, line, muted = "Resources", "#fbf8f1", "#13a36b", "#0b7a4f", "#b9f2d6", "#e9e3d4", "#6b6a63"  # fixed AI Radar house look (same as cheatsheets)
+    name, bg, acc, lbl, hl, line, muted = THEMES[c["slot"] % 8]  # news/facts rotate through the 8 slot colours
     stats = "".join(f'<div class="st"><b>{fmt(s["big"])}</b><span>{fmt(s["label"])}</span></div>' for s in c["stats"])
     secs = "".join(f'<h2>{fmt(s["heading"])}</h2>' + "".join(f'<div class="li"><i>•</i><div>{fmt(x)}</div></div>' for x in s["items"]) for s in c["sections"])
     return f"""<html><head><meta charset="utf-8"><style>
