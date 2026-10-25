@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "Function Calling Explained cheatsheet",
+  "summary": "How LLMs use tools, APIs and your code",
+  "link": "cheatsheets/#function-calling-explained",
+  "img": "cheatsheets/img/function-calling-explained.jpg",
+  "id": "2026-10-25-cheatsheet-function-calling-explained",
+  "date": "2026-10-25T23:16:21+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Prompt pack",
   "title": "FREE: 39 AI prompts for Excel & Sheets",
   "summary": "39 copy-ready prompts for spreadsheets: formulas, cleaning data, pivots, charts, automation and ready-made templates.",
