@@ -1,6 +1,38 @@
 [
  {
   "type": "News",
+  "title": "r/opensource banned projects that use, are made with, or target AI.",
+  "summary": "Moderators of the 98,000-weekly-visitor subreddit set new rules on Oct 24: no AI projects, and projects must be a year old with about three contributors.",
+  "points": [
+   "Projects must be 1+ year old with about 3 contributors",
+   "The post drew ~1,400 comments in a day",
+   "A breakaway sub, r/TrueOpenSource, has started"
+  ],
+  "link": "",
+  "source": "https://ppc.land/r-opensource-bans-ai-built-projects-for-its-98-000-weekly-visitors/",
+  "date": "2026-10-26T01:16:35+05:30",
+  "id": "2026-10-26-news-r-opensource-banned-projects-that-use-are-made-with-or-targe",
+  "x_url": "",
+  "img": "posts/img/2026-10-26-news-r-opensource-banned-projects-that-use-are-made-with-or-targe.jpg"
+ },
+ {
+  "type": "News",
+  "title": "AWS CEO Andy Jassy says AI capacity is sold out for 2026 and largely sold out for 2027.",
+  "summary": "Andy Jassy said on an a16z podcast that AWS capacity is sold out for 2026, largely sold out for 2027, and partly sold out for 2028.",
+  "points": [
+   "\"A good chunk\" of 2028 is sold out too",
+   "Said on an Andreessen Horowitz podcast",
+   "Some capacity is held back for Bedrock and EC2"
+  ],
+  "link": "",
+  "source": "https://theinformation.com/briefings/aws-sold-capacity-2028-jassy-says",
+  "date": "2026-10-26T01:16:34+05:30",
+  "id": "2026-10-26-news-aws-ceo-andy-jassy-says-ai-capacity-is-sold-out-for-2026-and",
+  "x_url": "",
+  "img": "posts/img/2026-10-26-news-aws-ceo-andy-jassy-says-ai-capacity-is-sold-out-for-2026-and.jpg"
+ },
+ {
+  "type": "News",
   "title": "A Johns Hopkins Bayview staffer uploaded 3,182 patients' data to an unapproved public AI tool.",
   "summary": "The spreadsheet covered patients admitted from May to September; the hospital found the upload on Sept 21.",
   "points": [
