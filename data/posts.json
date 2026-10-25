@@ -6,26 +6,29 @@
   "link": "cheatsheets/#function-calling-explained",
   "img": "cheatsheets/img/function-calling-explained.jpg",
   "id": "2026-10-25-cheatsheet-function-calling-explained",
-  "date": "2026-10-25T23:16:21+05:30",
-  "x_url": "",
+  "date": "2026-10-25T23:18:59+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2114413931716640861",
   "source": "",
-  "points": []
+  "points": [
+   "The 4-step loop: how an LLM asks your code to run a tool",
+   "Key terms: tool schema, tool call, tool result, parallel calls",
+   "tool_choice modes + rules for safe, reliable tool use"
+  ]
  },
  {
   "type": "Prompt pack",
   "title": "FREE: 39 AI prompts for Excel & Sheets",
   "summary": "39 copy-ready prompts for spreadsheets: formulas, cleaning data, pivots, charts, automation and ready-made templates.",
   "points": [
-   "Formulas",
-   "Clean messy data",
-   "Analysis & pivots",
-   "Charts & dashboards"
+   "Formulas, cleaning messy data, pivots",
+   "Charts, dashboards, automation",
+   "Copy, fill the blanks, paste into any AI"
   ],
   "link": "prompt-packs/ai-prompts-for-excel-and-sheets/",
   "img": "prompt-packs/ai-prompts-for-excel-and-sheets/cover.jpg",
   "x_url": "https://x.com/ai_radar_/status/2114413859830456677",
   "id": "pack-ai-prompts-for-excel-and-sheets",
-  "date": "2026-10-25T23:19:02+05:30",
+  "date": "2026-10-25T23:18:42+05:30",
   "source": ""
  },
  {
