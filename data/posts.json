@@ -1,5 +1,22 @@
 [
  {
+  "type": "Prompt pack",
+  "title": "FREE: 39 AI prompts for Excel & Sheets",
+  "summary": "39 copy-ready prompts for spreadsheets: formulas, cleaning data, pivots, charts, automation and ready-made templates.",
+  "points": [
+   "Formulas",
+   "Clean messy data",
+   "Analysis & pivots",
+   "Charts & dashboards"
+  ],
+  "link": "prompt-packs/ai-prompts-for-excel-and-sheets/",
+  "img": "prompt-packs/ai-prompts-for-excel-and-sheets/cover.jpg",
+  "x_url": "",
+  "id": "pack-ai-prompts-for-excel-and-sheets",
+  "date": "2026-10-25T23:16:06+05:30",
+  "source": ""
+ },
+ {
   "type": "News",
   "title": "1Password for Agents lets AI agents log in without seeing your password.",
   "summary": "Source:",
