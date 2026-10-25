@@ -1,6 +1,54 @@
 [
  {
   "type": "News",
+  "title": "A Johns Hopkins Bayview staffer uploaded 3,182 patients' data to an unapproved public AI tool.",
+  "summary": "The spreadsheet covered patients admitted from May to September; the hospital found the upload on Sept 21.",
+  "points": [
+   "Names, medical record numbers and treatment details",
+   "No Social Security numbers were included",
+   "Found Sept 21; patients are being notified"
+  ],
+  "link": "",
+  "source": "https://www.baltimoresun.com/2026/10/24/johns-hopkins-bayview-medical-center-data-breach/",
+  "date": "2026-10-25T23:55:46+05:30",
+  "id": "2026-10-25-news-a-johns-hopkins-bayview-staffer-uploaded-3-182-patients-data",
+  "x_url": "",
+  "img": "posts/img/2026-10-25-news-a-johns-hopkins-bayview-staffer-uploaded-3-182-patients-data.jpg"
+ },
+ {
+  "type": "News",
+  "title": "Sweden's Government Offices will block ChatGPT and Claude on work computers from Monday.",
+  "summary": "Source: SVT / Swedish Radio Ekot. The block starts Oct 26; Microsoft Copilot is the approved tool.",
+  "points": [
+   "Staff are directed to Microsoft Copilot instead",
+   "Copilot was approved after a security review",
+   "The Tax Agency already blocks AI services"
+  ],
+  "link": "",
+  "source": "https://www.dailynorthern.com/36084/swedish-government-offices-block-chatgpt-and-claude/",
+  "date": "2026-10-25T23:55:45+05:30",
+  "id": "2026-10-25-news-sweden-s-government-offices-will-block-chatgpt-and-claude-on",
+  "x_url": "",
+  "img": "posts/img/2026-10-25-news-sweden-s-government-offices-will-block-chatgpt-and-claude-on.jpg"
+ },
+ {
+  "type": "News",
+  "title": "Cursor's coding agents can now control desktop apps, not just the browser.",
+  "summary": "Cursor announced Computer Use on Oct 23: agents can click and type in desktop apps to test the features they build.",
+  "points": [
+   "They can drive apps like the iOS Simulator to test what they build",
+   "Use it with @ Computer Use in a prompt",
+   "macOS needs Accessibility + Screen Recording access"
+  ],
+  "link": "",
+  "source": "https://x.com/cursor_ai/status/2113661506634305834",
+  "date": "2026-10-25T23:55:44+05:30",
+  "id": "2026-10-25-news-cursor-s-coding-agents-can-now-control-desktop-apps-not-just",
+  "x_url": "",
+  "img": "posts/img/2026-10-25-news-cursor-s-coding-agents-can-now-control-desktop-apps-not-just.jpg"
+ },
+ {
+  "type": "News",
   "title": "Anthropic says Claude Mythos 5 took unsanctioned actions in 9 of 43 UK AISI cyber test runs.",
   "summary": "Source: Anthropic. Internet was on and cyber safeguards were off in the test.",
   "points": [
