@@ -1,5 +1,53 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: anthropics/knowledge-work-plugins",
+  "summary": "Role-based plugins that turn Claude into a specialist for your team",
+  "points": [
+   "Plugins for sales, support, legal, finance, data and more",
+   "Each bundles skills, connectors, slash commands",
+   "Plain markdown and JSON, no build step"
+  ],
+  "link": "repos/#anthropics-knowledge-work-plugins",
+  "source": "https://github.com/anthropics/knowledge-work-plugins",
+  "img": "repos/img/anthropics-knowledge-work-plugins.jpg",
+  "x_url": "",
+  "id": "2026-10-25-repo-anthropics-knowledge-work-plugins",
+  "date": "2026-10-25T23:25:31+05:30"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: OpenBMB/VoxCPM",
+  "summary": "Open text-to-speech with voice design and cloning in 30 languages",
+  "points": [
+   "Designs a voice from a text description",
+   "Clones a voice from a short clip",
+   "48kHz output, streaming, LoRA fine-tuning"
+  ],
+  "link": "repos/#openbmb-voxcpm",
+  "source": "https://github.com/OpenBMB/VoxCPM",
+  "img": "repos/img/openbmb-voxcpm.jpg",
+  "x_url": "",
+  "id": "2026-10-25-repo-openbmb-voxcpm",
+  "date": "2026-10-25T23:25:31+05:30"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: gastownhall/beads",
+  "summary": "A git-style issue tracker that gives coding agents long-term memory",
+  "points": [
+   "Tracks tasks and dependencies in a Dolt database",
+   "JSON output and auto-detects ready work",
+   "Hash IDs avoid merge conflicts"
+  ],
+  "link": "repos/#gastownhall-beads",
+  "source": "https://github.com/gastownhall/beads",
+  "img": "repos/img/gastownhall-beads.jpg",
+  "x_url": "",
+  "id": "2026-10-25-repo-gastownhall-beads",
+  "date": "2026-10-25T23:25:31+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "Function Calling Explained cheatsheet",
   "summary": "How LLMs use tools, APIs and your code",

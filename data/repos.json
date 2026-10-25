@@ -1,5 +1,62 @@
 [
  {
+  "slug": "gastownhall-beads",
+  "repo": "gastownhall/beads",
+  "url": "https://github.com/gastownhall/beads",
+  "tagline": "A git-style issue tracker that gives coding agents long-term memory",
+  "stars": "28.2k",
+  "trend": "",
+  "language": "",
+  "license": "MIT",
+  "what": [
+   "Tracks tasks and dependencies in a Dolt database",
+   "JSON output and auto-detects ready work",
+   "Hash IDs avoid merge conflicts"
+  ],
+  "read": "Smart fix for agents losing their plans; adds a database to your workflow",
+  "img": "repos/img/gastownhall-beads.jpg",
+  "date": "2026-10-25",
+  "post": ""
+ },
+ {
+  "slug": "openbmb-voxcpm",
+  "repo": "OpenBMB/VoxCPM",
+  "url": "https://github.com/OpenBMB/VoxCPM",
+  "tagline": "Open text-to-speech with voice design and cloning in 30 languages",
+  "stars": "34.9k",
+  "trend": "",
+  "language": "30",
+  "license": "Apache-2.0",
+  "what": [
+   "Designs a voice from a text description",
+   "Clones a voice from a short clip",
+   "48kHz output, streaming, LoRA fine-tuning"
+  ],
+  "read": "Strong open TTS; speed figures are the authors' own, on an RTX 4090",
+  "img": "repos/img/openbmb-voxcpm.jpg",
+  "date": "2026-10-25",
+  "post": ""
+ },
+ {
+  "slug": "anthropics-knowledge-work-plugins",
+  "repo": "anthropics/knowledge-work-plugins",
+  "url": "https://github.com/anthropics/knowledge-work-plugins",
+  "tagline": "Role-based plugins that turn Claude into a specialist for your team",
+  "stars": "31.2k",
+  "trend": "",
+  "language": "",
+  "license": "Apache-2.0",
+  "what": [
+   "Plugins for sales, support, legal, finance, data and more",
+   "Each bundles skills, connectors, slash commands",
+   "Plain markdown and JSON, no build step"
+  ],
+  "read": "Useful starting kit; skills are prompts, so tune them to your team",
+  "img": "repos/img/anthropics-knowledge-work-plugins.jpg",
+  "date": "2026-10-25",
+  "post": ""
+ },
+ {
   "slug": "lexmount-moli",
   "repo": "lexmount/moli",
   "url": "https://github.com/lexmount/moli",
