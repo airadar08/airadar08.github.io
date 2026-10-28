@@ -1,51 +1,98 @@
 [
  {
-  "type": "Repo",
-  "title": "Trending AI repo: onehumanbeing/esp32-iphone-agent",
-  "summary": "An AI agent that taps and types on a real iPhone via a $7 board",
+  "type": "News",
+  "title": "Anthropic acquired Mithril Medicine, a one-person rare-disease biotech.",
+  "summary": "Source:",
   "points": [
-   "ESP32 board mirrors the screen over BLE",
-   "Acts as a USB mouse via AssistiveTouch",
-   "Any OpenAI-compatible vision model plans"
+   "Claude coordinated 11 outside labs",
+   "Idea to mouse results in under 18 months",
+   "Human trials possible from late 2028"
   ],
-  "link": "repos/#onehumanbeing-esp32-iphone-agent",
-  "source": "https://github.com/onehumanbeing/esp32-iphone-agent",
-  "img": "repos/img/onehumanbeing-esp32-iphone-agent.jpg",
-  "x_url": "",
-  "id": "2026-10-28-repo-onehumanbeing-esp32-iphone-agent",
-  "date": "2026-10-28T11:24:33+05:30"
+  "x_url": "https://x.com/ai_radar_/status/2115321996150219259",
+  "date": "2026-10-28T11:27:19+05:30",
+  "link": "",
+  "source": "https://t.co/kFWAk1TaqX",
+  "img": "https://pbs.twimg.com/media/HVsiHxbbQAA37v1?format=jpg&name=small",
+  "id": "2026-10-28-news-anthropic-acquired-mithril-medicine-a-one-person-rare-diseas"
  },
  {
-  "type": "Repo",
-  "title": "Trending AI repo: openfilm/openfilm",
-  "summary": "Open-source AI video agent: your coding agent makes the film",
+  "type": "News",
+  "title": "A critical flaw (CVSS 9.3) hit Google's MCP Toolbox for Databases.",
+  "summary": "Source:",
   "points": [
-   "A film is one HTML file with tracks",
-   "Studio browser editor to tweak shots",
-   "Exports MP4, GIF, Premiere, DaVinci"
+   "Affects versions 1.2.0 to 1.4.0",
+   "No login needed to copy or overwrite host files",
+   "Upgrade to 1.5.0 or newer"
   ],
-  "link": "repos/#openfilm-openfilm",
-  "source": "https://github.com/openfilm/openfilm",
-  "img": "repos/img/openfilm-openfilm.jpg",
-  "x_url": "",
-  "id": "2026-10-28-repo-openfilm-openfilm",
-  "date": "2026-10-28T11:24:33+05:30"
+  "x_url": "https://x.com/ai_radar_/status/2115321939049021889",
+  "date": "2026-10-28T11:27:05+05:30",
+  "link": "",
+  "source": "https://t.co/UXJFDMcht1",
+  "img": "https://pbs.twimg.com/media/HVsiCPUboAACV7e?format=jpg&name=small",
+  "id": "2026-10-28-news-a-critical-flaw-cvss-9-3-hit-google-s-mcp-toolbox-for-databa"
+ },
+ {
+  "type": "News",
+  "title": "Google DeepMind unveiled Genie 4, a world model you steer live with text prompts.",
+  "summary": "Source:",
+  "points": [
+   "Generates sound and dialogue with the scene",
+   "Simulates physics like collisions and wind",
+   "Preview for testers; Ultra and API next"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2115321843947332091",
+  "date": "2026-10-28T11:26:43+05:30",
+  "link": "",
+  "source": "https://t.co/S3J2vnJ2f0",
+  "img": "https://pbs.twimg.com/media/HVsh9_Qa4AA-IRK?format=jpg&name=small",
+  "id": "2026-10-28-news-google-deepmind-unveiled-genie-4-a-world-model-you-steer-liv"
  },
  {
   "type": "Repo",
   "title": "Trending AI repo: Leonxlnx/earshot",
-  "summary": "Gives coding agents ears: audio analysis on CPU, no cloud",
+  "summary": "Gives coding agents ears: audio analysis on CPU. Why it matters: agents can check audio.",
   "points": [
-   "Describes sounds, matches text to audio",
-   "Checks sync to picture in a video",
-   "Works as CLI, Python API or MCP server"
+   "★ 3.1k stars, MIT",
+   "Describes sounds, checks sync to picture",
+   "CLI, Python API or MCP server"
   ],
   "link": "repos/#leonxlnx-earshot",
   "source": "https://github.com/Leonxlnx/earshot",
   "img": "repos/img/leonxlnx-earshot.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2115321695661855051",
   "id": "2026-10-28-repo-leonxlnx-earshot",
-  "date": "2026-10-28T11:24:33+05:30"
+  "date": "2026-10-28T11:26:07+05:30"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: openfilm/openfilm",
+  "summary": "Open-source AI video agent: your coding agent writes the film, you edit it in Studio. Why it matters: editable AI video.",
+  "points": [
+   "★ 3.2k stars, MIT",
+   "A film is one HTML file",
+   "Exports MP4, Premiere, DaVinci"
+  ],
+  "link": "repos/#openfilm-openfilm",
+  "source": "https://github.com/openfilm/openfilm",
+  "img": "repos/img/openfilm-openfilm.jpg",
+  "x_url": "https://x.com/ai_radar_/status/2115321640074838374",
+  "id": "2026-10-28-repo-openfilm-openfilm",
+  "date": "2026-10-28T11:25:54+05:30"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: onehumanbeing/esp32-iphone-agent",
+  "summary": "An AI agent that operates a real iPhone via a $7 ESP32 board. Why it matters: phone automation, no jailbreak.",
+  "points": [
+   "★ 4.0k stars, MIT",
+   "Board mirrors the screen, acts as a USB mouse"
+  ],
+  "link": "repos/#onehumanbeing-esp32-iphone-agent",
+  "source": "https://github.com/onehumanbeing/esp32-iphone-agent",
+  "img": "repos/img/onehumanbeing-esp32-iphone-agent.jpg",
+  "x_url": "https://x.com/ai_radar_/status/2115321474928275623",
+  "id": "2026-10-28-repo-onehumanbeing-esp32-iphone-agent",
+  "date": "2026-10-28T11:25:15+05:30"
  },
  {
   "type": "Cheatsheet",
