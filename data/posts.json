@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "Prompt Caching Explained cheatsheet",
+  "summary": "Pay less for the same prompt prefix",
+  "link": "cheatsheets/#prompt-caching-explained",
+  "img": "cheatsheets/img/prompt-caching-explained.jpg",
+  "id": "2026-10-28-cheatsheet-prompt-caching-explained",
+  "date": "2026-10-28T11:13:53+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "News",
   "title": "r/opensource banned projects that use, are made with, or target AI.",
   "summary": "Moderators of the 98,000-weekly-visitor subreddit set new rules on Oct 24: no AI projects, and projects must be a year old with about three contributors.",
