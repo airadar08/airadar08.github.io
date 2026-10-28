@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "System Prompts Explained cheatsheet",
+  "summary": "The hidden instructions that steer an AI",
+  "link": "cheatsheets/#system-prompts-explained",
+  "img": "cheatsheets/img/system-prompts-explained.jpg",
+  "id": "2026-10-28-cheatsheet-system-prompts-explained",
+  "date": "2026-10-28T20:15:22+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "News",
   "title": "Anthropic acquired Mithril Medicine, a one-person rare-disease biotech.",
   "summary": "Source:",
