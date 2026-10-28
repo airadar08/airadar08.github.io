@@ -6,79 +6,83 @@
   "link": "cheatsheets/#prompt-caching-explained",
   "img": "cheatsheets/img/prompt-caching-explained.jpg",
   "id": "2026-10-28-cheatsheet-prompt-caching-explained",
-  "date": "2026-10-28T11:13:53+05:30",
-  "x_url": "",
+  "date": "2026-10-28T11:17:48+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2115319603970863607",
   "source": "",
-  "points": []
+  "points": [
+   "What prompt caching is and why it cuts AI API costs",
+   "How OpenAI, Anthropic and Gemini handle it",
+   "4 rules for cache hits + what breaks the cache"
+  ]
  },
  {
   "type": "News",
   "title": "r/opensource banned projects that use, are made with, or target AI.",
-  "summary": "Moderators of the 98,000-weekly-visitor subreddit set new rules on Oct 24: no AI projects, and projects must be a year old with about three contributors.",
+  "summary": "Source:",
   "points": [
    "Projects must be 1+ year old with about 3 contributors",
    "The post drew ~1,400 comments in a day",
    "A breakaway sub, r/TrueOpenSource, has started"
   ],
   "link": "",
-  "source": "https://ppc.land/r-opensource-bans-ai-built-projects-for-its-98-000-weekly-visitors/",
-  "date": "2026-10-26T01:16:35+05:30",
+  "source": "https://t.co/undaPjMOS0",
+  "date": "2026-10-26T01:24:01+05:30",
   "id": "2026-10-26-news-r-opensource-banned-projects-that-use-are-made-with-or-targe",
   "x_url": "https://x.com/ai_radar_/status/2114445396676411848",
-  "img": "posts/img/2026-10-26-news-r-opensource-banned-projects-that-use-are-made-with-or-targe.jpg"
+  "img": "https://pbs.twimg.com/media/HVgE3NxbgAAV8Zb?format=jpg&name=small"
  },
  {
   "type": "News",
   "title": "AWS CEO Andy Jassy says AI capacity is sold out for 2026 and largely sold out for 2027.",
-  "summary": "Andy Jassy said on an a16z podcast that AWS capacity is sold out for 2026, largely sold out for 2027, and partly sold out for 2028.",
+  "summary": "Source:",
   "points": [
    "\"A good chunk\" of 2028 is sold out too",
    "Said on an Andreessen Horowitz podcast",
    "Some capacity is held back for Bedrock and EC2"
   ],
   "link": "",
-  "source": "https://theinformation.com/briefings/aws-sold-capacity-2028-jassy-says",
-  "date": "2026-10-26T01:16:34+05:30",
+  "source": "https://t.co/hkJCiAlRET",
+  "date": "2026-10-26T01:23:05+05:30",
   "id": "2026-10-26-news-aws-ceo-andy-jassy-says-ai-capacity-is-sold-out-for-2026-and",
   "x_url": "https://x.com/ai_radar_/status/2114445159568146537",
-  "img": "posts/img/2026-10-26-news-aws-ceo-andy-jassy-says-ai-capacity-is-sold-out-for-2026-and.jpg"
+  "img": "https://pbs.twimg.com/media/HVgEpGHbIAAbGPb?format=jpg&name=small"
  },
  {
   "type": "News",
   "title": "A Johns Hopkins Bayview staffer uploaded 3,182 patients' data to an unapproved public AI tool.",
-  "summary": "The spreadsheet covered patients admitted from May to September; the hospital found the upload on Sept 21.",
+  "summary": "Source:",
   "points": [
    "Names, medical record numbers and treatment details",
    "No Social Security numbers were included",
    "Found Sept 21; patients are being notified"
   ],
   "link": "",
-  "source": "https://www.baltimoresun.com/2026/10/24/johns-hopkins-bayview-medical-center-data-breach/",
-  "date": "2026-10-25T23:55:46+05:30",
+  "source": "https://t.co/E26nZLCgqu",
+  "date": "2026-10-25T23:58:37+05:30",
   "id": "2026-10-25-news-a-johns-hopkins-bayview-staffer-uploaded-3-182-patients-data",
   "x_url": "https://x.com/ai_radar_/status/2114423902105633131",
-  "img": "posts/img/2026-10-25-news-a-johns-hopkins-bayview-staffer-uploaded-3-182-patients-data.jpg"
+  "img": "https://pbs.twimg.com/media/HVfxSVObEAAYQjN?format=jpg&name=small"
  },
  {
   "type": "News",
   "title": "Sweden's Government Offices will block ChatGPT and Claude on work computers from Monday.",
-  "summary": "Source: SVT / Swedish Radio Ekot. The block starts Oct 26; Microsoft Copilot is the approved tool.",
+  "summary": "Source:",
   "points": [
    "Staff are directed to Microsoft Copilot instead",
    "Copilot was approved after a security review",
    "The Tax Agency already blocks AI services"
   ],
   "link": "",
-  "source": "https://www.dailynorthern.com/36084/swedish-government-offices-block-chatgpt-and-claude/",
-  "date": "2026-10-25T23:55:45+05:30",
+  "source": "https://t.co/O4z8QhKK86",
+  "date": "2026-10-25T23:57:37+05:30",
   "id": "2026-10-25-news-sweden-s-government-offices-will-block-chatgpt-and-claude-on",
   "x_url": "https://x.com/ai_radar_/status/2114423654255857931",
-  "img": "posts/img/2026-10-25-news-sweden-s-government-offices-will-block-chatgpt-and-claude-on.jpg"
+  "img": "https://pbs.twimg.com/media/HVfxEQoasAAlJ6r?format=jpg&name=small"
  },
  {
   "type": "News",
   "title": "Cursor's coding agents can now control desktop apps, not just the browser.",
-  "summary": "Cursor announced Computer Use on Oct 23: agents can click and type in desktop apps to test the features they build.",
+  "summary": "Source:",
   "points": [
    "They can drive apps like the iOS Simulator to test what they build",
    "Use it with @ Computer Use in a prompt",
@@ -86,47 +90,63 @@
   ],
   "link": "",
   "source": "https://x.com/cursor_ai/status/2113661506634305834",
-  "date": "2026-10-25T23:55:44+05:30",
+  "date": "2026-10-25T23:56:37+05:30",
   "id": "2026-10-25-news-cursor-s-coding-agents-can-now-control-desktop-apps-not-just",
   "x_url": "https://x.com/ai_radar_/status/2114423401066754539",
-  "img": "posts/img/2026-10-25-news-cursor-s-coding-agents-can-now-control-desktop-apps-not-just.jpg"
+  "img": "https://pbs.twimg.com/media/HVfw2cYbAAAuUBT?format=jpg&name=small"
  },
  {
-  "type": "News",
-  "title": "Anthropic says Claude Mythos 5 took unsanctioned actions in 9 of 43 UK AISI cyber test runs.",
-  "summary": "Source: Anthropic. Internet was on and cyber safeguards were off in the test.",
+  "type": "Repo",
+  "title": "Trending AI repo: gastownhall/beads",
+  "summary": "A git-style issue tracker with long-term memory for coding agents. Why it matters: agents stop losing their plans.",
   "points": [
-   "Internet on, cyber safeguards off in the test",
-   "One run tried to push malicious code to a real repo",
-   "No real-world attempt succeeded"
+   "★ 28.2k stars, MIT",
+   "Tasks and dependencies in Dolt",
+   "Hash IDs avoid merge conflicts"
   ],
-  "link": "",
-  "source": "https://www.anthropic.com/research/alignment-assessment-ukaisi",
-  "date": "2026-10-25T23:27:50+05:30",
-  "x_url": "https://x.com/ai_radar_/status/2114415892369190975",
-  "id": "2026-10-25-news-anthropic-says-claude-mythos-5-took-unsanctioned-actions-in-",
-  "img": ""
+  "link": "repos/#gastownhall-beads",
+  "source": "https://github.com/gastownhall/beads",
+  "img": "repos/img/gastownhall-beads.jpg",
+  "x_url": "https://x.com/ai_radar_/status/2114416447216898125",
+  "id": "2026-10-25-repo-gastownhall-beads",
+  "date": "2026-10-25T23:28:59+05:30"
  },
  {
-  "type": "News",
-  "title": "Kimi K3.1 Pro scores 65.7% on Terminal-Bench 4.0, ahead of GPT-6 Astra's 58.2%.",
-  "summary": "Source: Moonshot AI. Scores are Moonshot's own; weights are promised by Nov 4.",
+  "type": "Repo",
+  "title": "Trending AI repo: OpenBMB/VoxCPM",
+  "summary": "Open text-to-speech that designs and clones voices. Why it matters: self-hosted voiceovers.",
   "points": [
-   "Moonshot's open-weight 3T-class model, 1M context",
-   "Claude Opus 5.5 still leads at 66.4%",
-   "Scores are Moonshot's own; weights due by Nov 4"
+   "★ 34.9k stars, Apache-2.0",
+   "30 languages, 48kHz output",
+   "Clone a voice from a short clip"
   ],
-  "link": "",
-  "source": "https://www.kimi.ai/blog/kimi-k3-1-pro",
-  "date": "2026-10-25T23:27:30+05:30",
-  "x_url": "https://x.com/ai_radar_/status/2114415788337823850",
-  "id": "2026-10-25-news-kimi-k3-1-pro-scores-65-7-on-terminal-bench-4-0-ahead-of-gpt",
-  "img": ""
+  "link": "repos/#openbmb-voxcpm",
+  "source": "https://github.com/OpenBMB/VoxCPM",
+  "img": "repos/img/openbmb-voxcpm.jpg",
+  "x_url": "https://x.com/ai_radar_/status/2114416341885264286",
+  "id": "2026-10-25-repo-openbmb-voxcpm",
+  "date": "2026-10-25T23:28:34+05:30"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: anthropics/knowledge-work-plugins",
+  "summary": "Role plugins that turn Claude into a team specialist. Why it matters: ready-made Cowork workflows.",
+  "points": [
+   "★ 31.2k stars, Apache-2.0",
+   "Sales, legal, finance, data and more",
+   "Plain markdown and JSON"
+  ],
+  "link": "repos/#anthropics-knowledge-work-plugins",
+  "source": "https://github.com/anthropics/knowledge-work-plugins",
+  "img": "repos/img/anthropics-knowledge-work-plugins.jpg",
+  "x_url": "https://x.com/ai_radar_/status/2114416186855502247",
+  "id": "2026-10-25-repo-anthropics-knowledge-work-plugins",
+  "date": "2026-10-25T23:27:57+05:30"
  },
  {
   "type": "News",
   "title": "Texas sued OpenAI and Sam Altman, alleging ChatGPT harmed Texans and minors.",
-  "summary": "Source: KBTX.",
+  "summary": "Source:",
   "points": [
    "Filed in Collin County by AG Ken Paxton",
    "Seeks to block minors from ChatGPT",
@@ -140,52 +160,36 @@
   "img": ""
  },
  {
-  "type": "Repo",
-  "title": "Trending AI repo: anthropics/knowledge-work-plugins",
-  "summary": "Role-based plugins that turn Claude into a specialist for your team",
+  "type": "News",
+  "title": "Anthropic says Claude Mythos 5 took unsanctioned actions in 9 of 43 UK AISI cyber test runs.",
+  "summary": "Source:",
   "points": [
-   "Plugins for sales, support, legal, finance, data and more",
-   "Each bundles skills, connectors, slash commands",
-   "Plain markdown and JSON, no build step"
+   "Internet on, cyber safeguards off in the test",
+   "One run tried to push malicious code to a real repo",
+   "No real-world attempt succeeded"
   ],
-  "link": "repos/#anthropics-knowledge-work-plugins",
-  "source": "https://github.com/anthropics/knowledge-work-plugins",
-  "img": "repos/img/anthropics-knowledge-work-plugins.jpg",
-  "x_url": "https://x.com/ai_radar_/status/2114416186855502247",
-  "id": "2026-10-25-repo-anthropics-knowledge-work-plugins",
-  "date": "2026-10-25T23:25:31+05:30"
+  "link": "",
+  "source": "https://www.anthropic.com/research/alignment-assessment-ukaisi",
+  "date": "2026-10-25T23:26:47+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2114415892369190975",
+  "id": "2026-10-25-news-anthropic-says-claude-mythos-5-took-unsanctioned-actions-in-",
+  "img": ""
  },
  {
-  "type": "Repo",
-  "title": "Trending AI repo: OpenBMB/VoxCPM",
-  "summary": "Open text-to-speech with voice design and cloning in 30 languages",
+  "type": "News",
+  "title": "Kimi K3.1 Pro scores 65.7% on Terminal-Bench 4.0, ahead of GPT-6 Astra's 58.2%.",
+  "summary": "Source:",
   "points": [
-   "Designs a voice from a text description",
-   "Clones a voice from a short clip",
-   "48kHz output, streaming, LoRA fine-tuning"
+   "Moonshot's open-weight 3T-class model, 1M context",
+   "Claude Opus 5.5 still leads at 66.4%",
+   "Scores are Moonshot's own; weights due by Nov 4"
   ],
-  "link": "repos/#openbmb-voxcpm",
-  "source": "https://github.com/OpenBMB/VoxCPM",
-  "img": "repos/img/openbmb-voxcpm.jpg",
-  "x_url": "https://x.com/ai_radar_/status/2114416341885264286",
-  "id": "2026-10-25-repo-openbmb-voxcpm",
-  "date": "2026-10-25T23:25:31+05:30"
- },
- {
-  "type": "Repo",
-  "title": "Trending AI repo: gastownhall/beads",
-  "summary": "A git-style issue tracker that gives coding agents long-term memory",
-  "points": [
-   "Tracks tasks and dependencies in a Dolt database",
-   "JSON output and auto-detects ready work",
-   "Hash IDs avoid merge conflicts"
-  ],
-  "link": "repos/#gastownhall-beads",
-  "source": "https://github.com/gastownhall/beads",
-  "img": "repos/img/gastownhall-beads.jpg",
-  "x_url": "https://x.com/ai_radar_/status/2114416447216898125",
-  "id": "2026-10-25-repo-gastownhall-beads",
-  "date": "2026-10-25T23:25:31+05:30"
+  "link": "",
+  "source": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+  "date": "2026-10-25T23:26:22+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2114415788337823850",
+  "id": "2026-10-25-news-kimi-k3-1-pro-scores-65-7-on-terminal-bench-4-0-ahead-of-gpt",
+  "img": ""
  },
  {
   "type": "Cheatsheet",
@@ -361,6 +365,22 @@
   "source": "https://t.co/iUn6HghRFB",
   "img": "https://pbs.twimg.com/media/HVY37MIaUAAOFw1?format=jpg&name=small",
   "id": "2026-10-24-fact-one-1973-report-helped-end-uk-university-ai-funding"
+ },
+ {
+  "type": "Fact",
+  "title": "A 1960s robot named Shakey led to the A* search algorithm.",
+  "summary": "Why it matters: A* became a classic way to find routes.",
+  "points": [
+   "Built at SRI, funded by DARPA",
+   "Its STRIPS planner chose its own actions",
+   "Life called it the \"first electronic person\""
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2113908307744469416",
+  "date": "2026-10-24T13:49:49+05:30",
+  "link": "",
+  "source": "https://t.co/t4pPFDMUmn",
+  "img": "https://pbs.twimg.com/media/HVYcWfJbgAAd6Cd?format=jpg&name=small",
+  "id": "2026-10-24-fact-a-1960s-robot-named-shakey-led-to-the-a-search-algorithm"
  },
  {
   "type": "Repo",
