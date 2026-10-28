@@ -1,5 +1,62 @@
 [
  {
+  "slug": "leonxlnx-earshot",
+  "repo": "Leonxlnx/earshot",
+  "url": "https://github.com/Leonxlnx/earshot",
+  "tagline": "Gives coding agents ears: audio analysis on CPU, no cloud",
+  "stars": "3.1k",
+  "trend": "",
+  "language": "Python",
+  "license": "MIT",
+  "what": [
+   "Describes sounds, matches text to audio",
+   "Checks sync to picture in a video",
+   "Works as CLI, Python API or MCP server"
+  ],
+  "read": "Useful for audio work; it can't judge taste or speech",
+  "img": "repos/img/leonxlnx-earshot.jpg",
+  "date": "2026-10-28",
+  "post": ""
+ },
+ {
+  "slug": "openfilm-openfilm",
+  "repo": "openfilm/openfilm",
+  "url": "https://github.com/openfilm/openfilm",
+  "tagline": "Open-source AI video agent: your coding agent makes the film",
+  "stars": "3.2k",
+  "trend": "",
+  "language": "TypeScript",
+  "license": "MIT",
+  "what": [
+   "A film is one HTML file with tracks",
+   "Studio browser editor to tweak shots",
+   "Exports MP4, GIF, Premiere, DaVinci"
+  ],
+  "read": "Fresh idea; needs Node 22, ffmpeg and your own media keys",
+  "img": "repos/img/openfilm-openfilm.jpg",
+  "date": "2026-10-28",
+  "post": ""
+ },
+ {
+  "slug": "onehumanbeing-esp32-iphone-agent",
+  "repo": "onehumanbeing/esp32-iphone-agent",
+  "url": "https://github.com/onehumanbeing/esp32-iphone-agent",
+  "tagline": "An AI agent that taps and types on a real iPhone via a $7 board",
+  "stars": "4.0k",
+  "trend": "",
+  "language": "C",
+  "license": "MIT",
+  "what": [
+   "ESP32 board mirrors the screen over BLE",
+   "Acts as a USB mouse via AssistiveTouch",
+   "Any OpenAI-compatible vision model plans"
+  ],
+  "read": "Clever hack; slow (5 fps) and needs Xcode once",
+  "img": "repos/img/onehumanbeing-esp32-iphone-agent.jpg",
+  "date": "2026-10-28",
+  "post": ""
+ },
+ {
   "slug": "gastownhall-beads",
   "repo": "gastownhall/beads",
   "url": "https://github.com/gastownhall/beads",
