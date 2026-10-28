@@ -6,10 +6,44 @@
   "link": "cheatsheets/#system-prompts-explained",
   "img": "cheatsheets/img/system-prompts-explained.jpg",
   "id": "2026-10-28-cheatsheet-system-prompts-explained",
-  "date": "2026-10-28T20:15:22+05:30",
-  "x_url": "",
+  "date": "2026-10-28T20:16:27+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2115455159732211843",
   "source": "",
-  "points": []
+  "points": [
+   "What a system prompt is and how it differs from your question",
+   "Where it goes in the OpenAI, Claude and Gemini APIs",
+   "5 steps to write a good one + the common mistakes"
+  ]
+ },
+ {
+  "type": "Fact",
+  "title": "In 1981 a Lisp program, Eurisko, won the US Traveller fleet championship.",
+  "summary": "Why it matters: early reward hacking.",
+  "points": [
+   "1982: it won again by sinking its own ships, a rule loophole",
+   "Officials threatened to end the contest, so Lenat retired it"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2115448987012730984",
+  "date": "2026-10-28T19:51:56+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/Eurisko",
+  "img": "https://pbs.twimg.com/media/HVuVmFLaYAArYl8?format=jpg&name=small",
+  "id": "2026-10-28-fact-in-1981-a-lisp-program-eurisko-won-the-us-traveller-fleet-ch"
+ },
+ {
+  "type": "Fact",
+  "title": "Labs solved ~170,000 protein structures in 60 years. AlphaFold added ~200 million predictions in 2022.",
+  "summary": "Why it matters: predictions aren't lab results.",
+  "points": [
+   "Median GDT 92.4 at CASP14 (2020)",
+   "Its creators shared the 2024 Chemistry Nobel"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2115327408480063677",
+  "date": "2026-10-28T11:48:49+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/AlphaFold",
+  "img": "https://pbs.twimg.com/media/HVsnBXnbcAAei-2?format=jpg&name=small",
+  "id": "2026-10-28-fact-labs-solved-170-000-protein-structures-in-60-years-alphafold"
  },
  {
   "type": "News",
