@@ -6,10 +6,30 @@
   "link": "cheatsheets/#multimodal-ai",
   "img": "cheatsheets/img/multimodal-ai.jpg",
   "id": "2026-10-29-cheatsheet-multimodal-ai",
-  "date": "2026-10-29T20:28:55+05:30",
-  "x_url": "",
+  "date": "2026-10-29T20:30:36+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2115821108482265565",
   "source": "",
-  "points": []
+  "points": [
+   "Key terms: modality, vision encoder, patches",
+   "What it can do with screenshots, PDFs, photos and video",
+   "4 steps to better answers + what to double-check"
+  ]
+ },
+ {
+  "type": "News",
+  "title": "Samsung posted a record ₩107.4T (~$80B) quarterly operating profit, up 783%, on AI chip demand.",
+  "summary": "Why it matters: memory is AI's bottleneck.",
+  "points": [
+   "Chips earned ₩106.5T of it",
+   "HBM4 revenue more than tripled",
+   "2027 HBM supply is sold out"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2115750549241156067",
+  "date": "2026-10-29T15:50:14+05:30",
+  "link": "",
+  "source": "https://t.co/x8bYXIdUIs",
+  "img": "https://pbs.twimg.com/media/HVyn3W9aIAE9Y2t?format=jpg&name=small",
+  "id": "2026-10-29-news-samsung-posted-a-record-107-4t-80b-quarterly-operating-profi"
  },
  {
   "type": "Repo",
