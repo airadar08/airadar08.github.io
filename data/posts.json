@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "Multimodal AI cheatsheet",
+  "summary": "AI that reads text, images, audio and video",
+  "link": "cheatsheets/#multimodal-ai",
+  "img": "cheatsheets/img/multimodal-ai.jpg",
+  "id": "2026-10-29-cheatsheet-multimodal-ai",
+  "date": "2026-10-29T20:28:55+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: HKUDS/DeepTutor",
   "summary": "A self-hosted, open-source AI tutor: chat, quizzes and study paths. Why it matters: a free study app you own.",
