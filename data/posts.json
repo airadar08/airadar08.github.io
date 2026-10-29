@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: HKUDS/DeepTutor",
+  "summary": "An open-source AI tutor: chat, quizzes, research and study paths in one workspace",
+  "points": [
+   "Chat, Quiz, Solve, Research and Mastery Path modes",
+   "RAG over your notes, books and Obsidian vault",
+   "Tutoring from YouTube videos with timestamps"
+  ],
+  "link": "repos/#hkuds-deeptutor",
+  "source": "https://github.com/HKUDS/DeepTutor",
+  "img": "repos/img/hkuds-deeptutor.jpg",
+  "x_url": "",
+  "id": "2026-10-29-repo-hkuds-deeptutor",
+  "date": "2026-10-29T13:13:12+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "System Prompts Explained cheatsheet",
   "summary": "The hidden instructions that steer an AI",

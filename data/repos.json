@@ -1,5 +1,24 @@
 [
  {
+  "slug": "hkuds-deeptutor",
+  "repo": "HKUDS/DeepTutor",
+  "url": "https://github.com/HKUDS/DeepTutor",
+  "tagline": "An open-source AI tutor: chat, quizzes, research and study paths in one workspace",
+  "stars": "48.7k",
+  "trend": "+2,371",
+  "language": "Python",
+  "license": "Apache-2.0",
+  "what": [
+   "Chat, Quiz, Solve, Research and Mastery Path modes",
+   "RAG over your notes, books and Obsidian vault",
+   "Tutoring from YouTube videos with timestamps"
+  ],
+  "read": "Big, fast-moving and actively shipped (v1.7.0 out Oct 28). Bring your own model key.",
+  "img": "repos/img/hkuds-deeptutor.jpg",
+  "date": "2026-10-29",
+  "post": ""
+ },
+ {
   "slug": "leonxlnx-earshot",
   "repo": "Leonxlnx/earshot",
   "url": "https://github.com/Leonxlnx/earshot",
