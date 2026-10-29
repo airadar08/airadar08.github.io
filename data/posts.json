@@ -2,18 +2,33 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: HKUDS/DeepTutor",
-  "summary": "An open-source AI tutor: chat, quizzes, research and study paths in one workspace",
+  "summary": "A self-hosted, open-source AI tutor: chat, quizzes and study paths. Why it matters: a free study app you own.",
   "points": [
-   "Chat, Quiz, Solve, Research and Mastery Path modes",
-   "RAG over your notes, books and Obsidian vault",
-   "Tutoring from YouTube videos with timestamps"
+   "★ 48.7k stars, +2,371 today",
+   "Learns from your notes and books",
+   "Apache-2.0, v1.7.0 out Oct 28"
   ],
   "link": "repos/#hkuds-deeptutor",
   "source": "https://github.com/HKUDS/DeepTutor",
   "img": "repos/img/hkuds-deeptutor.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2115711885240897835",
   "id": "2026-10-29-repo-hkuds-deeptutor",
-  "date": "2026-10-29T13:13:12+05:30"
+  "date": "2026-10-29T13:16:36+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "In 1950 Claude Shannon built Theseus, a mouse that learned a maze by trial and error.",
+  "summary": "Why it matters: learning, in relays.",
+  "points": [
+   "Placed anywhere it had been, it went straight to the goal",
+   "In new territory it searched, then stored the route"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2115515095627546902",
+  "date": "2026-10-29T00:14:37+05:30",
+  "link": "",
+  "source": "https://t.co/njVNBsGgYW",
+  "img": "",
+  "id": "2026-10-29-fact-in-1950-claude-shannon-built-theseus-a-mouse-that-learned-a-"
  },
  {
   "type": "Cheatsheet",
