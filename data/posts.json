@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "Structured Outputs cheatsheet",
+  "summary": "Get clean JSON from an LLM, every time",
+  "link": "cheatsheets/#structured-outputs",
+  "img": "cheatsheets/img/structured-outputs.jpg",
+  "id": "2026-10-30-cheatsheet-structured-outputs",
+  "date": "2026-10-30T19:17:24+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "News",
   "title": "CrowdStrike says China-linked VAPOR PANDA used AI agents running mostly on DeepSeek against 200+ organizations.",
   "summary": "",
