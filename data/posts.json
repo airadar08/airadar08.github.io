@@ -1,5 +1,68 @@
 [
  {
+  "type": "News",
+  "title": "CrowdStrike says China-linked VAPOR PANDA used AI agents running mostly on DeepSeek against 200+ organizations.",
+  "summary": "",
+  "points": [
+   "At least 14 countries over 11 days from Oct 17",
+   "Break-ins confirmed at 9 organizations",
+   "A human operator steered the agents"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2116162655518171379",
+  "date": "2026-10-30T19:07:48+05:30",
+  "link": "",
+  "source": "https://www.crowdstrike.com/en-us/blog/vapor-panda-uses-artex-to-scale-global-campaign/",
+  "img": "https://pbs.twimg.com/media/HV4esPDbAAI7nkQ?format=jpg&name=small",
+  "id": "2026-10-30-news-crowdstrike-says-china-linked-vapor-panda-used-ai-agents-run"
+ },
+ {
+  "type": "News",
+  "title": "Mistral released open weights for Large 4, a 1-trillion-parameter multimodal model.",
+  "summary": "",
+  "points": [
+   "Top open score on FrontierCode 2.0: 19.7%",
+   "Terminal-Bench 4.0: 41%, up 13 points",
+   "Modified MIT licence; API from $0.70 per 1M input tokens"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2116162431475159114",
+  "date": "2026-10-30T19:06:54+05:30",
+  "link": "",
+  "source": "https://mistral.ai/news/mistral-large-4-oss/",
+  "img": "https://pbs.twimg.com/media/HV4efX6bsAAmZln?format=jpg&name=small",
+  "id": "2026-10-30-news-mistral-released-open-weights-for-large-4-a-1-trillion-param"
+ },
+ {
+  "type": "Fact",
+  "title": "In 1979 the Stanford Cart crossed a chair-filled room alone. It took 5 hours.",
+  "summary": "Why it matters: an early self-driving ancestor.",
+  "points": [
+   "Moved 1 meter, then thought ~10 min",
+   "Stereo vision from a sliding camera",
+   "Blundered every few tens of meters"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2116053931914842150",
+  "date": "2026-10-30T11:55:46+05:30",
+  "link": "",
+  "source": "https://t.co/6MM1dZFAAh",
+  "img": "https://pbs.twimg.com/media/HV27y3naAAEorh2?format=jpg&name=small",
+  "id": "2026-10-30-fact-in-1979-the-stanford-cart-crossed-a-chair-filled-room-alone-"
+ },
+ {
+  "type": "Fact",
+  "title": "In 1954 an IBM 701 translated Russian sentences, and its makers predicted the problem solved in 3-5 years.",
+  "summary": "Why it matters: AI hype often outruns results.",
+  "points": [
+   "250 words, 6 grammar rules",
+   "1966 ALPAC report: funding cut"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2116046793318498471",
+  "date": "2026-10-30T11:27:24+05:30",
+  "link": "",
+  "source": "https://t.co/zlKwSIWf3m",
+  "img": "https://pbs.twimg.com/media/HV21Ty_a0AAZXjs?format=jpg&name=small",
+  "id": "2026-10-30-fact-in-1954-an-ibm-701-translated-russian-sentences-and-its-make"
+ },
+ {
   "type": "Cheatsheet",
   "title": "Voice AI explained cheatsheet",
   "summary": "How AI listens, thinks and talks back",
