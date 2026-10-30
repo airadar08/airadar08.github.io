@@ -6,10 +6,30 @@
   "link": "cheatsheets/#voice-ai-explained",
   "img": "cheatsheets/img/voice-ai-explained.jpg",
   "id": "2026-10-30-cheatsheet-voice-ai-explained",
-  "date": "2026-10-30T11:12:52+05:30",
-  "x_url": "",
+  "date": "2026-10-30T11:16:33+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2116044062021333035",
   "source": "",
-  "points": []
+  "points": [
+   "The 3-part pipeline: speech-to-text, LLM, text-to-speech",
+   "Key terms: VAD, endpointing, barge-in, WER",
+   "Cascade vs speech-to-speech, plus latency targets per step"
+  ]
+ },
+ {
+  "type": "News",
+  "title": "DeepSeek and Moonshot reportedly leaned on OpenAI's GPT-6 Astra to train new models.",
+  "summary": "Why it matters: cheap rivals may be distilled.",
+  "points": [
+   "Named: Kimi K3.1 Pro, DeepSeek V4.1-Flash",
+   "One test: $0.22 vs $10.77 per task",
+   "Unverified; no lab replied"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2115841650467668111",
+  "date": "2026-10-29T21:52:14+05:30",
+  "link": "",
+  "source": "https://t.co/mojcWzwITw",
+  "img": "",
+  "id": "2026-10-29-news-deepseek-and-moonshot-reportedly-leaned-on-openai-s-gpt-6-as"
  },
  {
   "type": "Cheatsheet",
