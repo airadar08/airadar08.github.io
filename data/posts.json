@@ -1,6 +1,18 @@
 [
  {
   "type": "Cheatsheet",
+  "title": "Voice AI explained cheatsheet",
+  "summary": "How AI listens, thinks and talks back",
+  "link": "cheatsheets/#voice-ai-explained",
+  "img": "cheatsheets/img/voice-ai-explained.jpg",
+  "id": "2026-10-30-cheatsheet-voice-ai-explained",
+  "date": "2026-10-30T11:12:52+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
+  "type": "Cheatsheet",
   "title": "Multimodal AI cheatsheet",
   "summary": "AI that reads text, images, audio and video",
   "link": "cheatsheets/#multimodal-ai",
