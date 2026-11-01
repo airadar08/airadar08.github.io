@@ -18,6 +18,22 @@
  },
  {
   "type": "Repo",
+  "title": "Trending AI repo: shiyu-coder/Kronos",
+  "summary": "An open-source foundation model for financial candlestick (K-line) data",
+  "points": [
+   "Turns OHLCV candles into discrete tokens",
+   "Transformer trained on 45+ global exchanges",
+   "Open models from 4.1M to 102.3M params"
+  ],
+  "link": "repos/#shiyu-coder-kronos",
+  "source": "https://github.com/shiyu-coder/Kronos",
+  "img": "repos/img/shiyu-coder-kronos.jpg",
+  "x_url": "",
+  "id": "2026-11-02-repo-shiyu-coder-kronos",
+  "date": "2026-11-02T01:57:30+05:30"
+ },
+ {
+  "type": "Repo",
   "title": "Trending AI repo: lightpanda-io/browser",
   "summary": "A headless browser for AI agents, built from scratch in Zig. Why it matters: more agents per server.",
   "points": [

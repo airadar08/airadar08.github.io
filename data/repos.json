@@ -1,5 +1,24 @@
 [
  {
+  "slug": "shiyu-coder-kronos",
+  "repo": "shiyu-coder/Kronos",
+  "url": "https://github.com/shiyu-coder/Kronos",
+  "tagline": "An open-source foundation model for financial candlestick (K-line) data",
+  "stars": "45.3k",
+  "trend": "+611",
+  "language": "Python",
+  "license": "MIT",
+  "what": [
+   "Turns OHLCV candles into discrete tokens",
+   "Transformer trained on 45+ global exchanges",
+   "Open models from 4.1M to 102.3M params"
+  ],
+  "read": "Accepted at AAAI 2026. A research model to test, not a trading signal",
+  "img": "repos/img/shiyu-coder-kronos.jpg",
+  "date": "2026-11-02",
+  "post": ""
+ },
+ {
   "slug": "lightpanda-io-browser",
   "repo": "lightpanda-io/browser",
   "url": "https://github.com/lightpanda-io/browser",
