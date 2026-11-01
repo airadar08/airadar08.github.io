@@ -1,6 +1,22 @@
 [
  {
   "type": "Repo",
+  "title": "Trending AI repo: lightpanda-io/browser",
+  "summary": "A headless browser built from scratch in Zig for AI agents and automation",
+  "points": [
+   "New engine, not a Chromium fork or WebKit patch",
+   "Works with Puppeteer and Playwright over CDP",
+   "Agent mode: drive it in plain English"
+  ],
+  "link": "repos/#lightpanda-io-browser",
+  "source": "https://github.com/lightpanda-io/browser",
+  "img": "repos/img/lightpanda-io-browser.jpg",
+  "x_url": "",
+  "id": "2026-11-01-repo-lightpanda-io-browser",
+  "date": "2026-11-01T18:17:48+05:30"
+ },
+ {
+  "type": "Repo",
   "title": "Trending AI repo: multica-ai/andrej-karpathy-skills",
   "summary": "One CLAUDE.md from Karpathy's LLM coding notes. Why it matters: one file can curb bloated code.",
   "points": [

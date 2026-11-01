@@ -1,5 +1,24 @@
 [
  {
+  "slug": "lightpanda-io-browser",
+  "repo": "lightpanda-io/browser",
+  "url": "https://github.com/lightpanda-io/browser",
+  "tagline": "A headless browser built from scratch in Zig for AI agents and automation",
+  "stars": "39.6k",
+  "trend": "+827",
+  "language": "Zig",
+  "license": "AGPL-3.0",
+  "what": [
+   "New engine, not a Chromium fork or WebKit patch",
+   "Works with Puppeteer and Playwright over CDP",
+   "Agent mode: drive it in plain English"
+  ],
+  "read": "Their benchmark: 123MB vs 2GB peak memory for 100 pages vs Chrome",
+  "img": "repos/img/lightpanda-io-browser.jpg",
+  "date": "2026-11-01",
+  "post": ""
+ },
+ {
   "slug": "multica-ai-andrej-karpathy-skills",
   "repo": "multica-ai/andrej-karpathy-skills",
   "url": "https://github.com/multica-ai/andrej-karpathy-skills",
