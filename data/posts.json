@@ -1,31 +1,83 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: multica-ai/andrej-karpathy-skills",
+  "summary": "One CLAUDE.md from Karpathy's LLM coding notes. Why it matters: one file can curb bloated code.",
+  "points": [
+   "★ 227.7k stars, +4.3k this week",
+   "Think first, keep it simple",
+   "Small edits, goal-driven runs"
+  ],
+  "link": "repos/#multica-ai-andrej-karpathy-skills",
+  "source": "https://github.com/multica-ai/andrej-karpathy-skills",
+  "img": "repos/img/multica-ai-andrej-karpathy-skills.jpg",
+  "x_url": "https://x.com/ai_radar_/status/2116869941060317505",
+  "id": "2026-11-01-repo-multica-ai-andrej-karpathy-skills",
+  "date": "2026-11-01T17:58:18+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "Subagents Explained cheatsheet",
   "summary": "Split big jobs across helper agents",
   "link": "cheatsheets/#subagents-explained",
   "img": "cheatsheets/img/subagents-explained.jpg",
   "id": "2026-11-01-cheatsheet-subagents-explained",
-  "date": "2026-11-01T17:51:47+05:30",
-  "x_url": "",
+  "date": "2026-11-01T17:57:55+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2116869848013922733",
   "source": "",
-  "points": []
+  "points": [
+   "What a subagent is",
+   "When to use one",
+   "How to brief it, plus trade-offs"
+  ]
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: anthropics/skills",
+  "summary": "Anthropic's public repo of example Agent Skills. Why it matters: a guide to writing skills.",
+  "points": [
+   "★ 186.1k stars, +2.4k this week",
+   "Each skill is a SKILL.md folder",
+   "Examples from design to web testing"
+  ],
+  "link": "repos/#anthropics-skills",
+  "source": "https://github.com/anthropics/skills",
+  "img": "repos/img/anthropics-skills.jpg",
+  "x_url": "https://x.com/ai_radar_/status/2116869748051034261",
+  "id": "2026-11-01-repo-anthropics-skills",
+  "date": "2026-11-01T17:57:32+05:30"
+ },
+ {
+  "type": "Cheatsheet",
+  "title": "AI Code Review cheatsheet",
+  "summary": "Check AI-written code before merging",
+  "link": "cheatsheets/#ai-code-review",
+  "img": "cheatsheets/img/ai-code-review.jpg",
+  "id": "2026-11-01-cheatsheet-ai-code-review",
+  "date": "2026-11-01T17:57:05+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2116869638416163009",
+  "source": "",
+  "points": [
+   "A first-pass checklist for AI code",
+   "Bug and safety checks",
+   "Prompts that help, and red flags"
+  ]
  },
  {
   "type": "Repo",
   "title": "Trending AI repo: thedotmack/claude-mem",
-  "summary": "Gives coding agents memory that lasts across sessions",
+  "summary": "Gives coding agents memory across sessions. Why it matters: agents stop forgetting past work.",
   "points": [
-   "Captures what your agent does each session",
-   "Compresses it with AI into summaries",
-   "Feeds relevant context into future sessions"
+   "★ 108.5k stars, +4.6k this week",
+   "Compresses past sessions with AI",
+   "Feeds relevant context back later"
   ],
   "link": "repos/#thedotmack-claude-mem",
   "source": "https://github.com/thedotmack/claude-mem",
   "img": "repos/img/thedotmack-claude-mem.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2116868858086887464",
   "id": "2026-11-01-repo-thedotmack-claude-mem",
-  "date": "2026-11-01T17:51:46+05:30"
+  "date": "2026-11-01T17:53:00+05:30"
  },
  {
   "type": "Repo",
@@ -60,38 +112,6 @@
   "date": "2026-11-01T17:51:46+05:30"
  },
  {
-  "type": "Repo",
-  "title": "Trending AI repo: anthropics/skills",
-  "summary": "Anthropic's public repo of example Agent Skills",
-  "points": [
-   "Skills are folders with a SKILL.md and scripts",
-   "Examples from design to testing web apps",
-   "Some skills are Apache 2.0, some source-available"
-  ],
-  "link": "repos/#anthropics-skills",
-  "source": "https://github.com/anthropics/skills",
-  "img": "repos/img/anthropics-skills.jpg",
-  "x_url": "",
-  "id": "2026-11-01-repo-anthropics-skills",
-  "date": "2026-11-01T17:51:46+05:30"
- },
- {
-  "type": "Repo",
-  "title": "Trending AI repo: multica-ai/andrej-karpathy-skills",
-  "summary": "One CLAUDE.md file that fixes common LLM coding mistakes",
-  "points": [
-   "Built from Karpathy's notes on LLM coding pitfalls",
-   "Four rules: think first, keep it simple",
-   "Also: surgical changes and goal-driven runs"
-  ],
-  "link": "repos/#multica-ai-andrej-karpathy-skills",
-  "source": "https://github.com/multica-ai/andrej-karpathy-skills",
-  "img": "repos/img/multica-ai-andrej-karpathy-skills.jpg",
-  "x_url": "",
-  "id": "2026-11-01-repo-multica-ai-andrej-karpathy-skills",
-  "date": "2026-11-01T17:51:46+05:30"
- },
- {
   "type": "Cheatsheet",
   "title": "Vibe Coding Basics cheatsheet",
   "summary": "Build with AI, stay in control",
@@ -110,18 +130,6 @@
   "link": "cheatsheets/#ai-agent-memory",
   "img": "cheatsheets/img/ai-agent-memory.jpg",
   "id": "2026-11-01-cheatsheet-ai-agent-memory",
-  "date": "2026-11-01T17:51:46+05:30",
-  "x_url": "",
-  "source": "",
-  "points": []
- },
- {
-  "type": "Cheatsheet",
-  "title": "AI Code Review cheatsheet",
-  "summary": "Check AI-written code before merging",
-  "link": "cheatsheets/#ai-code-review",
-  "img": "cheatsheets/img/ai-code-review.jpg",
-  "id": "2026-11-01-cheatsheet-ai-code-review",
   "date": "2026-11-01T17:51:46+05:30",
   "x_url": "",
   "source": "",
