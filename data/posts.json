@@ -1,5 +1,22 @@
 [
  {
+  "type": "Prompt pack",
+  "title": "FREE: 40 AI prompts for students",
+  "summary": "40 copy-ready prompts for studying: notes and revision, hard topics, exam practice, essays, research and study plans.",
+  "points": [
+   "Notes & revision",
+   "Understanding hard topics",
+   "Exam prep & practice",
+   "Essays & assignments"
+  ],
+  "link": "prompt-packs/ai-prompts-for-students/",
+  "img": "prompt-packs/ai-prompts-for-students/cover.jpg",
+  "x_url": "",
+  "id": "pack-ai-prompts-for-students",
+  "date": "2026-11-02T01:56:27+05:30",
+  "source": ""
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: lightpanda-io/browser",
   "summary": "A headless browser for AI agents, built from scratch in Zig. Why it matters: more agents per server.",

@@ -1,5 +1,16 @@
 [
  {
+  "slug": "ai-prompts-for-students",
+  "title": "40 AI prompts for students",
+  "desc": "40 copy-ready prompts for studying: notes and revision, hard topics, exam practice, essays, research and study plans.",
+  "count": 40,
+  "url": "prompt-packs/ai-prompts-for-students/",
+  "cover": "prompt-packs/ai-prompts-for-students/cover.jpg",
+  "keyword": "STUDY",
+  "date": "2026-11-02",
+  "post": ""
+ },
+ {
   "slug": "ai-prompts-for-excel-and-sheets",
   "title": "39 AI prompts for Excel & Sheets",
   "desc": "39 copy-ready prompts for spreadsheets: formulas, cleaning data, pivots, charts, automation and ready-made templates.",
