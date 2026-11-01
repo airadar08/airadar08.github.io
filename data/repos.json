@@ -1,5 +1,100 @@
 [
  {
+  "slug": "multica-ai-andrej-karpathy-skills",
+  "repo": "multica-ai/andrej-karpathy-skills",
+  "url": "https://github.com/multica-ai/andrej-karpathy-skills",
+  "tagline": "One CLAUDE.md file that fixes common LLM coding mistakes",
+  "stars": "227.7k",
+  "trend": "+4.3k",
+  "language": "Markdown",
+  "license": "n/a",
+  "what": [
+   "Built from Karpathy's notes on LLM coding pitfalls",
+   "Four rules: think first, keep it simple",
+   "Also: surgical changes and goal-driven runs"
+  ],
+  "read": "Tiny to adopt: one file. Tune the rules to your codebase.",
+  "img": "repos/img/multica-ai-andrej-karpathy-skills.jpg",
+  "date": "2026-11-01",
+  "post": ""
+ },
+ {
+  "slug": "anthropics-skills",
+  "repo": "anthropics/skills",
+  "url": "https://github.com/anthropics/skills",
+  "tagline": "Anthropic's public repo of example Agent Skills",
+  "stars": "186.1k",
+  "trend": "+2.4k",
+  "language": "Python",
+  "license": "Mixed",
+  "what": [
+   "Skills are folders with a SKILL.md and scripts",
+   "Examples from design to testing web apps",
+   "Some skills are Apache 2.0, some source-available"
+  ],
+  "read": "Best reference for writing skills. Check each skill's licence.",
+  "img": "repos/img/anthropics-skills.jpg",
+  "date": "2026-11-01",
+  "post": ""
+ },
+ {
+  "slug": "pbakaus-impeccable",
+  "repo": "pbakaus/impeccable",
+  "url": "https://github.com/pbakaus/impeccable",
+  "tagline": "A design vocabulary that steers coding agents away from AI slop",
+  "stars": "98.8k",
+  "trend": "+12.0k",
+  "language": "Rust",
+  "license": "Apache-2.0",
+  "what": [
+   "Commands like polish and bolder steer the UI",
+   "critique and audit review what the agent built",
+   "Works across Claude Code, Cursor, Codex and more"
+  ],
+  "read": "Handy if agent-built pages feel generic. Taste still needs you.",
+  "img": "repos/img/pbakaus-impeccable.jpg",
+  "date": "2026-11-01",
+  "post": ""
+ },
+ {
+  "slug": "obra-superpowers",
+  "repo": "obra/superpowers",
+  "url": "https://github.com/obra/superpowers",
+  "tagline": "A full dev workflow for coding agents, built from skills",
+  "stars": "310.3k",
+  "trend": "+5.6k",
+  "language": "Shell",
+  "license": "MIT",
+  "what": [
+   "Asks what you want before writing code",
+   "Writes a plan, then runs subagents task by task",
+   "Pushes red/green TDD, YAGNI and DRY"
+  ],
+  "read": "Opinionated, but it replaces ad-hoc prompting with a process.",
+  "img": "repos/img/obra-superpowers.jpg",
+  "date": "2026-11-01",
+  "post": ""
+ },
+ {
+  "slug": "thedotmack-claude-mem",
+  "repo": "thedotmack/claude-mem",
+  "url": "https://github.com/thedotmack/claude-mem",
+  "tagline": "Gives coding agents memory that lasts across sessions",
+  "stars": "108.5k",
+  "trend": "+4.6k",
+  "language": "TypeScript",
+  "license": "Apache-2.0",
+  "what": [
+   "Captures what your agent does each session",
+   "Compresses it with AI into summaries",
+   "Feeds relevant context into future sessions"
+  ],
+  "read": "Useful if your agent keeps losing context. Check what it stores.",
+  "img": "repos/img/thedotmack-claude-mem.jpg",
+  "date": "2026-11-01",
+  "post": ""
+ },
+ {
   "slug": "hkuds-deeptutor",
   "repo": "HKUDS/DeepTutor",
   "url": "https://github.com/HKUDS/DeepTutor",

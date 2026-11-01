@@ -1,6 +1,134 @@
 [
  {
   "type": "Cheatsheet",
+  "title": "Subagents Explained cheatsheet",
+  "summary": "Split big jobs across helper agents",
+  "link": "cheatsheets/#subagents-explained",
+  "img": "cheatsheets/img/subagents-explained.jpg",
+  "id": "2026-11-01-cheatsheet-subagents-explained",
+  "date": "2026-11-01T17:51:47+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: thedotmack/claude-mem",
+  "summary": "Gives coding agents memory that lasts across sessions",
+  "points": [
+   "Captures what your agent does each session",
+   "Compresses it with AI into summaries",
+   "Feeds relevant context into future sessions"
+  ],
+  "link": "repos/#thedotmack-claude-mem",
+  "source": "https://github.com/thedotmack/claude-mem",
+  "img": "repos/img/thedotmack-claude-mem.jpg",
+  "x_url": "",
+  "id": "2026-11-01-repo-thedotmack-claude-mem",
+  "date": "2026-11-01T17:51:46+05:30"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: obra/superpowers",
+  "summary": "A full dev workflow for coding agents, built from skills",
+  "points": [
+   "Asks what you want before writing code",
+   "Writes a plan, then runs subagents task by task",
+   "Pushes red/green TDD, YAGNI and DRY"
+  ],
+  "link": "repos/#obra-superpowers",
+  "source": "https://github.com/obra/superpowers",
+  "img": "repos/img/obra-superpowers.jpg",
+  "x_url": "",
+  "id": "2026-11-01-repo-obra-superpowers",
+  "date": "2026-11-01T17:51:46+05:30"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: pbakaus/impeccable",
+  "summary": "A design vocabulary that steers coding agents away from AI slop",
+  "points": [
+   "Commands like polish and bolder steer the UI",
+   "critique and audit review what the agent built",
+   "Works across Claude Code, Cursor, Codex and more"
+  ],
+  "link": "repos/#pbakaus-impeccable",
+  "source": "https://github.com/pbakaus/impeccable",
+  "img": "repos/img/pbakaus-impeccable.jpg",
+  "x_url": "",
+  "id": "2026-11-01-repo-pbakaus-impeccable",
+  "date": "2026-11-01T17:51:46+05:30"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: anthropics/skills",
+  "summary": "Anthropic's public repo of example Agent Skills",
+  "points": [
+   "Skills are folders with a SKILL.md and scripts",
+   "Examples from design to testing web apps",
+   "Some skills are Apache 2.0, some source-available"
+  ],
+  "link": "repos/#anthropics-skills",
+  "source": "https://github.com/anthropics/skills",
+  "img": "repos/img/anthropics-skills.jpg",
+  "x_url": "",
+  "id": "2026-11-01-repo-anthropics-skills",
+  "date": "2026-11-01T17:51:46+05:30"
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: multica-ai/andrej-karpathy-skills",
+  "summary": "One CLAUDE.md file that fixes common LLM coding mistakes",
+  "points": [
+   "Built from Karpathy's notes on LLM coding pitfalls",
+   "Four rules: think first, keep it simple",
+   "Also: surgical changes and goal-driven runs"
+  ],
+  "link": "repos/#multica-ai-andrej-karpathy-skills",
+  "source": "https://github.com/multica-ai/andrej-karpathy-skills",
+  "img": "repos/img/multica-ai-andrej-karpathy-skills.jpg",
+  "x_url": "",
+  "id": "2026-11-01-repo-multica-ai-andrej-karpathy-skills",
+  "date": "2026-11-01T17:51:46+05:30"
+ },
+ {
+  "type": "Cheatsheet",
+  "title": "Vibe Coding Basics cheatsheet",
+  "summary": "Build with AI, stay in control",
+  "link": "cheatsheets/#vibe-coding-basics",
+  "img": "cheatsheets/img/vibe-coding-basics.jpg",
+  "id": "2026-11-01-cheatsheet-vibe-coding-basics",
+  "date": "2026-11-01T17:51:46+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
+  "type": "Cheatsheet",
+  "title": "AI Agent Memory cheatsheet",
+  "summary": "How agents remember across tasks",
+  "link": "cheatsheets/#ai-agent-memory",
+  "img": "cheatsheets/img/ai-agent-memory.jpg",
+  "id": "2026-11-01-cheatsheet-ai-agent-memory",
+  "date": "2026-11-01T17:51:46+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
+  "type": "Cheatsheet",
+  "title": "AI Code Review cheatsheet",
+  "summary": "Check AI-written code before merging",
+  "link": "cheatsheets/#ai-code-review",
+  "img": "cheatsheets/img/ai-code-review.jpg",
+  "id": "2026-11-01-cheatsheet-ai-code-review",
+  "date": "2026-11-01T17:51:46+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
+  "type": "Cheatsheet",
   "title": "Structured Outputs cheatsheet",
   "summary": "Get clean JSON from an LLM, every time",
   "link": "cheatsheets/#structured-outputs",
