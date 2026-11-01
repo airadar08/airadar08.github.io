@@ -4,33 +4,48 @@
   "title": "FREE: 40 AI prompts for students",
   "summary": "40 copy-ready prompts for studying: notes and revision, hard topics, exam practice, essays, research and study plans.",
   "points": [
-   "Notes & revision",
-   "Understanding hard topics",
-   "Exam prep & practice",
-   "Essays & assignments"
+   "Notes, revision & hard topics",
+   "Exam practice, essays & research",
+   "Copy, fill the blanks, paste into any AI"
   ],
   "link": "prompt-packs/ai-prompts-for-students/",
   "img": "prompt-packs/ai-prompts-for-students/cover.jpg",
   "x_url": "https://x.com/ai_radar_/status/2116990962652320209",
   "id": "pack-ai-prompts-for-students",
-  "date": "2026-11-02T01:59:32+05:30",
+  "date": "2026-11-02T01:59:11+05:30",
   "source": ""
  },
  {
   "type": "Repo",
   "title": "Trending AI repo: shiyu-coder/Kronos",
-  "summary": "An open-source foundation model for financial candlestick (K-line) data",
+  "summary": "An open model that forecasts financial candlestick data. Why it matters: fine-tune it on your own market data.",
   "points": [
-   "Turns OHLCV candles into discrete tokens",
-   "Transformer trained on 45+ global exchanges",
-   "Open models from 4.1M to 102.3M params"
+   "★ 45.3k stars, +611 today",
+   "Trained on 45+ exchanges",
+   "Models up to 102.3M params"
   ],
   "link": "repos/#shiyu-coder-kronos",
   "source": "https://github.com/shiyu-coder/Kronos",
   "img": "repos/img/shiyu-coder-kronos.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2116990959720468589",
   "id": "2026-11-02-repo-shiyu-coder-kronos",
-  "date": "2026-11-02T01:57:30+05:30"
+  "date": "2026-11-02T01:59:11+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "A painting program, AARON, has made original art since 1972.",
+  "summary": "Why it matters: AI art is 50+ years old, built on rules.",
+  "points": [
+   "Artist Harold Cohen wrote it",
+   "Color came in the 1990s",
+   "It never learned styles; he hand-coded each"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2116990693646409910",
+  "date": "2026-11-02T01:58:07+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/AARON",
+  "img": "",
+  "id": "2026-11-02-fact-a-painting-program-aaron-has-made-original-art-since-1972"
  },
  {
   "type": "Repo",
