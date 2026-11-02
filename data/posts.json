@@ -6,10 +6,14 @@
   "link": "cheatsheets/#mixture-of-experts",
   "img": "cheatsheets/img/mixture-of-experts.jpg",
   "id": "2026-11-02-cheatsheet-mixture-of-experts",
-  "date": "2026-11-02T11:12:45+05:30",
-  "x_url": "",
+  "date": "2026-11-02T11:14:32+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2117130719051088089",
   "source": "",
-  "points": []
+  "points": [
+   "How the router picks experts for each token",
+   "Total vs active params: Mixtral 8x7B, DeepSeek-V3",
+   "Trade-offs: speed, memory, load-balancing"
+  ]
  },
  {
   "type": "Prompt pack",
@@ -141,6 +145,70 @@
  },
  {
   "type": "Repo",
+  "title": "Trending AI repo: pbakaus/impeccable",
+  "summary": "A design vocabulary for steering coding agents. Why it matters: precise design feedback.",
+  "points": [
+   "★ 98.8k stars, +12.0k this week",
+   "Commands: polish, bolder, critique, audit",
+   "Works with Claude Code, Cursor, Codex"
+  ],
+  "link": "repos/#pbakaus-impeccable",
+  "source": "https://github.com/pbakaus/impeccable",
+  "img": "repos/img/pbakaus-impeccable.jpg",
+  "x_url": "https://x.com/ai_radar_/status/2116869541343187392",
+  "id": "2026-11-01-repo-pbakaus-impeccable",
+  "date": "2026-11-01T17:56:42+05:30"
+ },
+ {
+  "type": "Cheatsheet",
+  "title": "AI Agent Memory cheatsheet",
+  "summary": "How agents remember across tasks",
+  "link": "cheatsheets/#ai-agent-memory",
+  "img": "cheatsheets/img/ai-agent-memory.jpg",
+  "id": "2026-11-01-cheatsheet-ai-agent-memory",
+  "date": "2026-11-01T17:56:18+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2116869440231129099",
+  "source": "",
+  "points": [
+   "Short-term, long-term and episodic memory",
+   "Where agents store it",
+   "Common problems like stale facts"
+  ]
+ },
+ {
+  "type": "Repo",
+  "title": "Trending AI repo: obra/superpowers",
+  "summary": "A skills framework with a dev workflow for coding agents. Why it matters: a method beats ad-hoc prompts.",
+  "points": [
+   "★ 310.3k stars, +5.6k this week",
+   "Plans first, then runs subagents",
+   "Pushes red/green TDD"
+  ],
+  "link": "repos/#obra-superpowers",
+  "source": "https://github.com/obra/superpowers",
+  "img": "repos/img/obra-superpowers.jpg",
+  "x_url": "https://x.com/ai_radar_/status/2116869325315580198",
+  "id": "2026-11-01-repo-obra-superpowers",
+  "date": "2026-11-01T17:55:51+05:30"
+ },
+ {
+  "type": "Cheatsheet",
+  "title": "Vibe Coding Basics cheatsheet",
+  "summary": "Build with AI, stay in control",
+  "link": "cheatsheets/#vibe-coding-basics",
+  "img": "cheatsheets/img/vibe-coding-basics.jpg",
+  "id": "2026-11-01-cheatsheet-vibe-coding-basics",
+  "date": "2026-11-01T17:55:27+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2116869224576798795",
+  "source": "",
+  "points": [
+   "What vibe coding is and when it fits",
+   "Good habits: plan, small steps, test",
+   "Red flags to watch out for"
+  ]
+ },
+ {
+  "type": "Repo",
   "title": "Trending AI repo: thedotmack/claude-mem",
   "summary": "Gives coding agents memory across sessions. Why it matters: agents stop forgetting past work.",
   "points": [
@@ -153,63 +221,22 @@
   "img": "repos/img/thedotmack-claude-mem.jpg",
   "x_url": "https://x.com/ai_radar_/status/2116868858086887464",
   "id": "2026-11-01-repo-thedotmack-claude-mem",
-  "date": "2026-11-01T17:53:00+05:30"
+  "date": "2026-11-01T17:53:59+05:30"
  },
  {
-  "type": "Repo",
-  "title": "Trending AI repo: obra/superpowers",
-  "summary": "A full dev workflow for coding agents, built from skills",
+  "type": "Fact",
+  "title": "Stanford's 1970s MYCIN (~600 rules) won a 65% acceptability rating from specialists on antibiotic advice.",
+  "summary": "Why it matters: narrow AI rivalled doctors.",
   "points": [
-   "Asks what you want before writing code",
-   "Writes a plan, then runs subagents task by task",
-   "Pushes red/green TDD, YAGNI and DRY"
+   "Five faculty physicians: 42.5% to 62.5%",
+   "Never used on patients: liability fears"
   ],
-  "link": "repos/#obra-superpowers",
-  "source": "https://github.com/obra/superpowers",
-  "img": "repos/img/obra-superpowers.jpg",
-  "x_url": "",
-  "id": "2026-11-01-repo-obra-superpowers",
-  "date": "2026-11-01T17:51:46+05:30"
- },
- {
-  "type": "Repo",
-  "title": "Trending AI repo: pbakaus/impeccable",
-  "summary": "A design vocabulary that steers coding agents away from AI slop",
-  "points": [
-   "Commands like polish and bolder steer the UI",
-   "critique and audit review what the agent built",
-   "Works across Claude Code, Cursor, Codex and more"
-  ],
-  "link": "repos/#pbakaus-impeccable",
-  "source": "https://github.com/pbakaus/impeccable",
-  "img": "repos/img/pbakaus-impeccable.jpg",
-  "x_url": "",
-  "id": "2026-11-01-repo-pbakaus-impeccable",
-  "date": "2026-11-01T17:51:46+05:30"
- },
- {
-  "type": "Cheatsheet",
-  "title": "Vibe Coding Basics cheatsheet",
-  "summary": "Build with AI, stay in control",
-  "link": "cheatsheets/#vibe-coding-basics",
-  "img": "cheatsheets/img/vibe-coding-basics.jpg",
-  "id": "2026-11-01-cheatsheet-vibe-coding-basics",
-  "date": "2026-11-01T17:51:46+05:30",
-  "x_url": "",
-  "source": "",
-  "points": []
- },
- {
-  "type": "Cheatsheet",
-  "title": "AI Agent Memory cheatsheet",
-  "summary": "How agents remember across tasks",
-  "link": "cheatsheets/#ai-agent-memory",
-  "img": "cheatsheets/img/ai-agent-memory.jpg",
-  "id": "2026-11-01-cheatsheet-ai-agent-memory",
-  "date": "2026-11-01T17:51:46+05:30",
-  "x_url": "",
-  "source": "",
-  "points": []
+  "x_url": "https://x.com/ai_radar_/status/2116868143260016796",
+  "date": "2026-11-01T17:51:09+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/Mycin",
+  "img": "https://pbs.twimg.com/media/HWCgT7CbYAAXkcR?format=jpg&name=small",
+  "id": "2026-11-01-fact-stanford-s-1970s-mycin-600-rules-won-a-65-acceptability-rati"
  },
  {
   "type": "Cheatsheet",
@@ -226,7 +253,7 @@
  {
   "type": "News",
   "title": "CrowdStrike says China-linked VAPOR PANDA used AI agents running mostly on DeepSeek against 200+ organizations.",
-  "summary": "",
+  "summary": "Source:",
   "points": [
    "At least 14 countries over 11 days from Oct 17",
    "Break-ins confirmed at 9 organizations",
@@ -235,14 +262,14 @@
   "x_url": "https://x.com/ai_radar_/status/2116162655518171379",
   "date": "2026-10-30T19:07:48+05:30",
   "link": "",
-  "source": "https://www.crowdstrike.com/en-us/blog/vapor-panda-uses-artex-to-scale-global-campaign/",
+  "source": "https://t.co/AcFx0K72MG",
   "img": "https://pbs.twimg.com/media/HV4esPDbAAI7nkQ?format=jpg&name=small",
   "id": "2026-10-30-news-crowdstrike-says-china-linked-vapor-panda-used-ai-agents-run"
  },
  {
   "type": "News",
   "title": "Mistral released open weights for Large 4, a 1-trillion-parameter multimodal model.",
-  "summary": "",
+  "summary": "Source:",
   "points": [
    "Top open score on FrontierCode 2.0: 19.7%",
    "Terminal-Bench 4.0: 41%, up 13 points",
@@ -251,7 +278,7 @@
   "x_url": "https://x.com/ai_radar_/status/2116162431475159114",
   "date": "2026-10-30T19:06:54+05:30",
   "link": "",
-  "source": "https://mistral.ai/news/mistral-large-4-oss/",
+  "source": "https://t.co/yXvNd1aCiO",
   "img": "https://pbs.twimg.com/media/HV4efX6bsAAmZln?format=jpg&name=small",
   "id": "2026-10-30-news-mistral-released-open-weights-for-large-4-a-1-trillion-param"
  },
@@ -315,7 +342,7 @@
   "date": "2026-10-29T21:52:14+05:30",
   "link": "",
   "source": "https://t.co/mojcWzwITw",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HVz6uMfbQAAyu9B?format=jpg&name=small",
   "id": "2026-10-29-news-deepseek-and-moonshot-reportedly-leaned-on-openai-s-gpt-6-as"
  },
  {
@@ -378,7 +405,7 @@
   "date": "2026-10-29T00:14:37+05:30",
   "link": "",
   "source": "https://t.co/njVNBsGgYW",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HVvRtgJbQAAn1eB?format=jpg&name=small",
   "id": "2026-10-29-fact-in-1950-claude-shannon-built-theseus-a-mouse-that-learned-a-"
  },
  {
