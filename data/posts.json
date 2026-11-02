@@ -6,10 +6,30 @@
   "link": "cheatsheets/#knowledge-distillation",
   "img": "cheatsheets/img/knowledge-distillation.jpg",
   "id": "2026-11-02-cheatsheet-knowledge-distillation",
-  "date": "2026-11-02T23:10:52+05:30",
-  "x_url": "",
+  "date": "2026-11-02T23:13:12+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2117311578504937687",
   "source": "",
-  "points": []
+  "points": [
+   "How a big teacher model trains a small, fast student",
+   "Soft labels and temperature, in 4 simple steps",
+   "DistilBERT and DeepSeek-R1 distills vs quantization and pruning"
+  ]
+ },
+ {
+  "type": "Fact",
+  "title": "in 1956 a program out-proved Russell and Whitehead, and a journal rejected it.",
+  "summary": "",
+  "points": [
+   "Logic Theorist proved 38 of 52 Principia Mathematica theorems",
+   "One proof beat the authors' own",
+   "The journal missed that a co-author was software"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2117144828865909199",
+  "date": "2026-11-02T12:10:36+05:30",
+  "link": "",
+  "source": "https://t.co/RUmdwcWEKC",
+  "img": "",
+  "id": "2026-11-02-fact-in-1956-a-program-out-proved-russell-and-whitehead-and-a-jou"
  },
  {
   "type": "Cheatsheet",
