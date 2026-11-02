@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "Mixture of Experts cheatsheet",
+  "summary": "How huge models run on a fraction of their size",
+  "link": "cheatsheets/#mixture-of-experts",
+  "img": "cheatsheets/img/mixture-of-experts.jpg",
+  "id": "2026-11-02-cheatsheet-mixture-of-experts",
+  "date": "2026-11-02T11:12:45+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Prompt pack",
   "title": "FREE: 40 AI prompts for students",
   "summary": "40 copy-ready prompts for studying: notes and revision, hard topics, exam practice, essays, research and study plans.",
