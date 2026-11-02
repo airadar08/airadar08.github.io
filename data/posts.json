@@ -1,6 +1,18 @@
 [
  {
   "type": "Cheatsheet",
+  "title": "Knowledge Distillation cheatsheet",
+  "summary": "How big models teach small, fast ones",
+  "link": "cheatsheets/#knowledge-distillation",
+  "img": "cheatsheets/img/knowledge-distillation.jpg",
+  "id": "2026-11-02-cheatsheet-knowledge-distillation",
+  "date": "2026-11-02T23:10:52+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
+  "type": "Cheatsheet",
   "title": "Mixture of Experts cheatsheet",
   "summary": "How huge models run on a fraction of their size",
   "link": "cheatsheets/#mixture-of-experts",
