@@ -1,5 +1,24 @@
 [
  {
+  "slug": "vercel-labs-agent-desktop",
+  "repo": "vercel-labs/agent-desktop",
+  "url": "https://github.com/vercel-labs/agent-desktop",
+  "tagline": "Computer use for AI agents: operate desktop apps through the accessibility tree",
+  "stars": "10.9k",
+  "trend": "+2,275",
+  "language": "Rust",
+  "license": "Apache-2.0",
+  "what": [
+   "Snapshots apps as JSON with a ref per element",
+   "Agent acts on a ref, then snapshots to verify",
+   "56 commands on macOS, Windows and Linux"
+  ],
+  "read": "Structured, headless desktop control for agents; snapshots can hold private data",
+  "img": "repos/img/vercel-labs-agent-desktop.jpg",
+  "date": "2026-11-03",
+  "post": ""
+ },
+ {
   "slug": "shiyu-coder-kronos",
   "repo": "shiyu-coder/Kronos",
   "url": "https://github.com/shiyu-coder/Kronos",
