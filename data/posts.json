@@ -2,18 +2,63 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: Nutlope/hallmark",
-  "summary": "A design skill for coding agents that stops pages from looking AI-generated",
+  "summary": "A design skill for coding agents that keeps their web pages from looking AI-made. Why it matters: a design floor for vibe-coded sites.",
   "points": [
-   "Deals 3 of 50 themes that fit your prompt",
-   "Lints pages in a real browser for AI-slop tells",
-   "Redesign or audit an existing page by path"
+   "★ 46.5k stars, +10.5k this week",
+   "50 themes, lints for AI-slop tells"
   ],
   "link": "repos/#nutlope-hallmark",
   "source": "https://github.com/Nutlope/hallmark",
   "img": "repos/img/nutlope-hallmark.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2117599105124098502",
   "id": "2026-11-03-repo-nutlope-hallmark",
-  "date": "2026-11-03T18:12:43+05:30"
+  "date": "2026-11-03T18:15:44+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "in 2017 poker AI Libratus beat four pros over 120,000 hands.",
+  "summary": "Why it matters: poker hides cards, a hard test for AI.",
+  "points": [
+   "Finished $1,766,250 ahead",
+   "Each night it patched weaknesses the pros found",
+   "Only the humans got prize money"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2117593033722237375",
+  "date": "2026-11-03T17:51:36+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/Libratus",
+  "img": "",
+  "id": "2026-11-03-fact-in-2017-poker-ai-libratus-beat-four-pros-over-120-000-hands"
+ },
+ {
+  "type": "Fact",
+  "title": "in 2019 OpenAI refused to release GPT-2, citing fears of malicious use.",
+  "summary": "Why it matters: OpenAI later saw \"no strong evidence of misuse so far.\"",
+  "points": [
+   "Rolled out in stages, full 1.5B model on Nov 5, 2019",
+   "Trained on ~8M web pages (40 GB)"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2117563039075676665",
+  "date": "2026-11-03T15:52:25+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/GPT-2",
+  "img": "",
+  "id": "2026-11-03-fact-in-2019-openai-refused-to-release-gpt-2-citing-fears-of-mali"
+ },
+ {
+  "type": "Fact",
+  "title": "checkers is solved. With perfect play, it's a draw.",
+  "summary": "Why it matters: a hand-built search program proved the answer, not just beat humans.",
+  "points": [
+   "Chinook (U of Alberta) worked on it 1989–2007",
+   "Proof published in Science, July 19, 2007"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2117532127302685007",
+  "date": "2026-11-03T13:49:35+05:30",
+  "link": "",
+  "source": "https://t.co/MM2s4iODoy",
+  "img": "",
+  "id": "2026-11-03-fact-checkers-is-solved-with-perfect-play-it-s-a-draw"
  },
  {
   "type": "Repo",
