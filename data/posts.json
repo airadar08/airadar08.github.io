@@ -6,10 +6,30 @@
   "link": "cheatsheets/#open-weight-ai-models",
   "img": "cheatsheets/img/open-weight-ai-models.jpg",
   "id": "2026-11-03-cheatsheet-open-weight-ai-models",
-  "date": "2026-11-03T11:58:21+05:30",
-  "x_url": "",
+  "date": "2026-11-03T12:01:36+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2117504952386125898",
   "source": "",
-  "points": []
+  "points": [
+   "Closed vs open weights vs open source, and what you actually get",
+   "Licences decoded: Apache 2.0, MIT, Llama's 700M-user rule",
+   "Before you download: safetensors, GGUF, sizing"
+  ]
+ },
+ {
+  "type": "Fact",
+  "title": "a 1960s robot was named Shakey because it \"shakes like hell and moves around.\"",
+  "summary": "Why it matters: it planned toward a goal, not a script.",
+  "points": [
+   "SRI built it, 1966–72",
+   "A STRIPS planner chose its steps",
+   "Life (1970): \"first electronic person\""
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2117501821350793406",
+  "date": "2026-11-03T11:49:10+05:30",
+  "link": "",
+  "source": "https://t.co/t4pPFDMUmn",
+  "img": "",
+  "id": "2026-11-03-fact-a-1960s-robot-was-named-shakey-because-it-shakes-like-hell-a"
  },
  {
   "type": "Cheatsheet",
