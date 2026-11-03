@@ -1,6 +1,18 @@
 [
  {
   "type": "Cheatsheet",
+  "title": "Open-Weight AI Models cheatsheet",
+  "summary": "Open weights vs open source, licences, formats",
+  "link": "cheatsheets/#open-weight-ai-models",
+  "img": "cheatsheets/img/open-weight-ai-models.jpg",
+  "id": "2026-11-03-cheatsheet-open-weight-ai-models",
+  "date": "2026-11-03T11:58:21+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
+  "type": "Cheatsheet",
   "title": "Knowledge Distillation cheatsheet",
   "summary": "How big models teach small, fast ones",
   "link": "cheatsheets/#knowledge-distillation",
