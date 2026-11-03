@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "Transformers Explained cheatsheet",
+  "summary": "The architecture behind almost every modern LLM",
+  "link": "cheatsheets/#transformers-explained",
+  "img": "cheatsheets/img/transformers-explained.jpg",
+  "id": "2026-11-03-cheatsheet-transformers-explained",
+  "date": "2026-11-03T22:49:35+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: Nutlope/hallmark",
   "summary": "A design skill for coding agents that keeps their web pages from looking AI-made. Why it matters: a design floor for vibe-coded sites.",
