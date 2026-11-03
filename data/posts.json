@@ -6,10 +6,14 @@
   "link": "cheatsheets/#transformers-explained",
   "img": "cheatsheets/img/transformers-explained.jpg",
   "id": "2026-11-03-cheatsheet-transformers-explained",
-  "date": "2026-11-03T22:49:35+05:30",
-  "x_url": "",
+  "date": "2026-11-03T22:52:09+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2117668669698490436",
   "source": "",
-  "points": []
+  "points": [
+   "Key terms: tokens, embeddings, self-attention",
+   "How an LLM writes text, step by step",
+   "Encoder vs decoder models, and why transformers took over"
+  ]
  },
  {
   "type": "Repo",
