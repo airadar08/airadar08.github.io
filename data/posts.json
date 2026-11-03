@@ -2,18 +2,18 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: vercel-labs/agent-desktop",
-  "summary": "Computer use for AI agents: operate desktop apps through the accessibility tree",
+  "summary": "Lets AI agents use desktop apps via the accessibility tree. Why it matters: no pixel matching.",
   "points": [
-   "Snapshots apps as JSON with a ref per element",
-   "Agent acts on a ref, then snapshots to verify",
-   "56 commands on macOS, Windows and Linux"
+   "★ 10.9k stars, +2,275 today",
+   "Rust CLI, Mac/Win/Linux",
+   "JSON snapshot, a ref per element"
   ],
   "link": "repos/#vercel-labs-agent-desktop",
   "source": "https://github.com/vercel-labs/agent-desktop",
   "img": "repos/img/vercel-labs-agent-desktop.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2117523712400572646",
   "id": "2026-11-03-repo-vercel-labs-agent-desktop",
-  "date": "2026-11-03T13:13:37+05:30"
+  "date": "2026-11-03T13:16:09+05:30"
  },
  {
   "type": "Cheatsheet",
