@@ -1,6 +1,22 @@
 [
  {
   "type": "Repo",
+  "title": "Trending AI repo: Nutlope/hallmark",
+  "summary": "A design skill for coding agents that stops pages from looking AI-generated",
+  "points": [
+   "Deals 3 of 50 themes that fit your prompt",
+   "Lints pages in a real browser for AI-slop tells",
+   "Redesign or audit an existing page by path"
+  ],
+  "link": "repos/#nutlope-hallmark",
+  "source": "https://github.com/Nutlope/hallmark",
+  "img": "repos/img/nutlope-hallmark.jpg",
+  "x_url": "",
+  "id": "2026-11-03-repo-nutlope-hallmark",
+  "date": "2026-11-03T18:12:43+05:30"
+ },
+ {
+  "type": "Repo",
   "title": "Trending AI repo: vercel-labs/agent-desktop",
   "summary": "Lets AI agents use desktop apps via the accessibility tree. Why it matters: no pixel matching.",
   "points": [

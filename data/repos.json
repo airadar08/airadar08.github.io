@@ -1,5 +1,24 @@
 [
  {
+  "slug": "nutlope-hallmark",
+  "repo": "Nutlope/hallmark",
+  "url": "https://github.com/Nutlope/hallmark",
+  "tagline": "A design skill for coding agents that stops pages from looking AI-generated",
+  "stars": "46.5k",
+  "trend": "+10.5k",
+  "language": "CSS",
+  "license": "MIT",
+  "what": [
+   "Deals 3 of 50 themes that fit your prompt",
+   "Lints pages in a real browser for AI-slop tells",
+   "Redesign or audit an existing page by path"
+  ],
+  "read": "A strict design floor for agent-built pages; best if you ship a lot of landing pages",
+  "img": "repos/img/nutlope-hallmark.jpg",
+  "date": "2026-11-03",
+  "post": ""
+ },
+ {
   "slug": "vercel-labs-agent-desktop",
   "repo": "vercel-labs/agent-desktop",
   "url": "https://github.com/vercel-labs/agent-desktop",
