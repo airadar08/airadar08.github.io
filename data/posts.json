@@ -1,6 +1,22 @@
 [
  {
   "type": "Repo",
+  "title": "Trending AI repo: calesthio/OpenMontage",
+  "summary": "Turns your AI coding assistant into a full video production studio",
+  "points": [
+   "Describe a video in plain words, the agent makes it",
+   "Research, script, assets, edit and final render",
+   "Pipelines for explainers, documentaries, dubs"
+  ],
+  "link": "repos/#calesthio-openmontage",
+  "source": "https://github.com/calesthio/OpenMontage",
+  "img": "repos/img/calesthio-openmontage.jpg",
+  "x_url": "",
+  "id": "2026-11-05-repo-calesthio-openmontage",
+  "date": "2026-11-05T01:10:32+05:30"
+ },
+ {
+  "type": "Repo",
   "title": "Trending AI repo: NVIDIA/auto-ontology",
   "summary": "Gives AI agents an ontology of your database so they stop guessing. Why it matters: fewer wrong answers.",
   "points": [

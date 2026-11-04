@@ -1,5 +1,24 @@
 [
  {
+  "slug": "calesthio-openmontage",
+  "repo": "calesthio/OpenMontage",
+  "url": "https://github.com/calesthio/OpenMontage",
+  "tagline": "Turns your AI coding assistant into a full video production studio",
+  "stars": "76.4k",
+  "trend": "+3.5k",
+  "language": "Python",
+  "license": "AGPL-3.0",
+  "what": [
+   "Describe a video in plain words, the agent makes it",
+   "Research, script, assets, edit and final render",
+   "Pipelines for explainers, documentaries, dubs"
+  ],
+  "read": "Ambitious and popular; optional API keys unlock AI-generated video",
+  "img": "repos/img/calesthio-openmontage.jpg",
+  "date": "2026-11-05",
+  "post": ""
+ },
+ {
   "slug": "nvidia-auto-ontology",
   "repo": "NVIDIA/auto-ontology",
   "url": "https://github.com/NVIDIA/auto-ontology",
