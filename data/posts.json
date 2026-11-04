@@ -6,10 +6,30 @@
   "link": "cheatsheets/#diffusion-models-explained",
   "img": "cheatsheets/img/diffusion-models-explained.jpg",
   "id": "2026-11-04-cheatsheet-diffusion-models-explained",
-  "date": "2026-11-04T11:13:01+05:30",
-  "x_url": "",
+  "date": "2026-11-04T11:14:58+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2117855602441687405",
   "source": "",
-  "points": []
+  "points": [
+   "How it works: add noise, learn to remove it",
+   "Key terms: noise schedule, U-Net, latent space",
+   "Steps, guidance, samplers + milestones up to Stable Diffusion"
+  ]
+ },
+ {
+  "type": "News",
+  "title": "Apple opened Siri AI to all developers in the iOS 27.3 betas.",
+  "summary": "Why it matters: apps become things Siri acts inside.",
+  "points": [
+   "Apps plug in via App Intents",
+   "Siri can chain actions into \"skills\"",
+   "Not in the EU yet; server features get a fee later"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2117855143417000118",
+  "date": "2026-11-04T11:13:08+05:30",
+  "link": "",
+  "source": "https://t.co/sGLNAwlHL6",
+  "img": "https://pbs.twimg.com/media/HWQh-XYbQAA6pSf?format=jpg&name=small",
+  "id": "2026-11-04-news-apple-opened-siri-ai-to-all-developers-in-the-ios-27-3-betas"
  },
  {
   "type": "Cheatsheet",
@@ -55,7 +75,7 @@
   "date": "2026-11-03T17:51:36+05:30",
   "link": "",
   "source": "https://en.wikipedia.org/wiki/Libratus",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HWMzmVbbQAAsN-f?format=jpg&name=small",
   "id": "2026-11-03-fact-in-2017-poker-ai-libratus-beat-four-pros-over-120-000-hands"
  },
  {
@@ -70,7 +90,7 @@
   "date": "2026-11-03T15:52:25+05:30",
   "link": "",
   "source": "https://en.wikipedia.org/wiki/GPT-2",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HWMYUzHacAAkRxq?format=jpg&name=small",
   "id": "2026-11-03-fact-in-2019-openai-refused-to-release-gpt-2-citing-fears-of-mali"
  },
  {
@@ -85,7 +105,7 @@
   "date": "2026-11-03T13:49:35+05:30",
   "link": "",
   "source": "https://t.co/MM2s4iODoy",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HWL8ND7bYAAYvQz?format=jpg&name=small",
   "id": "2026-11-03-fact-checkers-is-solved-with-perfect-play-it-s-a-draw"
  },
  {
@@ -133,7 +153,7 @@
   "date": "2026-11-03T11:49:10+05:30",
   "link": "",
   "source": "https://t.co/t4pPFDMUmn",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HWLgo2ha4AAHh0J?format=jpg&name=small",
   "id": "2026-11-03-fact-a-1960s-robot-was-named-shakey-because-it-shakes-like-hell-a"
  },
  {
