@@ -1,5 +1,24 @@
 [
  {
+  "slug": "justvugg-colibri",
+  "repo": "JustVugg/colibri",
+  "url": "https://github.com/JustVugg/colibri",
+  "tagline": "Runs huge mixture-of-experts LLMs on the PC you already own, in pure C",
+  "stars": "47.4k",
+  "trend": "+802",
+  "language": "C",
+  "license": "Apache-2.0",
+  "what": [
+   "Keeps active MoE parts in RAM, streams experts from disk",
+   "Hot experts on GPU via CUDA or Vulkan; GPU optional",
+   "OpenAI- and Anthropic-style local API + dashboard"
+  ],
+  "read": "Big open models on ordinary hardware; expect speed limited by your disk.",
+  "img": "repos/img/justvugg-colibri.jpg",
+  "date": "2026-11-04",
+  "post": ""
+ },
+ {
   "slug": "nutlope-hallmark",
   "repo": "Nutlope/hallmark",
   "url": "https://github.com/Nutlope/hallmark",

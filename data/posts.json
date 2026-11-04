@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: JustVugg/colibri",
+  "summary": "Runs huge mixture-of-experts LLMs on the PC you already own, in pure C",
+  "points": [
+   "Keeps active MoE parts in RAM, streams experts from disk",
+   "Hot experts on GPU via CUDA or Vulkan; GPU optional",
+   "OpenAI- and Anthropic-style local API + dashboard"
+  ],
+  "link": "repos/#justvugg-colibri",
+  "source": "https://github.com/JustVugg/colibri",
+  "img": "repos/img/justvugg-colibri.jpg",
+  "x_url": "",
+  "id": "2026-11-04-repo-justvugg-colibri",
+  "date": "2026-11-04T13:13:36+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "Diffusion Models Explained cheatsheet",
   "summary": "How AI image models turn noise into pictures",
