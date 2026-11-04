@@ -2,18 +2,18 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: JustVugg/colibri",
-  "summary": "Runs huge mixture-of-experts LLMs on the PC you already own, in pure C",
+  "summary": "Pure-C engine that runs huge MoE LLMs on ordinary PCs. Why it matters: 700B+ open models, no GPU needed.",
   "points": [
-   "Keeps active MoE parts in RAM, streams experts from disk",
-   "Hot experts on GPU via CUDA or Vulkan; GPU optional",
-   "OpenAI- and Anthropic-style local API + dashboard"
+   "★ 47.4k stars, +802 today",
+   "Streams experts from disk",
+   "GLM, Kimi, DeepSeek, Qwen"
   ],
   "link": "repos/#justvugg-colibri",
   "source": "https://github.com/JustVugg/colibri",
   "img": "repos/img/justvugg-colibri.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2117886280533168479",
   "id": "2026-11-04-repo-justvugg-colibri",
-  "date": "2026-11-04T13:13:36+05:30"
+  "date": "2026-11-04T13:16:52+05:30"
  },
  {
   "type": "Cheatsheet",
