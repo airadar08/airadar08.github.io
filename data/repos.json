@@ -1,5 +1,24 @@
 [
  {
+  "slug": "nvidia-auto-ontology",
+  "repo": "NVIDIA/auto-ontology",
+  "url": "https://github.com/NVIDIA/auto-ontology",
+  "tagline": "An open context layer that helps AI agents give fewer wrong answers on company data",
+  "stars": "3.7k",
+  "trend": "+2,053",
+  "language": "Python",
+  "license": "Apache-2.0",
+  "what": [
+   "Builds an ontology from database metadata",
+   "Maps business terms to columns and reviewed SQL",
+   "Checks if a question is answerable before querying"
+  ],
+  "read": "A smarter fix than pasting the schema into the prompt; needs Docker and an NVIDIA API key.",
+  "img": "repos/img/nvidia-auto-ontology.jpg",
+  "date": "2026-11-04",
+  "post": ""
+ },
+ {
   "slug": "justvugg-colibri",
   "repo": "JustVugg/colibri",
   "url": "https://github.com/JustVugg/colibri",
