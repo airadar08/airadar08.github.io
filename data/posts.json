@@ -1,6 +1,18 @@
 [
  {
   "type": "Cheatsheet",
+  "title": "LoRA Explained cheatsheet",
+  "summary": "Fine-tune big models on a small budget",
+  "link": "cheatsheets/#lora-explained",
+  "img": "cheatsheets/img/lora-explained.jpg",
+  "id": "2026-11-05-cheatsheet-lora-explained",
+  "date": "2026-11-05T20:25:24+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
+  "type": "Cheatsheet",
   "title": "RLHF Explained cheatsheet",
   "summary": "How chatbots learn what a good answer is",
   "link": "cheatsheets/#rlhf-explained",
