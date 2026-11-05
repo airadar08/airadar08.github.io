@@ -6,10 +6,14 @@
   "link": "cheatsheets/#rlhf-explained",
   "img": "cheatsheets/img/rlhf-explained.jpg",
   "id": "2026-11-05-cheatsheet-rlhf-explained",
-  "date": "2026-11-05T11:13:34+05:30",
-  "x_url": "",
+  "date": "2026-11-05T11:17:03+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2118218517191495925",
   "source": "",
-  "points": []
+  "points": [
+   "The 4-step recipe: pretrain, SFT, reward model, RL",
+   "RLHF vs DPO vs RLAIF vs RLVR, in one table",
+   "Key terms: preference data, KL penalty, reward hacking"
+  ]
  },
  {
   "type": "Repo",
