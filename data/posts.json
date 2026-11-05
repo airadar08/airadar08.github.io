@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "RLHF Explained cheatsheet",
+  "summary": "How chatbots learn what a good answer is",
+  "link": "cheatsheets/#rlhf-explained",
+  "img": "cheatsheets/img/rlhf-explained.jpg",
+  "id": "2026-11-05-cheatsheet-rlhf-explained",
+  "date": "2026-11-05T11:13:34+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: calesthio/OpenMontage",
   "summary": "Turns your AI coding assistant into a video studio: script, visuals, edit, render. Why it matters: video becomes an agent task.",
