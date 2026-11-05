@@ -6,10 +6,30 @@
   "link": "cheatsheets/#lora-explained",
   "img": "cheatsheets/img/lora-explained.jpg",
   "id": "2026-11-05-cheatsheet-lora-explained",
-  "date": "2026-11-05T20:25:24+05:30",
-  "x_url": "",
+  "date": "2026-11-05T20:27:14+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2118356972324176324",
   "source": "",
-  "points": []
+  "points": [
+   "What LoRA is and why it cuts fine-tuning costs",
+   "The 4 key settings: r, lora_alpha, target_modules, dropout",
+   "QLoRA: a 65B model fine-tuned on one 48GB GPU"
+  ]
+ },
+ {
+  "type": "Fact",
+  "title": "in 1979, a Stanford robot cart took five hours to cross one room.",
+  "summary": "Why it matters: this was state of the art.",
+  "points": [
+   "Each 1-meter step took ~10 min to compute",
+   "One TV camera slid side to side for stereo",
+   "Blunders came every few tens of meters"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2118225886944321550",
+  "date": "2026-11-05T11:46:20+05:30",
+  "link": "",
+  "source": "https://t.co/gri4hT4Rxy",
+  "img": "",
+  "id": "2026-11-05-fact-in-1979-a-stanford-robot-cart-took-five-hours-to-cross-one-r"
  },
  {
   "type": "Cheatsheet",
