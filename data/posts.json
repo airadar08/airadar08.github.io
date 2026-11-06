@@ -1,6 +1,18 @@
 [
  {
   "type": "Cheatsheet",
+  "title": "Context Engineering cheatsheet",
+  "summary": "What goes into the model's window, and why",
+  "link": "cheatsheets/#context-engineering",
+  "img": "cheatsheets/img/context-engineering.jpg",
+  "id": "2026-11-06-cheatsheet-context-engineering",
+  "date": "2026-11-06T11:12:39+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
+  "type": "Cheatsheet",
   "title": "LoRA Explained cheatsheet",
   "summary": "Fine-tune big models on a small budget",
   "link": "cheatsheets/#lora-explained",
