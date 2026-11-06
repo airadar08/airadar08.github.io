@@ -1,5 +1,24 @@
 [
  {
+  "slug": "microsoft-vibevoice",
+  "repo": "microsoft/VibeVoice",
+  "url": "https://github.com/microsoft/VibeVoice",
+  "tagline": "Microsoft's open-source voice AI: speech-to-text and text-to-speech",
+  "stars": "56.3k",
+  "trend": "+223",
+  "language": "Python",
+  "license": "MIT",
+  "what": [
+   "ASR: 60 min of audio in a single pass",
+   "Tags who spoke, when, and what was said",
+   "Real-time 0.5B text-to-speech model"
+  ],
+  "read": "Serious open voice stack; the long-form TTS code was pulled, so ASR is the star",
+  "img": "repos/img/microsoft-vibevoice.jpg",
+  "date": "2026-11-06",
+  "post": ""
+ },
+ {
   "slug": "calesthio-openmontage",
   "repo": "calesthio/OpenMontage",
   "url": "https://github.com/calesthio/OpenMontage",

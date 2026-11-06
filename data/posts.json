@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: microsoft/VibeVoice",
+  "summary": "Microsoft's open-source voice AI: speech-to-text and text-to-speech",
+  "points": [
+   "ASR: 60 min of audio in a single pass",
+   "Tags who spoke, when, and what was said",
+   "Real-time 0.5B text-to-speech model"
+  ],
+  "link": "repos/#microsoft-vibevoice",
+  "source": "https://github.com/microsoft/VibeVoice",
+  "img": "repos/img/microsoft-vibevoice.jpg",
+  "x_url": "",
+  "id": "2026-11-06-repo-microsoft-vibevoice",
+  "date": "2026-11-06T13:34:19+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "Context Engineering cheatsheet",
   "summary": "What goes into the model's window, and why",
