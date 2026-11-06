@@ -6,10 +6,14 @@
   "link": "cheatsheets/#context-engineering",
   "img": "cheatsheets/img/context-engineering.jpg",
   "id": "2026-11-06-cheatsheet-context-engineering",
-  "date": "2026-11-06T11:12:39+05:30",
-  "x_url": "",
+  "date": "2026-11-06T11:16:22+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2118580733921079763",
   "source": "",
-  "points": []
+  "points": [
+   "What context is and the 4 core moves: write, select, compress, isolate",
+   "Common failures: context rot, poisoning, distraction, clash",
+   "5 quick wins to keep agents sharp on long tasks"
+  ]
  },
  {
   "type": "Cheatsheet",
@@ -40,7 +44,7 @@
   "date": "2026-11-05T11:46:20+05:30",
   "link": "",
   "source": "https://t.co/gri4hT4Rxy",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HWVzMZEaQAAoKXL?format=jpg&name=small",
   "id": "2026-11-05-fact-in-1979-a-stanford-robot-cart-took-five-hours-to-cross-one-r"
  },
  {
@@ -292,7 +296,7 @@
   "date": "2026-11-02T12:10:36+05:30",
   "link": "",
   "source": "https://t.co/RUmdwcWEKC",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HWGb8woaUAAV8sQ?format=jpg&name=small",
   "id": "2026-11-02-fact-in-1956-a-program-out-proved-russell-and-whitehead-and-a-jou"
  },
  {
@@ -356,7 +360,7 @@
   "date": "2026-11-02T01:58:07+05:30",
   "link": "",
   "source": "https://en.wikipedia.org/wiki/AARON",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HWEPxE1aEAA-Kqg?format=jpg&name=small",
   "id": "2026-11-02-fact-a-painting-program-aaron-has-made-original-art-since-1972"
  },
  {
