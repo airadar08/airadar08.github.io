@@ -2,18 +2,33 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: microsoft/VibeVoice",
-  "summary": "Microsoft's open-source voice AI: speech-to-text and text-to-speech",
+  "summary": "Open-source voice AI: speech-to-text and real-time text-to-speech. Why it matters: open models for long transcripts.",
   "points": [
-   "ASR: 60 min of audio in a single pass",
-   "Tags who spoke, when, and what was said",
-   "Real-time 0.5B text-to-speech model"
+   "Transcribes 60 min of audio in one pass, with speakers",
+   "★ 56.3k stars, +223 today, MIT"
   ],
   "link": "repos/#microsoft-vibevoice",
   "source": "https://github.com/microsoft/VibeVoice",
   "img": "repos/img/microsoft-vibevoice.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2118616381872869430",
   "id": "2026-11-06-repo-microsoft-vibevoice",
-  "date": "2026-11-06T13:34:19+05:30"
+  "date": "2026-11-06T13:38:02+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "given only chess's rules, AlphaZero passed Stockfish in ~4 hours of self-play.",
+  "summary": "Why it matters: AI can learn alone.",
+  "points": [
+   "2017 match: 28 wins, 0 losses, 72 draws",
+   "80K positions/sec vs Stockfish's 70M",
+   "Critics: Stockfish was handicapped"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2118589222626169230",
+  "date": "2026-11-06T11:50:06+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/AlphaZero",
+  "img": "",
+  "id": "2026-11-06-fact-given-only-chess-s-rules-alphazero-passed-stockfish-in-4-hou"
  },
  {
   "type": "Cheatsheet",
