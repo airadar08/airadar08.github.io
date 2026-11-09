@@ -6,10 +6,29 @@
   "link": "cheatsheets/#ai-benchmarks-explained",
   "img": "cheatsheets/img/ai-benchmarks-explained.jpg",
   "id": "2026-11-09-cheatsheet-ai-benchmarks-explained",
-  "date": "2026-11-09T17:22:49+05:30",
-  "x_url": "",
+  "date": "2026-11-09T17:25:08+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2119760699866173690",
   "source": "",
-  "points": []
+  "points": [
+   "What MMLU, GPQA, SWE-bench, ARC-AGI and Arena really test",
+   "Why scores mislead: leakage, flawed tests, vendor setups",
+   "4 checks before you trust a leaderboard"
+  ]
+ },
+ {
+  "type": "Fact",
+  "title": "AlexNet, the 2012 net that reshaped computer vision, was trained in a bedroom on two $500 gaming GPUs.",
+  "summary": "Why it matters: a turning point needed gamer hardware.",
+  "points": [
+   "60M parameters, 5-6 days of training",
+   "15.3% top-5 error on ImageNet"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2119327695515656252",
+  "date": "2026-11-08T12:44:32+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/AlexNet",
+  "img": "https://pbs.twimg.com/media/HWldRwDa4AAyQIr?format=jpg&name=small",
+  "id": "2026-11-08-fact-alexnet-the-2012-net-that-reshaped-computer-vision-was-train"
  },
  {
   "type": "Repo",
@@ -39,7 +58,7 @@
   "date": "2026-11-06T11:50:06+05:30",
   "link": "",
   "source": "https://en.wikipedia.org/wiki/AlphaZero",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HWa9njtb0AAa7wd?format=jpg&name=small",
   "id": "2026-11-06-fact-given-only-chess-s-rules-alphazero-passed-stockfish-in-4-hou"
  },
  {
