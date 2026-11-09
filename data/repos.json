@@ -1,5 +1,24 @@
 [
  {
+  "slug": "milind-soni-openmausbot",
+  "repo": "milind-soni/OpenMausBot",
+  "url": "https://github.com/milind-soni/OpenMausBot",
+  "tagline": "A chat app where every contact is a real AI agent, run on your own machine",
+  "stars": "19.2k",
+  "trend": "+7,621",
+  "language": "TypeScript",
+  "license": "Apache-2.0",
+  "what": [
+   "Each bot has its own model, computer and apps",
+   "Runs on claude, codex and grok CLIs you have",
+   "Transcripts and keys stay in ~/.openmausbot"
+  ],
+  "read": "Strong idea, but giving agents a computer needs care: start in the isolated VM.",
+  "img": "repos/img/milind-soni-openmausbot.jpg",
+  "date": "2026-11-09",
+  "post": ""
+ },
+ {
   "slug": "microsoft-vibevoice",
   "repo": "microsoft/VibeVoice",
   "url": "https://github.com/microsoft/VibeVoice",
