@@ -2,18 +2,17 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: milind-soni/OpenMausBot",
-  "summary": "A chat app where every contact is a real AI agent, run on your own machine",
+  "summary": "A chat app where every contact is a real AI agent on your machine. Why it matters: agent teams with no vendor cloud in the middle.",
   "points": [
-   "Each bot has its own model, computer and apps",
-   "Runs on claude, codex and grok CLIs you have",
-   "Transcripts and keys stay in ~/.openmausbot"
+   "★ 19.2k stars, +7,621 this week",
+   "Each bot: own model, computer, apps"
   ],
   "link": "repos/#milind-soni-openmausbot",
   "source": "https://github.com/milind-soni/OpenMausBot",
   "img": "repos/img/milind-soni-openmausbot.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2119773545421287442",
   "id": "2026-11-09-repo-milind-soni-openmausbot",
-  "date": "2026-11-09T18:14:11+05:30"
+  "date": "2026-11-09T18:16:11+05:30"
  },
  {
   "type": "Cheatsheet",
