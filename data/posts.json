@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "AI Benchmarks Explained cheatsheet",
+  "summary": "What the scores mean and when to ignore them",
+  "link": "cheatsheets/#ai-benchmarks-explained",
+  "img": "cheatsheets/img/ai-benchmarks-explained.jpg",
+  "id": "2026-11-09-cheatsheet-ai-benchmarks-explained",
+  "date": "2026-11-09T17:22:49+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: microsoft/VibeVoice",
   "summary": "Open-source voice AI: speech-to-text and real-time text-to-speech. Why it matters: open models for long transcripts.",
