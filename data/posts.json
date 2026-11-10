@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "Synthetic Data Explained cheatsheet",
+  "summary": "Training AI on data that AI made",
+  "link": "cheatsheets/#synthetic-data-explained",
+  "img": "cheatsheets/img/synthetic-data-explained.jpg",
+  "id": "2026-11-10-cheatsheet-synthetic-data-explained",
+  "date": "2026-11-10T11:51:35+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: milind-soni/OpenMausBot",
   "summary": "A chat app where every contact is a real AI agent on your machine. Why it matters: agent teams with no vendor cloud in the middle.",
