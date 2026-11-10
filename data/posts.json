@@ -6,10 +6,29 @@
   "link": "cheatsheets/#small-language-models",
   "img": "cheatsheets/img/small-language-models.jpg",
   "id": "2026-11-10-cheatsheet-small-language-models",
-  "date": "2026-11-10T21:21:14+05:30",
-  "x_url": "",
+  "date": "2026-11-10T21:24:46+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2120183391492739398",
   "source": "",
-  "points": []
+  "points": [
+   "What an SLM is and when it beats a giant model",
+   "Open SLMs to know: Llama 3.2, Gemma 3, Phi-4-mini, Qwen3",
+   "How much memory a model needs at 16, 8 and 4-bit"
+  ]
+ },
+ {
+  "type": "Fact",
+  "title": "a 1990s neural net, LeNet, was estimated to read 20 million bank checks a day by 2001.",
+  "summary": "Why it matters: CNNs worked in banks long before AlexNet.",
+  "points": [
+   "Built at AT&T Bell Labs by Yann LeCun's team",
+   "LeNet-5 had only ~60,000 parameters"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2120182916965945346",
+  "date": "2026-11-10T21:22:53+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/LeNet",
+  "img": "",
+  "id": "2026-11-10-fact-a-1990s-neural-net-lenet-was-estimated-to-read-20-million-ba"
  },
  {
   "type": "Fact",
