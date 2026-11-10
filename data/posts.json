@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "Small Language Models cheatsheet",
+  "summary": "Compact AI models that run on your own device",
+  "link": "cheatsheets/#small-language-models",
+  "img": "cheatsheets/img/small-language-models.jpg",
+  "id": "2026-11-10-cheatsheet-small-language-models",
+  "date": "2026-11-10T21:21:14+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Fact",
   "title": "a 1973 report helped end UK government support for AI research at most British universities.",
   "summary": "Why it matters: hype can freeze a field.",
