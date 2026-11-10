@@ -1,15 +1,49 @@
 [
  {
+  "type": "Fact",
+  "title": "a 1973 report helped end UK government support for AI research at most British universities.",
+  "summary": "Why it matters: hype can freeze a field.",
+  "points": [
+   "Author James Lighthill: AI hadn't delivered its promised impact",
+   "Core problem: combinatorial explosion"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2120039644545138720",
+  "date": "2026-11-10T11:53:34+05:30",
+  "link": "",
+  "source": "https://t.co/iUn6HghRFB",
+  "img": "https://pbs.twimg.com/media/HWvkxTBasAAtEz4?format=jpg&name=small",
+  "id": "2026-11-10-fact-a-1973-report-helped-end-uk-government-support-for-ai-resear"
+ },
+ {
   "type": "Cheatsheet",
   "title": "Synthetic Data Explained cheatsheet",
   "summary": "Training AI on data that AI made",
   "link": "cheatsheets/#synthetic-data-explained",
   "img": "cheatsheets/img/synthetic-data-explained.jpg",
   "id": "2026-11-10-cheatsheet-synthetic-data-explained",
-  "date": "2026-11-10T11:51:35+05:30",
-  "x_url": "",
+  "date": "2026-11-10T11:53:32+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2120039638496854057",
   "source": "",
-  "points": []
+  "points": [
+   "What synthetic data is and why AI teams use it",
+   "4 methods: Self-Instruct, distillation, rejection sampling, rephrasing",
+   "Risks like model collapse, plus 5 steps to do it well"
+  ]
+ },
+ {
+  "type": "Fact",
+  "title": "the car that won the 2005 DARPA Grand Challenge ran on seven 1.6 GHz Pentium M computers.",
+  "summary": "Why it matters: self-driving began modestly.",
+  "points": [
+   "Stanford's \"Stanley\": VW Touareg, ~100k lines of code",
+   "5 roof LIDARs, learned from human driving logs"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2119775663616045158",
+  "date": "2026-11-09T18:24:36+05:30",
+  "link": "",
+  "source": "https://t.co/IdXqZSgFSz",
+  "img": "https://pbs.twimg.com/media/HWr0rqdbYAAJbJf?format=jpg&name=small",
+  "id": "2026-11-09-fact-the-car-that-won-the-2005-darpa-grand-challenge-ran-on-seven"
  },
  {
   "type": "Repo",
