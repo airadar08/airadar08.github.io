@@ -1,6 +1,18 @@
 [
  {
   "type": "Cheatsheet",
+  "title": "LLM Inference Explained cheatsheet",
+  "summary": "What happens after you hit Enter",
+  "link": "cheatsheets/#llm-inference-explained",
+  "img": "cheatsheets/img/llm-inference-explained.jpg",
+  "id": "2026-11-11-cheatsheet-llm-inference-explained",
+  "date": "2026-11-11T11:13:19+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
+  "type": "Cheatsheet",
   "title": "Small Language Models cheatsheet",
   "summary": "Compact AI models that run on your own device",
   "link": "cheatsheets/#small-language-models",
