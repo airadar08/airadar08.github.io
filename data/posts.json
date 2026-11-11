@@ -6,10 +6,29 @@
   "link": "cheatsheets/#llm-inference-explained",
   "img": "cheatsheets/img/llm-inference-explained.jpg",
   "id": "2026-11-11-cheatsheet-llm-inference-explained",
-  "date": "2026-11-11T11:13:19+05:30",
-  "x_url": "",
+  "date": "2026-11-11T11:16:47+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2120392776336724074",
   "source": "",
-  "points": []
+  "points": [
+   "Prefill vs decode: the two phases behind every reply",
+   "TTFT, TPOT and throughput, the speed metrics that matter",
+   "KV cache, batching, speculative decoding and quantization"
+  ]
+ },
+ {
+  "type": "News",
+  "title": "OpenAI now lets businesses claim verified ChatGPT profiles and launch their own agents.",
+  "summary": "Why it matters: brands get a storefront inside the chat.",
+  "points": [
+   "Beta; agents for US e-commerce and service firms",
+   "Agents can double as ChatGPT Ads"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2120390732234318323",
+  "date": "2026-11-11T11:08:40+05:30",
+  "link": "",
+  "source": "https://t.co/kpVqUVHvCq",
+  "img": "",
+  "id": "2026-11-11-news-openai-now-lets-businesses-claim-verified-chatgpt-profiles-a"
  },
  {
   "type": "Cheatsheet",
