@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "RAG Chunking Explained cheatsheet",
+  "summary": "How to split documents so AI finds the right bit",
+  "link": "cheatsheets/#rag-chunking-explained",
+  "img": "cheatsheets/img/rag-chunking-explained.jpg",
+  "id": "2026-11-12-cheatsheet-rag-chunking-explained",
+  "date": "2026-11-12T23:50:42+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: openai/codex-security",
   "summary": "A CLI that finds security bugs in your code and drafts fixes. Why it matters: AI security review on every PR.",
