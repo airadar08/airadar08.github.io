@@ -6,10 +6,14 @@
   "link": "cheatsheets/#rag-chunking-explained",
   "img": "cheatsheets/img/rag-chunking-explained.jpg",
   "id": "2026-11-12-cheatsheet-rag-chunking-explained",
-  "date": "2026-11-12T23:50:42+05:30",
-  "x_url": "",
+  "date": "2026-11-12T23:52:38+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2120945378275311669",
   "source": "",
-  "points": []
+  "points": [
+   "4 main ways to split docs: fixed, recursive, semantic, parent-child",
+   "A size guide: 256–512 tokens is the usual sweet spot",
+   "A 4-step starting recipe, plus what to test before tuning"
+  ]
  },
  {
   "type": "Repo",
