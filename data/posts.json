@@ -2,18 +2,50 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: openai/codex-security",
-  "summary": "A CLI and TypeScript SDK that finds, validates and fixes security bugs in your code",
+  "summary": "A CLI that finds security bugs in your code and drafts fixes. Why it matters: AI security review on every PR.",
   "points": [
-   "Scans whole repos, chosen paths or Git diffs",
-   "Validates findings, drafts patches, checks fixes",
-   "Exports SARIF, JSON and CSV; runs in CI"
+   "★ 12.1k stars, +663 today",
+   "Scans repos, paths or Git diffs",
+   "Exports SARIF, runs in CI"
   ],
   "link": "repos/#openai-codex-security",
   "source": "https://github.com/openai/codex-security",
   "img": "repos/img/openai-codex-security.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2120880167988126060",
   "id": "2026-11-12-repo-openai-codex-security",
-  "date": "2026-11-12T19:31:21+05:30"
+  "date": "2026-11-12T19:33:30+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "In 1970, MIT's SHRDLU chatted with people about moving blocks.",
+  "summary": "Why it matters: a polished demo isn't understanding.",
+  "points": [
+   "PDP-6 machine, about 50 words",
+   "It asked \"which pyramid?\" when unsure",
+   "Winograd later: \"Potemkin villages\""
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2120793637881811336",
+  "date": "2026-11-12T13:49:40+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/SHRDLU",
+  "img": "",
+  "id": "2026-11-12-fact-in-1970-mit-s-shrdlu-chatted-with-people-about-moving-blocks"
+ },
+ {
+  "type": "Fact",
+  "title": "A 1990s IBM backgammon AI changed how experts open the game.",
+  "summary": "Why it matters: self-play can teach experts.",
+  "points": [
+   "TD-Gammon learned mostly by self-play",
+   "It preferred a safe 24-23 split over the standard slot",
+   "Tournament players adopted it"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2120764200603861350",
+  "date": "2026-11-12T11:52:41+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/TD-Gammon",
+  "img": "",
+  "id": "2026-11-12-fact-a-1990s-ibm-backgammon-ai-changed-how-experts-open-the-game"
  },
  {
   "type": "Cheatsheet",
