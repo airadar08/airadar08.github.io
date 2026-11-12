@@ -1,5 +1,24 @@
 [
  {
+  "slug": "openai-codex-security",
+  "repo": "openai/codex-security",
+  "url": "https://github.com/openai/codex-security",
+  "tagline": "A CLI and TypeScript SDK that finds, validates and fixes security bugs in your code",
+  "stars": "12.1k",
+  "trend": "+663",
+  "language": "TypeScript",
+  "license": "Apache-2.0",
+  "what": [
+   "Scans whole repos, chosen paths or Git diffs",
+   "Validates findings, drafts patches, checks fixes",
+   "Exports SARIF, JSON and CSV; runs in CI"
+  ],
+  "read": "Useful AI security pass for your repo, but scans need a Codex or OpenAI sign-in",
+  "img": "repos/img/openai-codex-security.jpg",
+  "date": "2026-11-12",
+  "post": ""
+ },
+ {
   "slug": "milind-soni-openmausbot",
   "repo": "milind-soni/OpenMausBot",
   "url": "https://github.com/milind-soni/OpenMausBot",

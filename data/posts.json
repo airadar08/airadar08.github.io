@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: openai/codex-security",
+  "summary": "A CLI and TypeScript SDK that finds, validates and fixes security bugs in your code",
+  "points": [
+   "Scans whole repos, chosen paths or Git diffs",
+   "Validates findings, drafts patches, checks fixes",
+   "Exports SARIF, JSON and CSV; runs in CI"
+  ],
+  "link": "repos/#openai-codex-security",
+  "source": "https://github.com/openai/codex-security",
+  "img": "repos/img/openai-codex-security.jpg",
+  "x_url": "",
+  "id": "2026-11-12-repo-openai-codex-security",
+  "date": "2026-11-12T19:31:21+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "LLM Inference Explained cheatsheet",
   "summary": "What happens after you hit Enter",
