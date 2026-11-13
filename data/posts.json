@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: mattpocock/skills",
+  "summary": "Small, composable agent skills for real engineering work, not vibe coding",
+  "points": [
+   "Slash skills like /grill-me, /tdd and /to-spec",
+   "Turns plans into specs and blocking tickets",
+   "Code review, bug diagnosis and handoff skills"
+  ],
+  "link": "repos/#mattpocock-skills",
+  "source": "https://github.com/mattpocock/skills",
+  "img": "repos/img/mattpocock-skills.jpg",
+  "x_url": "",
+  "id": "2026-11-13-repo-mattpocock-skills",
+  "date": "2026-11-13T13:13:58+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "RAG Chunking Explained cheatsheet",
   "summary": "How to split documents so AI finds the right bit",

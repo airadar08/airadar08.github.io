@@ -1,5 +1,24 @@
 [
  {
+  "slug": "mattpocock-skills",
+  "repo": "mattpocock/skills",
+  "url": "https://github.com/mattpocock/skills",
+  "tagline": "Small, composable agent skills for real engineering work, not vibe coding",
+  "stars": "323k",
+  "trend": "+8.7k",
+  "language": "Shell",
+  "license": "MIT",
+  "what": [
+   "Slash skills like /grill-me, /tdd and /to-spec",
+   "Turns plans into specs and blocking tickets",
+   "Code review, bug diagnosis and handoff skills"
+  ],
+  "read": "Small, hackable skills that work with any model; take the few your flow needs",
+  "img": "repos/img/mattpocock-skills.jpg",
+  "date": "2026-11-13",
+  "post": ""
+ },
+ {
   "slug": "openai-codex-security",
   "repo": "openai/codex-security",
   "url": "https://github.com/openai/codex-security",
