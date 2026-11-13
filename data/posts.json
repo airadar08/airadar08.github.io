@@ -2,18 +2,34 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: mattpocock/skills",
-  "summary": "Small, composable agent skills for real engineering work, not vibe coding",
+  "summary": "Skills that make coding agents plan, test and review. Why it matters: aligns agents without owning your flow.",
   "points": [
-   "Slash skills like /grill-me, /tdd and /to-spec",
-   "Turns plans into specs and blocking tickets",
-   "Code review, bug diagnosis and handoff skills"
+   "★ 323k stars, +8.7k this week",
+   "/grill-me, /tdd, /to-spec",
+   "Claude Code, Codex, Copilot"
   ],
   "link": "repos/#mattpocock-skills",
   "source": "https://github.com/mattpocock/skills",
   "img": "repos/img/mattpocock-skills.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2121147753925607699",
   "id": "2026-11-13-repo-mattpocock-skills",
-  "date": "2026-11-13T13:13:58+05:30"
+  "date": "2026-11-13T13:16:48+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "20 minutes decided who won Netflix's $1M AI prize.",
+  "summary": "Takeaway: a top AI contest ended on a timestamp.",
+  "points": [
+   "2009: two teams tied on the test set, ~10% past Netflix's system",
+   "BellKor submitted first, so it won",
+   "5,169 teams, 44,014 entries"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2121147625814794751",
+  "date": "2026-11-13T13:16:17+05:30",
+  "link": "",
+  "source": "https://t.co/SGKI9wcaGv",
+  "img": "",
+  "id": "2026-11-13-fact-20-minutes-decided-who-won-netflix-s-1m-ai-prize"
  },
  {
   "type": "Cheatsheet",
@@ -30,6 +46,21 @@
    "A size guide: 256–512 tokens is the usual sweet spot",
    "A 4-step starting recipe, plus what to test before tuning"
   ]
+ },
+ {
+  "type": "Fact",
+  "title": "Google's 2013 word2vec learned from 1.6 billion words in under a day.",
+  "summary": "Why it matters: cheap word vectors scaled to web text.",
+  "points": [
+   "It captured analogies: Paris - France + Italy = Rome",
+   "Best model scored 65.6% on 19,544 analogy questions"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2120884627544170742",
+  "date": "2026-11-12T19:51:13+05:30",
+  "link": "",
+  "source": "https://arxiv.org/abs/1301.3781",
+  "img": "",
+  "id": "2026-11-12-fact-google-s-2013-word2vec-learned-from-1-6-billion-words-in-und"
  },
  {
   "type": "Repo",
