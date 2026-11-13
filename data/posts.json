@@ -6,10 +6,14 @@
   "link": "cheatsheets/#prompt-injection-explained",
   "img": "cheatsheets/img/prompt-injection-explained.jpg",
   "id": "2026-11-14-cheatsheet-prompt-injection-explained",
-  "date": "2026-11-14T02:03:01+05:30",
-  "x_url": "",
+  "date": "2026-11-14T02:05:01+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2121341084089590225",
   "source": "",
-  "points": []
+  "points": [
+   "What it is and why it's the #1 risk for LLM apps",
+   "Direct vs indirect attacks, and what they can break",
+   "5 defenses: least privilege, output checks, human approval"
+  ]
  },
  {
   "type": "Repo",
