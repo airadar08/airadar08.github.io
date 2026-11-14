@@ -1,5 +1,24 @@
 [
  {
+  "slug": "vercel-labs-agent-browser",
+  "repo": "vercel-labs/agent-browser",
+  "url": "https://github.com/vercel-labs/agent-browser",
+  "tagline": "A Rust CLI that gives AI agents a browser they drive one shell command at a time",
+  "stars": "51.0k",
+  "trend": "+4,360",
+  "language": "Rust",
+  "license": "Apache-2.0",
+  "what": [
+   "Reads pages as compact text with refs like @e1",
+   "Agent clicks, fills and types by ref",
+   "Browser stays open between commands"
+  ],
+  "read": "A tidy snapshot-act-check loop; the 51k stars say agents wanted this",
+  "img": "repos/img/vercel-labs-agent-browser.jpg",
+  "date": "2026-11-14",
+  "post": ""
+ },
+ {
   "slug": "google-elephant-goldfish-model",
   "repo": "google/elephant-goldfish-model",
   "url": "https://github.com/google/elephant-goldfish-model",
