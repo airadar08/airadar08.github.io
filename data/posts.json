@@ -2,18 +2,50 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: google/elephant-goldfish-model",
-  "summary": "Open-source plugin: one agent drafts your spec, fresh agents review it",
+  "summary": "One agent drafts your spec, fresh agents review it. Why it matters: fresh eyes spot gaps.",
   "points": [
-   "Elephant agent keeps context, drafts the spec",
-   "Goldfish reviewers read it with no chat history",
-   "Drift report: docs vs your current code"
+   "★ 18.8k stars, +5.6k this week",
+   "Claude Code, Codex, Antigravity",
+   "Flags docs that drift from code"
   ],
   "link": "repos/#google-elephant-goldfish-model",
   "source": "https://github.com/google/elephant-goldfish-model",
   "img": "repos/img/google-elephant-goldfish-model.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2121536392824295912",
   "id": "2026-11-14-repo-google-elephant-goldfish-model",
-  "date": "2026-11-14T14:59:25+05:30"
+  "date": "2026-11-14T15:01:06+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "a poker bot beat five pros at six-player hold'em; its base strategy cost ~$144 to compute.",
+  "summary": "Why it matters: Nash methods fail past two players.",
+  "points": [
+   "Pluribus, Carnegie Mellon, 2019",
+   "Won ~$1,000/hour",
+   "Code withheld to stop cheating"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2121518596488867861",
+  "date": "2026-11-14T13:50:23+05:30",
+  "link": "",
+  "source": "https://t.co/NevVSFZNVv",
+  "img": "",
+  "id": "2026-11-14-fact-a-poker-bot-beat-five-pros-at-six-player-hold-em-its-base-st"
+ },
+ {
+  "type": "News",
+  "title": "Google launched Gemini 4 Hydrogen, a faster, cheaper model for agent workflows.",
+  "summary": "Why it matters: cheap enough to run many agents at once.",
+  "points": [
+   "$1.50 in / $7.50 out per 1M tokens",
+   "1M context, flat price",
+   "Index score 51 (54 at xhigh)"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2121342548765798717",
+  "date": "2026-11-14T02:10:50+05:30",
+  "link": "",
+  "source": "https://t.co/rREfRnh0CK",
+  "img": "",
+  "id": "2026-11-14-news-google-launched-gemini-4-hydrogen-a-faster-cheaper-model-for"
  },
  {
   "type": "Cheatsheet",
