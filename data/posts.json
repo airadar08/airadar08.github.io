@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: google/elephant-goldfish-model",
+  "summary": "Open-source plugin: one agent drafts your spec, fresh agents review it",
+  "points": [
+   "Elephant agent keeps context, drafts the spec",
+   "Goldfish reviewers read it with no chat history",
+   "Drift report: docs vs your current code"
+  ],
+  "link": "repos/#google-elephant-goldfish-model",
+  "source": "https://github.com/google/elephant-goldfish-model",
+  "img": "repos/img/google-elephant-goldfish-model.jpg",
+  "x_url": "",
+  "id": "2026-11-14-repo-google-elephant-goldfish-model",
+  "date": "2026-11-14T14:59:25+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "Prompt Injection Explained cheatsheet",
   "summary": "How hidden text hijacks AI apps, and how to stop it",

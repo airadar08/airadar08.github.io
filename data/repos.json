@@ -1,5 +1,24 @@
 [
  {
+  "slug": "google-elephant-goldfish-model",
+  "repo": "google/elephant-goldfish-model",
+  "url": "https://github.com/google/elephant-goldfish-model",
+  "tagline": "Open-source plugin: one agent drafts your spec, fresh agents review it",
+  "stars": "18.8k",
+  "trend": "+5.6k",
+  "language": "Python",
+  "license": "Apache-2.0",
+  "what": [
+   "Elephant agent keeps context, drafts the spec",
+   "Goldfish reviewers read it with no chat history",
+   "Drift report: docs vs your current code"
+  ],
+  "read": "Smart use of fresh-context subagents to catch blind spots; you still decide.",
+  "img": "repos/img/google-elephant-goldfish-model.jpg",
+  "date": "2026-11-14",
+  "post": ""
+ },
+ {
   "slug": "mattpocock-skills",
   "repo": "mattpocock/skills",
   "url": "https://github.com/mattpocock/skills",
