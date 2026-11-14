@@ -2,18 +2,34 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: vercel-labs/agent-browser",
-  "summary": "A Rust CLI that gives AI agents a browser they drive one shell command at a time",
+  "summary": "A Rust CLI that lets AI agents drive a browser from the shell. Why it matters: agents can test web apps.",
   "points": [
-   "Reads pages as compact text with refs like @e1",
-   "Agent clicks, fills and types by ref",
-   "Browser stays open between commands"
+   "★ 51.0k stars, +4,360 this week",
+   "Reads pages as text, clicks by ref",
+   "Has an MCP server"
   ],
   "link": "repos/#vercel-labs-agent-browser",
   "source": "https://github.com/vercel-labs/agent-browser",
   "img": "repos/img/vercel-labs-agent-browser.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2121586439028969586",
   "id": "2026-11-14-repo-vercel-labs-agent-browser",
-  "date": "2026-11-14T18:18:12+05:30"
+  "date": "2026-11-14T18:19:58+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "In 1966 SRI began building Shakey, a robot that planned its moves.",
+  "summary": "Why it matters: A* still routes maps.",
+  "points": [
+   "It pushed a ramp to a platform, rolled up, shoved a block off",
+   "The project produced A* search",
+   "LIFE: \"first electronic person\""
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2121579260582527144",
+  "date": "2026-11-14T17:51:27+05:30",
+  "link": "",
+  "source": "https://t.co/t4pPFDMUmn",
+  "img": "https://pbs.twimg.com/media/HXFdDxDaQAEvESO?format=jpg&name=small",
+  "id": "2026-11-14-fact-in-1966-sri-began-building-shakey-a-robot-that-planned-its-m"
  },
  {
   "type": "Repo",
@@ -44,7 +60,7 @@
   "date": "2026-11-14T13:50:23+05:30",
   "link": "",
   "source": "https://t.co/NevVSFZNVv",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HXEl4xNaUAAizi4?format=jpg&name=small",
   "id": "2026-11-14-fact-a-poker-bot-beat-five-pros-at-six-player-hold-em-its-base-st"
  },
  {
@@ -60,7 +76,7 @@
   "date": "2026-11-14T02:10:50+05:30",
   "link": "",
   "source": "https://t.co/rREfRnh0CK",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HXCFwrEawAAqa4q?format=jpg&name=small",
   "id": "2026-11-14-news-google-launched-gemini-4-hydrogen-a-faster-cheaper-model-for"
  },
  {
