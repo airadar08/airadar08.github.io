@@ -2,18 +2,17 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: alibaba/open-code-review",
-  "summary": "Alibaba's AI code review CLI: reads your Git diff, leaves line-level comments",
+  "summary": "An AI agent that reviews your Git diff, line by line. Why it matters: fixed steps pick files, so big PRs get fully reviewed.",
   "points": [
-   "Sends changed files to an LLM agent with tool use",
-   "Fixed pipeline picks files; agent writes comments",
-   "ocr scan reviews whole files with no diff"
+   "★ 51.6k stars, +893 today",
+   "Alibaba's in-house reviewer, now open"
   ],
   "link": "repos/#alibaba-open-code-review",
   "source": "https://github.com/alibaba/open-code-review",
   "img": "repos/img/alibaba-open-code-review.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2121899752824656022",
   "id": "2026-11-15-repo-alibaba-open-code-review",
-  "date": "2026-11-15T15:03:11+05:30"
+  "date": "2026-11-15T15:04:58+05:30"
  },
  {
   "type": "Cheatsheet",
