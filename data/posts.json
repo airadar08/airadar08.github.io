@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "Computer-Use Agents cheatsheet",
+  "summary": "AI that sees the screen, clicks and types",
+  "link": "cheatsheets/#computer-use-agents",
+  "img": "cheatsheets/img/computer-use-agents.jpg",
+  "id": "2026-11-16-cheatsheet-computer-use-agents",
+  "date": "2026-11-16T02:21:20+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Prompt pack",
   "title": "FREE: 36 AI prompts for small business owners",
   "summary": "36 copy-and-fill AI prompts for small business owners: customers, marketing, sales, money, operations and hiring.",
