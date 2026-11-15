@@ -6,10 +6,46 @@
   "link": "cheatsheets/#ai-guardrails-explained",
   "img": "cheatsheets/img/ai-guardrails-explained.jpg",
   "id": "2026-11-15-cheatsheet-ai-guardrails-explained",
-  "date": "2026-11-15T11:56:20+05:30",
-  "x_url": "",
+  "date": "2026-11-15T11:59:02+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2121852960716239290",
   "source": "",
-  "points": []
+  "points": [
+   "Where guardrails sit: input, retrieval, tool and output checks",
+   "What they catch, from jailbreaks to leaked private data",
+   "Common open tools + a 4-step plan to add them to your app"
+  ]
+ },
+ {
+  "type": "Fact",
+  "title": "In 2006, NASA flew an antenna designed by evolution, not engineers.",
+  "summary": "Why it matters: algorithms find designs humans wouldn't.",
+  "points": [
+   "ST5 launched March 22, 2006",
+   "Code mutated shapes, kept the best",
+   "First artificially-evolved object in space"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2121852443789292010",
+  "date": "2026-11-15T11:56:59+05:30",
+  "link": "",
+  "source": "https://t.co/FggThEGfKT",
+  "img": "",
+  "id": "2026-11-15-fact-in-2006-nasa-flew-an-antenna-designed-by-evolution-not-engin"
+ },
+ {
+  "type": "Fact",
+  "title": "In 1956, Logic Theorist proved 38 of Principia Mathematica's first 52 theorems.",
+  "summary": "Why it matters: AI's first proof went unnoticed.",
+  "points": [
+   "One proof beat Russell's",
+   "A logic journal rejected the paper",
+   "It missed that a program was an author"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2121639222214017523",
+  "date": "2026-11-14T21:49:43+05:30",
+  "link": "",
+  "source": "https://t.co/RUmdwcWEKC",
+  "img": "",
+  "id": "2026-11-14-fact-in-1956-logic-theorist-proved-38-of-principia-mathematica-s-"
  },
  {
   "type": "Repo",
