@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "AI Guardrails Explained cheatsheet",
+  "summary": "The checks that keep AI apps on track",
+  "link": "cheatsheets/#ai-guardrails-explained",
+  "img": "cheatsheets/img/ai-guardrails-explained.jpg",
+  "id": "2026-11-15-cheatsheet-ai-guardrails-explained",
+  "date": "2026-11-15T11:56:20+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: vercel-labs/agent-browser",
   "summary": "A Rust CLI that lets AI agents drive a browser from the shell. Why it matters: agents can test web apps.",
