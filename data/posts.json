@@ -6,26 +6,45 @@
   "link": "cheatsheets/#computer-use-agents",
   "img": "cheatsheets/img/computer-use-agents.jpg",
   "id": "2026-11-16-cheatsheet-computer-use-agents",
-  "date": "2026-11-16T02:21:20+05:30",
-  "x_url": "",
+  "date": "2026-11-16T02:23:23+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2122070480144535931",
   "source": "",
-  "points": []
+  "points": [
+   "The loop: screenshot, think, click or type, check",
+   "Every action it can take, from clicks to key presses",
+   "How to run it safely, plus the limits to know"
+  ]
+ },
+ {
+  "type": "Fact",
+  "title": "AlexNet, the 2012 model that reshaped computer vision, trained on two $500 gaming GPUs.",
+  "summary": "Why it matters: cheap GPUs made deep nets practical.",
+  "points": [
+   "5-6 days, 60M parameters",
+   "Split across two 3 GB cards",
+   "15.3% top-5 error, 10.8 points ahead"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2122070069543055809",
+  "date": "2026-11-16T02:21:45+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/AlexNet",
+  "img": "",
+  "id": "2026-11-16-fact-alexnet-the-2012-model-that-reshaped-computer-vision-trained"
  },
  {
   "type": "Prompt pack",
   "title": "FREE: 36 AI prompts for small business owners",
   "summary": "36 copy-and-fill AI prompts for small business owners: customers, marketing, sales, money, operations and hiring.",
   "points": [
-   "Customers & support",
-   "Marketing & content",
-   "Sales & pricing",
-   "Money & cash flow"
+   "Customers, marketing, sales",
+   "Cash flow, operations, hiring",
+   "Copy, fill the blanks, paste into any AI"
   ],
   "link": "prompt-packs/ai-prompts-for-small-business-owners/",
   "img": "prompt-packs/ai-prompts-for-small-business-owners/cover.jpg",
   "x_url": "https://x.com/ai_radar_/status/2121917287460684078",
   "id": "pack-ai-prompts-for-small-business-owners",
-  "date": "2026-11-15T16:14:58+05:30",
+  "date": "2026-11-15T16:14:39+05:30",
   "source": ""
  },
  {
