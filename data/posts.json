@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: alibaba/open-code-review",
+  "summary": "Alibaba's AI code review CLI: reads your Git diff, leaves line-level comments",
+  "points": [
+   "Sends changed files to an LLM agent with tool use",
+   "Fixed pipeline picks files; agent writes comments",
+   "ocr scan reviews whole files with no diff"
+  ],
+  "link": "repos/#alibaba-open-code-review",
+  "source": "https://github.com/alibaba/open-code-review",
+  "img": "repos/img/alibaba-open-code-review.jpg",
+  "x_url": "",
+  "id": "2026-11-15-repo-alibaba-open-code-review",
+  "date": "2026-11-15T15:03:11+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "AI Guardrails Explained cheatsheet",
   "summary": "The checks that keep AI apps on track",

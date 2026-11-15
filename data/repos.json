@@ -1,5 +1,24 @@
 [
  {
+  "slug": "alibaba-open-code-review",
+  "repo": "alibaba/open-code-review",
+  "url": "https://github.com/alibaba/open-code-review",
+  "tagline": "Alibaba's AI code review CLI: reads your Git diff, leaves line-level comments",
+  "stars": "51.6k",
+  "trend": "+893",
+  "language": "Go",
+  "license": "Apache-2.0",
+  "what": [
+   "Sends changed files to an LLM agent with tool use",
+   "Fixed pipeline picks files; agent writes comments",
+   "ocr scan reviews whole files with no diff"
+  ],
+  "read": "Alibaba's in-house reviewer, now open: tuned for precision over noise",
+  "img": "repos/img/alibaba-open-code-review.jpg",
+  "date": "2026-11-15",
+  "post": ""
+ },
+ {
   "slug": "vercel-labs-agent-browser",
   "repo": "vercel-labs/agent-browser",
   "url": "https://github.com/vercel-labs/agent-browser",
