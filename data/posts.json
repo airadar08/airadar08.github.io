@@ -1,5 +1,22 @@
 [
  {
+  "type": "Prompt pack",
+  "title": "FREE: 36 AI prompts for small business owners",
+  "summary": "36 copy-and-fill AI prompts for small business owners: customers, marketing, sales, money, operations and hiring.",
+  "points": [
+   "Customers & support",
+   "Marketing & content",
+   "Sales & pricing",
+   "Money & cash flow"
+  ],
+  "link": "prompt-packs/ai-prompts-for-small-business-owners/",
+  "img": "prompt-packs/ai-prompts-for-small-business-owners/cover.jpg",
+  "x_url": "",
+  "id": "pack-ai-prompts-for-small-business-owners",
+  "date": "2026-11-15T16:12:09+05:30",
+  "source": ""
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: alibaba/open-code-review",
   "summary": "An AI agent that reviews your Git diff, line by line. Why it matters: fixed steps pick files, so big PRs get fully reviewed.",
