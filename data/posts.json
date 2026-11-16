@@ -6,10 +6,29 @@
   "link": "cheatsheets/#ai-video-generation",
   "img": "cheatsheets/img/ai-video-generation.jpg",
   "id": "2026-11-16-cheatsheet-ai-video-generation",
-  "date": "2026-11-16T21:11:34+05:30",
-  "x_url": "",
+  "date": "2026-11-16T21:14:54+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2122355238569197811",
   "source": "",
-  "points": []
+  "points": [
+   "How text and images turn into moving clips",
+   "A 5-part prompt formula: subject, action, camera, style, mood",
+   "Common limits to plan around"
+  ]
+ },
+ {
+  "type": "Fact",
+  "title": "Cyc, a project to hand-write common sense for computers, began in 1984. By 2002 it had used 600 person-years.",
+  "summary": "Why it matters: hand-coded knowledge is hard to scale.",
+  "points": [
+   "Started by Douglas Lenat at MCC",
+   "~$60M spent by 2002 (as reported)"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2122334911378178415",
+  "date": "2026-11-16T19:54:08+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/Cyc",
+  "img": "",
+  "id": "2026-11-16-fact-cyc-a-project-to-hand-write-common-sense-for-computers-began"
  },
  {
   "type": "Repo",
