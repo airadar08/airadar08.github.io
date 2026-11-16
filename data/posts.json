@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: ChromeDevTools/chrome-devtools-mcp",
+  "summary": "Lets coding agents control and inspect a live Chrome browser via MCP or a CLI",
+  "points": [
+   "Records traces for performance insights",
+   "Reads network requests, console, screenshots",
+   "Automates clicks and forms via Puppeteer"
+  ],
+  "link": "repos/#chromedevtools-chrome-devtools-mcp",
+  "source": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+  "img": "repos/img/chromedevtools-chrome-devtools-mcp.jpg",
+  "x_url": "",
+  "id": "2026-11-16-repo-chromedevtools-chrome-devtools-mcp",
+  "date": "2026-11-16T12:20:47+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "Computer-Use Agents cheatsheet",
   "summary": "AI that sees the screen, clicks and types",

@@ -1,5 +1,24 @@
 [
  {
+  "slug": "chromedevtools-chrome-devtools-mcp",
+  "repo": "ChromeDevTools/chrome-devtools-mcp",
+  "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+  "tagline": "Lets coding agents control and inspect a live Chrome browser via MCP or a CLI",
+  "stars": "57.2k",
+  "trend": "+717",
+  "language": "TypeScript",
+  "license": "Apache-2.0",
+  "what": [
+   "Records traces for performance insights",
+   "Reads network requests, console, screenshots",
+   "Automates clicks and forms via Puppeteer"
+  ],
+  "read": "Gives agents real DevTools eyes; note usage stats are on by default",
+  "img": "repos/img/chromedevtools-chrome-devtools-mcp.jpg",
+  "date": "2026-11-16",
+  "post": ""
+ },
+ {
   "slug": "alibaba-open-code-review",
   "repo": "alibaba/open-code-review",
   "url": "https://github.com/alibaba/open-code-review",
