@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "AI Video Generation cheatsheet",
+  "summary": "How text and images become moving clips",
+  "link": "cheatsheets/#ai-video-generation",
+  "img": "cheatsheets/img/ai-video-generation.jpg",
+  "id": "2026-11-16-cheatsheet-ai-video-generation",
+  "date": "2026-11-16T21:11:34+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: ChromeDevTools/chrome-devtools-mcp",
   "summary": "Lets coding agents control and debug a live Chrome browser. Why it matters: agents can test what they build.",
