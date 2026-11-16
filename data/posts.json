@@ -2,18 +2,32 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: ChromeDevTools/chrome-devtools-mcp",
-  "summary": "Lets coding agents control and inspect a live Chrome browser via MCP or a CLI",
+  "summary": "Lets coding agents control and debug a live Chrome browser. Why it matters: agents can test what they build.",
   "points": [
-   "Records traces for performance insights",
-   "Reads network requests, console, screenshots",
-   "Automates clicks and forms via Puppeteer"
+   "★ 57.2k stars, +717 today",
+   "Traces, network and console logs via MCP"
   ],
   "link": "repos/#chromedevtools-chrome-devtools-mcp",
   "source": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
   "img": "repos/img/chromedevtools-chrome-devtools-mcp.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2122221021734522904",
   "id": "2026-11-16-repo-chromedevtools-chrome-devtools-mcp",
-  "date": "2026-11-16T12:20:47+05:30"
+  "date": "2026-11-16T12:21:35+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "Chinook became checkers world champion in 1994 without ever beating Marion Tinsley.",
+  "summary": "Why it matters: first program to win a human world title.",
+  "points": [
+   "Earlier match: Tinsley won 4–2, 33 draws",
+   "1994: six draws, then he withdrew ill"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2122212864505397630",
+  "date": "2026-11-16T11:49:10+05:30",
+  "link": "",
+  "source": "https://t.co/MM2s4iODoy",
+  "img": "",
+  "id": "2026-11-16-fact-chinook-became-checkers-world-champion-in-1994-without-ever-"
  },
  {
   "type": "Cheatsheet",
