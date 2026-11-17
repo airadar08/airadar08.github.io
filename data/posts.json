@@ -6,10 +6,30 @@
   "link": "cheatsheets/#a2a-protocol-explained",
   "img": "cheatsheets/img/a2a-protocol-explained.jpg",
   "id": "2026-11-17-cheatsheet-a2a-protocol-explained",
-  "date": "2026-11-17T11:39:01+05:30",
-  "x_url": "",
+  "date": "2026-11-17T11:40:58+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2122573189662544292",
   "source": "",
-  "points": []
+  "points": [
+   "What Agent2Agent is and where it came from",
+   "Agent Cards, Tasks, Messages and Artifacts in one table",
+   "How a call flows, plus A2A vs MCP side by side"
+  ]
+ },
+ {
+  "type": "News",
+  "title": "Baidu's AI cloud revenue hit RMB 8.2B in Q3, up 94% YoY.",
+  "summary": "Why it matters: Baidu is shifting from search ads to AI infrastructure.",
+  "points": [
+   "Core AI business: 53% of General Business revenue",
+   "GPU cloud revenue +191% YoY",
+   "Online marketing revenue -22% YoY"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2122364481892458919",
+  "date": "2026-11-16T21:51:38+05:30",
+  "link": "",
+  "source": "https://t.co/8QL1KQDWSu",
+  "img": "",
+  "id": "2026-11-16-news-baidu-s-ai-cloud-revenue-hit-rmb-8-2b-in-q3-up-94-yoy"
  },
  {
   "type": "Cheatsheet",
@@ -164,7 +184,7 @@
   "date": "2026-11-15T11:56:59+05:30",
   "link": "",
   "source": "https://t.co/FggThEGfKT",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HXJVhtpbIAAaRXT?format=jpg&name=small",
   "id": "2026-11-15-fact-in-2006-nasa-flew-an-antenna-designed-by-evolution-not-engin"
  },
  {
@@ -180,8 +200,23 @@
   "date": "2026-11-14T21:49:43+05:30",
   "link": "",
   "source": "https://t.co/RUmdwcWEKC",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HXGTluObMAAxbvg?format=jpg&name=small",
   "id": "2026-11-14-fact-in-1956-logic-theorist-proved-38-of-principia-mathematica-s-"
+ },
+ {
+  "type": "Fact",
+  "title": "In 1984, Douglas Lenat began Cyc, an AI meant to gain common sense from hand-typed facts.",
+  "summary": "Why it matters: writing down \"obvious\" knowledge is brutally hard.",
+  "points": [
+   "~$60M and 600 person-years spent by 2002",
+   "~24.5M assertions by 2017"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2121608911023485186",
+  "date": "2026-11-14T19:49:16+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/Cyc",
+  "img": "https://pbs.twimg.com/media/HXF4B7_bYAAERVg?format=jpg&name=small",
+  "id": "2026-11-14-fact-in-1984-douglas-lenat-began-cyc-an-ai-meant-to-gain-common-s"
  },
  {
   "type": "Repo",
@@ -308,7 +343,7 @@
   "date": "2026-11-13T13:16:17+05:30",
   "link": "",
   "source": "https://t.co/SGKI9wcaGv",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HW_Ufq9boAA9bje?format=jpg&name=small",
   "id": "2026-11-13-fact-20-minutes-decided-who-won-netflix-s-1m-ai-prize"
  },
  {
@@ -339,7 +374,7 @@
   "date": "2026-11-12T19:51:13+05:30",
   "link": "",
   "source": "https://arxiv.org/abs/1301.3781",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HW7lSabbQAAi2uX?format=jpg&name=small",
   "id": "2026-11-12-fact-google-s-2013-word2vec-learned-from-1-6-billion-words-in-und"
  },
  {
@@ -371,7 +406,7 @@
   "date": "2026-11-12T13:49:40+05:30",
   "link": "",
   "source": "https://en.wikipedia.org/wiki/SHRDLU",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HW6SiBaa0AAKaXE?format=jpg&name=small",
   "id": "2026-11-12-fact-in-1970-mit-s-shrdlu-chatted-with-people-about-moving-blocks"
  },
  {
@@ -387,8 +422,24 @@
   "date": "2026-11-12T11:52:41+05:30",
   "link": "",
   "source": "https://en.wikipedia.org/wiki/TD-Gammon",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HW53w35bgAICE22?format=jpg&name=small",
   "id": "2026-11-12-fact-a-1990s-ibm-backgammon-ai-changed-how-experts-open-the-game"
+ },
+ {
+  "type": "Fact",
+  "title": "In 1984 the Cyc project set out to hand-write all of common sense into a computer.",
+  "summary": "Why it matters: opposite of deep learning.",
+  "points": [
+   "By 2002: $60M and 600 person-years",
+   "By 2017: ~24.5M assertions, ~1.5M terms",
+   "Cycorp still develops it"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2120416026689257566",
+  "date": "2026-11-11T12:49:10+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/Cyc",
+  "img": "https://pbs.twimg.com/media/HW07F1-awAAuEbC?format=jpg&name=small",
+  "id": "2026-11-11-fact-in-1984-the-cyc-project-set-out-to-hand-write-all-of-common-"
  },
  {
   "type": "Cheatsheet",
