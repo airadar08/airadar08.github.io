@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: ag-ui-protocol/ag-ui",
+  "summary": "An open protocol that streams AI agent events into any app's UI",
+  "points": [
+   "One typed event stream from agent to app",
+   "1.0 spec: 31 event types in 8 families",
+   "SDKs for TypeScript, Python and .NET"
+  ],
+  "link": "repos/#ag-ui-protocol-ag-ui",
+  "source": "https://github.com/ag-ui-protocol/ag-ui",
+  "img": "repos/img/ag-ui-protocol-ag-ui.jpg",
+  "x_url": "",
+  "id": "2026-11-17-repo-ag-ui-protocol-ag-ui",
+  "date": "2026-11-17T14:36:37+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "A2A Protocol Explained cheatsheet",
   "summary": "How AI agents from different vendors work together",

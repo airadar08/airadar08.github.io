@@ -1,5 +1,24 @@
 [
  {
+  "slug": "ag-ui-protocol-ag-ui",
+  "repo": "ag-ui-protocol/ag-ui",
+  "url": "https://github.com/ag-ui-protocol/ag-ui",
+  "tagline": "An open protocol that streams AI agent events into any app's UI",
+  "stars": "19.6k",
+  "trend": "+791",
+  "language": "TypeScript",
+  "license": "MIT",
+  "what": [
+   "One typed event stream from agent to app",
+   "1.0 spec: 31 event types in 8 families",
+   "SDKs for TypeScript, Python and .NET"
+  ],
+  "read": "The missing third piece next to MCP and A2A: agents meeting users",
+  "img": "repos/img/ag-ui-protocol-ag-ui.jpg",
+  "date": "2026-11-17",
+  "post": ""
+ },
+ {
   "slug": "chromedevtools-chrome-devtools-mcp",
   "repo": "ChromeDevTools/chrome-devtools-mcp",
   "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
