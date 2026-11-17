@@ -1,6 +1,18 @@
 [
  {
   "type": "Cheatsheet",
+  "title": "A2A Protocol Explained cheatsheet",
+  "summary": "How AI agents from different vendors work together",
+  "link": "cheatsheets/#a2a-protocol-explained",
+  "img": "cheatsheets/img/a2a-protocol-explained.jpg",
+  "id": "2026-11-17-cheatsheet-a2a-protocol-explained",
+  "date": "2026-11-17T11:39:01+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
+  "type": "Cheatsheet",
   "title": "AI Video Generation cheatsheet",
   "summary": "How text and images become moving clips",
   "link": "cheatsheets/#ai-video-generation",
