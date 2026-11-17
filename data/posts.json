@@ -2,18 +2,34 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: ag-ui-protocol/ag-ui",
-  "summary": "An open protocol that streams AI agent events into any app's UI",
+  "summary": "Open protocol that streams AI agent events into app UIs. Why it matters: the agent-to-user layer beside MCP.",
   "points": [
-   "One typed event stream from agent to app",
-   "1.0 spec: 31 event types in 8 families",
-   "SDKs for TypeScript, Python and .NET"
+   "★ 19.6k stars, +791 today",
+   "31 event types, 3 official SDKs",
+   "Works with LangChain, CrewAI, ADK"
   ],
   "link": "repos/#ag-ui-protocol-ag-ui",
   "source": "https://github.com/ag-ui-protocol/ag-ui",
   "img": "repos/img/ag-ui-protocol-ag-ui.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2122618229193589228",
   "id": "2026-11-17-repo-ag-ui-protocol-ag-ui",
-  "date": "2026-11-17T14:36:37+05:30"
+  "date": "2026-11-17T14:39:56+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "In 1986, NETtalk, a neural net, learned to pronounce English.",
+  "summary": "Why it matters: rules learned, not coded.",
+  "points": [
+   "18,629 weights, trained by backpropagation",
+   "20,008 hand-labelled words took ~250 hours",
+   "Paired with DECtalk, it hit the Today show"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2122575244984828050",
+  "date": "2026-11-17T11:49:08+05:30",
+  "link": "",
+  "source": "https://t.co/lGHtph0mjy",
+  "img": "",
+  "id": "2026-11-17-fact-in-1986-nettalk-a-neural-net-learned-to-pronounce-english"
  },
  {
   "type": "Cheatsheet",
