@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "GraphRAG Explained cheatsheet",
+  "summary": "RAG that maps entities, links and themes",
+  "link": "cheatsheets/#graphrag-explained",
+  "img": "cheatsheets/img/graphrag-explained.jpg",
+  "id": "2026-11-18-cheatsheet-graphrag-explained",
+  "date": "2026-11-18T22:40:46+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: GoogleChrome/modern-web-guidance-src",
   "summary": "Skills that teach coding agents modern web APIs. Why it matters: agents learn from old code.",
