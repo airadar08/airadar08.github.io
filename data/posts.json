@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "AI watermarks explained cheatsheet",
+  "summary": "How AI-made content gets labelled and checked",
+  "link": "cheatsheets/#ai-watermarks-explained",
+  "img": "cheatsheets/img/ai-watermarks-explained.jpg",
+  "id": "2026-11-18-cheatsheet-ai-watermarks-explained",
+  "date": "2026-11-18T11:12:54+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: ag-ui-protocol/ag-ui",
   "summary": "Open protocol that streams AI agent events into app UIs. Why it matters: the agent-to-user layer beside MCP.",
