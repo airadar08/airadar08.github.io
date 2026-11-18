@@ -1,5 +1,24 @@
 [
  {
+  "slug": "googlechrome-modern-web-guidance-src",
+  "repo": "GoogleChrome/modern-web-guidance-src",
+  "url": "https://github.com/GoogleChrome/modern-web-guidance-src",
+  "tagline": "Skills that teach coding agents modern web best practices",
+  "stars": "8.7k",
+  "trend": "+7.0k",
+  "language": "TypeScript",
+  "license": "Apache-2.0",
+  "what": [
+   "262 modern web features as agent guides",
+   "Feeds targeted guides into your agent's context",
+   "Scans a codebase for legacy patterns"
+  ],
+  "read": "Fixes a real gap: agents trained on old code now get current web APIs",
+  "img": "repos/img/googlechrome-modern-web-guidance-src.jpg",
+  "date": "2026-11-18",
+  "post": ""
+ },
+ {
   "slug": "ag-ui-protocol-ag-ui",
   "repo": "ag-ui-protocol/ag-ui",
   "url": "https://github.com/ag-ui-protocol/ag-ui",

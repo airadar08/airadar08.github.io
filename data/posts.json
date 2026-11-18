@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: GoogleChrome/modern-web-guidance-src",
+  "summary": "Skills that teach coding agents modern web best practices",
+  "points": [
+   "262 modern web features as agent guides",
+   "Feeds targeted guides into your agent's context",
+   "Scans a codebase for legacy patterns"
+  ],
+  "link": "repos/#googlechrome-modern-web-guidance-src",
+  "source": "https://github.com/GoogleChrome/modern-web-guidance-src",
+  "img": "repos/img/googlechrome-modern-web-guidance-src.jpg",
+  "x_url": "",
+  "id": "2026-11-18-repo-googlechrome-modern-web-guidance-src",
+  "date": "2026-11-18T18:17:16+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "AI watermarks explained cheatsheet",
   "summary": "How AI-made content gets labelled and checked",
