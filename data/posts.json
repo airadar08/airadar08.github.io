@@ -6,10 +6,46 @@
   "link": "cheatsheets/#graphrag-explained",
   "img": "cheatsheets/img/graphrag-explained.jpg",
   "id": "2026-11-18-cheatsheet-graphrag-explained",
-  "date": "2026-11-18T22:40:46+05:30",
-  "x_url": "",
+  "date": "2026-11-18T22:42:12+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2123101982600933483",
   "source": "",
-  "points": []
+  "points": [
+   "How GraphRAG turns your docs into a knowledge graph",
+   "The 4 indexing steps, from entities to community summaries",
+   "Global vs Local vs DRIFT search, and when plain RAG is enough"
+  ]
+ },
+ {
+  "type": "Fact",
+  "title": "A Turing test contest ran ~30 years, and its $100,000 grand prize was never won.",
+  "summary": "Why it matters: bots won with tricks, not insight.",
+  "points": [
+   "Loebner Prize launched in 1990",
+   "2008: Elbot fooled 3 of 12 judges",
+   "Minsky called it a publicity stunt"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2123100518356857268",
+  "date": "2026-11-18T22:36:23+05:30",
+  "link": "",
+  "source": "https://t.co/OpREyFduPt",
+  "img": "",
+  "id": "2026-11-18-fact-a-turing-test-contest-ran-30-years-and-its-100-000-grand-pri"
+ },
+ {
+  "type": "Fact",
+  "title": "In 1964, Stanford began Dendral, called the first expert system.",
+  "summary": "Why it matters: MYCIN and XCON descended from it.",
+  "points": [
+   "It inferred molecules from mass spectra",
+   "Its generator was proven complete, no duplicates",
+   "By 1970: post-doc level work"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2123039105974223225",
+  "date": "2026-11-18T18:32:21+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/Dendral",
+  "img": "",
+  "id": "2026-11-18-fact-in-1964-stanford-began-dendral-called-the-first-expert-syste"
  },
  {
   "type": "Repo",
