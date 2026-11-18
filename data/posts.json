@@ -6,10 +6,29 @@
   "link": "cheatsheets/#ai-watermarks-explained",
   "img": "cheatsheets/img/ai-watermarks-explained.jpg",
   "id": "2026-11-18-cheatsheet-ai-watermarks-explained",
-  "date": "2026-11-18T11:12:54+05:30",
-  "x_url": "",
+  "date": "2026-11-18T11:14:41+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2122928961462395194",
   "source": "",
-  "points": []
+  "points": [
+   "Watermarks vs Content Credentials vs visible labels",
+   "SynthID, C2PA and provenance in plain words",
+   "4 steps to check if a file is AI-made"
+  ]
+ },
+ {
+  "type": "Fact",
+  "title": "In 1988, Hans Moravec noted AI beats adults at checkers but not 1-year-olds at seeing or walking.",
+  "summary": "Why it matters: easy for us is hard for robots.",
+  "points": [
+   "Perception: millions of years of evolution",
+   "Abstract thought: perhaps under ~100,000 years"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2122926881096007858",
+  "date": "2026-11-18T11:06:25+05:30",
+  "link": "",
+  "source": "https://t.co/4Lr7MADdc9",
+  "img": "",
+  "id": "2026-11-18-fact-in-1988-hans-moravec-noted-ai-beats-adults-at-checkers-but-n"
  },
  {
   "type": "Repo",
@@ -165,7 +184,7 @@
   "date": "2026-11-16T02:21:45+05:30",
   "link": "",
   "source": "https://en.wikipedia.org/wiki/AlexNet",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HXMbcuLbwAAdfNy?format=jpg&name=small",
   "id": "2026-11-16-fact-alexnet-the-2012-model-that-reshaped-computer-vision-trained"
  },
  {
