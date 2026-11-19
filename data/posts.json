@@ -2,18 +2,33 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: google-research/paper-orchestra",
-  "summary": "Multi-agent framework that turns research notes and logs into LaTeX papers",
+  "summary": "AI agents that turn research ideas and experiment logs into LaTeX papers. Why it matters: one paper, many agent roles.",
   "points": [
-   "Agents for outline, lit review, writing, plots",
-   "Finds and cites papers via Semantic Scholar",
-   "Outputs LaTeX in conference templates"
+   "★ 4.6k stars, +1.5k today",
+   "Agents for outline, lit review, writing, plots"
   ],
   "link": "repos/#google-research-paper-orchestra",
   "source": "https://github.com/google-research/paper-orchestra",
   "img": "repos/img/google-research-paper-orchestra.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2123327166960337013",
   "id": "2026-11-19-repo-google-research-paper-orchestra",
-  "date": "2026-11-19T13:34:01+05:30"
+  "date": "2026-11-19T13:37:00+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "In 1981, an AI called Eurisko won a US Traveller wargame title.",
+  "summary": "Why it matters: AI hunts loopholes.",
+  "points": [
+   "Fleet: 96 mostly stationary, lightly armored ships",
+   "1982: won again, sank its own ships",
+   "Officials said a third win would end it"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2123326694585139516",
+  "date": "2026-11-19T13:35:08+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/Eurisko",
+  "img": "",
+  "id": "2026-11-19-fact-in-1981-an-ai-called-eurisko-won-a-us-traveller-wargame-titl"
  },
  {
   "type": "Cheatsheet",
