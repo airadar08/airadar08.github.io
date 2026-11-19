@@ -1,5 +1,24 @@
 [
  {
+  "slug": "google-research-paper-orchestra",
+  "repo": "google-research/paper-orchestra",
+  "url": "https://github.com/google-research/paper-orchestra",
+  "tagline": "Multi-agent framework that turns research notes and logs into LaTeX papers",
+  "stars": "4.6k",
+  "trend": "+1.5k",
+  "language": "Python",
+  "license": "Apache-2.0",
+  "what": [
+   "Agents for outline, lit review, writing, plots",
+   "Finds and cites papers via Semantic Scholar",
+   "Outputs LaTeX in conference templates"
+  ],
+  "read": "Strong research demo from Google Cloud AI; its dataset isn't released yet",
+  "img": "repos/img/google-research-paper-orchestra.jpg",
+  "date": "2026-11-19",
+  "post": ""
+ },
+ {
   "slug": "googlechrome-modern-web-guidance-src",
   "repo": "GoogleChrome/modern-web-guidance-src",
   "url": "https://github.com/GoogleChrome/modern-web-guidance-src",

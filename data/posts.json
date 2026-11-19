@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: google-research/paper-orchestra",
+  "summary": "Multi-agent framework that turns research notes and logs into LaTeX papers",
+  "points": [
+   "Agents for outline, lit review, writing, plots",
+   "Finds and cites papers via Semantic Scholar",
+   "Outputs LaTeX in conference templates"
+  ],
+  "link": "repos/#google-research-paper-orchestra",
+  "source": "https://github.com/google-research/paper-orchestra",
+  "img": "repos/img/google-research-paper-orchestra.jpg",
+  "x_url": "",
+  "id": "2026-11-19-repo-google-research-paper-orchestra",
+  "date": "2026-11-19T13:34:01+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "GraphRAG Explained cheatsheet",
   "summary": "RAG that maps entities, links and themes",
