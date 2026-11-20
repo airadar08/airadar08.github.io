@@ -1,5 +1,24 @@
 [
  {
+  "slug": "backnotprop-plannotator",
+  "repo": "backnotprop/plannotator",
+  "url": "https://github.com/backnotprop/plannotator",
+  "tagline": "A local review surface where you annotate your AI coding agent's plans and code",
+  "stars": "13.7k",
+  "trend": "+3.5k",
+  "language": "TypeScript",
+  "license": "Apache-2.0",
+  "what": [
+   "Mark up agent plans, specs and HTML in a browser",
+   "Review diffs and PRs, comments go back to the agent",
+   "Inbox where agents leave questions while they work"
+  ],
+  "read": "Useful if you run several coding agents and want one place to review them",
+  "img": "repos/img/backnotprop-plannotator.jpg",
+  "date": "2026-11-20",
+  "post": ""
+ },
+ {
   "slug": "google-research-paper-orchestra",
   "repo": "google-research/paper-orchestra",
   "url": "https://github.com/google-research/paper-orchestra",

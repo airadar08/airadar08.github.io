@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: backnotprop/plannotator",
+  "summary": "A local review surface where you annotate your AI coding agent's plans and code",
+  "points": [
+   "Mark up agent plans, specs and HTML in a browser",
+   "Review diffs and PRs, comments go back to the agent",
+   "Inbox where agents leave questions while they work"
+  ],
+  "link": "repos/#backnotprop-plannotator",
+  "source": "https://github.com/backnotprop/plannotator",
+  "img": "repos/img/backnotprop-plannotator.jpg",
+  "x_url": "",
+  "id": "2026-11-20-repo-backnotprop-plannotator",
+  "date": "2026-11-20T14:07:48+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "AI Agent Patterns cheatsheet",
   "summary": "5 workflows to know before you build an agent",
