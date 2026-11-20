@@ -6,10 +6,29 @@
   "link": "cheatsheets/#ai-agent-patterns",
   "img": "cheatsheets/img/ai-agent-patterns.jpg",
   "id": "2026-11-20-cheatsheet-ai-agent-patterns",
-  "date": "2026-11-20T11:46:08+05:30",
-  "x_url": "",
+  "date": "2026-11-20T11:48:58+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2123662366042939603",
   "source": "",
-  "points": []
+  "points": [
+   "Workflow vs agent: who decides the next step",
+   "5 patterns: chaining, routing, parallel, orchestrator, evaluator",
+   "Which to pick for your task, and checks before going full agent"
+  ]
+ },
+ {
+  "type": "Fact",
+  "title": "MIT's Kismet robot head (1990s) heard your tone of voice and answered with facial expressions.",
+  "summary": "Why it matters: it read tone; it didn't feel.",
+  "points": [
+   "5 speech types: approval, prohibition, attention, comfort, neutral",
+   "Materials cost ~$25,000"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2123661567585874109",
+  "date": "2026-11-20T11:45:48+05:30",
+  "link": "",
+  "source": "https://t.co/UmGOQJwjL4",
+  "img": "",
+  "id": "2026-11-20-fact-mit-s-kismet-robot-head-1990s-heard-your-tone-of-voice-and-a"
  },
  {
   "type": "Cheatsheet",
