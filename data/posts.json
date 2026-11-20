@@ -2,18 +2,32 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: backnotprop/plannotator",
-  "summary": "A local review surface where you annotate your AI coding agent's plans and code",
+  "summary": "Mark up your coding agent's plans and code, then send it feedback. Why it matters: agent code still needs a human check.",
   "points": [
-   "Mark up agent plans, specs and HTML in a browser",
-   "Review diffs and PRs, comments go back to the agent",
-   "Inbox where agents leave questions while they work"
+   "★ 13.7k stars, +3.5k this week",
+   "Works with Claude Code, Codex, Gemini CLI"
   ],
   "link": "repos/#backnotprop-plannotator",
   "source": "https://github.com/backnotprop/plannotator",
   "img": "repos/img/backnotprop-plannotator.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2123697840388293096",
   "id": "2026-11-20-repo-backnotprop-plannotator",
-  "date": "2026-11-20T14:07:48+05:30"
+  "date": "2026-11-20T14:09:56+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "A 1984 book was billed as written by a program, Racter.",
+  "summary": "Why it matters: the \"AI author\" was mostly curation.",
+  "points": [
+   "Its text was edited from a large pile of output",
+   "The Racter sold to the public was far simpler"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2123697576432332813",
+  "date": "2026-11-20T14:08:53+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/Racter",
+  "img": "",
+  "id": "2026-11-20-fact-a-1984-book-was-billed-as-written-by-a-program-racter"
  },
  {
   "type": "Cheatsheet",
