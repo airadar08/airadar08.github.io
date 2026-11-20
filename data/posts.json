@@ -1,6 +1,18 @@
 [
  {
   "type": "Cheatsheet",
+  "title": "AI Agent Patterns cheatsheet",
+  "summary": "5 workflows to know before you build an agent",
+  "link": "cheatsheets/#ai-agent-patterns",
+  "img": "cheatsheets/img/ai-agent-patterns.jpg",
+  "id": "2026-11-20-cheatsheet-ai-agent-patterns",
+  "date": "2026-11-20T11:46:08+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
+  "type": "Cheatsheet",
   "title": "Deep Research Explained cheatsheet",
   "summary": "How AI research agents read the web for you",
   "link": "cheatsheets/#deep-research-explained",
