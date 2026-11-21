@@ -6,10 +6,30 @@
   "link": "cheatsheets/#scaling-laws-explained",
   "img": "cheatsheets/img/scaling-laws-explained.jpg",
   "id": "2026-11-21-cheatsheet-scaling-laws-explained",
-  "date": "2026-11-21T20:12:35+05:30",
-  "x_url": "",
+  "date": "2026-11-21T20:15:20+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2124152185407852820",
   "source": "",
-  "points": []
+  "points": [
+   "The 3 knobs: parameters, training tokens, compute",
+   "Kaplan 2020, Chinchilla's ~20 tokens per parameter, and o1's test-time scaling",
+   "Pre-training vs over-training vs thinking longer"
+  ]
+ },
+ {
+  "type": "Fact",
+  "title": "One 1973 UK report helped end government AI funding at most British universities.",
+  "summary": "Why it matters: scaling still decides.",
+  "points": [
+   "Author: mathematician James Lighthill",
+   "Verdict: promises unmet",
+   "Flaw: toy-problem methods broke on real ones"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2124145480213123092",
+  "date": "2026-11-21T19:48:41+05:30",
+  "link": "",
+  "source": "https://t.co/iUn6HghRFB",
+  "img": "",
+  "id": "2026-11-21-fact-one-1973-uk-report-helped-end-government-ai-funding-at-most-"
  },
  {
   "type": "Repo",
