@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "Scaling Laws Explained cheatsheet",
+  "summary": "Why bigger, longer-trained models get better",
+  "link": "cheatsheets/#scaling-laws-explained",
+  "img": "cheatsheets/img/scaling-laws-explained.jpg",
+  "id": "2026-11-21-cheatsheet-scaling-laws-explained",
+  "date": "2026-11-21T20:12:35+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: mvanhorn/last30days-skill",
   "summary": "An agent skill that scans Reddit, X, YouTube and HN, then writes one brief. Why it matters: this month's takes, not stale search results.",
