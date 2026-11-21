@@ -1,5 +1,24 @@
 [
  {
+  "slug": "mvanhorn-last30days-skill",
+  "repo": "mvanhorn/last30days-skill",
+  "url": "https://github.com/mvanhorn/last30days-skill",
+  "tagline": "An agent skill that researches any topic across Reddit, X, YouTube, HN and more",
+  "stars": "71.7k",
+  "trend": "+3.8k",
+  "language": "Python",
+  "license": "MIT",
+  "what": [
+   "Searches Reddit, X, YouTube, HN, Polymarket in parallel",
+   "Scores results by upvotes, likes and market odds",
+   "An AI judge writes one brief from the last 30 days"
+  ],
+  "read": "A strong research add-on for agents; extra sources need your own keys",
+  "img": "repos/img/mvanhorn-last30days-skill.jpg",
+  "date": "2026-11-21",
+  "post": ""
+ },
+ {
   "slug": "backnotprop-plannotator",
   "repo": "backnotprop/plannotator",
   "url": "https://github.com/backnotprop/plannotator",

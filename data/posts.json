@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: mvanhorn/last30days-skill",
+  "summary": "An agent skill that researches any topic across Reddit, X, YouTube, HN and more",
+  "points": [
+   "Searches Reddit, X, YouTube, HN, Polymarket in parallel",
+   "Scores results by upvotes, likes and market odds",
+   "An AI judge writes one brief from the last 30 days"
+  ],
+  "link": "repos/#mvanhorn-last30days-skill",
+  "source": "https://github.com/mvanhorn/last30days-skill",
+  "img": "repos/img/mvanhorn-last30days-skill.jpg",
+  "x_url": "",
+  "id": "2026-11-21-repo-mvanhorn-last30days-skill",
+  "date": "2026-11-21T18:17:18+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "AI Model Licences cheatsheet",
   "summary": "What you can really do with open weights",
