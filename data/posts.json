@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "AI Model Licences cheatsheet",
+  "summary": "What you can really do with open weights",
+  "link": "cheatsheets/#ai-model-licences",
+  "img": "cheatsheets/img/ai-model-licences.jpg",
+  "id": "2026-11-21-cheatsheet-ai-model-licences",
+  "date": "2026-11-21T17:06:46+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: backnotprop/plannotator",
   "summary": "Mark up your coding agent's plans and code, then send it feedback. Why it matters: agent code still needs a human check.",
