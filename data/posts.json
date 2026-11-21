@@ -6,10 +6,28 @@
   "link": "cheatsheets/#ai-model-licences",
   "img": "cheatsheets/img/ai-model-licences.jpg",
   "id": "2026-11-21-cheatsheet-ai-model-licences",
-  "date": "2026-11-21T17:06:46+05:30",
-  "x_url": "",
+  "date": "2026-11-21T17:09:52+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2124105512207921593",
   "source": "",
-  "points": []
+  "points": [
+   "Why open weights isn't the same as open source",
+   "Apache 2.0, MIT, OpenRAIL, CC BY-NC and Llama compared",
+   "The fine print to check before you ship"
+  ]
+ },
+ {
+  "type": "Fact",
+  "title": "In 1976, the best research computer, a PDP-10 with 4 MB of RAM, could take up to 100 minutes to decode 30 seconds of speech.",
+  "summary": "Why it matters: instant voice AI rests on decades of compute gains.",
+  "points": [
+   "DARPA's 1971 goal: a 1,000-word vocabulary"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2124105322298294445",
+  "date": "2026-11-21T17:09:07+05:30",
+  "link": "",
+  "source": "https://t.co/jesNO66PAR",
+  "img": "",
+  "id": "2026-11-21-fact-in-1976-the-best-research-computer-a-pdp-10-with-4-mb-of-ram"
  },
  {
   "type": "Repo",
