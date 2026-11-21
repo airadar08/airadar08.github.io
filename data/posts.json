@@ -2,18 +2,33 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: mvanhorn/last30days-skill",
-  "summary": "An agent skill that researches any topic across Reddit, X, YouTube, HN and more",
+  "summary": "An agent skill that scans Reddit, X, YouTube and HN, then writes one brief. Why it matters: this month's takes, not stale search results.",
   "points": [
-   "Searches Reddit, X, YouTube, HN, Polymarket in parallel",
-   "Scores results by upvotes, likes and market odds",
-   "An AI judge writes one brief from the last 30 days"
+   "★ 71.7k stars, +3.8k this week",
+   "Ranks by upvotes and likes"
   ],
   "link": "repos/#mvanhorn-last30days-skill",
   "source": "https://github.com/mvanhorn/last30days-skill",
   "img": "repos/img/mvanhorn-last30days-skill.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2124122942279958978",
   "id": "2026-11-21-repo-mvanhorn-last30days-skill",
-  "date": "2026-11-21T18:17:18+05:30"
+  "date": "2026-11-21T18:19:08+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "A robot named for its shaking gave us A* search, still used for pathfinding.",
+  "summary": "Why it matters: AI planning began here.",
+  "points": [
+   "Shakey: SRI, ~1966, DARPA-funded",
+   "Split typed commands into steps itself",
+   "LIFE, 1970: \"first electronic person\""
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2124115779524432049",
+  "date": "2026-11-21T17:50:40+05:30",
+  "link": "",
+  "source": "https://t.co/t4pPFDMUmn",
+  "img": "",
+  "id": "2026-11-21-fact-a-robot-named-for-its-shaking-gave-us-a-search-still-used-fo"
  },
  {
   "type": "Cheatsheet",
