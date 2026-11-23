@@ -1,5 +1,20 @@
 [
  {
+  "type": "Fact",
+  "title": "In 1956, Logic Theorist proved 38 of 52 Principia Mathematica theorems.",
+  "summary": "Why it matters: it missed that the co-author was software.",
+  "points": [
+   "One proof beat Russell and Whitehead's own",
+   "A journal rejected the paper as \"not notable\""
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2124447669607448746",
+  "date": "2026-11-22T15:49:29+05:30",
+  "link": "",
+  "source": "https://t.co/RUmdwcWEKC",
+  "img": "https://pbs.twimg.com/media/HXuN33daEAAWOHv?format=jpg&name=small",
+  "id": "2026-11-22-fact-in-1956-logic-theorist-proved-38-of-52-principia-mathematica"
+ },
+ {
   "type": "Cheatsheet",
   "title": "Scaling Laws Explained cheatsheet",
   "summary": "Why bigger, longer-trained models get better",
@@ -28,7 +43,7 @@
   "date": "2026-11-21T19:48:41+05:30",
   "link": "",
   "source": "https://t.co/iUn6HghRFB",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HXp7COdbkAAFjxl?format=jpg&name=small",
   "id": "2026-11-21-fact-one-1973-uk-report-helped-end-government-ai-funding-at-most-"
  },
  {
