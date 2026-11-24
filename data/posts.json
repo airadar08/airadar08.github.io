@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: kajisho5/ffmpeg-skill",
+  "summary": "A local video editor for coding agents: 42 FFmpeg tools plus an MCP server",
+  "points": [
+   "Agent Skill for Claude Code, Cursor and Codex",
+   "42 FFmpeg tools: cut, captions, reframe, loudness",
+   "Agent probes, edits, then verifies its own output"
+  ],
+  "link": "repos/#kajisho5-ffmpeg-skill",
+  "source": "https://github.com/kajisho5/ffmpeg-skill",
+  "img": "repos/img/kajisho5-ffmpeg-skill.jpg",
+  "x_url": "",
+  "id": "2026-11-24-repo-kajisho5-ffmpeg-skill",
+  "date": "2026-11-24T13:18:21+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "Rerankers Explained cheatsheet",
   "summary": "How RAG picks the best chunks for the LLM",

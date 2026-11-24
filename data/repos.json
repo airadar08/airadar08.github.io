@@ -1,5 +1,24 @@
 [
  {
+  "slug": "kajisho5-ffmpeg-skill",
+  "repo": "kajisho5/ffmpeg-skill",
+  "url": "https://github.com/kajisho5/ffmpeg-skill",
+  "tagline": "A local video editor for coding agents: 42 FFmpeg tools plus an MCP server",
+  "stars": "10.4k",
+  "trend": "+3.9k",
+  "language": "Python",
+  "license": "MIT",
+  "what": [
+   "Agent Skill for Claude Code, Cursor and Codex",
+   "42 FFmpeg tools: cut, captions, reframe, loudness",
+   "Agent probes, edits, then verifies its own output"
+  ],
+  "read": "Practical pick: real video editing from a prompt, all on your own machine.",
+  "img": "repos/img/kajisho5-ffmpeg-skill.jpg",
+  "date": "2026-11-24",
+  "post": ""
+ },
+ {
   "slug": "mvanhorn-last30days-skill",
   "repo": "mvanhorn/last30days-skill",
   "url": "https://github.com/mvanhorn/last30days-skill",
