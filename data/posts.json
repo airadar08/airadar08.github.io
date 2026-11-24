@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "Rerankers Explained cheatsheet",
+  "summary": "How RAG picks the best chunks for the LLM",
+  "link": "cheatsheets/#rerankers-explained",
+  "img": "cheatsheets/img/rerankers-explained.jpg",
+  "id": "2026-11-24-cheatsheet-rerankers-explained",
+  "date": "2026-11-24T11:12:46+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Fact",
   "title": "In 1956, Logic Theorist proved 38 of 52 Principia Mathematica theorems.",
   "summary": "Why it matters: it missed that the co-author was software.",
