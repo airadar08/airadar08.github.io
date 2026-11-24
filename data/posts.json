@@ -6,10 +6,29 @@
   "link": "cheatsheets/#hybrid-search-explained",
   "img": "cheatsheets/img/hybrid-search-explained.jpg",
   "id": "2026-11-24-cheatsheet-hybrid-search-explained",
-  "date": "2026-11-24T23:09:47+05:30",
-  "x_url": "",
+  "date": "2026-11-24T23:13:24+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2125284161414214114",
   "source": "",
-  "points": []
+  "points": [
+   "Keyword (BM25) vs vector search: what each catches",
+   "How to fuse both lists with RRF (k = 60)",
+   "When hybrid beats pure vector search in RAG"
+  ]
+ },
+ {
+  "type": "Fact",
+  "title": "Cyc, a project started in 1984 to hand-write common sense into a computer, cost $60M and 600 person-years by 2002.",
+  "summary": "Why it matters: it bet on writing, not learning.",
+  "points": [
+   "~24.5M knowledge terms by 2017",
+   "Critic Domingos: \"catastrophic failure\""
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2125283491613221112",
+  "date": "2026-11-24T23:10:44+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/Cyc",
+  "img": "",
+  "id": "2026-11-24-fact-cyc-a-project-started-in-1984-to-hand-write-common-sense-int"
  },
  {
   "type": "Repo",
