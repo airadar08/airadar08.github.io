@@ -6,10 +6,30 @@
   "link": "cheatsheets/#rerankers-explained",
   "img": "cheatsheets/img/rerankers-explained.jpg",
   "id": "2026-11-24-cheatsheet-rerankers-explained",
-  "date": "2026-11-24T11:12:46+05:30",
-  "x_url": "",
+  "date": "2026-11-24T11:15:51+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2125103584526344578",
   "source": "",
-  "points": []
+  "points": [
+   "How rerankers pick the best chunks in 4 steps",
+   "Bi-encoder vs cross-encoder, side by side",
+   "Reranker types + tips for speed and quality"
+  ]
+ },
+ {
+  "type": "News",
+  "title": "OpenAI and Cisco open-sourced Shirudo, which shields live Linux servers from exploits without a restart.",
+  "summary": "Why it matters: it covers the gap before patching.",
+  "points": [
+   "Signed eBPF \"shields\"",
+   "A Codex shield blocked a Java4Shell test",
+   "Still pre-release"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2125081859457728864",
+  "date": "2026-11-24T09:49:32+05:30",
+  "link": "",
+  "source": "https://t.co/CoPWSjMlPF",
+  "img": "",
+  "id": "2026-11-24-news-openai-and-cisco-open-sourced-shirudo-which-shields-live-lin"
  },
  {
   "type": "Fact",
