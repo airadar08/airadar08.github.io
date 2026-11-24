@@ -2,18 +2,34 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: kajisho5/ffmpeg-skill",
-  "summary": "A local video editor for coding agents: 42 FFmpeg tools plus an MCP server",
+  "summary": "A local video editor for coding agents. Why it matters: edit video by asking, on your machine.",
   "points": [
-   "Agent Skill for Claude Code, Cursor and Codex",
-   "42 FFmpeg tools: cut, captions, reframe, loudness",
-   "Agent probes, edits, then verifies its own output"
+   "42 FFmpeg tools: cut, captions, reframe",
+   "Skill or MCP server, no API keys",
+   "★ 10.4k stars, +3.9k this week"
   ],
   "link": "repos/#kajisho5-ffmpeg-skill",
   "source": "https://github.com/kajisho5/ffmpeg-skill",
   "img": "repos/img/kajisho5-ffmpeg-skill.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2125135096902775176",
   "id": "2026-11-24-repo-kajisho5-ffmpeg-skill",
-  "date": "2026-11-24T13:18:21+05:30"
+  "date": "2026-11-24T13:21:04+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "In 2015, DeepMind's DQN learned 49 Atari games from pixels and score alone.",
+  "summary": "Why it matters: one general learner.",
+  "points": [
+   "Same network for every game",
+   "Beat earlier methods in 43 of 49",
+   "In Breakout, it dug a tunnel to hit bricks from behind"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2125111931384238381",
+  "date": "2026-11-24T11:49:01+05:30",
+  "link": "",
+  "source": "https://t.co/T5MlwqkNJR",
+  "img": "",
+  "id": "2026-11-24-fact-in-2015-deepmind-s-dqn-learned-49-atari-games-from-pixels-an"
  },
  {
   "type": "Cheatsheet",
