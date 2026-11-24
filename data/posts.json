@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "Hybrid Search Explained cheatsheet",
+  "summary": "Keywords + vectors for better retrieval",
+  "link": "cheatsheets/#hybrid-search-explained",
+  "img": "cheatsheets/img/hybrid-search-explained.jpg",
+  "id": "2026-11-24-cheatsheet-hybrid-search-explained",
+  "date": "2026-11-24T23:09:47+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: kajisho5/ffmpeg-skill",
   "summary": "A local video editor for coding agents. Why it matters: edit video by asking, on your machine.",
