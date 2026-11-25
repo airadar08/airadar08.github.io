@@ -6,10 +6,30 @@
   "link": "cheatsheets/#llm-routing-explained",
   "img": "cheatsheets/img/llm-routing-explained.jpg",
   "id": "2026-11-25-cheatsheet-llm-routing-explained",
-  "date": "2026-11-25T12:18:01+05:30",
-  "x_url": "",
+  "date": "2026-11-25T12:19:49+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2125482068968985083",
   "source": "",
-  "points": []
+  "points": [
+   "What a router does: easy prompts to a cheap model, hard ones to a strong one",
+   "The 4 RouteLLM router types in plain words",
+   "Reported cost cuts: over 85% on MT Bench at 95% of GPT-4's quality"
+  ]
+ },
+ {
+  "type": "Fact",
+  "title": "OpenAI Five, a Dota 2 bot, won 99.4% of 42,729 public games in April 2019.",
+  "summary": "Why it matters: self-play alone reached pro-level teamwork.",
+  "points": [
+   "~180 years of self-play per day (2018)",
+   "256 GPUs, 128,000 CPU cores",
+   "Critics: simplified hero pools"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2125481548988485853",
+  "date": "2026-11-25T12:17:45+05:30",
+  "link": "",
+  "source": "https://t.co/VKX0ftFJ5k",
+  "img": "",
+  "id": "2026-11-25-fact-openai-five-a-dota-2-bot-won-99-4-of-42-729-public-games-in-"
  },
  {
   "type": "Cheatsheet",
