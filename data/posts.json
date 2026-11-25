@@ -6,10 +6,30 @@
   "link": "cheatsheets/#prompting-techniques",
   "img": "cheatsheets/img/prompting-techniques.jpg",
   "id": "2026-11-26-cheatsheet-prompting-techniques",
-  "date": "2026-11-26T00:06:17+05:30",
-  "x_url": "",
+  "date": "2026-11-26T00:10:52+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2125661010015183266",
   "source": "",
-  "points": []
+  "points": [
+   "Zero-shot, few-shot, chain-of-thought and role prompts",
+   "Which technique fits which task, incl. ReAct for tool use",
+   "Level-ups: self-consistency, prompt chaining, output specs"
+  ]
+ },
+ {
+  "type": "Fact",
+  "title": "In 1960, Stanford's ADALINE set its weights with rheostat knobs.",
+  "summary": "Why it matters: AI's core update is 60+ years old.",
+  "points": [
+   "Its LMS rule is stochastic gradient descent",
+   "1963 MADALINE: 1,000 memistor weights",
+   "Never trained more than one layer"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2125660596691775949",
+  "date": "2026-11-26T00:09:13+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/ADALINE",
+  "img": "",
+  "id": "2026-11-26-fact-in-1960-stanford-s-adaline-set-its-weights-with-rheostat-kno"
  },
  {
   "type": "Repo",
