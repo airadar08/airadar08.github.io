@@ -1,6 +1,18 @@
 [
  {
   "type": "Cheatsheet",
+  "title": "LLM Routing Explained cheatsheet",
+  "summary": "Send each prompt to the right-size model",
+  "link": "cheatsheets/#llm-routing-explained",
+  "img": "cheatsheets/img/llm-routing-explained.jpg",
+  "id": "2026-11-25-cheatsheet-llm-routing-explained",
+  "date": "2026-11-25T12:18:01+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
+  "type": "Cheatsheet",
   "title": "Hybrid Search Explained cheatsheet",
   "summary": "Keywords + vectors for better retrieval",
   "link": "cheatsheets/#hybrid-search-explained",
