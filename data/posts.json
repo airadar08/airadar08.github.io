@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "Prompting Techniques cheatsheet",
+  "summary": "Which prompt trick to use, and when",
+  "link": "cheatsheets/#prompting-techniques",
+  "img": "cheatsheets/img/prompting-techniques.jpg",
+  "id": "2026-11-26-cheatsheet-prompting-techniques",
+  "date": "2026-11-26T00:06:17+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: jingyaogong/minimind",
   "summary": "Train a 64M-param LLM from scratch on one GPU, in plain PyTorch. Why it matters: learn LLMs by building one.",
