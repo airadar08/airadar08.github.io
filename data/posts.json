@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: jingyaogong/minimind",
+  "summary": "Train a 64M-parameter LLM from scratch on one GPU, in plain PyTorch",
+  "points": [
+   "Full pipeline: pretrain, SFT, LoRA, DPO, GRPO",
+   "Core algorithms written in native PyTorch",
+   "Open datasets provided for every stage"
+  ],
+  "link": "repos/#jingyaogong-minimind",
+  "source": "https://github.com/jingyaogong/minimind",
+  "img": "repos/img/jingyaogong-minimind.jpg",
+  "x_url": "",
+  "id": "2026-11-25-repo-jingyaogong-minimind",
+  "date": "2026-11-25T13:12:48+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "LLM Routing Explained cheatsheet",
   "summary": "Send each prompt to the right-size model",

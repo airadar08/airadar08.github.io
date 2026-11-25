@@ -1,5 +1,24 @@
 [
  {
+  "slug": "jingyaogong-minimind",
+  "repo": "jingyaogong/minimind",
+  "url": "https://github.com/jingyaogong/minimind",
+  "tagline": "Train a 64M-parameter LLM from scratch on one GPU, in plain PyTorch",
+  "stars": "70.5k",
+  "trend": "+727",
+  "language": "Python",
+  "license": "Apache-2.0",
+  "what": [
+   "Full pipeline: pretrain, SFT, LoRA, DPO, GRPO",
+   "Core algorithms written in native PyTorch",
+   "Open datasets provided for every stage"
+  ],
+  "read": "A hands-on LLM course in code; the model is tiny, the lessons are not",
+  "img": "repos/img/jingyaogong-minimind.jpg",
+  "date": "2026-11-25",
+  "post": ""
+ },
+ {
   "slug": "kajisho5-ffmpeg-skill",
   "repo": "kajisho5/ffmpeg-skill",
   "url": "https://github.com/kajisho5/ffmpeg-skill",
