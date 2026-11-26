@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "AI Observability Explained cheatsheet",
+  "summary": "See what your LLM app is really doing",
+  "link": "cheatsheets/#ai-observability-explained",
+  "img": "cheatsheets/img/ai-observability-explained.jpg",
+  "id": "2026-11-26-cheatsheet-ai-observability-explained",
+  "date": "2026-11-26T20:12:36+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: google-labs-code/stitch-skills",
   "summary": "Skills that let coding agents design UI in Google Stitch. Why it matters: mockups and code stay in sync.",
