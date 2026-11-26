@@ -2,18 +2,50 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: google-labs-code/stitch-skills",
-  "summary": "Agent skills and plugins that let coding agents design screens in Google Stitch",
+  "summary": "Skills that let coding agents design UI in Google Stitch. Why it matters: mockups and code stay in sync.",
   "points": [
-   "Generate screens from text or images",
-   "Turn React/Vue code into Stitch designs",
-   "Extract a DESIGN.md from your source code"
+   "★ 13.1k stars, +2.6k this week",
+   "Turns React/Vue code into designs",
+   "Apache-2.0"
   ],
   "link": "repos/#google-labs-code-stitch-skills",
   "source": "https://github.com/google-labs-code/stitch-skills",
   "img": "repos/img/google-labs-code-stitch-skills.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2125934911169462523",
   "id": "2026-11-26-repo-google-labs-code-stitch-skills",
-  "date": "2026-11-26T18:18:10+05:30"
+  "date": "2026-11-26T18:19:15+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "In 2012, AlexNet won ImageNet on two $500 gaming GPUs.",
+  "summary": "Why it matters: deep learning's breakout ran on gaming hardware.",
+  "points": [
+   "2 Nvidia GTX 580s, 5-6 days, 1.2M images",
+   "15.3% top-5 error, 60M parameters",
+   "Built in Krizhevsky's family home"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2125927620680483300",
+  "date": "2026-11-26T17:50:17+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/AlexNet",
+  "img": "",
+  "id": "2026-11-26-fact-in-2012-alexnet-won-imagenet-on-two-500-gaming-gpus"
+ },
+ {
+  "type": "Fact",
+  "title": "In 1961, Donald Michie built a tic-tac-toe learner from 304 matchboxes.",
+  "summary": "Why it matters: reinforcement learning, no computer.",
+  "points": [
+   "Coloured beads stood for moves",
+   "Win: +3 beads. Loss: beads removed",
+   "It drew consistently after ~20 games"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2125897136550326425",
+  "date": "2026-11-26T15:49:09+05:30",
+  "link": "",
+  "source": "https://t.co/HSvPhVIdxz",
+  "img": "",
+  "id": "2026-11-26-fact-in-1961-donald-michie-built-a-tic-tac-toe-learner-from-304-m"
  },
  {
   "type": "Repo",
