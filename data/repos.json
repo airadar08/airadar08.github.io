@@ -1,5 +1,24 @@
 [
  {
+  "slug": "google-labs-code-stitch-skills",
+  "repo": "google-labs-code/stitch-skills",
+  "url": "https://github.com/google-labs-code/stitch-skills",
+  "tagline": "Agent skills and plugins that let coding agents design screens in Google Stitch",
+  "stars": "13.1k",
+  "trend": "+2.6k",
+  "language": "TypeScript",
+  "license": "Apache-2.0",
+  "what": [
+   "Generate screens from text or images",
+   "Turn React/Vue code into Stitch designs",
+   "Extract a DESIGN.md from your source code"
+  ],
+  "read": "Useful if you already use Stitch; needs the Stitch MCP server set up first",
+  "img": "repos/img/google-labs-code-stitch-skills.jpg",
+  "date": "2026-11-26",
+  "post": ""
+ },
+ {
   "slug": "n8n-io-nod",
   "repo": "n8n-io/nod",
   "url": "https://github.com/n8n-io/nod",

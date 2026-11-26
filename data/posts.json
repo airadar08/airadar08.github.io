@@ -1,6 +1,22 @@
 [
  {
   "type": "Repo",
+  "title": "Trending AI repo: google-labs-code/stitch-skills",
+  "summary": "Agent skills and plugins that let coding agents design screens in Google Stitch",
+  "points": [
+   "Generate screens from text or images",
+   "Turn React/Vue code into Stitch designs",
+   "Extract a DESIGN.md from your source code"
+  ],
+  "link": "repos/#google-labs-code-stitch-skills",
+  "source": "https://github.com/google-labs-code/stitch-skills",
+  "img": "repos/img/google-labs-code-stitch-skills.jpg",
+  "x_url": "",
+  "id": "2026-11-26-repo-google-labs-code-stitch-skills",
+  "date": "2026-11-26T18:18:10+05:30"
+ },
+ {
+  "type": "Repo",
   "title": "Trending AI repo: n8n-io/nod",
   "summary": "A personal agent with its own computer and browser, by n8n. Why it matters: it asks before it acts.",
   "points": [
