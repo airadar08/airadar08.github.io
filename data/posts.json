@@ -6,10 +6,30 @@
   "link": "cheatsheets/#tokenizers-explained",
   "img": "cheatsheets/img/tokenizers-explained.jpg",
   "id": "2026-11-26-cheatsheet-tokenizers-explained",
-  "date": "2026-11-26T11:41:55+05:30",
-  "x_url": "",
+  "date": "2026-11-26T11:44:10+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2125835484664607034",
   "source": "",
-  "points": []
+  "points": [
+   "What tokens, vocabularies and token IDs are",
+   "How BPE builds a vocabulary, in 4 steps",
+   "Vocab sizes from GPT-2 to GPT-4o and Llama 3, plus the quirks"
+  ]
+ },
+ {
+  "type": "Fact",
+  "title": "Backpropagation was published in 1970, 16 years before its famous 1986 paper.",
+  "summary": "Why it matters: one idea, found repeatedly.",
+  "points": [
+   "Linnainmaa: \"reverse mode\" autodiff",
+   "1982: Werbos applied it to neural nets",
+   "Rumelhart reinvented it, unaware"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2125806683729568052",
+  "date": "2026-11-26T09:49:43+05:30",
+  "link": "",
+  "source": "https://t.co/BcUcZlmJXt",
+  "img": "",
+  "id": "2026-11-26-fact-backpropagation-was-published-in-1970-16-years-before-its-fa"
  },
  {
   "type": "Cheatsheet",
