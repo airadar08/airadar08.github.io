@@ -2,18 +2,33 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: n8n-io/nod",
-  "summary": "Open-source personal agent with its own computer and browser, from the n8n team",
+  "summary": "A personal agent with its own computer and browser, by n8n. Why it matters: it asks before it acts.",
   "points": [
-   "Runs errands across Gmail, Calendar, Slack, web",
-   "Asks before it acts; rules checked in the server",
-   "Bring any model: OpenAI, Anthropic, Gemini, more"
+   "★ 3.7k stars, +1,008 this week",
+   "Works with OpenAI, Anthropic, Gemini",
+   "Apache-2.0, runs locally"
   ],
   "link": "repos/#n8n-io-nod",
   "source": "https://github.com/n8n-io/nod",
   "img": "repos/img/n8n-io-nod.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2125858443986976829",
   "id": "2026-11-26-repo-n8n-io-nod",
-  "date": "2026-11-26T13:13:27+05:30"
+  "date": "2026-11-26T13:15:24+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "A 1982 memory network built on atomic-spin physics helped win Hopfield the 2024 Physics Nobel.",
+  "summary": "Why it matters: AI grew from physics.",
+  "points": [
+   "Hinton's Boltzmann machine built on it",
+   "Hopfield later said he's \"very unnerved\" by AI"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2125836809670447485",
+  "date": "2026-11-26T11:49:26+05:30",
+  "link": "",
+  "source": "https://t.co/VqvFsWC6ge",
+  "img": "",
+  "id": "2026-11-26-fact-a-1982-memory-network-built-on-atomic-spin-physics-helped-wi"
  },
  {
   "type": "Cheatsheet",
