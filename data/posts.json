@@ -6,10 +6,14 @@
   "link": "cheatsheets/#ai-observability-explained",
   "img": "cheatsheets/img/ai-observability-explained.jpg",
   "id": "2026-11-26-cheatsheet-ai-observability-explained",
-  "date": "2026-11-26T20:12:36+05:30",
-  "x_url": "",
+  "date": "2026-11-26T20:14:32+05:30",
+  "x_url": "https://x.com/ai_radar_/status/2125963922297819457",
   "source": "",
-  "points": []
+  "points": [
+   "Traces, spans and sessions in plain words",
+   "What to log on every LLM call (and why)",
+   "4 steps to set it up + the bugs it catches"
+  ]
  },
  {
   "type": "Repo",
@@ -40,7 +44,7 @@
   "date": "2026-11-26T17:50:17+05:30",
   "link": "",
   "source": "https://en.wikipedia.org/wiki/AlexNet",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HYDP3icasAAR1fw?format=jpg&name=small",
   "id": "2026-11-26-fact-in-2012-alexnet-won-imagenet-on-two-500-gaming-gpus"
  },
  {
@@ -56,8 +60,24 @@
   "date": "2026-11-26T15:49:09+05:30",
   "link": "",
   "source": "https://t.co/HSvPhVIdxz",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HYC0JfXboAEEYVo?format=jpg&name=small",
   "id": "2026-11-26-fact-in-1961-donald-michie-built-a-tic-tac-toe-learner-from-304-m"
+ },
+ {
+  "type": "Fact",
+  "title": "In 1843, Ada Lovelace published a program for a machine never built.",
+  "summary": "Why it matters: AI debate predates computers.",
+  "points": [
+   "Note G: a Bernoulli-number method",
+   "Her notes ran ~3x the paper's length",
+   "Turing named an AI objection after her"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2125883502159864071",
+  "date": "2026-11-26T14:54:58+05:30",
+  "link": "",
+  "source": "https://t.co/c5cVeLEmbC",
+  "img": "https://pbs.twimg.com/media/HYCnvoubcAAGC98?format=jpg&name=small",
+  "id": "2026-11-26-fact-in-1843-ada-lovelace-published-a-program-for-a-machine-never"
  },
  {
   "type": "Repo",
@@ -87,7 +107,7 @@
   "date": "2026-11-26T11:49:26+05:30",
   "link": "",
   "source": "https://t.co/VqvFsWC6ge",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HYB9SK2bYAAIOU-?format=jpg&name=small",
   "id": "2026-11-26-fact-a-1982-memory-network-built-on-atomic-spin-physics-helped-wi"
  },
  {
@@ -119,7 +139,7 @@
   "date": "2026-11-26T09:49:43+05:30",
   "link": "",
   "source": "https://t.co/BcUcZlmJXt",
-  "img": "",
+  "img": "https://pbs.twimg.com/media/HYBh4jgagAASylQ?format=jpg&name=small",
   "id": "2026-11-26-fact-backpropagation-was-published-in-1970-16-years-before-its-fa"
  },
  {
