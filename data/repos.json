@@ -1,5 +1,24 @@
 [
  {
+  "slug": "n8n-io-nod",
+  "repo": "n8n-io/nod",
+  "url": "https://github.com/n8n-io/nod",
+  "tagline": "Open-source personal agent with its own computer and browser, from the n8n team",
+  "stars": "3.7k",
+  "trend": "+1,008",
+  "language": "TypeScript",
+  "license": "Apache-2.0",
+  "what": [
+   "Runs errands across Gmail, Calendar, Slack, web",
+   "Asks before it acts; rules checked in the server",
+   "Bring any model: OpenAI, Anthropic, Gemini, more"
+  ],
+  "read": "A serious take on personal agents: guardrails in the server, not the prompt",
+  "img": "repos/img/n8n-io-nod.jpg",
+  "date": "2026-11-26",
+  "post": ""
+ },
+ {
   "slug": "jingyaogong-minimind",
   "repo": "jingyaogong/minimind",
   "url": "https://github.com/jingyaogong/minimind",

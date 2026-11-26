@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: n8n-io/nod",
+  "summary": "Open-source personal agent with its own computer and browser, from the n8n team",
+  "points": [
+   "Runs errands across Gmail, Calendar, Slack, web",
+   "Asks before it acts; rules checked in the server",
+   "Bring any model: OpenAI, Anthropic, Gemini, more"
+  ],
+  "link": "repos/#n8n-io-nod",
+  "source": "https://github.com/n8n-io/nod",
+  "img": "repos/img/n8n-io-nod.jpg",
+  "x_url": "",
+  "id": "2026-11-26-repo-n8n-io-nod",
+  "date": "2026-11-26T13:13:27+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "Tokenizers Explained cheatsheet",
   "summary": "How AI models turn your text into tokens",
