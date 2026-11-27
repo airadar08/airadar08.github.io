@@ -2,18 +2,50 @@
  {
   "type": "Repo",
   "title": "Trending AI repo: zhouxiaoka/autoclip",
-  "summary": "Open-source AI clipper: turns long videos and streams into ready-to-post short clips",
+  "summary": "Open-source AI tool that cuts long videos into captioned shorts. Why it matters: a free, local OpusClip alternative.",
   "points": [
-   "Finds the best moments in a link, file or replay",
-   "Tracks the speaker, burns in captions, makes covers",
-   "Built-in MCP server for AI agents"
+   "★ 17.2k stars, +774 today",
+   "Runs offline with Ollama + Whisper",
+   "MIT, has an MCP server"
   ],
   "link": "repos/#zhouxiaoka-autoclip",
   "source": "https://github.com/zhouxiaoka/autoclip",
   "img": "repos/img/zhouxiaoka-autoclip.jpg",
-  "x_url": "",
+  "x_url": "https://x.com/ai_radar_/status/2126204474020737413",
   "id": "2026-11-27-repo-zhouxiaoka-autoclip",
-  "date": "2026-11-27T12:07:06+05:30"
+  "date": "2026-11-27T12:10:24+05:30"
+ },
+ {
+  "type": "Fact",
+  "title": "In 1948, Turing and Champernowne wrote a chess program no computer could run.",
+  "summary": "Why it matters: software came before hardware.",
+  "points": [
+   "Run by hand, up to 30 min a move",
+   "Lost to Glennie in 29 moves (1952)",
+   "A 2012 rebuild lost to Kasparov in 16"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2126198975917436969",
+  "date": "2026-11-27T11:48:33+05:30",
+  "link": "",
+  "source": "https://en.wikipedia.org/wiki/Turochamp",
+  "img": "",
+  "id": "2026-11-27-fact-in-1948-turing-and-champernowne-wrote-a-chess-program-no-com"
+ },
+ {
+  "type": "Fact",
+  "title": "In 1979, Kunihiko Fukushima's neocognitron learned vision features without labels.",
+  "summary": "Why it matters: image AI began with a cat-brain idea.",
+  "points": [
+   "Modeled on cat cortex research",
+   "S-cells find features, C-cells tolerate shifts",
+   "Inspired CNNs"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2125987864135778374",
+  "date": "2026-11-26T21:49:40+05:30",
+  "link": "",
+  "source": "https://t.co/3a2Is7CI7v",
+  "img": "",
+  "id": "2026-11-26-fact-in-1979-kunihiko-fukushima-s-neocognitron-learned-vision-fea"
  },
  {
   "type": "Cheatsheet",
