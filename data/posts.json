@@ -1,5 +1,17 @@
 [
  {
+  "type": "Cheatsheet",
+  "title": "Text-to-SQL Explained cheatsheet",
+  "summary": "Ask your database questions in plain English",
+  "link": "cheatsheets/#text-to-sql-explained",
+  "img": "cheatsheets/img/text-to-sql-explained.jpg",
+  "id": "2026-11-27-cheatsheet-text-to-sql-explained",
+  "date": "2026-11-27T21:22:36+05:30",
+  "x_url": "",
+  "source": "",
+  "points": []
+ },
+ {
   "type": "Repo",
   "title": "Trending AI repo: zhouxiaoka/autoclip",
   "summary": "Open-source AI tool that cuts long videos into captioned shorts. Why it matters: a free, local OpusClip alternative.",
