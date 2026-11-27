@@ -48,6 +48,22 @@
   "id": "2026-11-26-fact-in-1979-kunihiko-fukushima-s-neocognitron-learned-vision-fea"
  },
  {
+  "type": "Fact",
+  "title": "In 2017, AlphaGo Zero beat the version that beat Lee Sedol, 100-0, after 3 days of training.",
+  "summary": "Why it matters: self-play beat human data.",
+  "points": [
+   "No human games, only the rules",
+   "~4.9M self-play games",
+   "21 days to pass AlphaGo Master"
+  ],
+  "x_url": "https://x.com/ai_radar_/status/2125969031840895111",
+  "date": "2026-11-26T20:34:50+05:30",
+  "link": "",
+  "source": "https://t.co/rqOgJppHgm",
+  "img": "https://pbs.twimg.com/media/HYD1iRAbcAA-4Ao?format=jpg&name=small",
+  "id": "2026-11-26-fact-in-2017-alphago-zero-beat-the-version-that-beat-lee-sedol-10"
+ },
+ {
   "type": "Cheatsheet",
   "title": "AI Observability Explained cheatsheet",
   "summary": "See what your LLM app is really doing",
