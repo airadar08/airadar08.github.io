@@ -1,5 +1,24 @@
 [
  {
+  "slug": "zhouxiaoka-autoclip",
+  "repo": "zhouxiaoka/autoclip",
+  "url": "https://github.com/zhouxiaoka/autoclip",
+  "tagline": "Open-source AI clipper: turns long videos and streams into ready-to-post short clips",
+  "stars": "17.2k",
+  "trend": "+774",
+  "language": "Python",
+  "license": "MIT",
+  "what": [
+   "Finds the best moments in a link, file or replay",
+   "Tracks the speaker, burns in captions, makes covers",
+   "Built-in MCP server for AI agents"
+  ],
+  "read": "A free, local-first take on paid clipping tools; runs offline with Ollama + Whisper",
+  "img": "repos/img/zhouxiaoka-autoclip.jpg",
+  "date": "2026-11-27",
+  "post": ""
+ },
+ {
   "slug": "google-labs-code-stitch-skills",
   "repo": "google-labs-code/stitch-skills",
   "url": "https://github.com/google-labs-code/stitch-skills",

@@ -1,5 +1,21 @@
 [
  {
+  "type": "Repo",
+  "title": "Trending AI repo: zhouxiaoka/autoclip",
+  "summary": "Open-source AI clipper: turns long videos and streams into ready-to-post short clips",
+  "points": [
+   "Finds the best moments in a link, file or replay",
+   "Tracks the speaker, burns in captions, makes covers",
+   "Built-in MCP server for AI agents"
+  ],
+  "link": "repos/#zhouxiaoka-autoclip",
+  "source": "https://github.com/zhouxiaoka/autoclip",
+  "img": "repos/img/zhouxiaoka-autoclip.jpg",
+  "x_url": "",
+  "id": "2026-11-27-repo-zhouxiaoka-autoclip",
+  "date": "2026-11-27T12:07:06+05:30"
+ },
+ {
   "type": "Cheatsheet",
   "title": "AI Observability Explained cheatsheet",
   "summary": "See what your LLM app is really doing",
